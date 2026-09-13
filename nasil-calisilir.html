@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<title>Ders nasıl çalışılır? — Okulumuza Özel</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#e6edf3;display:flex;justify-content:center;min-height:100vh}
+.telefon{width:100%;max-width:430px;background:#0f1520;padding:18px 16px 70px}
+
+.ust{padding:6px 0 18px}
+.ust .geri{display:inline-block;margin-bottom:10px;color:#7d8590;text-decoration:none;font-size:14px}
+.ust .konu{font-size:13px;color:#7d8590;letter-spacing:.5px}
+.ust h1{font-size:26px;margin:6px 0 0;line-height:1.25}
+
+.kart{background:#161d2b;border:1px solid #232d3f;border-radius:16px;padding:18px 16px;margin-bottom:16px}
+.kart p{margin:0 0 10px;font-size:17px;line-height:1.55}
+.kart p:last-child{margin-bottom:0}
+.kart p.buyuk{font-size:19px;font-weight:600}
+.kucuk{color:#8b949e;font-size:15px}
+.sart{background:#0d1420;border-left:3px solid #f0a44b;padding:10px 12px;margin:8px 0;border-radius:0 8px 8px 0;font-size:16px}
+.sart.kucuk{color:#c9b998;font-size:16px}
+.rozet{display:inline-block;font-size:12px;font-weight:700;color:#0d1117;background:#f0c040;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+.rozet.kirmizi{background:#ff7b72}
+.rozet.yesil{background:#3fb950}
+.vurgu{color:#f0c040;font-weight:700}
+
+/* ---- yanlis/dogru ikili ---- */
+.ikili{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.yan{padding:13px 14px;border-radius:12px;font-size:16px;line-height:1.5}
+.yan.kotu{background:#2a1616;border:1px solid #5c2626;color:#ffb3ab}
+.yan.iyi{background:#12251a;border:1px solid #235c33;color:#8ce89f}
+.yan b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px;opacity:.8}
+
+/* ---- deney ---- */
+.deney{background:#0d1420;border-radius:12px;padding:16px;margin:14px 0}
+.deney .soru{font-size:17px;font-weight:600;margin-bottom:14px;line-height:1.5}
+.secenek{
+  display:block;width:100%;text-align:left;padding:14px;margin-bottom:9px;
+  border-radius:11px;border:1px solid #2c3950;background:#1b2436;
+  color:#c9d3e0;font-size:16px;font-family:inherit;cursor:pointer;transition:.15s;line-height:1.45
+}
+.secenek:active{transform:scale(.99)}
+.secenek.dogru{background:#12251a;border-color:#3fb950;color:#8ce89f}
+.secenek.yanlis{background:#2a1616;border-color:#5c2626;color:#ffb3ab}
+.secenek:disabled{cursor:default}
+.cevap{margin-top:12px;padding:14px;border-radius:11px;background:#161b22;border:1px solid #262d36;font-size:15.5px;line-height:1.6;color:#c9d3e0}
+.cevap .kanit{margin-top:10px;padding-top:9px;border-top:1px solid #262d36;font-size:12.5px;color:#8b949e;line-height:1.5}
+.cevap .kanit a{color:#7da8d8}
+
+/* ---- zaman karsilastirma ---- */
+.bar{margin:10px 0}
+.barBas{display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px}
+.barDis{height:26px;border-radius:7px;background:#1b2436;overflow:hidden}
+.barIc{height:100%;width:0;border-radius:7px;transition:width 1.1s cubic-bezier(.2,.8,.3,1)}
+.barIc.a{background:#f0a44b}
+.barIc.b{background:#3fb950}
+
+/* ---- kontrol listesi ---- */
+.liste{list-style:none;padding:0;margin:12px 0 0}
+.liste li{
+  display:flex;gap:11px;align-items:flex-start;padding:13px;margin-bottom:9px;
+  border-radius:11px;background:#0d1420;border:1px solid #202a3a;
+  font-size:16px;line-height:1.5;cursor:pointer;transition:.15s
+}
+.liste li.ok{background:#12251a;border-color:#235c33}
+.liste .kutu{
+  flex:0 0 auto;width:23px;height:23px;border-radius:7px;border:2px solid #3d4a60;
+  display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent;margin-top:1px
+}
+.liste li.ok .kutu{background:#3fb950;border-color:#3fb950;color:#0d1117}
+
+.buyukbtn{width:100%;padding:15px;border-radius:13px;border:none;background:#f0c040;color:#10141c;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px}
+.buyukbtn:active{transform:scale(.98)}
+.buyukbtn.sade{background:#243044;color:#e6edf3}
+
+.alt{text-align:center;color:#6e7681;font-size:13px;line-height:1.7;padding:14px 0 0}
+.alt a{color:#7d8590}
+.gizli{display:none}
+.acilan{animation:gir .35s ease-out}
+@keyframes gir{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="telefon">
+
+  <div class="ust">
+    <a class="geri" href="index.html">← Ana sayfa</a>
+    <div class="konu">ÖNCE BUNU OKU</div>
+    <h1>Ders nasıl çalışılır?</h1>
+  </div>
+
+  <div class="kart">
+    <p class="buyuk">Saatlerce çalışıp hiçbir şey hatırlamamanın sebebi tembellik değil.</p>
+    <p>Yanlış yöntem. Ve bu yöntemi sana kimse yanlış olduğunu söylemeden öğretti.</p>
+    <p class="kucuk">Aşağıdakiler benim fikrim değil. Binlerce öğrenciyle yapılmış
+      araştırmaların sonucu. Her birinin kaynağı altında yazıyor.</p>
+  </div>
+
+  <!-- DENEY -->
+  <div class="kart">
+    <span class="rozet">Önce bir soru</span>
+    <div class="deney">
+      <div class="soru">İki öğrenci aynı konuya <b>aynı süreyi</b> ayırdı.
+        Sınavda hangisi daha çok hatırlar?</div>
+      <button class="secenek" id="s1">
+        <b>A —</b> Konuyu 4 kez baştan sona okuyan
+      </button>
+      <button class="secenek" id="s2">
+        <b>B —</b> 1 kez okuyup, kitabı kapatıp kendine 3 kez soru soran
+      </button>
+      <div class="cevap gizli" id="cevap1"></div>
+    </div>
+  </div>
+
+  <!-- 1. KURAL -->
+  <div class="kart gizli" id="k1">
+    <span class="rozet kirmizi">1. kural</span>
+    <p class="buyuk">Okumak çalışmak değildir.</p>
+    <p>Kitaba bakarken her şey tanıdık gelir. Beynin “biliyorum” der.
+       <b>Ama tanımak ile hatırlamak aynı şey değil.</b></p>
+    <p>Sınavda kitap yok. Sınavda beynin boş sayfadan çıkarmak zorunda.
+       Onu da ancak <span class="vurgu">boş sayfadan çıkarmayı deneyerek</span> öğrenirsin.</p>
+
+    <div class="ikili">
+      <div class="yan kotu"><b>İşe yaramayan</b>
+        Defteri açık tut, konuyu oku, altını çiz, tekrar oku.</div>
+      <div class="yan iyi"><b>İşe yarayan</b>
+        Defteri <b>kapat</b>. Boş kâğıda hatırladığını yaz. Sonra aç, kontrol et.
+        Unuttuğun yerler zaten çalışman gereken yerler.</div>
+    </div>
+    <p class="kucuk">Kulağa zor geliyor — çünkü zor. Zor gelmesi çalıştığının işareti.
+      Kolay gelen yöntem genelde işe yaramayandır.</p>
+  </div>
+
+  <!-- 2. KURAL -->
+  <div class="kart gizli" id="k2">
+    <span class="rozet kirmizi">2. kural</span>
+    <p class="buyuk">Sınavdan önceki gece 4 saat = boşa giden 4 saat.</p>
+    <p>Aynı 4 saati <b>4 güne bölersen</b>, aynı emekle çok daha fazlasını
+      hatırlarsın. Beyin, aralıklarla geri dönülen şeyi “önemli” sayıp saklıyor.</p>
+
+    <div class="bar">
+      <div class="barBas"><span>Tek gecede 4 saat</span><span id="p1">—</span></div>
+      <div class="barDis"><div class="barIc a" id="b1"></div></div>
+    </div>
+    <div class="bar">
+      <div class="barBas"><span>4 gün × 1 saat</span><span id="p2">—</span></div>
+      <div class="barDis"><div class="barIc b" id="b2"></div></div>
+    </div>
+    <button class="buyukbtn" id="btnBar">Farkı göster</button>
+    <div class="cevap gizli" id="cevap2"></div>
+  </div>
+
+  <!-- 3. KURAL -->
+  <div class="kart gizli" id="k3">
+    <span class="rozet kirmizi">3. kural</span>
+    <p class="buyuk">Telefon masadayken çalışamazsın.</p>
+    <p>Sessizde olsa, ters çevrilse bile. Beynin bir kısmı sürekli
+      “acaba mesaj geldi mi” diye bekliyor. O kısım derse ayrılmıyor.</p>
+    <p class="sart kucuk">Çözüm basit ve acımasız: telefon <b>başka odada</b>.
+      Aynı odada değil — başka odada.</p>
+    <p class="kucuk">Bir de şu: müzik sözlüyse okuduğunu anlama düşer.
+      Matematik yaparken olur, kitap okurken olmaz.</p>
+  </div>
+
+  <!-- 4. KURAL -->
+  <div class="kart gizli" id="k4">
+    <span class="rozet yesil">4. kural</span>
+    <p class="buyuk">Anlamadığın şeyi birine anlat.</p>
+    <p>Kardeşine, annene, duvara, yastığa. Fark etmez.
+      Anlatırken <b>tam takıldığın yer</b>, bilmediğin yerdir.</p>
+    <p>Sessizce okurken o nokta hiç ortaya çıkmaz — çünkü beynin üstünden atlar.
+      Sesli anlatınca atlayamazsın.</p>
+    <p class="kucuk">Bu yüzden birine ders anlatan çocuk, dersi en iyi öğrenen çocuktur.</p>
+  </div>
+
+  <!-- UYGULAMA -->
+  <div class="kart gizli" id="k5">
+    <span class="rozet yesil">Bu akşam yap</span>
+    <p>Okumayı bırak, şunları yap. Dokununca işaretlenir.</p>
+    <ul class="liste" id="liste">
+      <li data-i="0"><span class="kutu">✓</span><span>Telefonu başka odaya koy</span></li>
+      <li data-i="1"><span class="kutu">✓</span><span>Bugünkü konuyu <b>bir kez</b> oku</span></li>
+      <li data-i="2"><span class="kutu">✓</span><span>Kitabı kapat, boş kâğıda hatırladığını yaz</span></li>
+      <li data-i="3"><span class="kutu">✓</span><span>Kitabı aç, neyi unutmuşsun bak</span></li>
+      <li data-i="4"><span class="kutu">✓</span><span>Sadece unuttuğun yeri tekrar oku</span></li>
+      <li data-i="5"><span class="kutu">✓</span><span>Yarın aynı konuya 10 dakika geri dön</span></li>
+    </ul>
+    <div class="cevap gizli" id="bitti"></div>
+  </div>
+
+  <div class="alt" id="k6">
+    Hepsi bu. Sihir yok, çalışan yöntem var.<br>
+    <a href="index.html">Ana sayfaya dön</a> · <a href="ebob-ekok.html">EBOB &amp; EKOK'a geç</a>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+  function ac(id){
+    var e=document.getElementById(id);
+    if(!e||!e.classList.contains('gizli')) return;
+    e.classList.remove('gizli'); e.classList.add('acilan');
+  }
+  function kaydir(id){
+    setTimeout(function(){
+      var e=document.getElementById(id);
+      if(e) e.scrollIntoView({behavior:'smooth',block:'start'});
+    },280);
+  }
+
+  /* ---- deney ---- */
+  var s1=document.getElementById('s1'), s2=document.getElementById('s2'),
+      c1=document.getElementById('cevap1'), secildi=false;
+
+  function cevapla(dogruMu){
+    if(secildi) return; secildi=true;
+    s1.className='secenek yanlis'; s2.className='secenek dogru';
+    s1.disabled=true; s2.disabled=true;
+    c1.classList.remove('gizli');
+    c1.innerHTML =
+      (dogruMu ? '<b>Doğru bildin.</b> ' : '<b>Çoğu kişi A der. Cevap B.</b> ')+
+      'Kendini test eden öğrenci, aynı sürede defalarca okuyandan '+
+      '<b>belirgin biçimde daha fazlasını</b> hatırlıyor. Buna '+
+      '<span class="vurgu">geri çağırma</span> deniyor.'+
+      '<div class="kanit">Kaynak: Adesope, Trevisan &amp; Sundararajan (2017), '+
+      '“Rethinking the Use of Tests: A Meta-Analysis of Practice Testing”, '+
+      '<i>Review of Educational Research</i> 87(3), 659–701. '+
+      '<a href="https://eric.ed.gov/?id=EJ1141817" target="_blank" rel="noopener">eric.ed.gov</a></div>';
+    tit([18,40,18]);
+    ac('k1'); kaydir('k1');
+    setTimeout(function(){ ac('k2'); },500);
+  }
+  s1.onclick=function(){cevapla(false);};
+  s2.onclick=function(){cevapla(true);};
+
+  /* ---- bar ---- */
+  var btnB=document.getElementById('btnBar');
+  btnB.onclick=function(){
+    document.getElementById('b1').style.width='32%';
+    document.getElementById('b2').style.width='88%';
+    document.getElementById('p1').textContent='az kalır';
+    document.getElementById('p2').textContent='çok kalır';
+    btnB.disabled=true; btnB.className='buyukbtn sade'; btnB.textContent='✓';
+    var c2=document.getElementById('cevap2');
+    c2.classList.remove('gizli');
+    c2.innerHTML='Aynı toplam süre. Tek farkı <b>dağıtılmış</b> olması. '+
+      'Araştırmalar bunu 140 yıldır tekrar tekrar aynı sonuçla buluyor.'+
+      '<div class="kanit">Kaynak: dağıtılmış (aralıklı) çalışma üzerine derleme, '+
+      '<i>PMC</i> 2025 — Dunlosky ve ark. (2013) “yüksek fayda” sınıfına koyuyor. '+
+      '<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12189222/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a></div>';
+    tit([18,40,18]);
+    ac('k3'); kaydir('k3');
+    setTimeout(function(){ ac('k4'); ac('k5'); },500);
+  };
+
+  /* ---- kontrol listesi ---- */
+  var liste=document.getElementById('liste'), isaretli=0, toplam=6;
+  [].forEach.call(liste.children,function(li){
+    li.onclick=function(){
+      if(li.classList.contains('ok')){ li.classList.remove('ok'); isaretli--; }
+      else { li.classList.add('ok'); isaretli++; tit(12); }
+      if(isaretli>=toplam){
+        var b=document.getElementById('bitti');
+        b.classList.remove('gizli');
+        b.innerHTML='<b>Altısını da işaretledin.</b> Şimdi gerçekten yap. '+
+          'Bir hafta böyle çalış, farkı kendin göreceksin.';
+        tit([18,40,18,40,18]);
+        ac('k6');
+      }
+    };
+  });
+})();
+</script>
+</body>
+</html>

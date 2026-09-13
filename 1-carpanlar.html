@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Çarpanlar — 8. Sınıf Matematik</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:#0d1117;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:#e6edf3; display:flex; justify-content:center; min-height:100vh;
+}
+.telefon{width:100%;max-width:430px;background:#0f1520;padding:18px 16px 70px}
+
+.ust{padding:6px 0 18px}
+.ust .konu{font-size:13px;color:#7d8590;letter-spacing:.5px}
+.ust h1{font-size:26px;margin:6px 0 0;line-height:1.25}
+
+.kart{background:#161d2b;border:1px solid #232d3f;border-radius:16px;padding:18px 16px;margin-bottom:16px}
+.adim{display:inline-block;font-size:12px;font-weight:700;color:#0d1117;background:#f0a44b;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+.kart p{margin:0 0 10px;font-size:17px;line-height:1.55}
+.kart p.buyuk{font-size:19px;font-weight:600}
+.kart p.sart{background:#0d1420;border-left:3px solid #f0a44b;padding:10px 12px;margin:8px 0;border-radius:0 8px 8px 0;font-size:16px}
+.vurgu{color:#f0a44b;font-weight:700}
+.kucuk{color:#8b949e;font-size:15px}
+
+/* ---- sayac ---- */
+.sayacEtiket{text-align:center;font-size:14px;color:#7d8590;margin-bottom:6px}
+.sayac{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:18px}
+.sayac button{width:56px;height:56px;border-radius:16px;border:none;background:#243044;color:#e6edf3;font-size:30px;font-weight:600;cursor:pointer;transition:transform .08s,background .15s}
+.sayac button:active{transform:scale(.9);background:#31405a}
+.sayac button:disabled{opacity:.25}
+.sayac .deger{min-width:92px;text-align:center}
+.sayac .deger b{font-size:38px;display:block;line-height:1}
+.sayac .deger span{font-size:12px;color:#7d8590}
+
+/* ---- izgara ---- */
+.izgaraKutu{background:#0d1420;border-radius:12px;padding:14px 10px 10px;margin-bottom:12px;overflow-x:auto}
+
+/* dortgen cercevesi + kenar olculeri */
+.cerceve{
+  display:inline-block;position:relative;
+  padding:10px;border-radius:10px;
+  border:2px solid transparent;
+  transition:border-color .25s, background .25s;
+}
+.cerceve.tam{border-color:#3fb950;background:rgba(63,185,80,.06)}
+.cerceve.yarim{border-color:#5c2626;border-style:dashed}
+.olcuSag{
+  position:absolute;right:-26px;top:50%;transform:translateY(-50%);
+  font-size:15px;font-weight:700;color:#5ddc7a;
+}
+.olcuAlt{
+  position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
+  font-size:15px;font-weight:700;color:#5ddc7a;white-space:nowrap;
+}
+.cerceve.yarim .olcuSag,.cerceve.yarim .olcuAlt{color:#8b949e}
+.izgaraSar{text-align:center;padding:6px 0 32px}
+
+.sira{display:flex;gap:5px;justify-content:center;margin-bottom:5px}
+.sira:last-child{margin-bottom:0}
+.yum{width:17px;height:21px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;
+  background:linear-gradient(160deg,#fff7e8,#e8d5b0);box-shadow:0 1px 2px rgba(0,0,0,.4);
+  flex:0 0 auto;animation:pop .16s ease-out;transition:transform .15s}
+.yum.bos{background:none;box-shadow:none;border:1px dashed #4a3535}
+.yum.kirik{background:linear-gradient(160deg,#ffd9d4,#e07a68);animation:sars .35s ease-out}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes sars{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.durum.ok{animation:parla .4s ease-out}
+@keyframes parla{from{transform:scale(.94)}to{transform:scale(1)}}
+
+.durum{text-align:center;padding:13px;border-radius:12px;font-size:16px;font-weight:600}
+.durum.ok{background:#12251a;color:#5ddc7a;border:1px solid #235c33}
+.durum.yok{background:#2a1616;color:#ff8f80;border:1px solid #5c2626}
+
+/* ---- bu ne ise yariyor ---- */
+.kart.ise{border-color:#5c4a1e;background:#1a1710}
+.baslikk.sari{color:#f0c040}
+.sekmeler{
+  display:flex;gap:6px;margin:12px 0 14px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding-bottom:2px;
+}
+.sekmeler::-webkit-scrollbar{display:none}
+.sekme{
+  flex:0 0 auto;white-space:nowrap;padding:11px 13px;border-radius:10px;border:1px solid #3a3520;
+  background:#241f14;color:#c9bfa0;font-size:14px;font-weight:600;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;font-family:inherit;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.sekme.aktif{background:#f0c040;border-color:#f0c040;color:#1a1710}
+.icerik{background:#0f0d08;border-radius:12px;padding:15px;min-height:150px}
+.icerik h4{margin:0 0 10px;font-size:17px;color:#f0c040}
+.icerik p{font-size:16px;line-height:1.6;margin:0 0 10px}
+.icerik .kanit{
+  margin-top:12px;padding-top:10px;border-top:1px solid #2a2418;
+  font-size:12.5px;color:#8a8168;line-height:1.5;
+}
+.icerik .kanit a{color:#b8a870}
+.vurguSari{color:#f0c040;font-weight:700}
+
+/* ---- ilerleme gostergesi ---- */
+.ilerleme{
+  margin-top:11px;padding:9px 12px;border-radius:9px;
+  background:#161b22;border:1px solid #262d36;
+  font-size:13.5px;color:#9aa4b0;text-align:center;line-height:1.5
+}
+.ilerleme b{color:#e6a341;font-size:15px}
+.ilerleme .ipucu{color:#7d8590}
+.ilerleme.tamam{background:#12251a;border-color:#235c33;color:#5ddc7a;font-weight:600}
+
+/* ---- kisayol ---- */
+.atla{display:flex;gap:8px;margin:-4px 0 14px}
+.atla a{
+  flex:1;text-align:center;padding:11px 6px;border-radius:10px;
+  background:#1a1710;border:1px solid #4a3d1c;color:#f0c040;
+  text-decoration:none;font-size:14px;font-weight:600;
+  -webkit-tap-highlight-color:transparent;
+}
+.atla a:active{background:#241f14}
+
+/* ---- DORUK: carpisma sahnesi ---- */
+.kart.doruk{background:#0a0e17;border-color:#2a2140;overflow:hidden}
+.buyukbtn.carpistir{
+  background:linear-gradient(135deg,#7a4fb0,#c8892f);color:#fff;border:none;
+  font-size:17px;margin-top:16px;
+}
+.sahne{
+  position:relative;padding:8px 0 6px;min-height:190px;
+  transition:min-height .45s ease,padding .45s ease;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+}
+.sahneEtiket{
+  font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  transition:opacity .5s ease;
+}
+.sahneEtiket.ust{color:#f0a44b;margin-bottom:9px}
+.sahneEtiket.alt{color:#c99bf0;margin-top:9px}
+.sahneEtiket.sonuk{opacity:0}
+
+.sira6{display:flex;gap:7px;justify-content:center;flex-wrap:nowrap}
+.sahne.bitti .sira6,.sahne.bitti .sahneEtiket{display:none}
+.sahne.bitti{min-height:0;padding:14px 0 6px}
+.sira6 .kup{
+  width:44px;height:44px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;
+  transition:transform .62s cubic-bezier(.34,1.3,.5,1), opacity .4s ease;
+  will-change:transform;
+}
+.sira6.ust .kup{background:#3a2a12;color:#f0a44b;border:2px solid #6b4a1c}
+.sira6.alt .kup{background:#2a1f3d;color:#c99bf0;border:2px solid #4d3a70}
+.sira6 .kup.sondu{opacity:0;visibility:hidden}
+
+.kilitAlani{
+  display:flex;gap:7px;justify-content:center;align-items:center;
+  height:0;overflow:visible;transition:height .4s ease;
+}
+.kilitAlani.acik{height:48px}
+.sahne.bitti .kilitAlani{height:48px}
+.kilitAlani .kilit{
+  width:44px;height:44px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;
+  background:#12251a;color:#5ddc7a;border:2px solid #3fb950;
+  opacity:0;transform:scale(.3);
+}
+.kilitAlani .kilit.gir{animation:kilitle .34s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes kilitle{
+  0%{opacity:0;transform:scale(.3)}
+  60%{opacity:1;transform:scale(1.22)}
+  100%{opacity:1;transform:scale(1)}
+}
+
+.sahne.parla::after{
+  content:'';position:absolute;inset:-40px;background:#fff;
+  animation:flas .45s ease-out;opacity:0;pointer-events:none;
+}
+@keyframes flas{0%{opacity:0}22%{opacity:.82}100%{opacity:0}}
+
+.finalYazi{text-align:center;margin-top:6px;animation:yukselt .6s ease-out}
+@keyframes yukselt{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.finalYazi .devasa{
+  font-size:34px;font-weight:800;letter-spacing:-.02em;
+  background:linear-gradient(90deg,#f0a44b,#5ddc7a,#c99bf0);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:8px;
+}
+.sebep{background:#0d1420;border-radius:12px;padding:14px;margin:16px 0 4px}
+
+/* ---- sorular ---- */
+.soru{background:#0d1420;border-radius:12px;padding:15px;margin-bottom:12px}
+.soru .metin{font-size:16.5px;line-height:1.5;margin-bottom:12px}
+.secenekler{display:flex;flex-direction:column;gap:8px}
+.secenek{
+  padding:13px 14px;border-radius:10px;border:1px solid #2a3546;
+  background:#151d2c;color:#c9d1d9;font-size:16px;text-align:left;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;font-family:inherit;
+  transition:background .15s,border-color .15s;
+}
+.secenek:disabled{cursor:default}
+.secenek.dogru{background:#12251a;border-color:#3fb950;color:#5ddc7a;font-weight:700}
+.secenek.yanlis{background:#2a1616;border-color:#5c2626;color:#ff8f80}
+.aciklama{
+  margin-top:11px;padding:11px 13px;border-radius:10px;
+  background:#131a26;border-left:3px solid #f0a44b;font-size:14.5px;line-height:1.55;color:#b8c2cf;
+}
+.sonucKutu{text-align:center;padding:18px;background:#0d1420;border-radius:12px;margin-top:4px}
+.buyukSkor{font-size:38px;font-weight:800;color:#f0a44b;margin-bottom:6px}
+
+.serit{margin-top:16px;border-top:1px solid #232d3f;padding-top:14px}
+.serit .baslik{font-size:13px;color:#7d8590;margin-bottom:9px}
+.cipler{display:flex;flex-wrap:wrap;gap:7px;min-height:36px}
+.cip{background:#f0a44b;color:#0d1117;border-radius:9px;padding:7px 13px;font-size:16px;font-weight:700;animation:pop .25s ease-out}
+.cip.sonuc{background:#243044;color:#8b949e}
+
+/* ---- tugla ---- */
+.agac{text-align:center;padding:8px 0 4px}
+.dugum{display:inline-block;background:#243044;border-radius:12px;padding:10px 16px;font-size:22px;font-weight:700;margin:4px;animation:pop .3s ease-out}
+.dugum.tugla{background:#7c4dbd;color:#fff}
+.kol{color:#4a5568;font-size:20px;margin:0 2px}
+.satir{margin:6px 0}
+
+.tuglalar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.tbtn{background:#1b2434;border:2px solid #34415a;color:#8b949e;border-radius:14px;
+  padding:14px 22px;font-size:24px;font-weight:700;cursor:pointer;transition:all .15s}
+.tbtn.secili{background:#7c4dbd;border-color:#a970d6;color:#fff;transform:translateY(-2px)}
+.tbtn:active{transform:scale(.94)}
+
+.carpimKutu{text-align:center;background:#0d1420;border-radius:12px;padding:16px;margin-bottom:12px}
+.carpimKutu .islem{font-size:15px;color:#7d8590;margin-bottom:6px;min-height:20px}
+.carpimKutu .sonuc{font-size:40px;font-weight:700;color:#f0a44b;line-height:1}
+.carpimKutu .not{font-size:14px;margin-top:8px;min-height:18px}
+.carpimKutu .not.yeni{color:#5ddc7a}
+
+.gizli{display:none}
+.acilan{animation:kay .4s ease-out}
+@keyframes kay{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.tanim{background:#1a2333;border:1px solid #f0a44b}
+.tanim .baslikk{font-size:14px;color:#f0a44b;font-weight:700;margin-bottom:8px;letter-spacing:.5px}
+.mor{background:#1e1a2e;border:1px solid #7c4dbd}
+.mor .baslikk{font-size:14px;color:#c99bf0;font-weight:700;margin-bottom:8px;letter-spacing:.5px}
+
+.buyukbtn{display:block;width:100%;padding:17px;border-radius:14px;border:none;
+  background:#f0a44b;color:#0d1117;font-size:17px;font-weight:700;cursor:pointer;margin-top:12px}
+.buyukbtn:active{transform:scale(.98)}
+.buyukbtn.mor2{background:#7c4dbd;color:#fff}
+.buyukbtn.ikincil{background:#243044;color:#e6edf3}
+</style>
+</head>
+<body>
+<div class="telefon">
+
+  <div class="ust">
+    <a href="index.html" style="display:inline-block;margin-bottom:10px;color:#7d8590;text-decoration:none;font-size:14px">← Ana sayfa</a>
+    <div class="konu">8. SINIF MATEMATİK · 1. KONU</div>
+    <h1>Çarpanlar</h1>
+  </div>
+
+  <!-- 1 -->
+  <div class="kart">
+    <span class="adim">1</span>
+    <p class="buyuk">Ahırdan <span class="vurgu" id="soruSayi">18 yumurta</span> topladın.</p>
+    <p>Pazara götürüp satacaksın. Poşetlere dolduracaksın.</p>
+    <p><b>İki şart var:</b></p>
+    <p class="sart">① Her poşette <b>aynı sayıda</b> yumurta olacak</p>
+    <p class="sart">② Elinde <b>tek yumurta bile kalmayacak</b></p>
+  </div>
+
+  <div class="atla">
+    <a href="#k7">↓ Bu ne işe yarıyor?</a>
+    <a href="#k8">↓ Kendini dene</a>
+  </div>
+
+  <!-- 2 -->
+  <div class="kart">
+    <span class="adim">2</span>
+    <div class="sayacEtiket">Kaç poşet alacaksın? Dene:</div>
+    <div class="sayac">
+      <button id="eksi">−</button>
+      <div class="deger"><b id="kDeger">3</b><span>poşet</span></div>
+      <button id="arti">+</button>
+    </div>
+
+    <div class="izgaraKutu" id="izgara"></div>
+    <div class="durum" id="durum"></div>
+
+    <div class="serit">
+      <div class="baslik">Tutan poşet sayıları</div>
+      <div class="cipler" id="cipler"></div>
+      <div class="ilerleme" id="ilerleme"></div>
+    </div>
+  </div>
+
+  <!-- 3: DIKDORTGEN MANTIGI -->
+  <div class="kart tanim gizli" id="k3">
+    <div class="baslikk">GÖRDÜN MÜ?</div>
+    <p class="buyuk">Tuttuğunda ortaya <span class="vurgu">düzgün bir dörtgen</span> çıkıyor.</p>
+    <p>Tutmadığında son sıra <b>yarım kalıyor</b>.</p>
+    <p class="kucuk" style="margin-top:12px">Yani mesele bölmek değil. Mesele şu:<br>
+    <b style="color:#e6edf3">Yumurtaları düzgün bir dörtgen yapabiliyor musun?</b></p>
+    <p style="margin-top:14px">Tuttuğun sayılar: <span class="vurgu">1 · 2 · 3 · 6 · 9 · 18</span></p>
+    <p class="kucuk">Matematikte bunlara <b style="color:#f0a44b">18'in çarpanları</b> deniyor.</p>
+    <button class="buyukbtn" id="btn3">Peki neden tam bu 6 sayı? →</button>
+  </div>
+
+  <!-- 4: TUGLAYA AYIR -->
+  <div class="kart mor gizli" id="k4">
+    <div class="baslikk">ŞİMDİ ASIL OLAY</div>
+    <p>18'i parçalayalım. Çarpan iki sayıya ayıralım:</p>
+    <div class="agac" id="agac"></div>
+    <button class="buyukbtn mor2" id="btnParcala">Parçala</button>
+  </div>
+
+  <!-- 5: TUGLALARDAN URET -->
+  <div class="kart mor gizli" id="k5">
+    <div class="baslikk">18'İN TUĞLALARI</div>
+    <p class="buyuk" style="text-align:center;margin:4px 0 14px">18 = 2 × 3 × 3</p>
+    <p>Bu 3 tuğla 18'i yapıyor. Şimdi tuğlalara bas, bak ne çıkıyor:</p>
+
+    <div class="tuglalar" id="tuglalar"></div>
+
+    <div class="carpimKutu">
+      <div class="islem" id="islem">hiç tuğla seçmedin</div>
+      <div class="sonuc" id="carpim">1</div>
+      <div class="not" id="not"></div>
+    </div>
+
+    <div class="serit" style="border-top-color:#3d2f52">
+      <div class="baslik">Tuğlalardan çıkan sayılar <span id="uretSkor" style="color:#c99bf0"></span></div>
+      <div class="cipler" id="uretilen"></div>
+    </div>
+
+    <div class="gizli" id="k5son">
+      <button class="buyukbtn carpistir" id="btnCarpistir">İki listeyi yan yana koy →</button>
+    </div>
+  </div>
+
+  <!-- 5B: DORUK - CARPISMA -->
+  <div class="kart doruk gizli" id="k5b">
+    <div class="sahne" id="sahne">
+      <div class="sahneEtiket ust" id="etU">poşetlerle buldukların</div>
+      <div class="sira6 ust" id="siraU"></div>
+
+      <div class="kilitAlani" id="kilitAlani"></div>
+
+      <div class="sira6 alt" id="siraA"></div>
+      <div class="sahneEtiket alt" id="etA">tuğlalardan çıkanlar</div>
+    </div>
+
+    <div class="finalYazi gizli" id="finalYazi">
+      <p class="devasa">Aynı şey.</p>
+      <p>İki ayrı yoldan gittin, aynı yere çıktın.<br><b>Tesadüf değil.</b></p>
+    </div>
+
+    <div class="gizli" id="k5c">
+      <div class="sebep">
+        <p class="kucuk"><b style="color:#e6edf3">4 neden tutmadı?</b><br>
+        4 = 2×2. 18'in elinde <b style="color:#e6edf3">tek tane 2</b> var. Tuğla yetmiyor.</p>
+      </div>
+      <button class="buyukbtn mor2" id="btn5">Şimdi 17 yumurta dene →</button>
+    </div>
+  </div>
+
+  <!-- 6: ASAL -->
+  <div class="kart mor gizli" id="k6">
+    <div class="baslikk">17 NEDEN OLMADI?</div>
+    <p class="buyuk">17 ile dörtgen kurulamıyor.</p>
+    <p>Tek sıradan başka hiçbir şey olmuyor.</p>
+    <p style="margin-top:12px">17'yi parçalamaya kalk — <b>parçalanmıyor.</b> 17 zaten bir tuğla.</p>
+    <p style="margin-top:12px">Böyle sayılara <span class="vurgu">asal sayı</span> denir.</p>
+    <p class="kucuk" style="margin-top:12px">Asal sayılar <b style="color:#e6edf3">tuğlalardır</b>. Bütün sayılar onlardan yapılmıştır.</p>
+    <button class="buyukbtn ikincil" id="btnTekrar">↺ Baştan dene</button>
+  </div>
+
+  <!-- 7: BU NE ISE YARIYOR -->
+  <div class="kart ise" id="k7">
+    <div class="baslikk sari">PEKİ BU NE İŞE YARIYOR?</div>
+    <p>Merak ettiğine bas:</p>
+
+    <div class="sekmeler">
+      <button class="sekme aktif" data-s="0">📱 Telefonda</button>
+      <button class="sekme" data-s="1">🌾 Doğada</button>
+      <button class="sekme" data-s="2">🐄 Ahırda</button>
+      <button class="sekme" data-s="3">⚽ Sahada</button>
+      <button class="sekme" data-s="4">🐝 Kovanda</button>
+      <button class="sekme" data-s="5">🎮 Oyunda</button>
+    </div>
+
+    <div class="icerik" id="iceriks"></div>
+  </div>
+
+  <!-- 8: KENDINI DENE -->
+  <div class="kart" id="k8">
+    <div class="baslikk">KENDİNİ DENE</div>
+    <div id="sorular"></div>
+    <div class="sonucKutu gizli" id="sonucKutu">
+      <div class="buyukSkor" id="buyukSkor">0/3</div>
+      <div id="sonucYazi"></div>
+      <button class="buyukbtn ikincil" id="btnSoruTekrar">↺ Soruları tekrar çöz</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var N=18, k=1, bulunan=[], hedef=6, asalMod=false;
+
+  var izgara=document.getElementById('izgara'), durum=document.getElementById('durum'),
+      cipler=document.getElementById('cipler'), kDeger=document.getElementById('kDeger'),
+      eksi=document.getElementById('eksi'), arti=document.getElementById('arti');
+
+  function bolen(n){var a=[];for(var i=1;i<=n;i++)if(n%i===0)a.push(i);return a;}
+
+  function yum(cls){var d=document.createElement('div');d.className='yum'+(cls?' '+cls:'');return d;}
+
+  function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+
+  function ciz(){
+    var per=Math.floor(N/k), kalan=N%k;
+    izgara.innerHTML='';
+
+    var sar=document.createElement('div'); sar.className='izgaraSar';
+    var crc=document.createElement('div'); crc.className='cerceve '+(kalan===0?'tam':'yarim');
+
+    // tam siralar
+    for(var s=0;s<k;s++){
+      var r=document.createElement('div'); r.className='sira';
+      for(var j=0;j<per;j++) r.appendChild(yum());
+      crc.appendChild(r);
+    }
+    // eksik sira
+    if(kalan>0){
+      var r2=document.createElement('div'); r2.className='sira';
+      for(var m=0;m<kalan;m++) r2.appendChild(yum('kirik'));
+      for(var b=0;b<per-kalan;b++) r2.appendChild(yum('bos'));
+      crc.appendChild(r2);
+    }
+
+    // kenar olculeri — carpim mantigi sekil uzerinde
+    var os=document.createElement('div'); os.className='olcuSag'; os.textContent=k;
+    var oa=document.createElement('div'); oa.className='olcuAlt';
+    oa.textContent = kalan===0 ? (k+' × '+per+' = '+N) : (per+' ?');
+    crc.appendChild(os); crc.appendChild(oa);
+
+    sar.appendChild(crc); izgara.appendChild(sar);
+
+    if(kalan===0){
+      durum.className='durum ok';
+      durum.textContent='✓ Düzgün dörtgen oldu — '+k+' sıra, her sırada '+per;
+      if(bulunan.indexOf(k)===-1){
+        bulunan.push(k);bulunan.sort(function(a,b){return a-b});
+        tit([18,40,18]); serit();kontrol();
+      }else tit(12);
+    }else{
+      durum.className='durum yok';
+      durum.textContent='✗ Son sıra yarım kaldı — '+kalan+' yumurta';
+    }
+    kDeger.textContent=k;
+    eksi.disabled=(k<=1); arti.disabled=(k>=N);
+  }
+
+  function serit(){
+    cipler.innerHTML='';
+    bulunan.forEach(function(v){
+      var c=document.createElement('div');c.className='cip';c.textContent=v;cipler.appendChild(c);
+    });
+    // ilerleme + yonlendirme: cocuk asla kaybolmasin
+    var iz=document.getElementById('ilerleme');
+    if(iz){
+      var kaldi=hedef-bulunan.length;
+      if(kaldi>0){
+        iz.className='ilerleme';
+        iz.innerHTML='<b>'+bulunan.length+' / '+hedef+'</b> bulundu &nbsp;\u00b7&nbsp; '+
+          '<span class="ipucu">'+kaldi+' tane daha var, + tu\u015funa basmaya devam et</span>';
+      }else{
+        iz.className='ilerleme tamam';
+        iz.innerHTML='\u2713 Hepsini buldun \u2014 '+hedef+'/'+hedef;
+      }
+    }
+  }
+
+  function kontrol(){
+    if(bulunan.length<hedef) return;
+    if(!asalMod) ac('k3');
+    else {
+      ac('k6');
+      // asal anlasildi -> son iki bolum acilir
+      document.getElementById('k7').classList.remove('gizli');
+      document.getElementById('k8').classList.remove('gizli');
+    }
+  }
+
+  function ac(id){
+    var e=document.getElementById(id);
+    e.classList.remove('gizli'); e.classList.add('acilan');
+    setTimeout(function(){e.scrollIntoView({behavior:'smooth',block:'start'})},260);
+  }
+
+  eksi.onclick=function(){if(k>1){k--;ciz();}};
+  arti.onclick=function(){if(k<N){k++;ciz();}};
+
+  // ---- 4: parcalama agaci ----
+  var adim=0, agac=document.getElementById('agac'), btnP=document.getElementById('btnParcala');
+  var kareler=[
+    '<div class="satir"><span class="dugum">18</span></div>',
+    '<div class="satir"><span class="dugum">18</span></div><div class="satir"><span class="dugum tugla">2</span><span class="kol">×</span><span class="dugum">9</span></div>',
+    '<div class="satir"><span class="dugum">18</span></div><div class="satir"><span class="dugum tugla">2</span><span class="kol">×</span><span class="dugum">9</span></div><div class="satir"><span class="dugum tugla">2</span><span class="kol">×</span><span class="dugum tugla">3</span><span class="kol">×</span><span class="dugum tugla">3</span></div>'
+  ];
+  var yazi=['','9\'u da parçalayabilir misin?','Mor olanlar artık parçalanmıyor. Bunlar <b>tuğla</b>.'];
+
+  document.getElementById('btn3').onclick=function(){
+    ac('k4'); agac.innerHTML=kareler[0];
+  };
+
+  btnP.onclick=function(){
+    adim++;
+    if(adim<=2){
+      agac.innerHTML=kareler[adim];
+      btnP.innerHTML = adim===1 ? '9\'u da parçala' : 'Tuğlaları kullan →';
+    }else{
+      ac('k5'); kurTuglalar();
+    }
+  };
+
+  // ---- 5: tuglalardan uretme ----
+  var tuglaDeger=[2,3,3], secili=[false,false,false], uretilenler=[];
+
+  function kurTuglalar(){
+    var kap=document.getElementById('tuglalar');
+    kap.innerHTML='';
+    tuglaDeger.forEach(function(v,i){
+      var b=document.createElement('button');
+      b.className='tbtn'; b.textContent=v;
+      b.onclick=function(){ secili[i]=!secili[i]; b.classList.toggle('secili'); tit(10); hesapla(); };
+      kap.appendChild(b);
+    });
+    hesapla();
+  }
+
+  function hesapla(){
+    var c=1, parcalar=[];
+    tuglaDeger.forEach(function(v,i){ if(secili[i]){c*=v;parcalar.push(v);} });
+
+    document.getElementById('carpim').textContent=c;
+    document.getElementById('islem').innerHTML =
+      parcalar.length ? parcalar.join(' × ') : 'hiç tuğla seçmedin';
+
+    var nt=document.getElementById('not');
+    if(uretilenler.indexOf(c)===-1){
+      uretilenler.push(c); uretilenler.sort(function(a,b){return a-b});
+      nt.className='not yeni'; nt.textContent='✓ yeni sayı bulundu';
+      var u=document.getElementById('uretilen'); u.innerHTML='';
+      uretilenler.forEach(function(v){
+        var d=document.createElement('div');d.className='cip';d.textContent=v;u.appendChild(d);
+      });
+      document.getElementById('uretSkor').textContent=uretilenler.length+'/6';
+      if(uretilenler.length===6){
+        var s=document.getElementById('k5son');
+        s.classList.remove('gizli'); s.classList.add('acilan');
+        setTimeout(function(){s.scrollIntoView({behavior:'smooth',block:'start'})},300);
+      }
+    }else{
+      nt.className='not'; nt.textContent='';
+    }
+  }
+
+  // ---- 5B: DORUK - carpisma animasyonu ----
+  document.getElementById('btnCarpistir').onclick=function(){
+    var k5b=document.getElementById('k5b');
+    k5b.classList.remove('gizli');
+    setTimeout(function(){k5b.scrollIntoView({behavior:'smooth',block:'center'})},80);
+    setTimeout(baslatCarpisma, 420);
+    this.disabled=true; this.style.opacity=.4;
+  };
+
+  function baslatCarpisma(){
+    var siraU=document.getElementById('siraU'), siraA=document.getElementById('siraA');
+    var kilitAlani=document.getElementById('kilitAlani');
+    var sayilar=[1,2,3,6,9,18];
+
+    siraU.innerHTML=''; siraA.innerHTML=''; kilitAlani.innerHTML='';
+    sayilar.forEach(function(v){
+      var a=document.createElement('div'); a.className='kup'; a.textContent=v; siraU.appendChild(a);
+      var b=document.createElement('div'); b.className='kup'; b.textContent=v; siraA.appendChild(b);
+      var c=document.createElement('div'); c.className='kilit'; c.textContent=v; kilitAlani.appendChild(c);
+    });
+
+    // 1) iki sira birbirine dogru suzuluyor
+    setTimeout(function(){
+      kilitAlani.classList.add('acik');
+      var ust=siraU.querySelectorAll('.kup'), alt=siraA.querySelectorAll('.kup');
+      for(var i=0;i<6;i++){
+        ust[i].style.transform='translateY(48px)';
+        alt[i].style.transform='translateY(-48px)';
+      }
+    }, 260);
+
+    // 2) tek tek kilitleniyor
+    var kilitler=kilitAlani.querySelectorAll('.kilit');
+    var ustK=siraU.querySelectorAll('.kup'), altK=siraA.querySelectorAll('.kup');
+    for(var j=0;j<6;j++){
+      (function(idx){
+        setTimeout(function(){
+          ustK[idx].classList.add('sondu');
+          altK[idx].classList.add('sondu');
+          kilitler[idx].classList.add('gir');
+          tit(14);
+        }, 720 + idx*160);
+      })(j);
+    }
+
+    // 3) flas + final yazi
+    setTimeout(function(){
+      var sh=document.getElementById('sahne');
+      sh.classList.add('parla');
+      setTimeout(function(){sh.classList.add('bitti')},170);
+      tit([30,60,30]);
+    }, 720+6*160+110);
+
+    setTimeout(function(){
+      document.getElementById('finalYazi').classList.remove('gizli');
+    }, 720+6*160+400);
+
+    setTimeout(function(){
+      document.getElementById('k5c').classList.remove('gizli');
+    }, 720+6*160+1400);
+  }
+
+  // ---- 6: asal ----
+  document.getElementById('btn5').onclick=function(){
+    N=17;k=1;bulunan=[];hedef=2;asalMod=true;
+    document.getElementById('soruSayi').textContent='17 yumurta';
+    ['k3','k4','k5','k5b'].forEach(function(id){document.getElementById(id).classList.add('gizli')});
+    serit();ciz();window.scrollTo({top:0,behavior:'smooth'});
+  };
+  document.getElementById('btnTekrar').onclick=function(){
+    N=18;k=1;bulunan=[];hedef=6;asalMod=false;adim=0;
+    uretilenler=[];secili=[false,false,false];
+    document.getElementById('soruSayi').textContent='18 yumurta';
+    document.getElementById('k5son').classList.add('gizli');
+    document.getElementById('k5b').classList.add('gizli');
+    document.getElementById('k5c').classList.add('gizli');
+    document.getElementById('finalYazi').classList.add('gizli');
+    var sh2=document.getElementById('sahne');
+    sh2.classList.remove('parla'); sh2.classList.remove('bitti');
+    document.getElementById('kilitAlani').classList.remove('acik');
+    var bc=document.getElementById('btnCarpistir'); bc.disabled=false; bc.style.opacity=1;
+    document.getElementById('uretilen').innerHTML='';
+    document.getElementById('uretSkor').textContent='';
+    serit();ciz();window.scrollTo({top:0,behavior:'smooth'});
+  };
+
+  // ---- 7: bu ne ise yariyor ----
+  var iseYarar=[
+    { b:'Telefonundaki kilit',
+      h:'<p>WhatsApp\'tan mesaj attığında, mesajın <span class="vurguSari">iki dev asal sayıyla</span> kilitlenir.</p>'+
+        '<p>Neden asal? Çünkü iki asalı <b>çarpmak kolay</b>, ama çarpımı geri <b>parçalamak neredeyse imkânsız</b>.</p>'+
+        '<p>Sen 18\'i 2×3×3 diye parçaladın, 5 saniye sürdü. Ama sayı 600 basamaklı olursa, dünyanın en hızlı bilgisayarı bile <b>milyonlarca yıl</b> uğraşır.</p>'+
+        '<p style="color:#f0c040">İşte şifreni koruyan şey bu: parçalamanın zorluğu.</p>',
+      k:'RSA şifreleme yöntemi. Kaynak: ABC Science, "Prime numbers keep your encrypted messages safe" (2018) · Her HTTPS bağlantısı bunu kullanır.' },
+
+    { b:'17 yıl bekleyen böcek',
+      h:'<p>Amerika\'da bir ağustosböceği var: toprağın altında tam <span class="vurguSari">17 yıl</span> bekliyor, sonra hep birlikte çıkıyor.</p>'+
+        '<p>Bazıları da <span class="vurguSari">13 yıl</span> bekliyor. İkisi de asal sayı. Tesadüf değil.</p>'+
+        '<p>Sebep: onları yiyen kuşlar 2, 3, 4, 6 yılda bir çoğalıyor. Eğer böcek 12 yılda çıksaydı, 12 = 2×2×3 olduğu için <b>her seferinde</b> aç kuşlara denk gelirdi.</p>'+
+        '<p style="color:#f0c040">Ama 17 parçalanmıyor. Kuşla denk gelmesi çok zor. Asal olan hayatta kaldı.</p>',
+      k:'Magicicada türü. Kaynak: Scientific Reports (Nature), "Evolution of periodicity in periodical cicadas" (2015) · Yoshimura ve ark.' },
+
+    { b:'Pazara giderken',
+      h:'<p>Ahırda 18 yumurta var. Poşetlere böldün — 6 yol çıktı.</p>'+
+        '<p>Ama 17 yumurta olsaydı? <b>Ya hepsi tek poşette, ya 17 ayrı poşet.</b> Ortası yok.</p>'+
+        '<p>Aynı şey sürüde de var: 24 koyunu ağıllara bölebilirsin (2, 3, 4, 6, 8, 12), ama 23 koyunu bölemezsin.</p>'+
+        '<p style="color:#f0c040">Sayının parçalanabilirliği, onunla ne yapabileceğini belirler. Marangoz da, çiftçi de bunu bilir — adını bilmese bile.</p>',
+      k:'18 ve 24 için çarpan listeleri sayfadaki hesapla birebir aynıdır.' },
+
+    { b:'Sahada takım kurarken',
+      h:'<p>Sahaya 18 kişi geldi. Kaç takıma bölersin?</p>'+
+        '<p><b>2 takım</b> → 9\'ar kişi. <b>3 takım</b> → 6\'şar. <b>6 takım</b> → 3\'er. <b>9 takım</b> → 2\'şer.</p>'+
+        '<p>Ama <b>4 takım</b> yapamazsın. 18\'i 4\'e bölünce eşit olmuyor — biri eksik kalıyor, kavga çıkıyor.</p>'+
+        '<p>Peki 17 kişi gelseydi? <span class="vurguSari">Hiçbir şekilde eşit takım olmaz.</span> Ya herkes tek takım, ya 17 ayrı kişi. Ortası yok.</p>'+
+        '<p style="color:#f0c040">Sahada takım kurarken aslında çarpan arıyorsun. Adını bilmeden yapıyorsun.</p>',
+      k:'18\'in çarpanları: 1, 2, 3, 6, 9, 18 — sayfada bulduğun listeyle birebir aynı. 17 asal olduğu için sadece 1 ve 17.' },
+
+    { b:'Kovandaki çerçeveler',
+      h:'<p>Diyarbakır\'da <span class="vurguSari">193 bin 664 arı kovanı</span> var. Ülkede arıcılığın merkezlerinden biri burası.</p>'+
+        '<p>Arıcı bal çerçevelerini kasalara dizer. 24 çerçeven varsa: 2\'şer, 3\'er, 4\'er, 6\'şar, 8\'er, 12\'şer dizebilirsin.</p>'+
+        '<p>Ama 23 çerçeven olsaydı hiç dizemezdin — <b>23 asal.</b> Ya hepsi tek kasada, ya her biri ayrı.</p>'+
+        '<p style="color:#f0c040">Arıcı "asal sayı" demez. "Bu tutmuyor" der. Aynı şey.</p>',
+      k:'Diyarbakır 2024 arı kovanı sayısı: 193.664 (1.090 işletme). Kaynak: T.C. Tarım ve Orman Bakanlığı, GAP UTAEM 2025 TÜİK hayvansal üretim verileri.' },
+
+    { b:'Oyunda bekleme süresi',
+      h:'<p>Oyunda iki yeteneğin var. Biri <b>8 saniyede</b> bir dolan, öbürü <b>12 saniyede</b> bir.</p>'+
+        '<p>İkisini aynı anda ne zaman basabilirsin? 8\'in katları: 8, 16, <b>24</b>. 12\'nin katları: 12, <b>24</b>.</p>'+
+        '<p><span class="vurguSari">24. saniyede</span> ikisi birden hazır. İyi oyuncu bunu bilir, kombosunu ona göre kurar.</p>'+
+        '<p>Peki neden 24? Çünkü 8 = 2×2×2 ve 12 = 2×2×3. İkisini birden karşılayan en küçük sayı 2×2×2×3 = 24.</p>'+
+        '<p style="color:#f0c040">Yine tuğlalar. Aynı mantık, başka kılık.</p>',
+      k:'Roblox 129,7 milyon aylık aktif kullanıcı; PUBG Mobile ve Free Fire Türkiye\'de en çok oynanan mobil oyunlar arasında. Kaynak: games.gg 2025 mobil oyun raporu.' }
+  ];
+
+  var icerikKutu=document.getElementById('iceriks');
+  function sekmeCiz(i){
+    var d=iseYarar[i];
+    icerikKutu.innerHTML='<h4>'+d.b+'</h4>'+d.h+'<div class="kanit">'+d.k+'</div>';
+  }
+  var sekmeler=document.querySelectorAll('.sekme');
+  for(var si=0;si<sekmeler.length;si++){
+    (function(btn){
+      btn.onclick=function(){
+        for(var j=0;j<sekmeler.length;j++) sekmeler[j].classList.remove('aktif');
+        btn.classList.add('aktif'); tit(10);
+        sekmeCiz(parseInt(btn.getAttribute('data-s'),10));
+      };
+    })(sekmeler[si]);
+  }
+  sekmeCiz(0);
+
+  // ---- 8: sorular ----
+  var sorular=[
+    { m:'Ahırdan <b>20 yumurta</b> topladın. Hiç artmadan kaç poşete bölebilirsin?',
+      s:['3 poşet','6 poşet','5 poşet','7 poşet'], d:2,
+      a:'20 ÷ 5 = 4. Her poşette 4 yumurta, elinde hiç kalmaz. 4 sıra × 5 sütun düzgün dörtgen olur. Diğerlerinde son sıra yarım kalır.' },
+    { m:'Hangisi <b>asal sayı</b>dır? (Yani hangisiyle düzgün dörtgen kurulamaz?)',
+      s:['21','27','33','23'], d:3,
+      a:'23 sadece 1 ve 23\'e bölünür — parçalanmıyor, tuğlanın kendisi. Diğerleri parçalanır: 21 = 3×7, 27 = 3×3×3, 33 = 3×11.' },
+    { m:'<b>12 = 2 × 2 × 3</b>. Bu tuğlalarla <b>8</b> sayısını üretebilir misin?',
+      s:['Evet, üretilir','Hayır, üretilemez'], d:1,
+      a:'8 = 2×2×2, yani üç tane 2 lazım. Ama 12\'nin elinde <b>iki tane</b> 2 var. Tuğla yetmiyor — bu yüzden 8, 12\'nin çarpanı değildir.' }
+  ];
+
+  var soruKap=document.getElementById('sorular');
+  var dogruSayisi=0, cevaplanan=0;
+
+  function soruCiz(){
+    soruKap.innerHTML=''; dogruSayisi=0; cevaplanan=0;
+    document.getElementById('sonucKutu').classList.add('gizli');
+    sorular.forEach(function(so,idx){
+      var kutu=document.createElement('div'); kutu.className='soru';
+      var m=document.createElement('div'); m.className='metin';
+      m.innerHTML='<b style="color:#f0a44b">'+(idx+1)+'.</b> '+so.m;
+      kutu.appendChild(m);
+      var sec=document.createElement('div'); sec.className='secenekler';
+      var btnlar=[];
+      so.s.forEach(function(metin,si2){
+        var b=document.createElement('button');
+        b.className='secenek'; b.textContent=metin;
+        b.onclick=function(){
+          if(b.disabled) return;
+          btnlar.forEach(function(x){x.disabled=true});
+          if(si2===so.d){ b.classList.add('dogru'); dogruSayisi++; tit([18,40,18]); }
+          else{ b.classList.add('yanlis'); btnlar[so.d].classList.add('dogru'); tit(60); }
+          var ac2=document.createElement('div'); ac2.className='aciklama';
+          ac2.innerHTML='<b style="color:#f0a44b">Neden:</b> '+so.a;
+          kutu.appendChild(ac2);
+          cevaplanan++;
+          if(cevaplanan===sorular.length) bitir();
+        };
+        btnlar.push(b); sec.appendChild(b);
+      });
+      kutu.appendChild(sec); soruKap.appendChild(kutu);
+    });
+  }
+
+  function bitir(){
+    var kutu=document.getElementById('sonucKutu');
+    document.getElementById('buyukSkor').textContent=dogruSayisi+'/3';
+    var y=dogruSayisi===3 ? 'Hepsi doğru. Mantığı çözmüşsün.'
+        : dogruSayisi===2 ? 'İyi gidiyor. Yanlış olanın açıklamasını bir daha oku.'
+        : 'Yukarı çık, poşetlerle biraz daha oyna. Sonra tekrar dene.';
+    document.getElementById('sonucYazi').textContent=y;
+    kutu.classList.remove('gizli');
+    setTimeout(function(){kutu.scrollIntoView({behavior:'smooth',block:'center'})},250);
+  }
+  document.getElementById('btnSoruTekrar').onclick=function(){
+    soruCiz(); window.scrollTo({top:document.getElementById('k8').offsetTop-10,behavior:'smooth'});
+  };
+  soruCiz();
+
+  serit(); ciz();
+})();
+</script>
+</body>
+</html>
