@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1420">
+<title>Veri Analizi — Bu Ne İşe Yarıyor?</title>
+<meta name="description" content="Grafik okumak neden hayat kurtarır? Diyarbakır'ın sıcaklığı, süt fiyatı, ekran süresi — gerçek verilerle 8. sınıf veri analizi.">
+<meta property="og:title" content="Veri Analizi — Bu Ne İşe Yarıyor?">
+<meta property="og:description" content="'Ortalama 31 derece' diyorlar ama gece üşüyorsun. Sayılar nasıl yalan söyler, grafik nasıl yakalar?">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1420;color:#e6e8ee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.6}
+.kap{max-width:430px;margin:0 auto;padding:16px 14px 60px}
+a{color:#6ea8fe}
+.ust{font-size:14px;color:#8b949e;margin-bottom:14px}
+.ust a{text-decoration:none}
+h1{font-size:26px;line-height:1.25;margin:6px 0 4px}
+.etiket{display:inline-block;background:#1a2332;color:#8ab4f8;font-size:12px;padding:3px 10px;border-radius:20px;margin:8px 0 2px}
+.kart{background:#161d2b;border:1px solid #262d36;border-radius:14px;padding:16px;margin:14px 0}
+.kart h2{font-size:19px;margin-bottom:8px}
+.kart p{margin:8px 0;font-size:16px}
+.gizli{display:none}
+.adim{display:inline-block;background:#1a2332;color:#8ab4f8;font-weight:700;font-size:13px;padding:2px 9px;border-radius:12px;margin-bottom:6px}
+.adim.yesil{background:#122619;color:#4ade80}
+button{font-family:inherit;font-size:16px;border:0;border-radius:10px;padding:12px 18px;cursor:pointer}
+.btn{background:#2563eb;color:#fff;width:100%;margin-top:10px}
+.btn:active{transform:scale(.98)}
+.btn2{background:#1a2332;color:#8ab4f8;width:100%;margin-top:8px}
+.sonuc{background:#0d1420;border-radius:10px;padding:12px;margin-top:10px;font-size:16px}
+.buyuk{font-size:22px;font-weight:800;color:#f0c040}
+.ok{color:#4ade80}.hata{color:#f87171}
+.kucuk{color:#8b949e;font-size:14px}
+.vurgu{color:#f0c040;font-weight:700}
+.kiyas{background:#0d1420;border-radius:9px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:16px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
+.sekmeler{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.sekme{flex:1;min-width:70px;background:#1a2332;color:#c9d1d9;font-size:14px;padding:9px 6px;border-radius:9px;text-align:center}
+.sekme.secili{background:#2563eb;color:#fff}
+.icerik{background:#0d1420;border-radius:10px;padding:12px;margin-top:8px;font-size:16px}
+.ozet{background:#161d2b;border:2px solid #f0c040;border-radius:14px;padding:16px;margin:18px 0}
+.ozet h3{color:#f0c040;font-size:16px;letter-spacing:1px;margin-bottom:10px}
+.ozetBlok{background:#0d1420;border-radius:10px;padding:12px;margin:8px 0;font-size:16px}
+.soru{background:#0d1420;border-radius:10px;padding:12px;margin:10px 0}
+.secenek{display:block;width:100%;text-align:left;background:#1a2332;color:#e6e8ee;margin:6px 0;padding:11px 13px;border-radius:9px;font-size:16px}
+.secenek.dogru{background:#122619;color:#4ade80}
+.secenek.yanlis{background:#2a1215;color:#f87171}
+.tablo{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.tablo td,.tablo th{border:1px solid #262d36;padding:7px 9px;text-align:center}
+.tablo th{background:#1a2332;color:#8ab4f8}
+.alt{color:#8b949e;font-size:14px;text-align:center;margin-top:30px}
+</style>
+<style>
+.gr{display:flex;align-items:flex-end;gap:10px;height:170px;margin:14px 0 4px;padding:0 4px;border-bottom:2px solid #2a3550}
+.cubuk{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cubuk .dolgu{width:100%;border-radius:8px 8px 0 0;background:#3b6ea5;transition:height .6s cubic-bezier(.2,.8,.2,1);min-height:4px}
+.cubuk.acik .dolgu{background:#6ea8fe}
+.cubuk .deger{font-size:13px;color:#9fb0d0;min-height:18px}
+.cubuk .ad{font-size:12px;color:#8b98b8;padding-bottom:4px}
+.grAlt{display:flex;gap:10px;padding:6px 4px 0}
+.grAlt span{flex:1;text-align:center;font-size:12px;color:#8b98b8}
+</style>
+
+</head>
+<body>
+<div class="kap">
+<div class="ust"><a href="index.html">← Ana sayfa</a></div>
+<h1>Veri Analizi</h1>
+<p class="kucuk" style="margin-bottom:6px">Sayı yığınını "bir bakışta anlaşılır resme" çevirme sanatı. Hepsi gerçek veri: MGM ve TÜİK.</p>
+<div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KART 1: KANCA -->
+<div class="kart" id="k1">
+<span class="adim">1</span>
+<h2>"Temmuzda ortalama 31 derece" — peki gece neden üşüdün?</h2>
+<p>MGM'nin resmî ölçümü: Diyarbakır'da temmuz ortalaması <b>31,0°C</b>. Ama aynı temmuzda geceler ortalama <b>21,7°C</b>, öğlenler <b>38,5°C</b>.</p>
+<p><b>Yani "ortalama" sana günü anlatmaz — sadece ortasını söyler.</b> Dokun, üçünü de gör:</p>
+<div class="gr" id="grSicaklik"></div>
+<div class="grAlt"><span>Gece</span><span>Ortalama</span><span>Öğlen</span></div>
+<p id="k1mesaj" class="kucuk" style="min-height:22px;margin-top:6px">👆 Çubuklara dokun.</p>
+<div class="gizli" id="k1final">
+<p><span class="ok">✓</span> Gece ile öğlen arası fark: 38,5 − 21,7 = <b>16,8 derece</b>. Tek sayıya ("ortalama") bakan yanılır; <b>üç çubuğa</b> bakan montunu da şapkasını da doğru alır. Veri analizi budur: sayının arkasındaki hikâyeyi görmek.</p>
+</div>
+</div>
+
+<!-- KART 2: HANGI GRAFIK NE ISE YARAR -->
+<div class="kart" id="k2">
+<span class="adim">2</span>
+<h2>İki grafik türü, iki ayrı iş</h2>
+<p><b>Çizgi grafik:</b> zaman içindeki değişimi gösterir — "nereden nereye geldi?" Sıcaklığın ocaktan temmuza yolculuğu gibi: 1,8° → 13,9° → 31,0° → 17,6°.</p>
+<p><b>Sütun grafik:</b> ayrı şeyleri yan yana karşılaştırır — "hangisi ne kadar?" Aralık yağmuru (70,3 mm) ile temmuz kuraklığı (1,4 mm) gibi.</p>
+<p><b>Sıra sende — süt fiyatı yıllara göre nasıl değişmiş göstermek istiyorsun. Hangisi?</b></p>
+<div class="soru">
+<button class="secenek" data-c="0">Çizgi grafik</button>
+<button class="secenek" data-c="1">Sütun grafik</button>
+</div>
+<div class="gizli" id="k2devam">
+<p><span class="ok">✓ Çizgi.</span> Çünkü soru "zamanla nasıl değişti?" Ulusal Süt Konseyi verisi: 2022'de 8,50 TL → 2025'te 19,60 TL. Çizgi çizsen artışın <b>hızlandığını</b> da görürdün — son yıl tek başına 4,95 TL artmış. Süt satan aile bunu görünce fiyat pazarlığına hazır gider.</p>
+</div>
+</div>
+
+<!-- KART 3: GRAFIK SECIMI TUZAGI -->
+<div class="kart" id="k3">
+<span class="adim">3</span>
+<h2>Daire grafik tuzağı: toplam %100 etmiyorsa daire YOK</h2>
+<p>TÜİK sordu: çocuklar sosyal medyada ne kullanıyor? YouTube <b>%96,3</b>, Instagram <b>%41,5</b>, TikTok <b>%26,2</b>.</p>
+<p>Topla: 96,3 + 41,5 + 26,2 = <b>%164</b>?! Çünkü aynı çocuk üçünü birden kullanabiliyor.</p>
+<p><b>Bu veri daire (pasta) grafiğe konur mu?</b></p>
+<div class="soru">
+<button class="secenek" data-c="0">Konur, renkli güzel olur</button>
+<button class="secenek" data-c="1">Konmaz, sütun gerekir</button>
+</div>
+<div class="gizli" id="k3devam">
+<p><span class="ok">✓ Konmaz.</span> Daire, bir bütünün <b>paylaşılan</b> dilimlerini gösterir — dilimler toplam %100 etmeli. Burada kategoriler iç içe geçiyor, o yüzden <b>sütun grafik</b> doğru seçim. Sınavın klasik sorusu: "bu veri için uygun grafik türü hangisi?"</p>
+</div>
+</div>
+
+<!-- KART 4: KENDI GRAFIGINI KUR -->
+<div class="kart" id="k4">
+<span class="adim">4</span>
+<h2>Şimdi grafiği SEN kur: yağış sütunları</h2>
+<p>MGM verisi — Diyarbakır ortalama yağış: <b>Ocak 68,3 mm · Haziran 8,4 mm · Temmuz 1,4 mm · Aralık 70,3 mm.</b></p>
+<p>Her çubuğa dokundukça yükselsin:</p>
+<div class="gr" id="grYagis"></div>
+<div class="grAlt"><span>Ocak</span><span>Haziran</span><span>Temmuz</span><span>Aralık</span></div>
+<p id="k4mesaj" class="kucuk" style="min-height:22px;margin-top:6px">👆 Sırayla dokun, grafik senin elinde kurulsun.</p>
+<div class="gizli" id="k4devam">
+<p><span class="ok">✓</span> Grafiğin söylediği: yaz bambaşka, kış bambaşka — aralık, temmuzdan <b>68,9 mm</b> daha yağışlı. Tarlasını sulayan bunu bilerek plan yapar: temmuzda gökten su bekleyen mahsulü kurutur.</p>
+</div>
+</div>
+
+<!-- KART 5: SEKMELER -->
+<div class="kart" id="k5">
+<span class="adim">5</span>
+<h2>Hayatta nerede karşına çıkar?</h2>
+<div class="sekmeBar">
+<button class="sekme">📱 Ekran süresi</button>
+<button class="sekme">🥛 Süt fiyatı</button>
+<button class="sekme">📊 Yüzde puanı</button>
+<button class="sekme">📺 Haberler</button>
+</div>
+<div id="sekmeIcerik" class="sekmeIc"></div>
+</div>
+
+<!-- KART 6: TEST -->
+<div class="kart" id="k6">
+<span class="adim yesil">Kendini dene</span>
+<h2>5 soru — çözersen bu konu sende</h2>
+<div id="testAlan"></div>
+<p id="testSonuc" class="gizli"></p>
+<button class="btn2 gizli" id="btnBastan">Baştan dene 🔄</button>
+</div>
+
+<!-- OZET -->
+<div class="kart" id="ozet">
+<span class="adim mor">Özet — sınavdan önce 1 dakika</span>
+<ul class="ozetList">
+<li><b>Çizgi grafik</b> = zamanla değişim ("nereden nereye?").</li>
+<li><b>Sütun grafik</b> = ayrı grupları karşılaştırma ("hangisi ne kadar?").</li>
+<li><b>Daire grafik</b> = bir bütünün dilimleri — SADECE toplam %100 ise.</li>
+<li><b>Ortalama tek başına yanıltır</b> — en düşük ve en yükseğe de bak (açıklık: 38,5−21,7=16,8).</li>
+<li><b>Yüzde puanı ≠ yüzde artış:</b> %82,7'den %91,3'e çıkış "8,6 puan"dır, "%8,6 artış" değil.</li>
+<li>Grafiğin eksenlerini oku: neyi, hangi birimle sayıyor?</li>
+</ul>
+</div>
+
+<p class="kucuk" style="margin-top:18px">Kaynaklar: MGM Diyarbakır iklim istatistikleri (1929–2025); TÜİK Çocuklarda Bilişim Teknolojileri Kullanım Araştırması 2024; Ulusal Süt Konseyi çiğ süt fiyatları.</p>
+</div>
+
+<script>
+function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');}}
+
+// KART 1: sicaklik cubuklari (max 40 uzerinden olcekle)
+var sic=[{ad:'Gece',v:21.7},{ad:'Ort.',v:31.0},{ad:'Öğlen',v:38.5}];
+var g1=document.getElementById('grSicaklik'), acilan1=0;
+sic.forEach(function(s,i){
+  var c=document.createElement('div'); c.className='cubuk';
+  c.innerHTML='<span class="deger"></span><div class="dolgu" style="height:4px"></div>';
+  c.onclick=function(){
+    if(c.classList.contains('acik'))return;
+    c.classList.add('acik'); tit(20);
+    c.querySelector('.dolgu').style.height=(s.v/40*140)+'px';
+    c.querySelector('.deger').textContent=s.v.toString().replace('.',',')+'°';
+    acilan1++;
+    var m=document.getElementById('k1mesaj');
+    if(acilan1===1)m.textContent='Bir tane daha…';
+    if(acilan1===2)m.textContent='Son çubuk!';
+    if(acilan1===3){m.textContent='';ac('k1final');tit([30,50,30]);}
+  };
+  g1.appendChild(c);
+});
+
+// KART 2 ve 3: secenekli sorular
+document.querySelectorAll('#k2 .secenek').forEach(function(b){
+  b.onclick=function(){
+    if(b.dataset.c==='0'){b.classList.add('dogru');ac('k2devam');tit(30);}
+    else{b.classList.add('yanlis');tit([10,30,10]);}
+  };
+});
+document.querySelectorAll('#k3 .secenek').forEach(function(b){
+  b.onclick=function(){
+    if(b.dataset.c==='1'){b.classList.add('dogru');ac('k3devam');tit(30);}
+    else{b.classList.add('yanlis');tit([10,30,10]);}
+  };
+});
+
+// KART 4: yagis grafigi kur
+var yag=[{ad:'Ocak',v:68.3},{ad:'Haziran',v:8.4},{ad:'Temmuz',v:1.4},{ad:'Aralık',v:70.3}];
+var g4=document.getElementById('grYagis'), acilan4=0;
+yag.forEach(function(s,i){
+  var c=document.createElement('div'); c.className='cubuk';
+  c.innerHTML='<span class="deger"></span><div class="dolgu" style="height:4px"></div>';
+  c.onclick=function(){
+    if(c.classList.contains('acik'))return;
+    c.classList.add('acik'); tit(20);
+    c.querySelector('.dolgu').style.height=Math.max(6,(s.v/75*140))+'px';
+    c.querySelector('.deger').textContent=s.v.toString().replace('.',',');
+    acilan4++;
+    var m=document.getElementById('k4mesaj');
+    m.textContent=(4-acilan4)>0 ? (4-acilan4)+' çubuk kaldı…' : '';
+    if(acilan4===4){ac('k4devam');tit([30,50,30]);}
+  };
+  g4.appendChild(c);
+});
+
+// KART 5: sekmeler
+var sekmeler=[
+ '<b>Önce tahmin et:</b> hafta içi mi hafta sonu mu daha çok ekrana bakılıyor? 👇<br><br><b>Ekran süresi.</b> TÜİK 2024: günde 2 saat ve üzeri internette kalan çocuk oranı hafta içi <b>%42,9</b>, hafta sonu <b>%53,6</b>. Fark 10,7 puan. İki sütun çiz, yan yana koy — okulun ekranı azalttığı bir bakışta görünür.',
+ '<b>Önce tahmin et:</b> süt fiyatı 3 yılda kaç kat oldu? 👇<br><br><b>Süt fiyatının yolculuğu.</b> 2022 sonu 8,50 TL → 2023 sonu 11,50 → 2024 sonu 14,65 → 2025 sonu 19,60 TL. Üç yılda 11,10 TL artış — iki katından fazla. Çizgi grafik çizersen artışın her yıl <b>hızlandığını</b> görürsün. Süt satan aile için bu grafik para demek.',
+ '<b>Önce tahmin et:</b> "%82,7&#8594;%91,3 oldu" — bu %8,6 artış mıdır? 👇<br><br><b>Yüzde puanı tuzağı.</b> İnternet kullanan çocuk oranı 2021: %82,7, 2024: %91,3. Fark <b>8,6 yüzde puanı</b>. "%8,6 arttı" dersen yanlış: gerçek artış oranı 8,6/82,7 &#8776; %10,4. Haberlerde bu ikisi hep karıştırılır — sen karıştırma.',
+ '<b>Önce tahmin et:</b> haberdeki grafik neden bazen "yalan söyler"? 👇<br><br><b>Ekseni kesilmiş grafik.</b> Sütun grafiğin alt ucu 0&#39;dan değil 80&#39;den başlatılırsa, küçücük fark dev gibi görünür. Sayılar doğru, <b>görüntü</b> yalan. Grafik okurken ilk iş: dik eksen nereden başlıyor? Bunu bilen çocuk reklama da habere de kolay kanmaz.'
+];
+var sekBtn=document.querySelectorAll('.sekme'), sekIc=document.getElementById('sekmeIcerik');
+sekBtn.forEach(function(b,i){
+  b.onclick=function(){
+    sekBtn.forEach(function(x){x.classList.remove('acik')});
+    b.classList.add('acik'); sekIc.innerHTML=sekmeler[i]; tit(15);
+  };
+});
+sekBtn[0].click();
+
+// KART 6: TEST
+var sorular=[
+ {s:'Bir köyün 12 aylık sıcaklık değişimini göstermek için en uygun grafik?',
+  c:['Çizgi grafik','Daire grafik'],d:0,
+  n:'Zaman içindeki değişim = çizgi grafik. Daire, bütünün dilimleri içindir.'},
+ {s:'YouTube %96,3 + Instagram %41,5 + TikTok %26,2 verisi neden daire grafiğe konmaz?',
+  c:['Renkleri ayarlamak zor olduğu için','Toplam %100 etmiyor, kategoriler iç içe'],d:1,
+  n:'Aynı çocuk birden fazlasını kullanıyor; dilimler bütünü paylaşmıyor. Daire ancak toplam %100 ise kullanılır.'},
+ {s:'Temmuzda ortalama 31,0°C, gece ortalaması 21,7°C, öğlen 38,5°C. Açıklık (en yüksek − en düşük) kaçtır?',
+  c:['16,8','9,3'],d:0,
+  n:'38,5 − 21,7 = 16,8. Ortalama tek başına bu farkı gizler — açıklık veriyi tamamlar.'},
+ {s:'%82,7&#39;den %91,3&#39;e çıkan oran için doğru ifade hangisi?',
+  c:['%8,6 arttı','8,6 yüzde puanı arttı'],d:1,
+  n:'Fark cinsinden konuşuyorsan birim "yüzde puanı"dır. Oransal artış istersen: 8,6/82,7 ≈ %10,4.'},
+ {s:'Sütun grafikte dik eksen 0 yerine 80&#39;den başlatılmış. Ne olur?',
+  c:['Hiçbir şey değişmez, sayılar aynı','Küçük farklar olduğundan büyük görünür'],d:1,
+  n:'Eksen kesilince görüntü aldatır. Sayı aynı kalsa da göz farkı abartılı algılar — haber grafiklerinin klasik oyunu.'}
+];
+var alan=document.getElementById('testAlan'), dogru=0, cevaplanan=0;
+function testKur(){
+  alan.innerHTML=''; dogru=0; cevaplanan=0;
+  document.getElementById('testSonuc').classList.add('gizli');
+  document.getElementById('btnBastan').classList.add('gizli');
+  sorular.forEach(function(q,qi){
+    var d=document.createElement('div'); d.className='tsoru';
+    d.innerHTML='<p><b>'+(qi+1)+'.</b> '+q.s+'</p>';
+    var sec=document.createElement('div'); sec.className='soru';
+    q.c.forEach(function(cc,ci){
+      var b=document.createElement('button'); b.className='secenek'; b.innerHTML=cc;
+      b.onclick=function(){
+        if(d.dataset.done)return; d.dataset.done=1; cevaplanan++;
+        if(ci===q.d){b.classList.add('dogru');dogru++;tit(25);}
+        else{b.classList.add('yanlis');sec.children[q.d].classList.add('dogru');tit([10,30,10]);}
+        var ac2=document.createElement('p'); ac2.className='neden'; ac2.innerHTML='<b>Neden:</b> '+q.n;
+        d.appendChild(ac2);
+        if(cevaplanan===sorular.length){
+          var ts=document.getElementById('testSonuc');
+          ts.classList.remove('gizli');
+          ts.innerHTML= dogru>=4 ? '🎉 '+dogru+'/5 — bu konu sende. 💪' : dogru+'/5 — "Neden" açıklamalarını oku, baştan dene. Utanma, tekrar en iyi öğretmendir.';
+          document.getElementById('btnBastan').classList.remove('gizli');
+        }
+      };
+      sec.appendChild(b);
+    });
+    d.appendChild(sec); alan.appendChild(d);
+  });
+}
+document.getElementById('btnBastan').onclick=testKur;
+testKur();
+</script>
+</body>
+</html>
