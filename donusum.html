@@ -12,45 +12,52 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0f1420;color:#e6e8ee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.6}
+:root{--tema:#22d3ee;--tema2:#67e8f9}
+body{background:#0b101e;color:#e8edf7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.6;
+background-image:radial-gradient(ellipse 80% 50% at 50% -10%,color-mix(in srgb,var(--tema) 16%,transparent),transparent 70%);background-repeat:no-repeat}
 .kap{max-width:430px;margin:0 auto;padding:16px 14px 60px}
-a{color:#6ea8fe}
-.ust{font-size:14px;color:#8b949e;margin-bottom:14px}
-.ust a{text-decoration:none}
-h1{font-size:26px;line-height:1.25;margin:6px 0 4px}
-.etiket{display:inline-block;background:#1a2332;color:#8ab4f8;font-size:12px;padding:3px 10px;border-radius:20px;margin:8px 0 2px}
-.kart{background:#161d2b;border:1px solid #262d36;border-radius:14px;padding:16px;margin:14px 0}
-.kart h2{font-size:19px;margin-bottom:8px}
+a{color:var(--tema2)}
+.ust{font-size:14px;color:#8b95ad;margin-bottom:14px}
+.ust a{text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:6px 12px;border-radius:10px;display:inline-block}
+h1{font-size:30px;line-height:1.2;margin:10px 0 6px;font-weight:800;letter-spacing:-.5px;
+background:linear-gradient(100deg,#fff 20%,var(--tema2) 75%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.etiket{display:inline-block;background:color-mix(in srgb,var(--tema) 16%,transparent);color:var(--tema2);border:1px solid color-mix(in srgb,var(--tema) 35%,transparent);font-size:12px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;margin:10px 0 2px}
+.kart{background:linear-gradient(180deg,#151d31,#111828);border:1px solid #27314b;border-radius:18px;padding:18px 16px;margin:16px 0;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.kart::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tema),transparent 70%)}
+.kart h2{font-size:20px;margin-bottom:8px;font-weight:800;letter-spacing:-.3px}
 .kart p{margin:8px 0;font-size:16px}
 .gizli{display:none}
-.adim{display:inline-block;background:#1a2332;color:#8ab4f8;font-weight:700;font-size:13px;padding:2px 9px;border-radius:12px;margin-bottom:6px}
-.adim.yesil{background:#122619;color:#4ade80}
-button{font-family:inherit;font-size:16px;border:0;border-radius:10px;padding:12px 18px;cursor:pointer}
-.btn{background:#2563eb;color:#fff;width:100%;margin-top:10px}
-.btn:active{transform:scale(.98)}
-.btn2{background:#1a2332;color:#8ab4f8;width:100%;margin-top:8px}
-.sonuc{background:#0d1420;border-radius:10px;padding:12px;margin-top:10px;font-size:16px}
-.buyuk{font-size:22px;font-weight:800;color:#f0c040}
+.acilis{animation:belir .45s ease}
+@keyframes belir{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.adim{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;background:linear-gradient(135deg,var(--tema),var(--tema2));color:#0b101e;font-weight:800;font-size:14px;padding:0 9px;border-radius:13px;margin-bottom:8px;box-shadow:0 3px 10px color-mix(in srgb,var(--tema) 40%,transparent)}
+.adim.yesil{background:linear-gradient(135deg,#22c55e,#4ade80)}
+button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13px 18px;cursor:pointer}
+.btn{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 60%,#3050c8));color:#fff;font-weight:700;width:100%;margin-top:10px;box-shadow:0 6px 18px color-mix(in srgb,var(--tema) 35%,transparent)}
+.btn:active{transform:scale(.97)}
+.btn2{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--tema2);width:100%;margin-top:8px}
+.sonuc{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:13px;margin-top:10px;font-size:16px}
+.buyuk{font-size:23px;font-weight:800;color:var(--tema2)}
 .ok{color:#4ade80}.hata{color:#f87171}
-.kucuk{color:#8b949e;font-size:14px}
-.vurgu{color:#f0c040;font-weight:700}
-.kiyas{background:#0d1420;border-radius:9px;padding:12px;margin:12px 0}
-.kiyasSatir{font-size:16px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
-.sekmeler{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
-.sekme{flex:1;min-width:70px;background:#1a2332;color:#c9d1d9;font-size:14px;padding:9px 6px;border-radius:9px;text-align:center}
-.sekme.secili{background:#2563eb;color:#fff}
-.icerik{background:#0d1420;border-radius:10px;padding:12px;margin-top:8px;font-size:16px}
-.ozet{background:#161d2b;border:2px solid #f0c040;border-radius:14px;padding:16px;margin:18px 0}
-.ozet h3{color:#f0c040;font-size:16px;letter-spacing:1px;margin-bottom:10px}
-.ozetBlok{background:#0d1420;border-radius:10px;padding:12px;margin:8px 0;font-size:16px}
-.soru{background:#0d1420;border-radius:10px;padding:12px;margin:10px 0}
-.secenek{display:block;width:100%;text-align:left;background:#1a2332;color:#e6e8ee;margin:6px 0;padding:11px 13px;border-radius:9px;font-size:16px}
-.secenek.dogru{background:#122619;color:#4ade80}
-.secenek.yanlis{background:#2a1215;color:#f87171}
+.kucuk{color:#8b95ad;font-size:14px}
+.vurgu{color:var(--tema2);font-weight:700}
+.kiyas{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:15px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
+.sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.sekme{flex:1;min-width:72px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 6px;border-radius:11px;text-align:center;transition:all .15s}
+.sekme.secili{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--tema) 35%,transparent)}
+.icerik{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:14px;margin-top:8px;font-size:16px}
+.ozet{background:linear-gradient(180deg,#1a1f33,#141a2c);border:1px solid color-mix(in srgb,var(--tema) 45%,transparent);border-radius:18px;padding:18px 16px;margin:20px 0;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.ozet h3{color:var(--tema2);font-size:15px;letter-spacing:2px;margin-bottom:10px}
+.ozetBlok{background:rgba(8,12,24,.7);border-radius:12px;padding:12px;margin:8px 0;font-size:16px}
+.soru{background:rgba(8,12,24,.55);border:1px solid #232d45;border-radius:14px;padding:13px;margin:10px 0}
+.secenek{display:block;width:100%;text-align:left;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:#e8edf7;margin:7px 0;padding:12px 14px;border-radius:11px;font-size:16px;transition:all .15s}
+.secenek:active{background:rgba(255,255,255,.1)}
+.secenek.dogru{background:rgba(34,197,94,.14);border-color:rgba(74,222,128,.5);color:#4ade80;font-weight:700}
+.secenek.yanlis{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.4);color:#f87171}
 .tablo{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
-.tablo td,.tablo th{border:1px solid #262d36;padding:7px 9px;text-align:center}
-.tablo th{background:#1a2332;color:#8ab4f8}
-.alt{color:#8b949e;font-size:14px;text-align:center;margin-top:30px}
+.tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
+.tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
+.alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
 </style>
 <style>
 .aynaKutu{background:#1a2236;border-radius:12px;padding:14px;margin:12px 0;text-align:center}
@@ -172,7 +179,7 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:10px;padding:12
 
 <script>
 function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
-function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');}}
+function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');e.classList.add('acilis');}}
 function soruKur(kartId, dogruIdx, devamId){
   document.querySelectorAll('#'+kartId+' > .soru .secenek').forEach(function(b,i){
     b.onclick=function(){

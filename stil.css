@@ -277,3 +277,48 @@ body {
   .kahraman h1 { font-size: 25px; }
   .kart h2 { font-size: 19px; }
 }
+
+/* ===== Premium katman (2026-09) ===== */
+body{
+  background-image:
+    radial-gradient(ellipse 90% 40% at 50% -5%, rgba(96,165,250,.14), transparent 70%),
+    radial-gradient(ellipse 60% 30% at 90% 20%, rgba(192,132,252,.07), transparent 70%);
+  background-repeat:no-repeat;
+}
+.kahraman h1{
+  font-size:34px;
+  background:linear-gradient(100deg,#fff 30%,#93c5fd 80%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:-.5px;
+}
+.kart{
+  position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#1a2130,#151b29);
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+}
+.kart::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:4px;
+  background:var(--konu,#60a5fa);border-radius:4px 0 0 4px;
+}
+.kart[href="uslu-ifadeler.html"]{--konu:#f59e0b}
+.kart[href="karekok.html"]{--konu:#10b981}
+.kart[href="veri-analizi.html"]{--konu:#38bdf8}
+.kart[href="olasilik.html"]{--konu:#a78bfa}
+.kart[href="cebir.html"]{--konu:#fb7185}
+.kart[href="denklemler.html"]{--konu:#60a5fa}
+.kart[href="esitsizlikler.html"]{--konu:#fb923c}
+.kart[href="ucgenler.html"]{--konu:#2dd4bf}
+.kart[href="benzerlik.html"]{--konu:#e879f9}
+.kart[href="donusum.html"]{--konu:#22d3ee}
+.kart[href="cisimler.html"]{--konu:#a3e635}
+.kart[href="1-carpanlar.html"]{--konu:#c084fc}
+.kart[href="ebob-ekok.html"]{--konu:#facc15}
+.kart[href="nasil-calisilir.html"]{--konu:#ffc94d}
+.kart .ok{transition:transform .15s}
+.kart:active .ok{transform:translateX(4px)}
+.sayac{
+  text-align:center;color:var(--yazi-soluk);font-size:14px;
+  background:rgba(255,255,255,.04);border:1px solid var(--cizgi);
+  border-radius:999px;padding:8px 16px;display:inline-block;margin:0 auto 8px;
+}
+.sayacKap{text-align:center;margin-bottom:16px}
