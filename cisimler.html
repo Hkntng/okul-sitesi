@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1420">
+<title>Geometrik Cisimler — Bu Ne İşe Yarıyor?</title>
+<meta name="description" content="Damdaki su deposu gerçekten 5 ton mu? Buğday yığını kaç ton? Trafik konisi, tuğla, silo — 8. sınıf prizma, silindir, koni, piramit.">
+<meta property="og:title" content="Geometrik Cisimler — Bu Ne İşe Yarıyor?">
+<meta property="og:description" content="Damdaki su deposuna 5 ton yazıyor. Kontrol edelim mi?">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1420;color:#e6e8ee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.6}
+.kap{max-width:430px;margin:0 auto;padding:16px 14px 60px}
+a{color:#6ea8fe}
+.ust{font-size:14px;color:#8b949e;margin-bottom:14px}
+.ust a{text-decoration:none}
+h1{font-size:26px;line-height:1.25;margin:6px 0 4px}
+.etiket{display:inline-block;background:#1a2332;color:#8ab4f8;font-size:12px;padding:3px 10px;border-radius:20px;margin:8px 0 2px}
+.kart{background:#161d2b;border:1px solid #262d36;border-radius:14px;padding:16px;margin:14px 0}
+.kart h2{font-size:19px;margin-bottom:8px}
+.kart p{margin:8px 0;font-size:16px}
+.gizli{display:none}
+.adim{display:inline-block;background:#1a2332;color:#8ab4f8;font-weight:700;font-size:13px;padding:2px 9px;border-radius:12px;margin-bottom:6px}
+.adim.yesil{background:#122619;color:#4ade80}
+button{font-family:inherit;font-size:16px;border:0;border-radius:10px;padding:12px 18px;cursor:pointer}
+.btn{background:#2563eb;color:#fff;width:100%;margin-top:10px}
+.btn:active{transform:scale(.98)}
+.btn2{background:#1a2332;color:#8ab4f8;width:100%;margin-top:8px}
+.sonuc{background:#0d1420;border-radius:10px;padding:12px;margin-top:10px;font-size:16px}
+.buyuk{font-size:22px;font-weight:800;color:#f0c040}
+.ok{color:#4ade80}.hata{color:#f87171}
+.kucuk{color:#8b949e;font-size:14px}
+.vurgu{color:#f0c040;font-weight:700}
+.kiyas{background:#0d1420;border-radius:9px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:16px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
+.sekmeler{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.sekme{flex:1;min-width:70px;background:#1a2332;color:#c9d1d9;font-size:14px;padding:9px 6px;border-radius:9px;text-align:center}
+.sekme.secili{background:#2563eb;color:#fff}
+.icerik{background:#0d1420;border-radius:10px;padding:12px;margin-top:8px;font-size:16px}
+.ozet{background:#161d2b;border:2px solid #f0c040;border-radius:14px;padding:16px;margin:18px 0}
+.ozet h3{color:#f0c040;font-size:16px;letter-spacing:1px;margin-bottom:10px}
+.ozetBlok{background:#0d1420;border-radius:10px;padding:12px;margin:8px 0;font-size:16px}
+.soru{background:#0d1420;border-radius:10px;padding:12px;margin:10px 0}
+.secenek{display:block;width:100%;text-align:left;background:#1a2332;color:#e6e8ee;margin:6px 0;padding:11px 13px;border-radius:9px;font-size:16px}
+.secenek.dogru{background:#122619;color:#4ade80}
+.secenek.yanlis{background:#2a1215;color:#f87171}
+.tablo{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.tablo td,.tablo th{border:1px solid #262d36;padding:7px 9px;text-align:center}
+.tablo th{background:#1a2332;color:#8ab4f8}
+.alt{color:#8b949e;font-size:14px;text-align:center;margin-top:30px}
+</style>
+<style>
+.depoKutu{background:#1a2236;border-radius:12px;padding:14px;margin:12px 0;text-align:center}
+.depoKutu svg{max-width:100%;height:auto}
+</style>
+
+</head>
+<body>
+<div class="kap">
+<div class="ust"><a href="index.html">← Ana sayfa</a></div>
+<h1>Geometrik Cisimler</h1>
+<p class="kucuk" style="margin-bottom:6px">Prizma, silindir, koni, piramit. Damdaki depodan buğday yığınına.</p>
+<div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KART 1: KANCA - su deposu -->
+<div class="kart" id="k1">
+<span class="adim">1</span>
+<h2>Damdaki depoya "5 ton" yazıyor. Doğru mu?</h2>
+<p>Köy evinin damındaki dikey su deposu: <b>çap 200 cm, yükseklik 170 cm.</b> Üstünde "5 ton" yazıyor. Üretici doğru mu söylüyor, hesaplayalım mı?</p>
+<div class="depoKutu">
+<svg viewBox="0 0 300 150">
+<ellipse cx="150" cy="30" rx="60" ry="14" fill="#3b82f6" opacity="0.7"/>
+<rect x="90" y="30" width="120" height="90" fill="#2563eb" opacity="0.5"/>
+<ellipse cx="150" cy="120" rx="60" ry="14" fill="#1e40af"/>
+<text x="150" y="80" fill="#e8ecf5" font-size="13" text-anchor="middle">r = 1 m · h = 1,7 m</text>
+<text x="228" y="80" fill="#ffb84d" font-size="12">← silindir</text>
+</svg>
+</div>
+<p>Silindirin hacmi = <b>taban alanı × yükseklik</b> = π × r² × h. (π ≈ 3,14; "pi" dediğimiz sayı, her dairenin çevresinin çapına oranı.)</p>
+<div class="soru">
+<button class="secenek">3,14 × 1² × 1,7 ≈ 5,3 m³ = 5300 litre ✓</button>
+<button class="secenek">2 × 1,7 = 3,4 m³ — çap × yükseklik</button>
+</div>
+<div class="gizli" id="k1devam">
+<p><span class="ok">✓</span> V = 3,14 × 1 × 1,7 ≈ <b>5,34 m³.</b> 1 m³ = 1000 litre, yani ≈ 5340 L. Üretici "5000 L" diyor — fark, kubbeli kapak ve dolum payı. Yani yazı doğru! 🎯 Tankeri çağırırken "kaç litre lazım?" sorusu tam bu hesap. Bir de şunu gör: <b>çap yarıya inerse hacim dörtte bire iner</b> (100 cm çaplı depo sadece 1335 L) — çünkü r² var işin içinde.</p>
+</div>
+</div>
+
+<!-- KART 2: KONI - bugday yigini -->
+<div class="kart" id="k2">
+<span class="adim">2</span>
+<h2>Tüccar yığına bakıp "kaç ton?" diyor</h2>
+<p>Harmandan sonra buğday yere dökülünce kendiliğinden <b>koni</b> olur. Buğday 27°'den dik yığılamaz — kayar (buna duruş açısı denir). Yığının <b>çapı 6 m</b> ölçüldü.</p>
+<p>Koni hacmi = silindirin <b>üçte biri</b>: V = (1/3) × π × r² × h. Yükseklik ölçmeye gerek yok: h = r × tan27° ≈ 3 × 0,51 ≈ 1,53 m.</p>
+<div class="soru">
+<button class="secenek">(1/3) × 3,14 × 9 × 1,53 ≈ 14,4 m³ ≈ 12 ton</button>
+<button class="secenek">3,14 × 9 × 1,53 ≈ 43 m³ ≈ 36 ton</button>
+</div>
+<div class="gizli" id="k2devam">
+<p><span class="ok">✓</span> Koni, aynı tabanlı silindirin <b>üçte biri</b>dir — (1/3)'ü unutan tüccar 3 kat fazla para öder! ≈14,4 m³ × 0,85 ton/m³ ≈ <b>12 ton</b> buğday. Bir de güzeli: çap 2 katına çıkarsa r de h de 2 katlanır → hacim <b>8 kat</b> olur (2×2×2). Gözünle "biraz büyük" dediğin yığın aslında çok daha ağırdır.</p>
+</div>
+</div>
+
+<!-- KART 3: PRIZMA - tugla -->
+<div class="kart" id="k3">
+<span class="adim">3</span>
+<h2>Usta 4×3 duvar için kaç tuğla ister?</h2>
+<p>8,5'luk delikli tuğla: <b>19 × 19 × 8,5 cm</b> — bir <b>dik prizma</b> (kutu şekli). Hacmi = en × boy × yükseklik = 19 × 19 × 8,5 ≈ 3068 cm³. Metrekareye 25 tuğla gidiyor.</p>
+<p><b>4 m × 3 m duvar için kaç tuğla?</b></p>
+<div class="soru">
+<button class="secenek">12 m² × 25 = 300 tuğla</button>
+<button class="secenek">4 × 3 × 25 ÷ 8,5 ≈ 35 tuğla</button>
+</div>
+<div class="gizli" id="k3devam">
+<p><span class="ok">✓</span> Duvar alanı 4×3 = 12 m², her m²'ye 25 tuğla → <b>300 tuğla ≈ 600 kg.</b> Eksik alan kamyonu iki kez çağırır, fazla alan para batırır. Dedenin kerpiç evi de aynı hesap: 24×12×6 cm kalıp = 1728 cm³; bir palet 750 kerpiç ≈ 1,3 m³ çamur. Çamuru kazmadan önce hacim hesabı!</p>
+</div>
+</div>
+
+<!-- KART 4: KONI YANAL - trafik konisi -->
+<div class="kart" id="k4">
+<span class="adim">4</span>
+<h2>Trafik konisine kaç cm² bant sarılır?</h2>
+<p>Yol çalışmasındaki turuncu koni: <b>yükseklik 75 cm, taban çapı ≈ 48,5 cm</b> (r ≈ 24 cm). Üzerine reflektör bant sarılacak — yanal (yan yüzey) alanı lazım.</p>
+<p>Yanal alan = π × r × <b>eğik kenar.</b> Dikkat: eğik kenar, yükseklik DEĞİL! Pisagor'dan gelir: ℓ = √(75² + 24²).</p>
+<div class="soru">
+<button class="secenek">ℓ ≈ 79 cm → alan ≈ 3,14 × 24 × 79 ≈ 6000 cm²</button>
+<button class="secenek">Alan ≈ 3,14 × 24 × 75 ≈ 5700 cm² — yükseklikle</button>
+</div>
+<div class="gizli" id="k4devam">
+<p><span class="ok">✓</span> Önce eğik kenar: √(5625 + 588) ≈ <b>78,8 cm</b>, sonra π r ℓ ≈ <b>6000 cm²</b>. Yüksekliği kullanan eksik bant alır. Koninin hacmi de (1/3) π r² h ≈ 46 litre — içine 2 büyük damacana su sığar. Pisagor'u üçgenler sayfasında görmüştün; işte yine karşında.</p>
+</div>
+</div>
+
+<!-- KART 5: SEKMELER -->
+<div class="kart" id="k5">
+<span class="adim">5</span>
+<h2>Hayatta nerede karşına çıkar?</h2>
+<div class="sekmeBar">
+<button class="sekme">🌾 Buğday silosu</button>
+<button class="sekme">🔺 Keops Piramidi</button>
+<button class="sekme">🚰 PVC boru</button>
+<button class="sekme">🏠 Çatı ve çadır</button>
+</div>
+<div id="sekmeIcerik" class="sekmeIc"></div>
+</div>
+
+<!-- KART 6: TEST -->
+<div class="kart" id="k6">
+<span class="adim yesil">Kendini dene</span>
+<h2>5 soru — çözersen bu konu sende</h2>
+<div id="testAlan"></div>
+<p id="testSonuc" class="gizli"></p>
+<button class="btn2 gizli" id="btnBastan">Baştan dene 🔄</button>
+</div>
+
+<!-- OZET -->
+<div class="kart" id="ozet">
+<span class="adim mor">Özet — sınavdan önce 1 dakika</span>
+<ul class="ozetList">
+<li><b>Prizma</b> (kutu): V = en × boy × yükseklik. Tuğla, kerpiç, oda.</li>
+<li><b>Silindir:</b> V = π r² h. Su deposu, boru, teneke.</li>
+<li><b>Koni</b> = silindirin üçte biri: V = (1/3) π r² h. Buğday yığını, trafik konisi.</li>
+<li><b>Piramit</b> = prizmanın üçte biri: V = (1/3) × taban × h. Keops, çadır, çatı.</li>
+<li>Koni yanal alanı = π × r × <b>eğik kenar</b> (Pisagor'dan) — yükseklik değil!</li>
+<li>Çap yarıya inerse silindir hacmi <b>dörtte bire</b>, tüm ölçüler 2 katlanırsa hacim <b>8 katına</b>.</li>
+<li>1 m³ = 1000 litre.</li>
+</ul>
+</div>
+
+<p class="kucuk" style="margin-top:18px">Kaynaklar: Ramar (5 tonluk depo Ø200×170); Mysilo kapasite tablosu; Wikipedia "Angle of repose" (buğday 27°); Ülkü Toprak (tuğla); İtimat (kerpiç 24×12×6); Fırat Plastik (PVC Ø110); İleri Trafik (koni 75 cm); Britannica (Keops 230×230×147).</p>
+</div>
+
+<script>
+function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');}}
+function soruKur(kartId, dogruIdx, devamId){
+  document.querySelectorAll('#'+kartId+' > .soru .secenek').forEach(function(b,i){
+    b.onclick=function(){
+      if(i===dogruIdx){b.classList.add('dogru');ac(devamId);tit(30);}
+      else{b.classList.add('yanlis');tit([10,30,10]);}
+    };
+  });
+}
+soruKur('k1',0,'k1devam');
+soruKur('k2',0,'k2devam');
+soruKur('k3',0,'k3devam');
+soruKur('k4',0,'k4devam');
+
+var sekmeler=[
+ '<b>Önce tahmin et:</b> silo hesabında koni çatıyı unutan kaç yanılır? 👇<br><br><b>Buğday silosu.</b> Mysilo&#39;nun 4,58 m çaplı silosu: gövde silindir (π × 2,29² × 3,38 ≈ 55,7 m³) + koni çatı (≈ 7,4 m³) = 63 m³ ≈ katalogdaki 62 ✓. Koniyi unutan <b>%12 yanılır</b> — çiftçi "hasat sığar mı?" derken bu %12 bir kamyon buğday eder. Buğday 1 m³ ≈ 0,85 ton → 53 ton.',
+ '<b>Önce tahmin et:</b> Keops Piramidi, aynı tabanlı bir binanın kaçta kaçı? 👇<br><br><b>Keops Piramidi.</b> Taban 230×230 m, yükseklik 147 m. V = (1/3) × 230² × 147 ≈ <b>2,6 milyon m³</b> (~2,3 milyon taş blok). Aynı tabanlı dik prizma 7,8 milyon m³ olurdu — piramit her zaman prizmanın <b>üçte biri</b>. Köyde kum yığını, çadır, çatı: hepsi aynı kural.',
+ '<b>Önce tahmin et:</b> boruda su debisi neye bağlı — iç çapa mı dış çapa mı? 👇<br><br><b>PVC boru.</b> Tarlaya su hattı: Ø110 mm boru, et kalınlığı 3,2 mm. Boyayacaksan <b>dış</b> yüzey: çevre π×11 ≈ 34,6 cm → 1 metrede ≈ 0,35 m². Su ise <b>iç</b> çaptan geçer: 110 − 2×3,2 = 103,6 mm → kesit ≈ 84 cm². İkisini karıştıran yanlış boru alır; debi iç çapın karesiyle büyür.',
+ '<b>Önce tahmin et:</b> çadır neden az kumaşla çok yer kapatır? 👇<br><br><b>Çatı ve çadır.</b> Çatı bir prizmanın yarısı ya da piramittir; çadır çoğu zaman koni/piramit. Piramit, prizmanın 1/3&#39;ü olduğu için <b>az malzemeyle geniş taban</b> örtersin. Kar ve yağmur da eğik yüzeyden kayar — hem matematik hem mühendislik. Karlı bölgelerde çatı eğimi dikleşir: kar duruş açısı!'
+];
+var sekBtn=document.querySelectorAll('.sekme'), sekIc=document.getElementById('sekmeIcerik');
+sekBtn.forEach(function(b,i){
+  b.onclick=function(){
+    sekBtn.forEach(function(x){x.classList.remove('acik')});
+    b.classList.add('acik'); sekIc.innerHTML=sekmeler[i]; tit(15);
+  };
+});
+sekBtn[0].click();
+
+// TEST — dagilim: 1,0,1,1,0
+var sorular=[
+ {s:'Çap 100 cm, yükseklik 170 cm su deposu kaç litre alır? (π≈3,14)',
+  c:['5340 L','1335 L'],d:1,
+  n:'r = 0,5 m → V = 3,14 × 0,25 × 1,7 ≈ 1,33 m³ = 1335 L. Çap yarıya inince hacim dörtte bire iner (r² yüzünden).'},
+ {s:'Koni hacmi, aynı tabanlı ve aynı yükseklikteki silindirin...',
+  c:['üçte biridir','yarısıdır'],d:0,
+  n:'V_koni = (1/3) π r² h. Buğday yığınında (1/3)ü unutan 3 kat fazla hesaplar.'},
+ {s:'10 luk tuğla 19 × 10 × 19 cm. Hacmi?',
+  c:['3068 cm³','3610 cm³'],d:1,
+  n:'19 × 10 × 19 = 3610 cm³. Prizma hacmi üç kenarın çarpımı.'},
+ {s:'Koni yüksekliği 50 cm, r = 20 cm. Eğik kenar (bant hesabı için)?',
+  c:['50 cm — yükseklik neyse o','√(50² + 20²) ≈ 53,9 cm'],d:1,
+  n:'Eğik kenar Pisagordan: √(2500+400) = √2900 ≈ 53,9. Yanal alan π r ℓ ile hesaplanır, h ile değil.'},
+ {s:'Bir yığının tüm ölçüleri (çap ve yükseklik) 2 katına çıkarsa hacmi?',
+  c:['8 kat olur','2 kat olur'],d:0,
+  n:'Hacimde üç boyut da çarpılır: 2×2×2 = 8. Gözüne "biraz büyük" görünen yığın aslında 8 kat ağır olabilir.'}
+];
+var alan=document.getElementById('testAlan'), dogru=0, cevaplanan=0;
+function testKur(){
+  alan.innerHTML=''; dogru=0; cevaplanan=0;
+  document.getElementById('testSonuc').classList.add('gizli');
+  document.getElementById('btnBastan').classList.add('gizli');
+  sorular.forEach(function(q,qi){
+    var d=document.createElement('div'); d.className='tsoru';
+    d.innerHTML='<p><b>'+(qi+1)+'.</b> '+q.s+'</p>';
+    var sec=document.createElement('div'); sec.className='soru';
+    q.c.forEach(function(cc,ci){
+      var b=document.createElement('button'); b.className='secenek'; b.innerHTML=cc;
+      b.onclick=function(){
+        if(d.dataset.done)return; d.dataset.done=1; cevaplanan++;
+        if(ci===q.d){b.classList.add('dogru');dogru++;tit(25);}
+        else{b.classList.add('yanlis');sec.children[q.d].classList.add('dogru');tit([10,30,10]);}
+        var ac2=document.createElement('p'); ac2.className='neden'; ac2.innerHTML='<b>Neden:</b> '+q.n;
+        d.appendChild(ac2);
+        if(cevaplanan===sorular.length){
+          var ts=document.getElementById('testSonuc');
+          ts.classList.remove('gizli');
+          ts.innerHTML= dogru>=4 ? '🎉 '+dogru+'/5 — bu konu sende. 💪' : dogru+'/5 — "Neden" açıklamalarını oku, baştan dene. Utanma, tekrar en iyi öğretmendir.';
+          document.getElementById('btnBastan').classList.remove('gizli');
+        }
+      };
+      sec.appendChild(b);
+    });
+    d.appendChild(sec); alan.appendChild(d);
+  });
+}
+document.getElementById('btnBastan').onclick=testKur;
+testKur();
+</script>
+</body>
+</html>

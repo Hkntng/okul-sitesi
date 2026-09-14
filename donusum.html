@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1420">
+<title>Dönüşüm Geometrisi — Bu Ne İşe Yarıyor?</title>
+<meta name="description" content="Ambulans yazısı neden ters? Kilim motifi nasıl kayar? 1100 tonluk türbe nasıl taşındı? 8. sınıf öteleme ve yansıma.">
+<meta property="og:title" content="Dönüşüm Geometrisi — Bu Ne İşe Yarıyor?">
+<meta property="og:description" content="Ambulansın önündeki yazı neden ters yazılır? Aynada dene.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1420;color:#e6e8ee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.6}
+.kap{max-width:430px;margin:0 auto;padding:16px 14px 60px}
+a{color:#6ea8fe}
+.ust{font-size:14px;color:#8b949e;margin-bottom:14px}
+.ust a{text-decoration:none}
+h1{font-size:26px;line-height:1.25;margin:6px 0 4px}
+.etiket{display:inline-block;background:#1a2332;color:#8ab4f8;font-size:12px;padding:3px 10px;border-radius:20px;margin:8px 0 2px}
+.kart{background:#161d2b;border:1px solid #262d36;border-radius:14px;padding:16px;margin:14px 0}
+.kart h2{font-size:19px;margin-bottom:8px}
+.kart p{margin:8px 0;font-size:16px}
+.gizli{display:none}
+.adim{display:inline-block;background:#1a2332;color:#8ab4f8;font-weight:700;font-size:13px;padding:2px 9px;border-radius:12px;margin-bottom:6px}
+.adim.yesil{background:#122619;color:#4ade80}
+button{font-family:inherit;font-size:16px;border:0;border-radius:10px;padding:12px 18px;cursor:pointer}
+.btn{background:#2563eb;color:#fff;width:100%;margin-top:10px}
+.btn:active{transform:scale(.98)}
+.btn2{background:#1a2332;color:#8ab4f8;width:100%;margin-top:8px}
+.sonuc{background:#0d1420;border-radius:10px;padding:12px;margin-top:10px;font-size:16px}
+.buyuk{font-size:22px;font-weight:800;color:#f0c040}
+.ok{color:#4ade80}.hata{color:#f87171}
+.kucuk{color:#8b949e;font-size:14px}
+.vurgu{color:#f0c040;font-weight:700}
+.kiyas{background:#0d1420;border-radius:9px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:16px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
+.sekmeler{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.sekme{flex:1;min-width:70px;background:#1a2332;color:#c9d1d9;font-size:14px;padding:9px 6px;border-radius:9px;text-align:center}
+.sekme.secili{background:#2563eb;color:#fff}
+.icerik{background:#0d1420;border-radius:10px;padding:12px;margin-top:8px;font-size:16px}
+.ozet{background:#161d2b;border:2px solid #f0c040;border-radius:14px;padding:16px;margin:18px 0}
+.ozet h3{color:#f0c040;font-size:16px;letter-spacing:1px;margin-bottom:10px}
+.ozetBlok{background:#0d1420;border-radius:10px;padding:12px;margin:8px 0;font-size:16px}
+.soru{background:#0d1420;border-radius:10px;padding:12px;margin:10px 0}
+.secenek{display:block;width:100%;text-align:left;background:#1a2332;color:#e6e8ee;margin:6px 0;padding:11px 13px;border-radius:9px;font-size:16px}
+.secenek.dogru{background:#122619;color:#4ade80}
+.secenek.yanlis{background:#2a1215;color:#f87171}
+.tablo{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.tablo td,.tablo th{border:1px solid #262d36;padding:7px 9px;text-align:center}
+.tablo th{background:#1a2332;color:#8ab4f8}
+.alt{color:#8b949e;font-size:14px;text-align:center;margin-top:30px}
+</style>
+<style>
+.aynaKutu{background:#1a2236;border-radius:12px;padding:14px;margin:12px 0;text-align:center}
+.aynaYazi{font-size:26px;font-weight:800;letter-spacing:2px;display:inline-block}
+.ters{transform:scaleX(-1)}
+.izgara{touch-action:manipulation}
+</style>
+
+</head>
+<body>
+<div class="kap">
+<div class="ust"><a href="index.html">← Ana sayfa</a></div>
+<h1>Dönüşüm Geometrisi</h1>
+<p class="kucuk" style="margin-bottom:6px">Öteleme ve yansıma. Kilimden ambulansa, Dicle'deki köprüden kar tanesine.</p>
+<div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KART 1: KANCA - ambulans -->
+<div class="kart" id="k1">
+<span class="adim">1</span>
+<h2>Ambulansın önünde yazı neden ters?</h2>
+<div class="aynaKutu">
+<div class="aynaYazi ters">AMBULANS</div>
+<p class="kucuk" style="margin:8px 0 0">— kaputtaki hali —</p>
+</div>
+<p>Bir saniyenin hayat kurtardığı anda, öndeki şoför dikiz aynasına bakar. <b>Aynada bu yazı nasıl görünür?</b></p>
+<div class="soru">
+<button class="secenek">Düz okunur: AMBULANS</button>
+<button class="secenek">Yine ters görünür</button>
+</div>
+<div class="gizli" id="k1devam">
+<div class="aynaKutu"><div class="aynaYazi">AMBULANS</div><p class="kucuk" style="margin:8px 0 0">— aynadaki hali —</p></div>
+<p><span class="ok">✓</span> Ayna, düşey eksene göre <b>yansıtır</b>: sağ-sol yer değiştirir, yukarı-aşağı değişmez. Ters yazı + ayna = düz yazı. İki yansıma üst üste, seni başlangıca döndürür. Yansımayı bilmeyen tasarımcı yazıyı düz yazsaydı aynada ters okunurdu, şoför yol vermezdi. Aynada "b" harfi "d" olur — dene!</p>
+</div>
+</div>
+
+<!-- KART 2: OTELEME - kilim + turbe -->
+<div class="kart" id="k2">
+<span class="adim">2</span>
+<h2>Kilim motifi ve 1100 tonluk türbe</h2>
+<p>Karacadağ kiliminde bir motif dokunur; sonra aynı motif biraz sağa, yine sağa... Şekli, boyu, yönü değişmez, <b>sadece yeri değişir.</b> Buna <b>öteleme</b> denir: kaydırma.</p>
+<p>Hasankeyf'teki 550 yıllık Zeynel Bey Türbesi, baraj suları altında kalmasın diye tek parça hâlinde tekerlekli taşıyıcılarla <b>2 km ötelendi.</b> Dönmedi, eğilmedi, küçülmedi.</p>
+<p><b>Motif (2,3) noktasında. 5 birim sağa, 1 birim yukarı ötelenirse nereye gider?</b></p>
+<div class="soru">
+<button class="secenek">(7, 4)</button>
+<button class="secenek">(10, 3)</button>
+</div>
+<div class="gizli" id="k2devam">
+<p><span class="ok">✓</span> Sağa gitmek x'e eklenir, yukarı gitmek y'ye: (2+5, 3+1) = <b>(7,4).</b> Ötelemede her nokta aynı yönde aynı kadar kayar. Dokuyan kadın motifi bir kez öğrenir, gerisi ötelemedir — duvar kâğıdı, fayans, çini, klavye tuşları da aynı mantık. Oyunlardaki karakter hareketi bile: Scratch'te "10 adım git" = (x+10, y).</p>
+</div>
+</div>
+
+<!-- KART 3: YANSIMA - kopru -->
+<div class="kart" id="k3">
+<span class="adim">3</span>
+<h2>On Gözlü Köprü Dicle'de yansıyor</h2>
+<p>Sakin havada Dicle'ye bak: köprünün kemerleri suda ters. Su yüzeyi bir <b>ayna</b>, yani <b>yansıma ekseni.</b> Her nokta, eksene uzaklığı kadar öbür tarafa geçer; boy değişmez, üst-alt ters döner.</p>
+<p><b>Su çizgisi y=0 olsun. Köprünün (3, 5) noktasının sudaki yansıması nerede?</b></p>
+<div class="soru">
+<button class="secenek">(3, −5)</button>
+<button class="secenek">(−3, 5)</button>
+</div>
+<div class="gizli" id="k3devam">
+<p><span class="ok">✓</span> Eksen yatay (su çizgisi) olduğu için x aynı kalır, y işaret değiştirir: <b>(3, −5).</b> Kemer sudan 6 m yukarıdaysa yansıması 6 m "aşağıda" görünür. Fotoğrafçılar bunu bilerek tam simetrik kare yakalar; mühendis köprünün yüksekliğini fotoğraftan tahmin eder.</p>
+</div>
+</div>
+
+<!-- KART 4: KAR TANESI -->
+<div class="kart" id="k4">
+<span class="adim">4</span>
+<h2>Kar tanesinin 6 kolu neden aynı?</h2>
+<p>Kar tanesine büyüteçle bak: 6 kol, hepsi aynı. Çünkü buz kristali altıgen yapıda büyür — kar tanesinde <b>6 yansıma ekseni</b> vardır. Bir kolu çiz, kalan 5'i yansımayla çıkar.</p>
+<p>Kâğıt katlayıp kesme de aynı iş: <b>her kat bir yansıma ekseni.</b></p>
+<p><b>Kâğıdı 2 kez katlayıp kenarından kesersen açınca kaç eksenli desen görürsün?</b></p>
+<div class="soru">
+<button class="secenek">2 eksen — her kat 1 eksen</button>
+<button class="secenek">8 eksen</button>
+</div>
+<div class="gizli" id="k4devam">
+<p><span class="ok">✓</span> 2 katlama = 2 yansıma ekseni (dikey + yatay gibi). Doğa da "bir parça çiz, yansıt" kuralıyla çalışır; simetri düzenin sonucudur. Cami çinileri, kilim yıldızları, çiçekler — hepsinde eksen sayısını sayabilirsin.</p>
+</div>
+</div>
+
+<!-- KART 5: SEKMELER -->
+<div class="kart" id="k5">
+<span class="adim">5</span>
+<h2>Hayatta nerede karşına çıkar?</h2>
+<div class="sekmeBar">
+<button class="sekme">🕌 Türbe taşıma</button>
+<button class="sekme">🎮 Oyun yapımı</button>
+<button class="sekme">🧶 Kilim/çini</button>
+<button class="sekme">📸 Fotoğraf</button>
+</div>
+<div id="sekmeIcerik" class="sekmeIc"></div>
+</div>
+
+<!-- KART 6: TEST -->
+<div class="kart" id="k6">
+<span class="adim yesil">Kendini dene</span>
+<h2>5 soru — çözersen bu konu sende</h2>
+<div id="testAlan"></div>
+<p id="testSonuc" class="gizli"></p>
+<button class="btn2 gizli" id="btnBastan">Baştan dene 🔄</button>
+</div>
+
+<!-- OZET -->
+<div class="kart" id="ozet">
+<span class="adim mor">Özet — sınavdan önce 1 dakika</span>
+<ul class="ozetList">
+<li><b>Öteleme</b> = kaydırma: şekil, boy, yön aynı; sadece yer değişir. Sağa a, yukarı b → (x+a, y+b).</li>
+<li><b>Yansıma</b> = ayna: eksene uzaklık korunur, taraf değişir. x eksenine göre (x, −y); y eksenine göre (−x, y).</li>
+<li>Ayna sağ-solu değiştirir, üst-altı değiştirmez (ambulans numarası).</li>
+<li>İki kez yansıtırsan başlangıca dönersin.</li>
+<li>Kilim, çini, duvar kâğıdı = öteleme; kar tanesi, kelebek = yansıma.</li>
+</ul>
+</div>
+
+<p class="kucuk" style="margin-top:18px">Kaynaklar: Kültür Bakanlığı (Zeynel Bey Türbesi taşıma); CK-12 (ambulans yazısı); Physics LibreTexts (düzlem ayna); Caltech Libbrecht (kar kristali); Scratch Wiki; Arış dergisi (Karacadağ kilimleri).</p>
+</div>
+
+<script>
+function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');}}
+function soruKur(kartId, dogruIdx, devamId){
+  document.querySelectorAll('#'+kartId+' > .soru .secenek').forEach(function(b,i){
+    b.onclick=function(){
+      if(i===dogruIdx){b.classList.add('dogru');ac(devamId);tit(30);}
+      else{b.classList.add('yanlis');tit([10,30,10]);}
+    };
+  });
+}
+soruKur('k1',0,'k1devam');
+soruKur('k2',0,'k2devam');
+soruKur('k3',0,'k3devam');
+soruKur('k4',0,'k4devam');
+
+var sekmeler=[
+ '<b>Önce tahmin et:</b> 1100 tonluk türbe nasıl bozulmadan taşındı? 👇<br><br><b>Türbe taşıma.</b> Hasankeyf&#39;teki Zeynel Bey Türbesi, Ilısu Barajı suları altında kalmasın diye 8 tekerlekli taşıyıcıyla (SPMT) 2 km taşındı. Bu bir <b>öteleme</b>: her noktası aynı yönde aynı uzaklıkta kaydı. Kapısı hangi yöne bakıyorsa yine oraya bakıyor, kubbe çapı aynı. Ötelemede şekil bozulmaz — mühendisler bunu garanti edebildiği için 550 yıllık eser kurtarıldı.',
+ '<b>Önce tahmin et:</b> oyundaki karakter nasıl "koşuyor"? 👇<br><br><b>Oyun yapımı.</b> Scratch&#39;te kediye "10 adım git" dersin: kedi (x,y)&#39;den (x+10,y)&#39;ye kayar — öteleme. "Sola dön" = yansıma. Koşan karakter animasyonu = yansıt + ötele + tekrarla. Ekran bir koordinat düzlemi; oyunlardaki HER hareket bu iki dönüşümün birleşimidir.',
+ '<b>Önce tahmin et:</b> dokuyan kadın kilimin tamamını nasıl ezberliyor? 👇<br><br><b>Kilim ve çini.</b> Ezberlemiyor! Karacadağ kiliminde motif bir kez öğrenilir; bordürde tek yönde, orta zeminde iki yönde <b>ötelenir</b>. Cami çinilerinde de bir desen çizilir, öteleme+yansımayla bütün duvar kaplanır. Bir desenle sonsuz duvar — matematiğin gücü bu.',
+ '<b>Önce tahmin et:</b> fotoğrafçı "tam simetrik" köprü karesini nasıl yakalar? 👇<br><br><b>Fotoğraf.</b> Sakin su = kusursuz ayna. On Gözlü Köprü&#39;nün sudaki yansımasında her nokta, su çizgisine uzaklığı kadar aşağıda. Fotoğrafçı su çizgisini karenin tam ortasına koyarsa üst yarı ile alt yarı yansıma simetrisi oluşturur. Rüzgar çıkınca su dalgalanır, "ayna" bozulur — o yüzden bu kareler sabah erken çekilir.'
+];
+var sekBtn=document.querySelectorAll('.sekme'), sekIc=document.getElementById('sekmeIcerik');
+sekBtn.forEach(function(b,i){
+  b.onclick=function(){
+    sekBtn.forEach(function(x){x.classList.remove('acik')});
+    b.classList.add('acik'); sekIc.innerHTML=sekmeler[i]; tit(15);
+  };
+});
+sekBtn[0].click();
+
+// TEST — dagilim: 0,1,1,0,1
+var sorular=[
+ {s:'(4, 2) noktası 3 birim sağa, 2 birim aşağı ötelenirse?',
+  c:['(7, 0)','(1, 4)'],d:0,
+  n:'Sağa → x+3, aşağı → y−2: (4+3, 2−2) = (7, 0).'},
+ {s:'(5, 3) noktasının x eksenine göre yansıması?',
+  c:['(−5, 3)','(5, −3)'],d:1,
+  n:'x eksenine (yatay eksene) göre yansımada x aynı kalır, y işaret değiştirir: (5, −3). Su yansıması gibi.'},
+ {s:'Aynada "d" harfi nasıl görünür?',
+  c:['p','b'],d:1,
+  n:'Ayna sağ-solu değiştirir: d → b. Üst-alt değişmez, o yüzden p olmaz.'},
+ {s:'Hangisi ötelemedir?',
+  c:['Türbenin 2 km taşınması','Köprünün suda ters görünmesi'],d:0,
+  n:'Taşımada şekil aynı yönde kaydı = öteleme. Sudaki ters görüntü = yansıma.'},
+ {s:'Bir şekle iki kez üst üste yansıma uygularsan (aynı eksende)?',
+  c:['İyice ters döner','Başlangıçtaki haline döner'],d:1,
+  n:'Yansımanın yansıması, şekli başlangıca döndürür. Ters yazının aynada düz okunması da bundan.'}
+];
+var alan=document.getElementById('testAlan'), dogru=0, cevaplanan=0;
+function testKur(){
+  alan.innerHTML=''; dogru=0; cevaplanan=0;
+  document.getElementById('testSonuc').classList.add('gizli');
+  document.getElementById('btnBastan').classList.add('gizli');
+  sorular.forEach(function(q,qi){
+    var d=document.createElement('div'); d.className='tsoru';
+    d.innerHTML='<p><b>'+(qi+1)+'.</b> '+q.s+'</p>';
+    var sec=document.createElement('div'); sec.className='soru';
+    q.c.forEach(function(cc,ci){
+      var b=document.createElement('button'); b.className='secenek'; b.innerHTML=cc;
+      b.onclick=function(){
+        if(d.dataset.done)return; d.dataset.done=1; cevaplanan++;
+        if(ci===q.d){b.classList.add('dogru');dogru++;tit(25);}
+        else{b.classList.add('yanlis');sec.children[q.d].classList.add('dogru');tit([10,30,10]);}
+        var ac2=document.createElement('p'); ac2.className='neden'; ac2.innerHTML='<b>Neden:</b> '+q.n;
+        d.appendChild(ac2);
+        if(cevaplanan===sorular.length){
+          var ts=document.getElementById('testSonuc');
+          ts.classList.remove('gizli');
+          ts.innerHTML= dogru>=4 ? '🎉 '+dogru+'/5 — bu konu sende. 💪' : dogru+'/5 — "Neden" açıklamalarını oku, baştan dene. Utanma, tekrar en iyi öğretmendir.';
+          document.getElementById('btnBastan').classList.remove('gizli');
+        }
+      };
+      sec.appendChild(b);
+    });
+    d.appendChild(sec); alan.appendChild(d);
+  });
+}
+document.getElementById('btnBastan').onclick=testKur;
+testKur();
+</script>
+</body>
+</html>

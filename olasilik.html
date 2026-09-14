@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1420">
+<title>Olasılık — Bu Ne İşe Yarıyor?</title>
+<meta name="description" content="Penaltı kesin gol mü? Piyango neden hep başkasına çıkar? Amedspor verisiyle 8. sınıf olasılık konusu.">
+<meta property="og:title" content="Olasılık — Bu Ne İşe Yarıyor?">
+<meta property="og:description" content="'Penaltı kesin goldür' diyen arkadaşına gerçek Süper Lig verisiyle cevap ver.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1420;color:#e6e8ee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.6}
+.kap{max-width:430px;margin:0 auto;padding:16px 14px 60px}
+a{color:#6ea8fe}
+.ust{font-size:14px;color:#8b949e;margin-bottom:14px}
+.ust a{text-decoration:none}
+h1{font-size:26px;line-height:1.25;margin:6px 0 4px}
+.etiket{display:inline-block;background:#1a2332;color:#8ab4f8;font-size:12px;padding:3px 10px;border-radius:20px;margin:8px 0 2px}
+.kart{background:#161d2b;border:1px solid #262d36;border-radius:14px;padding:16px;margin:14px 0}
+.kart h2{font-size:19px;margin-bottom:8px}
+.kart p{margin:8px 0;font-size:16px}
+.gizli{display:none}
+.adim{display:inline-block;background:#1a2332;color:#8ab4f8;font-weight:700;font-size:13px;padding:2px 9px;border-radius:12px;margin-bottom:6px}
+.adim.yesil{background:#122619;color:#4ade80}
+button{font-family:inherit;font-size:16px;border:0;border-radius:10px;padding:12px 18px;cursor:pointer}
+.btn{background:#2563eb;color:#fff;width:100%;margin-top:10px}
+.btn:active{transform:scale(.98)}
+.btn2{background:#1a2332;color:#8ab4f8;width:100%;margin-top:8px}
+.sonuc{background:#0d1420;border-radius:10px;padding:12px;margin-top:10px;font-size:16px}
+.buyuk{font-size:22px;font-weight:800;color:#f0c040}
+.ok{color:#4ade80}.hata{color:#f87171}
+.kucuk{color:#8b949e;font-size:14px}
+.vurgu{color:#f0c040;font-weight:700}
+.kiyas{background:#0d1420;border-radius:9px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:16px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
+.sekmeler{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.sekme{flex:1;min-width:70px;background:#1a2332;color:#c9d1d9;font-size:14px;padding:9px 6px;border-radius:9px;text-align:center}
+.sekme.secili{background:#2563eb;color:#fff}
+.icerik{background:#0d1420;border-radius:10px;padding:12px;margin-top:8px;font-size:16px}
+.ozet{background:#161d2b;border:2px solid #f0c040;border-radius:14px;padding:16px;margin:18px 0}
+.ozet h3{color:#f0c040;font-size:16px;letter-spacing:1px;margin-bottom:10px}
+.ozetBlok{background:#0d1420;border-radius:10px;padding:12px;margin:8px 0;font-size:16px}
+.soru{background:#0d1420;border-radius:10px;padding:12px;margin:10px 0}
+.secenek{display:block;width:100%;text-align:left;background:#1a2332;color:#e6e8ee;margin:6px 0;padding:11px 13px;border-radius:9px;font-size:16px}
+.secenek.dogru{background:#122619;color:#4ade80}
+.secenek.yanlis{background:#2a1215;color:#f87171}
+.tablo{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.tablo td,.tablo th{border:1px solid #262d36;padding:7px 9px;text-align:center}
+.tablo th{background:#1a2332;color:#8ab4f8}
+.alt{color:#8b949e;font-size:14px;text-align:center;margin-top:30px}
+</style>
+<style>
+.torba{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.top{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;background:#24304d;border:2px solid #3a4a72;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s}
+.top:active{transform:scale(.9)}
+.top.cekildi{background:#1f4d36;border-color:#39d98a}
+.sayac{display:flex;gap:14px;margin:10px 0;font-size:15px}
+.sayac b{font-size:20px}
+.cizgiKutu{background:#1a2236;border-radius:12px;padding:12px;margin:12px 0}
+.olasCubuk{height:26px;border-radius:8px;background:#3b6ea5;margin:6px 0;display:flex;align-items:center;padding-left:10px;font-size:13px;color:#fff;min-width:40px;transition:width .5s}
+</style>
+
+</head>
+<body>
+<div class="kap">
+<div class="ust"><a href="index.html">← Ana sayfa</a></div>
+<h1>Olasılık</h1>
+<p class="kucuk" style="margin-bottom:6px">"Kesin", "imkânsız", "belki" — hepsinin bir sayısı var. 0 ile 1 arasında.</p>
+<div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KART 1: KANCA - torba oyunu -->
+<div class="kart" id="k1">
+<span class="adim">1</span>
+<h2>Torbada 10 top var. Şansını dene.</h2>
+<p>10 topun sadece <b>2'si yeşil</b>. Gözün kapalı bir top çek — yeşil gelirse kazandın. Kaç denemede gelecek bakalım?</p>
+<div class="torba" id="torba"></div>
+<div class="sayac"><span>Çekiş: <b id="cekis">0</b></span><span>Yeşil: <b id="yesil">0</b></span></div>
+<p id="k1mesaj" class="kucuk" style="min-height:22px">👆 Bir topa dokun.</p>
+<div class="gizli" id="k1final">
+<p><span class="ok">✓</span> Şansın: 10 topta 2 yeşil = <b>2/10 = 1/5 = %20.</b> İşte olasılık bu kadar: <b>istediğin sonuç ÷ tüm sonuçlar.</b> Yılbaşı amortisi de aynen böyle hesaplanır — son rakam için 10 seçenekten 2'si amorti: %20.</p>
+<p>Ama dikkat: %20 şans, "5 çekişte 1 kesin gelir" demek <b>değildir</b>. Şans hafıza tutmaz — her çekiş sıfırdan başlar.</p>
+</div>
+</div>
+
+<!-- KART 2: OLASILIK 0-1 ARASI -->
+<div class="kart" id="k2">
+<span class="adim">2</span>
+<h2>Her olasılık 0 ile 1 arasında yaşar</h2>
+<p><b>0</b> = imkânsız (zar atınca 7 gelmesi). <b>1</b> = kesin (yarın güneşin doğması). Gerisi arada bir kesirdir:</p>
+<div class="cizgiKutu">
+<div class="olasCubuk" style="width:8%">0,015 — Temmuzda Diyarbakır'a yağmur</div>
+<div class="olasCubuk" style="width:20%">0,20 — Amorti</div>
+<div class="olasCubuk" style="width:37%">0,37 — Aralıkta yağmur</div>
+<div class="olasCubuk" style="width:69%">0,69 — Penaltının gol olması</div>
+<div class="olasCubuk" style="width:95%">0,97 — Yarın telefonuna bakman 😅</div>
+</div>
+<p><b>Soru:</b> Bir olayın olasılığı 1,4 çıktı. Ne dersin?</p>
+<div class="soru">
+<button class="secenek" data-c="0">Süper, çok yüksek şans!</button>
+<button class="secenek" data-c="1">Hesap yanlış — olasılık 1'i geçemez</button>
+</div>
+<div class="gizli" id="k2devam">
+<p><span class="ok">✓</span> Olasılık asla 1'i geçemez, asla eksi olamaz. <b>1,4 gördüysen hesap yanlıştır.</b> Bu, sınavda da hayatta da ilk kontrol: sonuç 0-1 dışındaysa dön başa.</p>
+</div>
+</div>
+
+<!-- KART 3: PENALTI - deneysel olasilik -->
+<div class="kart" id="k3">
+<span class="adim">3</span>
+<h2>"Penaltı kesin goldür" — öyle mi?</h2>
+<p>Süper Lig'in bir sezonunda <b>121 penaltı</b> atıldı, <b>84'ü</b> gol oldu. Sence penaltının gol olma olasılığı nedir?</p>
+<div class="soru">
+<button class="secenek" data-c="0">1 — penaltı kesin goldür</button>
+<button class="secenek" data-c="1">84/121 ≈ 0,69 — yani %69</button>
+</div>
+<div class="gizli" id="k3devam">
+<p><span class="ok">✓</span> 121'de 84 = <b>%69,4.</b> Yani her 10 penaltıdan yaklaşık 3'ü KAÇIYOR (37 tanesi girmedi). "Kesin gol" diyen arkadaşına bu sayıyı göster.</p>
+<p>Buna <b>deneysel olasılık</b> denir: geçmişte olanları sayarsın, oranını alırsın. Zar gibi eşit şanslı olmayan olaylarda tek yol budur.</p>
+</div>
+</div>
+
+<!-- KART 4: AMEDSPOR -->
+<div class="kart" id="k4">
+<span class="adim">4</span>
+<h2>Amedspor verisiyle: hangi sonuç en olası?</h2>
+<p>2024-25 sezonu, 38 maç: <b>14 galibiyet, 15 beraberlik, 9 yenilgi.</b> Rastgele bir maç seçsen en olası sonuç hangisi?</p>
+<div class="soru">
+<button class="secenek" data-c="0">Galibiyet</button>
+<button class="secenek" data-c="1">Beraberlik</button>
+<button class="secenek" data-c="2">Yenilgi</button>
+</div>
+<div class="gizli" id="k4devam">
+<p><span class="ok">✓ Beraberlik:</span> 15/38 ≈ %39,5. Galibiyet 14/38 ≈ %36,8, yenilgi 9/38 ≈ %23,7. Üçünü topla: %100 — tüm olasılıkların toplamı her zaman 1 eder.</p>
+<p>Yenilmeme olasılığı? Galibiyet + beraberlik = 29/38 ≈ <b>%76,3.</b> "VEYA" demek olasılıkları toplamak demektir (aynı anda olamayan sonuçlarda).</p>
+</div>
+</div>
+
+<!-- KART 5: SEKMELER -->
+<div class="kart" id="k5">
+<span class="adim">5</span>
+<h2>Hayatta nerede karşına çıkar?</h2>
+<div class="sekmeBar">
+<button class="sekme">🎰 Piyango</button>
+<button class="sekme">🩸 Kan grubu</button>
+<button class="sekme">🌧️ Hava durumu</button>
+<button class="sekme">💉 "Nadir" ne demek?</button>
+</div>
+<div id="sekmeIcerik" class="sekmeIc"></div>
+</div>
+
+<!-- KART 6: TEST -->
+<div class="kart" id="k6">
+<span class="adim yesil">Kendini dene</span>
+<h2>5 soru — çözersen bu konu sende</h2>
+<div id="testAlan"></div>
+<p id="testSonuc" class="gizli"></p>
+<button class="btn2 gizli" id="btnBastan">Baştan dene 🔄</button>
+</div>
+
+<!-- OZET -->
+<div class="kart" id="ozet">
+<span class="adim mor">Özet — sınavdan önce 1 dakika</span>
+<ul class="ozetList">
+<li><b>Olasılık = istediğin sonuç ÷ tüm sonuçlar</b> (eşit şanslıysa).</li>
+<li>Her olasılık <b>0 ile 1 arasında</b>. 0=imkânsız, 1=kesin. 1,4 diye olasılık YOK.</li>
+<li>Tüm sonuçların olasılıkları <b>toplamı 1</b> eder.</li>
+<li><b>Deneysel olasılık:</b> geçmiş veriyi say, oranla (84/121 gibi).</li>
+<li>Olmaması olasılığı = <b>1 − olması olasılığı.</b></li>
+<li>Büyük ikramiye ≠ büyük şans. Para miktarı olasılığı değiştirmez.</li>
+<li>Şansın hafızası yoktur: yazı üst üste 5 kez geldiyse 6. atış yine %50.</li>
+</ul>
+</div>
+
+<p class="kucuk" style="margin-top:18px">Kaynaklar: Milli Piyango oyun kuralları; Sporx Süper Lig penaltı raporu (2019); Sporzip 1. Lig 2024-25; Türk Kızılay kan grubu dağılımı; MGM yağışlı gün istatistikleri; Sağlık Bakanlığı aşı bilgilendirmesi.</p>
+</div>
+
+<script>
+function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');}}
+
+// KART 1: torba — 10 top, 2 yesil; cekilen top acilir
+var torba=document.getElementById('torba');
+var yesiller=[3,7]; // sabit ama cocuk bilmiyor
+var cekis=0, yesilSay=0, bitti=false;
+for(var i=0;i<10;i++){
+  (function(i){
+    var t=document.createElement('div'); t.className='top'; t.textContent='?';
+    t.onclick=function(){
+      if(bitti||t.classList.contains('cekildi'))return;
+      cekis++; tit(20);
+      t.classList.add('cekildi');
+      var y = yesiller.indexOf(i)>=0;
+      t.textContent = y ? '🟢' : '⚪';
+      if(y) yesilSay++;
+      document.getElementById('cekis').textContent=cekis;
+      document.getElementById('yesil').textContent=yesilSay;
+      var m=document.getElementById('k1mesaj');
+      if(y){
+        m.textContent='Yeşil geldi! '+cekis+'. çekişte.';
+        bitti=true; ac('k1final'); tit([30,50,30]);
+        // kalan toplari goster
+        var toplar=document.querySelectorAll('.top');
+        toplar.forEach(function(tt,j){
+          if(!tt.classList.contains('cekildi')){
+            tt.textContent = yesiller.indexOf(j)>=0 ? '🟢' : '⚪';
+            tt.style.opacity=.55;
+          }
+        });
+      } else {
+        m.textContent = cekis>=8 ? 'Şans bugün senden yana değil…' : 'Beyaz. Bir daha dene.';
+        if(cekis===10){bitti=true; ac('k1final');}
+      }
+    };
+    torba.appendChild(t);
+  })(i);
+}
+
+// KART 2-3-4 sorular
+function soruKur(kartId, dogruIdx, devamId){
+  document.querySelectorAll('#'+kartId+' .secenek').forEach(function(b,i){
+    b.onclick=function(){
+      if(i===dogruIdx){b.classList.add('dogru');ac(devamId);tit(30);}
+      else{b.classList.add('yanlis');tit([10,30,10]);}
+    };
+  });
+}
+soruKur('k2',1,'k2devam');
+soruKur('k3',1,'k3devam');
+soruKur('k4',1,'k4devam');
+
+// KART 5 sekmeler
+var sekmeler=[
+ '<b>Önce tahmin et:</b> 800 milyon TL ikramiye — şansın da büyük mü? 👇<br><br><b>Piyango.</b> Büyük ikramiye TEK bilete çıkar. 1000 eşit numaradan biri sende olsa şans 1/1000 = %0,1. İkramiye 800 milyon da olsa 8 TL de olsa bu oran DEĞİŞMEZ. Reklam parayı gösterir, olasılığı göstermez — matematiği bilen kumar tuzağına düşmez.',
+ '<b>Önce tahmin et:</b> 8 kan grubu var; hepsi eşit şanslı mı? 👇<br><br><b>Kan grubu.</b> Değil! Türkiye: A Rh+ %37, 0 Rh+ %30… AB Rh− sadece %1. Rastgele birinin A Rh+ olması, AB Rh− olmasından <b>37 kat</b> daha olası. "8 seçenek = her biri 1/8" demek, eşit şanslı olmayan şeye eşit davranmaktır — klasik sınav tuzağı.',
+ '<b>Önce tahmin et:</b> temmuzda Diyarbakır&#39;a yağmur yağma ihtimali kaç? 👇<br><br><b>Hava durumu.</b> MGM&#39;nin 96 yıllık kaydı: temmuzda ortalama 0,48 yağışlı gün var — yani 31 günde olasılık ≈ 0,015 (%1,5). Aralıkta 11,47 gün → ≈ 0,37 (%37). Düğünü yazın bahçede yapmalarının sebebi işte bu satır.',
+ '<b>Önce tahmin et:</b> ilaç prospektüsündeki "nadir görülür" ne demek? 👇<br><br><b>"Nadir" bir sayıdır.</b> Sağlık dünyasında "nadir" ≈ 10.000&#39;de 1 ile 1.000&#39;de 1 arası demektir. "Olabilir" kelimesi korkutur; 1/10.000 sayısı düşündürür. Olasılık bilen, korkuyla değil sayıyla karar verir.'
+];
+var sekBtn=document.querySelectorAll('.sekme'), sekIc=document.getElementById('sekmeIcerik');
+sekBtn.forEach(function(b,i){
+  b.onclick=function(){
+    sekBtn.forEach(function(x){x.classList.remove('acik')});
+    b.classList.add('acik'); sekIc.innerHTML=sekmeler[i]; tit(15);
+  };
+});
+sekBtn[0].click();
+
+// KART 6 TEST — dogru cevap dagilimi: 1,0,1,0,1
+var sorular=[
+ {s:'Bir zar atılıyor. 3 gelme olasılığı nedir?',
+  c:['3/6','1/6'],d:1,
+  n:'Zarın 6 eşit yüzü var, "3" bunlardan sadece biri: 1/6. Pay = istediğin sonuç sayısı (1 tane), payda = tüm sonuçlar (6).'},
+ {s:'Bir olayın olasılığı hangisi OLAMAZ?',
+  c:['−0,3','0,003'],d:0,
+  n:'Olasılık 0 ile 1 arasındadır; eksi olamaz. 0,003 küçük ama geçerlidir (nadir olay).'},
+ {s:'Torbada 5 kırmızı, 3 mavi top var. Mavi çekme olasılığı?',
+  c:['3/5','3/8'],d:1,
+  n:'Payda TÜM toplar: 5+3=8. Mavi 3 tane → 3/8. Payda olarak 5 yazmak en sık yapılan hatadır.'},
+ {s:'Yazı-tura üst üste 4 kez yazı geldi. 5. atışta tura gelme olasılığı?',
+  c:['1/2 — şansın hafızası yok','Artık tura gelmesi daha olası'],d:0,
+  n:'Her atış bağımsızdır: %50. "Artık gelmesi lazım" hissi kumarbazın yanılgısıdır — para da bu histen kaybedilir.'},
+ {s:'38 maçta 15 beraberlik var. Rastgele bir maçın beraberlik olma (deneysel) olasılığı?',
+  c:['15/23','15/38'],d:1,
+  n:'Deneysel olasılık = olan sayısı ÷ TÜM denemeler = 15/38 ≈ %39,5. Payda her zaman toplam deneme sayısıdır.'}
+];
+var alan=document.getElementById('testAlan'), dogru=0, cevaplanan=0;
+function testKur(){
+  alan.innerHTML=''; dogru=0; cevaplanan=0;
+  document.getElementById('testSonuc').classList.add('gizli');
+  document.getElementById('btnBastan').classList.add('gizli');
+  sorular.forEach(function(q,qi){
+    var d=document.createElement('div'); d.className='tsoru';
+    d.innerHTML='<p><b>'+(qi+1)+'.</b> '+q.s+'</p>';
+    var sec=document.createElement('div'); sec.className='soru';
+    q.c.forEach(function(cc,ci){
+      var b=document.createElement('button'); b.className='secenek'; b.innerHTML=cc;
+      b.onclick=function(){
+        if(d.dataset.done)return; d.dataset.done=1; cevaplanan++;
+        if(ci===q.d){b.classList.add('dogru');dogru++;tit(25);}
+        else{b.classList.add('yanlis');sec.children[q.d].classList.add('dogru');tit([10,30,10]);}
+        var ac2=document.createElement('p'); ac2.className='neden'; ac2.innerHTML='<b>Neden:</b> '+q.n;
+        d.appendChild(ac2);
+        if(cevaplanan===sorular.length){
+          var ts=document.getElementById('testSonuc');
+          ts.classList.remove('gizli');
+          ts.innerHTML= dogru>=4 ? '🎉 '+dogru+'/5 — bu konu sende. 💪' : dogru+'/5 — "Neden" açıklamalarını oku, baştan dene. Utanma, tekrar en iyi öğretmendir.';
+          document.getElementById('btnBastan').classList.remove('gizli');
+        }
+      };
+      sec.appendChild(b);
+    });
+    d.appendChild(sec); alan.appendChild(d);
+  });
+}
+document.getElementById('btnBastan').onclick=testKur;
+testKur();
+</script>
+</body>
+</html>
