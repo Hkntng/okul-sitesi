@@ -102,6 +102,25 @@ body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
     <p>Kaynak: Rivest, Shamir & Adleman (1978), “A Method for Obtaining Digital Signatures and Public-Key Cryptosystems”, <i>Communications of the ACM</i> 21(2), 120–126. <a href="https://doi.org/10.1145/359340.359342" target="_blank" rel="noopener">doi.org</a></p>
   </div>
 
+  <!-- KENDINI DENE -->
+  <div class="kart">
+    <span class="adim">Kendini Dene</span>
+    <p style="margin-bottom:10px"><b>Soru 1:</b> 18'in asal çarpan gösterimi hangisi?</p>
+    <div class="soru" style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+      <button class="qz" data-q="1" data-ok="1">2 × 3 × 3</button>
+      <button class="qz" data-q="1" data-ok="0" data-neden="9 asal değil (9 = 3×3). Gösterimde yalnız asallar olmalı.">2 × 9</button>
+      <button class="qz" data-q="1" data-ok="0" data-neden="6 asal değil (6 = 2×3). Dallanmaya devam etmeliydin.">3 × 6</button>
+    </div>
+    <p class="qzCevap" id="qzC1" style="display:none;font-size:14px;margin-bottom:14px"></p>
+    <p style="margin-bottom:10px"><b>Soru 2:</b> Hangi sayı asaldır?</p>
+    <div class="soru" style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+      <button class="qz" data-q="2" data-ok="0" data-neden="21 = 3×7, asal değil.">21</button>
+      <button class="qz" data-q="2" data-ok="1">23</button>
+      <button class="qz" data-q="2" data-ok="0" data-neden="27 = 3×3×3, asal değil.">27</button>
+    </div>
+    <p class="qzCevap" id="qzC2" style="display:none;font-size:14px"></p>
+  </div>
+
   <div class="alt" id="k6">
     Her sayının asal çarpan gösterimi olduğu gibi parmak izi eşsizdir.<br>
     <a href="index.html">Ana sayfaya dön</a> · <a href="ebob-ekok.html">EBOB & EKOK'a geç</a>
@@ -192,6 +211,31 @@ body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
 
   // initialize
   guncelle();
+
+  // Kendini Dene quiz
+  var qzStil=document.createElement('style');
+  qzStil.textContent='.qz{padding:12px;border-radius:10px;border:1px solid #2c3950;background:#161d2b;color:#e6edf3;font-size:15px;cursor:pointer;text-align:left;font-family:inherit}.qz.dogru{background:#12251a;border-color:#3fb950;color:#8ce89f}.qz.yanlis{background:#2b1518;border-color:#f85149;color:#ffa198}';
+  document.head.appendChild(qzStil);
+  Array.prototype.forEach.call(document.querySelectorAll('.qz'),function(b){
+    b.onclick=function(){
+      var q=b.getAttribute('data-q');
+      var cevap=document.getElementById('qzC'+q);
+      Array.prototype.forEach.call(document.querySelectorAll('.qz[data-q="'+q+'"]'),function(x){x.classList.remove('dogru','yanlis');});
+      if(b.getAttribute('data-ok')==='1'){
+        b.classList.add('dogru');
+        cevap.style.display='block';
+        cevap.style.color='#8ce89f';
+        cevap.textContent='✓ Doğru!';
+        tit(20);
+      }else{
+        b.classList.add('yanlis');
+        cevap.style.display='block';
+        cevap.style.color='#ffa198';
+        cevap.textContent='✗ '+(b.getAttribute('data-neden')||'Tekrar dene.');
+        tit([30,50,30]);
+      }
+    };
+  });
 })();
 </script>
 <!-- okul-nav-progress -->
