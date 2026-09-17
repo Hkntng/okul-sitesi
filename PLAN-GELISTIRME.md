@@ -1,5 +1,16 @@
 # GELİŞTİRME PLANI — Tek Koşuda Otomatik (2026-09-18)
 
+## TUR 3
+Tespit: Soru bankası 24 soruda kaldı (konu başına 2); yanlış yapılan konu
+bitiş ekranında söylenmiyor, öğrenci hangi sayfaya döneceğini bilmiyor.
+Araştırma dayanağı aynı (retrieval + interleaving): daha büyük havuz =
+her sette daha az tekrar; hedefli geri bildirim = konuya dönüş oranını artırır.
+
+Adımlar (hepsi bu koşuda):
+1. Banka 24→48 soru (her konuya +2; LGS tarzı, nedenli açıklamalar).
+2. Bitiş ekranı: yanlış yapılan konular sayfa linkiyle listelenir.
+3. Tarayıcı testi + ad-hoc doğrulama + commit + push + canlı kontrol.
+
 ## TUR 2 (aynı gün, ikinci analiz)
 Tespit: PWA yok (telefona kurulamıyor/offline yok), sitemap/robots/404/canonical yok,
 LGS geri sayımı yok, 1-carpanlar ve 5-ebob-ekok-secimi'nde interaktif quiz yok.
