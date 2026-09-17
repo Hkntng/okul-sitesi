@@ -97,6 +97,10 @@ body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
 body.light .sekme:active { background:#a3e635; }
 </style>
 
+<link rel="canonical" href="https://hkntng.github.io/okul-sitesi/">
+<link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/okul-sitesi/icons/icon-192.png">
 </head>
 <body>
 <div class="kap">
@@ -110,6 +114,8 @@ body.light .sekme:active { background:#a3e635; }
     <span class="rzt">📱 Telefonda çalışır</span>
     <span class="rzt">🆓 Ücretsiz</span>
   </div>
+
+  <div id="lgsSayac" style="display:none;background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:16px;padding:12px 16px;margin-bottom:14px;font-size:14px;font-weight:600;color:#fde68a;text-align:center"></div>
 
   <div id="ilerlemeKutu" style="display:none;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:13px 16px;margin-bottom:20px">
     <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:#c7d2fe;margin-bottom:8px">
@@ -286,6 +292,12 @@ window.addEventListener('load', showNotes);
       document.getElementById('ilerlemeBar').style.width=Math.round(biten/slugs.length*100)+'%';
     }
   }
+  // LGS 2027 geri sayım (13 Haziran 2027, kaynak: MEB takvimine göre yayıncı sayaçları)
+  var lgsGun=Math.ceil((new Date(2027,5,13)-new Date())/864e5);
+  if(lgsGun>0&&lgsGun<400){
+    var sy=document.getElementById('lgsSayac');
+    if(sy){sy.style.display='block';sy.textContent='🎯 LGS 2027\'ye '+lgsGun+' gün kaldı — bugün 1 konu, 8 karışık soru yeter.';}
+  }
   // LGS soru sayısı rozetleri (2020-2025 ortalama dağılımı, MEB örnek soruları)
   var lgs={'karekok':3,'denklemler':3,'uslu-ifadeler':2,'cebir':2,'esitsizlikler':2,'ucgenler':2};
   Object.keys(lgs).forEach(function(s){
@@ -301,5 +313,10 @@ window.addEventListener('load', showNotes);
 })();
 </script>
 
+<script>
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('/okul-sitesi/sw.js', {scope: '/okul-sitesi/'});
+}
+</script>
 </body>
 </html>

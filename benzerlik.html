@@ -83,6 +83,10 @@ body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
 body.light .sekme:active { background:#a3e635; }
 </style>
 
+<link rel="canonical" href="https://hkntng.github.io/okul-sitesi/benzerlik.html">
+<link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/okul-sitesi/icons/icon-192.png">
 </head>
 <body>
 <div class="kap">
@@ -379,5 +383,10 @@ window.addEventListener('load', showNotes);
 })();
 </script>
 
+<script>
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('/okul-sitesi/sw.js', {scope: '/okul-sitesi/'});
+}
+</script>
 </body>
 </html>

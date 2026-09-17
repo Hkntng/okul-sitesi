@@ -1,5 +1,19 @@
 # GELİŞTİRME PLANI — Tek Koşuda Otomatik (2026-09-18)
 
+## TUR 2 (aynı gün, ikinci analiz)
+Tespit: PWA yok (telefona kurulamıyor/offline yok), sitemap/robots/404/canonical yok,
+LGS geri sayımı yok, 1-carpanlar ve 5-ebob-ekok-secimi'nde interaktif quiz yok.
+LGS 2027 tarihi: 13 Haziran 2027 (NotasyoN/kitapsec sayaçları).
+
+Adımlar (hepsi bu koşuda):
+1. PWA: manifest.webmanifest + sw.js (tüm sayfalar önbelleğe → OFFLINE çalışır)
+   + tüm sayfalara kayıt scripti + apple-touch meta + ikon (Python ile PNG üretimi).
+2. SEO: sitemap.xml, robots.txt, 404.html, tüm sayfalara canonical.
+3. index: LGS 2027 geri sayım şeridi (13.06.2027).
+4. 1-carpanlar + 5-ebob-ekok-secimi: Kendini Dene quiz (nedenli açıklamalar).
+5. Tarayıcı testi + duman testi + commit + push + canlı doğrulama.
+
+
 Araştırma dayanağı:
 - Retrieval practice + spaced practice: retrievalpractice.org/SpacingGuide, edresearch.edu.au (2026 güncel)
 - Interleaving (karışık soru): blok tekrarından üstün (McGraw Hill / Cepeda 2006-08)

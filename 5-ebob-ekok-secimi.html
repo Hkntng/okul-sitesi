@@ -74,6 +74,10 @@ body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
 .secimButonlari .ebob{background:#f0a44b;color:#10141c}
 .secimButonlari .ekok{background:#3fb950;color:#10141c}
 </style>
+<link rel="canonical" href="https://hkntng.github.io/okul-sitesi/5-ebob-ekok-secimi.html">
+<link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/okul-sitesi/icons/icon-192.png">
 </head>
 <body>
 <div class="telefon">
@@ -267,5 +271,10 @@ body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
     <a href="uslu-ifadeler.html" style="color:#7da8d8;text-decoration:none;font-size:15px">Üslü İfadeler →</a>
   </div>
 </div>
+<script>
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('/okul-sitesi/sw.js', {scope: '/okul-sitesi/'});
+}
+</script>
 </body>
 </html>

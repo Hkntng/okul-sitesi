@@ -1,0 +1,14 @@
+{
+  "name": "8. Sınıf Matematik — Bu Ne İşe Yarıyor?",
+  "short_name": "Matematik8",
+  "description": "13 konu, hepsi hayattan örnekli. Offline çalışır.",
+  "scope": "/okul-sitesi/",
+  "start_url": "/okul-sitesi/",
+  "display": "standalone",
+  "background_color": "#070b16",
+  "theme_color": "#070b16",
+  "icons": [
+    {"src": "/okul-sitesi/icons/icon-192.png", "type": "image/png", "sizes": "192x192"},
+    {"src": "/okul-sitesi/icons/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any maskable"}
+  ]
+}

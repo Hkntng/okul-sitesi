@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hkntng.github.io/okul-sitesi/sitemap.xml
