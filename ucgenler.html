@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1420">
+<title>Üçgenler ve Pisagor — Bu Ne İşe Yarıyor?</title>
+<meta name="description" content="Duvar ustasının 3-4-5 ipi, Sur'a merdiven, 55 inç TV duvara sığar mı? 8. sınıf üçgenler ve Pisagor gerçek hayatla.">
+<meta property="og:title" content="Üçgenler ve Pisagor — Bu Ne İşe Yarıyor?">
+<meta property="og:description" content="Gönyesi olmayan usta köşenin dik olduğunu nereden biliyor? 3-4-5 ipinin sırrı.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--tema:#2dd4bf;--tema2:#5eead4}
+body{background:#0b101e;color:#e8edf7;font-family:'Rubik',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:17px;line-height:1.6;
+background-image:radial-gradient(ellipse 80% 50% at 50% -10%,color-mix(in srgb,var(--tema) 16%,transparent),transparent 70%);background-repeat:no-repeat}
+.kap{max-width:430px;margin:0 auto;padding:16px 14px 60px}
+a{color:var(--tema2)}
+.ust{font-size:14px;color:#8b95ad;margin-bottom:14px}
+.konuIkon{width:62px;height:62px;border-radius:19px;display:flex;align-items:center;justify-content:center;font-size:31px;margin-top:16px;background:color-mix(in srgb,var(--tema) 17%,transparent);border:1px solid color-mix(in srgb,var(--tema) 42%,transparent);box-shadow:0 8px 24px color-mix(in srgb,var(--tema) 26%,transparent)}
+.ust a{text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:6px 12px;border-radius:10px;display:inline-block}
+h1{font-size:34px;line-height:1.1;margin:12px 0 6px;font-weight:900;letter-spacing:-1px;
+background:linear-gradient(100deg,#fff 20%,var(--tema2) 75%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.etiket{display:inline-block;background:color-mix(in srgb,var(--tema) 16%,transparent);color:var(--tema2);border:1px solid color-mix(in srgb,var(--tema) 35%,transparent);font-size:12px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;margin:10px 0 2px}
+.kart{background:linear-gradient(180deg,#151d31,#111828);border:1px solid #27314b;border-radius:18px;padding:18px 16px;margin:16px 0;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.kart::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tema),transparent 70%)}
+.kart h2{font-size:20px;margin-bottom:8px;font-weight:800;letter-spacing:-.3px}
+.kart p{margin:8px 0;font-size:16px}
+.gizli{display:none}
+.acilis{animation:belir .45s ease}
+@keyframes belir{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.adim{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;background:linear-gradient(135deg,var(--tema),var(--tema2));color:#0b101e;font-weight:800;font-size:14px;padding:0 9px;border-radius:13px;margin-bottom:8px;box-shadow:0 3px 10px color-mix(in srgb,var(--tema) 40%,transparent)}
+.adim.yesil{background:linear-gradient(135deg,#22c55e,#4ade80)}
+button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13px 18px;cursor:pointer}
+.btn{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 60%,#3050c8));color:#fff;font-weight:700;width:100%;margin-top:10px;box-shadow:0 6px 18px color-mix(in srgb,var(--tema) 35%,transparent)}
+.btn:active{transform:scale(.97)}
+.btn2{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--tema2);width:100%;margin-top:8px}
+.sonuc{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:13px;margin-top:10px;font-size:16px}
+.buyuk{font-size:23px;font-weight:800;color:var(--tema2)}
+.ok{color:#4ade80}.hata{color:#f87171}
+.kucuk{color:#8b95ad;font-size:14px}
+.vurgu{color:var(--tema2);font-weight:700}
+.kiyas{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:15px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
+.sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.sekme{flex:1;min-width:72px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 6px;border-radius:11px;text-align:center;transition:all .15s}
+.sekme.secili{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--tema) 35%,transparent)}
+.icerik{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:14px;margin-top:8px;font-size:16px}
+.ozet{background:linear-gradient(180deg,#1a1f33,#141a2c);border:1px solid color-mix(in srgb,var(--tema) 45%,transparent);border-radius:18px;padding:18px 16px;margin:20px 0;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.ozet h3{color:var(--tema2);font-size:15px;letter-spacing:2px;margin-bottom:10px}
+.ozetBlok{background:rgba(8,12,24,.7);border-radius:12px;padding:12px;margin:8px 0;font-size:16px}
+.soru{background:rgba(8,12,24,.55);border:1px solid #232d45;border-radius:14px;padding:13px;margin:10px 0}
+.secenek{display:block;width:100%;text-align:left;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:#e8edf7;margin:7px 0;padding:12px 14px;border-radius:11px;font-size:16px;transition:all .15s}
+.secenek:active{background:rgba(255,255,255,.1)}
+.secenek.dogru{background:rgba(34,197,94,.14);border-color:rgba(74,222,128,.5);color:#4ade80;font-weight:700}
+.secenek.yanlis{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.4);color:#f87171}
+.tablo{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
+.tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
+.alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+</style>
+<style>
+.ipKutu{background:#1a2236;border-radius:12px;padding:14px;margin:12px 0;text-align:center}
+.ipKutu svg{max-width:100%;height:auto}
+.olcuBtn{display:inline-block;margin:4px}
+</style>
+
+
+<style>
+:root { --bg-dark:#0b101e; --bg-light:#fafafa; --text-dark:#e8edf7; --text-light:#111; --accent:#a3e635; }
+body.light { background:var(--bg-light); color:var(--text-light); }
+body.light .kart { background:#fff; border-color:#ddd; color:#111; }
+body.light .adim { background:#a3e635; color:#0b101e; }
+body.light button { background:#a3e635; color:#0b101e; }
+body.light .sekme.secili { background:#a3e635; color:#fff; }
+body.light .sonuc { background:#fff; border-color:#ddd; color:#111; }
+body.light .secenek { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme:active { background:#a3e635; }
+</style>
+
+</head>
+<body>
+<div class="kap">
+<div class="ust"><a href="index.html">← Ana sayfa</a></div>
+<div class="konuIkon">📐</div>
+<h1>Üçgenler ve Pisagor</h1>
+<p class="kucuk" style="margin-bottom:6px">Gönyesi olmayan köy ustası, köşenin tam dik olduğunu nereden biliyor? Elinde sadece ip var.</p>
+<div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KART 1: KANCA - 3-4-5 ipi -->
+<div class="kart" id="k1">
+<span class="adim">1</span>
+<h2>Ustanın sihirli ipi: 3-4-5</h2>
+<p>Köyde usta ahırın temelini atıyor. Köşe tam <b>dik</b> (90°) olmalı — yoksa duvarlar oturmaz, kapı eğri olur. Gönyesi yok. İpe 3 m, 4 m ve 5 m işaretliyor, üç işareti üç kazığa geriyor… ve köşe tam dik oluyor. <b>Nasıl?</b></p>
+<div class="ipKutu">
+<svg viewBox="0 0 300 220" id="ipSvg">
+<polygon points="40,180 240,180 40,30" fill="none" stroke="#39d98a" stroke-width="3"/>
+<rect x="40" y="160" width="20" height="20" fill="none" stroke="#ffb84d" stroke-width="2"/>
+<text x="130" y="205" fill="#e8ecf5" font-size="16">4 m</text>
+<text x="10" y="110" fill="#e8ecf5" font-size="16">3 m</text>
+<text x="150" y="95" fill="#e8ecf5" font-size="16">5 m</text>
+</svg>
+</div>
+<p><b>Dene:</b> hangi üçlü köşeyi dik yapar? (İpucu: iki kısa kenarın kareleri toplamı, en uzunun karesine eşitse köşe diktir)</p>
+<div class="soru">
+<button class="secenek">3-4-5 → 9+16=25 ✓</button>
+<button class="secenek">2-3-4 → 4+9=13, ama 4²=16</button>
+</div>
+<div class="gizli" id="k1devam">
+<p><span class="ok">✓</span> 3² + 4² = 9 + 16 = 25 = 5². Bu eşitlik sağlanıyorsa uzun kenarın (5) karşısındaki açı <b>kesinlikle 90°</b>dir. Buna <b>Pisagor bağıntısı</b> denir: dik üçgende <b>a² + b² = c².</b> En uzun kenara (dik açının karşısındakine) <b>hipotenüs</b> denir. Usta 2500 yıllık bir teoremi iple uyguluyor. 6-8-10 da işler: 36+64=100 — aynı üçgenin iki katı.</p>
+</div>
+</div>
+
+<!-- KART 2: MERDIVEN -->
+<div class="kart" id="k2">
+<span class="adim">2</span>
+<h2>Merdiven duvara kaç metrede değer?</h2>
+<p>Güvenlik kuralı (4'e 1): merdivenin dibi, boyunun dörtte biri kadar duvardan uzak olmalı. 4 m'lik merdivenin dibi duvardan 1 m uzakta. Merdiven = hipotenüs. Duvardaki yükseklik?</p>
+<p style="text-align:center;font-size:17px"><b>yükseklik² = 4² − 1² = 16 − 1 = 15</b></p>
+<div class="soru">
+<button class="secenek">√15 ≈ 3,87 m</button>
+<button class="secenek">15 m</button>
+</div>
+<div class="gizli" id="k2devam">
+<p><span class="ok">✓</span> Yükseklik √15 ≈ <b>3,87 m</b>. Dikkat: hipotenüsü bulurken kareleri <b>toplarsın</b>, dik kenarı bulurken <b>çıkarırsın</b>. 15 m diyen, karekök almayı unuttu — 4 metrelik merdivenle 15 metreye çıkılmaz 😅</p>
+<p><b>Sur örneği:</b> Diyarbakır Surları'nın 12 m'lik duvarına çıkacak usta, merdiven dibini 3 m uzağa koyarsa: merdiven² = 12² + 3² = 153 → merdiven ≈ <b>12,4 m</b> gerekir. "12 metrelik duvara 12 metrelik merdiven yeter" YANLIŞ — hipotenüs, dik kenarlardan her zaman uzundur.</p>
+</div>
+</div>
+
+<!-- KART 3: SAHA KONTROLU -->
+<div class="kart" id="k3">
+<span class="adim">3</span>
+<h2>Saha gerçekten dikdörtgen mi?</h2>
+<p>Köy sahasına çizgi çektiniz: 105 m × 68 m (FIFA ölçüsü). Ama köşeler gerçekten dik mi, saha yamuk mu oldu? Gönyeyle tek tek ölçmek saatler sürer. Ustaların yolu: <b>köşegeni ölç.</b></p>
+<p style="text-align:center;font-size:16px"><b>köşegen² = 105² + 68² = 11025 + 4624 = 15649</b></p>
+<div class="soru">
+<button class="secenek">köşegen ≈ 125,1 m — iki köşegen de buysa köşeler dik</button>
+<button class="secenek">köşegen = 173 m — kenarları topla yeter</button>
+</div>
+<div class="gizli" id="k3devam">
+<p><span class="ok">✓</span> √15649 ≈ <b>125,1 m.</b> İki köşegen de 125,1 çıkıyorsa saha dikdörtgen; biri 124 biri 126 ise yamuk. Kenarları toplamak (105+68=173) köşegen vermez — köşegen düz çizgidir, yol değil. Halı saha, sera, tarla — ustalar hep bu kontrolü yapar.</p>
+</div>
+</div>
+
+<!-- KART 4: EKRAN -->
+<div class="kart" id="k4">
+<span class="adim">4</span>
+<h2>"6,5 inç telefon" — neresi 6,5 inç?</h2>
+<p>Ne eni, ne boyu: <b>köşegeni.</b> 1 inç = 2,54 cm → 6,5 × 2,54 = <b>16,51 cm.</b> Galaxy A15'te en ≈ 6,9 cm, boy ≈ 15,0 cm. Kontrol: 6,9² + 15² ≈ 272,6 → √ ≈ 16,5 ✓</p>
+<p><b>Asıl soru şu:</b> 55 inç TV alacaksın, duvardaki boşluk 120 cm. Sığar mı? (55 inç = 139,7 cm köşegen, 16:9 oran → en = 139,7×16/√337 ≈ 121,8 cm)</p>
+<div class="soru">
+<button class="secenek">Sığmaz — eni 121,8 &gt; 120</button>
+<button class="secenek">Sığar — 55 inç zaten 139,7 cm ama o köşegen</button>
+</div>
+<div class="gizli" id="k4devam">
+<p><span class="ok">✓</span> <b>Sığmaz.</b> En ≈ 121,8 cm, boşluk 120 cm — çerçeve hariç bile taşar. "İnç" köşegeni söyler, duvara gereken eni söylemez. Pisagor bilen, yanlış TV almaz. 📺</p>
+</div>
+</div>
+
+<!-- KART 5: SEKMELER -->
+<div class="kart" id="k5">
+<span class="adim">5</span>
+<h2>Hayatta nerede karşına çıkar?</h2>
+<div class="sekmeBar">
+<button class="sekme">🧱 Sur ustası</button>
+<button class="sekme">⚽ Saha çizimi</button>
+<button class="sekme">🗺️ Kuş uçuşu</button>
+<button class="sekme">🪜 Merdiven kuralı</button>
+</div>
+<div id="sekmeIcerik" class="sekmeIc"></div>
+</div>
+
+<!-- KART 6: TEST -->
+<div class="kart" id="k6">
+<span class="adim yesil">Kendini dene</span>
+<h2>5 soru — çözersen bu konu sende</h2>
+<div id="testAlan"></div>
+<p id="testSonuc" class="gizli"></p>
+<button class="btn2 gizli" id="btnBastan">Baştan dene 🔄</button>
+</div>
+
+<!-- OZET -->
+<div class="kart" id="ozet">
+<span class="adim mor">Özet — sınavdan önce 1 dakika</span>
+<ul class="ozetList">
+<li>Dik üçgende <b>a² + b² = c²</b> (Pisagor). c = en uzun kenar = <b>hipotenüs</b>, her zaman dik açının karşısında.</li>
+<li>Hipotenüsü ararken kareleri <b>topla</b>, dik kenarı ararken <b>çıkar</b> — sonra karekök almayı unutma.</li>
+<li>3-4-5 (ve katları: 6-8-10, 9-12-15) hazır dik üçgenlerdir — usta ipi bundandır.</li>
+<li>Tersi de doğru: a²+b²=c² sağlanıyorsa o köşe kesin diktir (saha kontrolü).</li>
+<li>Ekran "inç"i köşegendir; eni-boyu Pisagor'la bulunur.</li>
+<li>Hipotenüs dik kenarlardan uzundur ama toplamlarından kısadır (kuş uçuşu &lt; yol).</li>
+</ul>
+</div>
+
+<p class="kucuk" style="margin-top:18px">Kaynaklar: Maine DOE "Squaring Corners" ders planı; OSHA merdiven güvenlik kartı; Kültür Portalı + UNESCO (Diyarbakır Surları, liste no. 1488); IFAB Laws of the Game 2026/27; GSMArena Galaxy A15; 55 inç TV ölçü rehberi.</p>
+</div>
+
+<script>
+function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');e.classList.add('acilis');}}
+
+function soruKur(kartId, dogruIdx, devamId){
+  document.querySelectorAll('#'+kartId+' > .soru .secenek').forEach(function(b,i){
+    b.onclick=function(){
+      if(i===dogruIdx){b.classList.add('dogru');ac(devamId);tit(30);}
+      else{b.classList.add('yanlis');tit([10,30,10]);}
+    };
+  });
+}
+soruKur('k1',0,'k1devam');
+soruKur('k2',0,'k2devam');
+soruKur('k3',0,'k3devam');
+soruKur('k4',0,'k4devam');
+
+var sekmeler=[
+ '<b>Önce tahmin et:</b> 12 m surun tepesine 12 m merdiven yeter mi? 👇<br><br><b>Sur ustası.</b> Diyarbakır Surları: 10-12 m yükseklik, 80+ burç, UNESCO listesinde (5,8 km). Merdiven dibi 3 m uzakta olursa: √(12²+3²)=√153≈<b>12,4 m</b> merdiven gerekir + tutunma payı. Hipotenüs dik kenardan HEP uzundur — kısa merdiven alan yarı yolda kalır.',
+ '<b>Önce tahmin et:</b> köşeleri gönyesiz nasıl kontrol edersin? 👇<br><br><b>Saha çizimi.</b> 105×68 sahada köşegen √(105²+68²)≈125,1 m. İki köşegen eşitse köşeler dik. Küçük saha 90×45: köşegen √10125≈100,6 m. İp ger, ölç, karşılaştır — gönyeden hızlı, ustalar bunu kullanır.',
+ '<b>Önce tahmin et:</b> Diyarbakır-Batman kuş uçuşu 80 km, yol neden 97 km? 👇<br><br><b>Kuş uçuşu.</b> Düz çizgi (hipotenüs mantığı) her zaman en kısadır; yol nehirleri, tepeleri dolaşır. Harita uygulaması "mesafe" derken hangisini söylüyor, artık sorgularsın. Üçgen eşitsizliği de bu: iki kenarın toplamı üçüncüden büyüktür — dolaşan yol, düz çizgiyi asla yenemez.',
+ '<b>Önce tahmin et:</b> merdiven neden tam dik dayanmaz? 👇<br><br><b>4\'e 1 kuralı (OSHA).</b> Merdiven boyunun 1/4\'ü kadar duvardan uzak koy: 4 m merdiven → 1 m. Böylece yükseklik √15≈3,87 m. Çok dik koyarsan arkaya devrilir, çok yatıksa alttan kayar. Kural kanun değil, geometri: açı ~75° olur, en güvenli bölge.'
+];
+var sekBtn=document.querySelectorAll('.sekme'), sekIc=document.getElementById('sekmeIcerik');
+sekBtn.forEach(function(b,i){
+  b.onclick=function(){
+    sekBtn.forEach(function(x){x.classList.remove('acik')});
+    b.classList.add('acik'); sekIc.innerHTML=sekmeler[i]; tit(15);
+  };
+});
+sekBtn[0].click();
+
+// TEST — dagilim: 0,1,0,1,1
+var sorular=[
+ {s:'Dik üçgende dik kenarlar 6 ve 8. Hipotenüs?',
+  c:['10','14'],d:0,
+  n:'6²+8²=36+64=100 → √100=10. (3-4-5 üçgeninin iki katı.) 14 diyen kenarları topladı — Pisagor toplama değildir!'},
+ {s:'5 m merdiven, dibi duvardan 3 m uzakta. Duvardaki yükseklik?',
+  c:['√34 ≈ 5,8 m','4 m'],d:1,
+  n:'Dik kenarı ararken ÇIKAR: 5²−3²=25−9=16 → √16=4 m. Toplayan (√34), merdivenden uzun yükseklik buldu — merdiven duvardan yüksek olamaz!'},
+ {s:'Kenarları 5-12-13 olan üçgen dik midir?',
+  c:['Evet: 25+144=169=13²','Hayır: 5+12≠13'],d:0,
+  n:'5²+12²=25+144=169=13² — eşitlik sağlanıyor, üçgen dik. 5-12-13 de ustaların bildiği hazır üçlülerdendir.'},
+ {s:'Ekranın eni 7 cm, boyu 15 cm. Köşegen yaklaşık?',
+  c:['22 cm','√274 ≈ 16,6 cm'],d:1,
+  n:'√(7²+15²)=√(49+225)=√274≈16,6 cm. 22 diyen eni ve boyu topladı — köşegen düz çizgidir, L şeklinde yol değil.'},
+ {s:'43 inç TV\'nin köşegeni kaç cm? (1 inç = 2,54 cm)',
+  c:['109,2 cm','43 cm'],d:0,
+  n:'43×2,54=109,2 cm. İnç bir uzunluk birimidir; "43 cm" diyen birimi çevirmedi.'}
+];
+var alan=document.getElementById('testAlan'), dogru=0, cevaplanan=0;
+function testKur(){
+  alan.innerHTML=''; dogru=0; cevaplanan=0;
+  document.getElementById('testSonuc').classList.add('gizli');
+  document.getElementById('btnBastan').classList.add('gizli');
+  sorular.forEach(function(q,qi){
+    var d=document.createElement('div'); d.className='tsoru';
+    d.innerHTML='<p><b>'+(qi+1)+'.</b> '+q.s+'</p>';
+    var sec=document.createElement('div'); sec.className='soru';
+    q.c.forEach(function(cc,ci){
+      var b=document.createElement('button'); b.className='secenek'; b.innerHTML=cc;
+      b.onclick=function(){
+        if(d.dataset.done)return; d.dataset.done=1; cevaplanan++;
+        if(ci===q.d){b.classList.add('dogru');dogru++;tit(25);}
+        else{b.classList.add('yanlis');sec.children[q.d].classList.add('dogru');tit([10,30,10]);}
+        var ac2=document.createElement('p'); ac2.className='neden'; ac2.innerHTML='<b>Neden:</b> '+q.n;
+        d.appendChild(ac2);
+        if(cevaplanan===sorular.length){
+          var ts=document.getElementById('testSonuc');
+          ts.classList.remove('gizli');
+          ts.innerHTML= dogru>=4 ? '🎉 '+dogru+'/5 — bu konu sende. 💪' : dogru+'/5 — "Neden" açıklamalarını oku, baştan dene. Utanma, tekrar en iyi öğretmendir.';
+          document.getElementById('btnBastan').classList.remove('gizli');
+        }
+      };
+      sec.appendChild(b);
+    });
+    d.appendChild(sec); alan.appendChild(d);
+  });
+}
+document.getElementById('btnBastan').onclick=testKur;
+testKur();
+</script>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+// Init theme from storage
+window.addEventListener('load', function() {
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+});
+// Note-taking
+function saveNote() {
+  const txt = document.getElementById('notInput').value.trim();
+  if (txt) {
+    const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+    notes.push({page: location.pathname, text: txt, time: new Date().toISOString()});
+    localStorage.setItem('pageNotes', JSON.stringify(notes));
+    showNotes();
+    document.getElementById('notInput').value = '';
+  }
+}
+function clearNotes() {
+  if (window.confirm('Notları silmek istediğinizden emin misiniz?')) {
+    localStorage.removeItem('pageNotes');
+    showNotes();
+  }
+}
+function showNotes() {
+  const container = document.getElementById('notGoster');
+  container.innerHTML = '';
+  const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+  const pageNotes = notes.filter(n => n.page === location.pathname);
+  if (pageNotes.length === 0) {
+    container.innerHTML = '<i>Henüz not yok.</i>';
+    return;
+  }
+  const ul = document.createElement('ul');
+  pageNotes.forEach((n, idx) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${new Date(n.time).toLocaleString()}</strong>: ${n.text}`;
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
+}
+window.addEventListener('load', showNotes);
+</script>
+
+
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Tema</span>
+  <button onclick="toggleTheme()" style="margin-top:5px;">🌙/☀️ Tema Değiştir</button>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Not Defteri</span>
+  <textarea id="notInput" rows="2" placeholder="Bir not yazın..." style="width:100%;box-sizing:border-box;margin-top:5px;"></textarea>
+  <div style="margin-top:8px;">
+    <button id="saveNote" onclick="saveNote()" style="margin-right:5px;">Kaydet</button>
+    <button id="clearNote" onclick="clearNotes()">Sil</button>
+  </div>
+  <div id="notGoster" style="margin-top:10px;font-size:0.9em;color:#8b95ad;"></div>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Gerçek Hayat Örneği</span>
+  <p>ucgenler konusuyla ilgili gerçek‑hayat örnekleri burada yer alabilir.</p>
+</div>
+
+</body>
+</html>

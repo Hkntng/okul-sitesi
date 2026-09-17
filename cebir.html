@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1420">
+<title>Cebir ve Özdeşlikler — Bu Ne İşe Yarıyor?</title>
+<meta name="description" content="21×19'u kafadan 3 saniyede çarp. Süt parası, servis ücreti ve bahçe alanıyla 8. sınıf cebirsel ifadeler ve özdeşlikler.">
+<meta property="og:title" content="Cebir ve Özdeşlikler — Bu Ne İşe Yarıyor?">
+<meta property="og:description" content="x dediğin şey aslında süt parası. 21×19'u kafadan çarpmanın sırrı içeride.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--tema:#fb7185;--tema2:#fda4af}
+body{background:#0b101e;color:#e8edf7;font-family:'Rubik',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:17px;line-height:1.6;
+background-image:radial-gradient(ellipse 80% 50% at 50% -10%,color-mix(in srgb,var(--tema) 16%,transparent),transparent 70%);background-repeat:no-repeat}
+.kap{max-width:430px;margin:0 auto;padding:16px 14px 60px}
+a{color:var(--tema2)}
+.ust{font-size:14px;color:#8b95ad;margin-bottom:14px}
+.konuIkon{width:62px;height:62px;border-radius:19px;display:flex;align-items:center;justify-content:center;font-size:31px;margin-top:16px;background:color-mix(in srgb,var(--tema) 17%,transparent);border:1px solid color-mix(in srgb,var(--tema) 42%,transparent);box-shadow:0 8px 24px color-mix(in srgb,var(--tema) 26%,transparent)}
+.ust a{text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:6px 12px;border-radius:10px;display:inline-block}
+h1{font-size:34px;line-height:1.1;margin:12px 0 6px;font-weight:900;letter-spacing:-1px;
+background:linear-gradient(100deg,#fff 20%,var(--tema2) 75%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.etiket{display:inline-block;background:color-mix(in srgb,var(--tema) 16%,transparent);color:var(--tema2);border:1px solid color-mix(in srgb,var(--tema) 35%,transparent);font-size:12px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;margin:10px 0 2px}
+.kart{background:linear-gradient(180deg,#151d31,#111828);border:1px solid #27314b;border-radius:18px;padding:18px 16px;margin:16px 0;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.kart::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tema),transparent 70%)}
+.kart h2{font-size:20px;margin-bottom:8px;font-weight:800;letter-spacing:-.3px}
+.kart p{margin:8px 0;font-size:16px}
+.gizli{display:none}
+.acilis{animation:belir .45s ease}
+@keyframes belir{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.adim{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;background:linear-gradient(135deg,var(--tema),var(--tema2));color:#0b101e;font-weight:800;font-size:14px;padding:0 9px;border-radius:13px;margin-bottom:8px;box-shadow:0 3px 10px color-mix(in srgb,var(--tema) 40%,transparent)}
+.adim.yesil{background:linear-gradient(135deg,#22c55e,#4ade80)}
+button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13px 18px;cursor:pointer}
+.btn{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 60%,#3050c8));color:#fff;font-weight:700;width:100%;margin-top:10px;box-shadow:0 6px 18px color-mix(in srgb,var(--tema) 35%,transparent)}
+.btn:active{transform:scale(.97)}
+.btn2{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--tema2);width:100%;margin-top:8px}
+.sonuc{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:13px;margin-top:10px;font-size:16px}
+.buyuk{font-size:23px;font-weight:800;color:var(--tema2)}
+.ok{color:#4ade80}.hata{color:#f87171}
+.kucuk{color:#8b95ad;font-size:14px}
+.vurgu{color:var(--tema2);font-weight:700}
+.kiyas{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:15px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
+.sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.sekme{flex:1;min-width:72px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 6px;border-radius:11px;text-align:center;transition:all .15s}
+.sekme.secili{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--tema) 35%,transparent)}
+.icerik{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:14px;margin-top:8px;font-size:16px}
+.ozet{background:linear-gradient(180deg,#1a1f33,#141a2c);border:1px solid color-mix(in srgb,var(--tema) 45%,transparent);border-radius:18px;padding:18px 16px;margin:20px 0;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.ozet h3{color:var(--tema2);font-size:15px;letter-spacing:2px;margin-bottom:10px}
+.ozetBlok{background:rgba(8,12,24,.7);border-radius:12px;padding:12px;margin:8px 0;font-size:16px}
+.soru{background:rgba(8,12,24,.55);border:1px solid #232d45;border-radius:14px;padding:13px;margin:10px 0}
+.secenek{display:block;width:100%;text-align:left;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:#e8edf7;margin:7px 0;padding:12px 14px;border-radius:11px;font-size:16px;transition:all .15s}
+.secenek:active{background:rgba(255,255,255,.1)}
+.secenek.dogru{background:rgba(34,197,94,.14);border-color:rgba(74,222,128,.5);color:#4ade80;font-weight:700}
+.secenek.yanlis{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.4);color:#f87171}
+.tablo{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
+.tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
+.alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+</style>
+<style>
+.alanGorsel{position:relative;margin:14px auto;background:#1a2236;border-radius:12px;padding:14px;max-width:300px}
+.aKare{display:grid;gap:3px;margin:0 auto}
+.hucre{border-radius:4px;min-height:26px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.hA{background:#3b6ea5}.hB{background:#d98a39}.hC{background:#39d98a;color:#0f1420}
+.slider{width:100%;margin:10px 0}
+.formulKutu{background:#1a2236;border-radius:12px;padding:12px 14px;margin:10px 0;font-size:17px;text-align:center}
+</style>
+
+
+<style>
+:root { --bg-dark:#0b101e; --bg-light:#fafafa; --text-dark:#e8edf7; --text-light:#111; --accent:#a3e635; }
+body.light { background:var(--bg-light); color:var(--text-light); }
+body.light .kart { background:#fff; border-color:#ddd; color:#111; }
+body.light .adim { background:#a3e635; color:#0b101e; }
+body.light button { background:#a3e635; color:#0b101e; }
+body.light .sekme.secili { background:#a3e635; color:#fff; }
+body.light .sonuc { background:#fff; border-color:#ddd; color:#111; }
+body.light .secenek { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme:active { background:#a3e635; }
+</style>
+
+</head>
+<body>
+<div class="kap">
+<div class="ust"><a href="index.html">← Ana sayfa</a></div>
+<div class="konuIkon">🧮</div>
+<h1>Cebir ve Özdeşlikler</h1>
+<p class="kucuk" style="margin-bottom:6px">"x ne işime yarayacak?" diyenler için: x, senin süt paran.</p>
+<div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KART 1: KANCA - 21x19 numarasi -->
+<div class="kart" id="k1">
+<span class="adim">1</span>
+<h2>21 × 19'u kafadan 3 saniyede çarp</h2>
+<p>Arkadaşına meydan oku: o telefonla hesaplasın, sen kafadan söyle. Numara şu — ikisi de 20'nin komşusu:</p>
+<div class="formulKutu">21 × 19 = (20+1)(20−1) = 20² − 1² = 400 − 1 = <b>399</b></div>
+<p><b>Sıra sende:</b> 31 × 29 kaç eder? (30'un komşuları…)</p>
+<div class="soru">
+<button class="secenek">870</button>
+<button class="secenek">899</button>
+<button class="secenek">901</button>
+</div>
+<div class="gizli" id="k1devam">
+<p><span class="ok">✓</span> 30² − 1² = 900 − 1 = <b>899.</b> Bu numaranın adı <b>özdeşlik</b>: (a+b)(a−b) = a² − b². Her sayıda çalışan hazır kalıp. Bu sayfada bu kalıpların nereden geldiğini GÖZÜNLE göreceksin.</p>
+</div>
+</div>
+
+<!-- KART 2: DEGISKEN NEDIR - sut parasi -->
+<div class="kart" id="k2">
+<span class="adim">2</span>
+<h2>x dediğin şey: süt paran</h2>
+<p>Ailen süt satıyor diyelim. Litresi <b>24,30 TL</b> (Ulusal Süt Konseyi 2026 fiyatı). Ama her gün farklı litre satılıyor. Her gün için ayrı hesap mı yazacağız?</p>
+<p>Hayır. Değişen miktara bir harf ver: <b>x litre</b>. Gelir her zaman:</p>
+<div class="formulKutu">Gelir = 24,30 · x</div>
+<p>Kaydır, gör:</p>
+<input type="range" class="slider" id="sutSlider" min="0" max="50" value="0">
+<p style="text-align:center;font-size:17px"><b id="sutLitre">0</b> litre → <b id="sutPara">0</b> TL</p>
+<div class="gizli" id="k2devam">
+<p><span class="ok">✓</span> İşte cebir bu: <b>değişeni harfle göster, kuralı bir kez yaz.</b> x=40 gün 972 TL, x=25 gün 607,50 TL — formül aynı. Servis ücreti de böyledir: 21 km üstü her ek km 60 TL → ücret = 2300 + 60x. Sabit kısım + değişen kısım.</p>
+</div>
+</div>
+
+<!-- KART 3: (a+b)2 GORSEL -->
+<div class="kart" id="k3">
+<span class="adim">3</span>
+<h2>(a+b)² neden a²+b² DEĞİL?</h2>
+<p>Kenarı <b>10 m</b> olan kare bahçeni her yönden <b>2 m</b> büyüttün. Yeni alan sence 10²+2² = 104 mü?</p>
+<p>Gözünle say — mavi eski bahçe, turuncu şeritler, yeşil köşe:</p>
+<div class="alanGorsel">
+<div class="aKare" style="grid-template-columns:5fr 1fr">
+<div class="hucre hA" style="min-height:110px">a² = 100</div>
+<div class="hucre hB">ab<br>=20</div>
+<div class="hucre hB" style="min-height:34px">ab = 20</div>
+<div class="hucre hC">b²=4</div>
+</div>
+</div>
+<div class="soru">
+<button class="secenek">104 m²</button>
+<button class="secenek">144 m²</button>
+</div>
+<div class="gizli" id="k3devam">
+<p><span class="ok">✓</span> 100 + 20 + 20 + 4 = <b>144.</b> İki turuncu şeridi unutursan 40 m² bahçe kaybedersin!</p>
+<div class="formulKutu">(a+b)² = a² + <b>2ab</b> + b²</div>
+<p>Sınavların bir numaralı tuzağı: (a+b)² = a²+b² yazmak. Resmi hatırla: <b>iki şerit var.</b></p>
+</div>
+</div>
+
+<!-- KART 4: a2-b2 GORSEL -->
+<div class="kart" id="k4">
+<span class="adim">4</span>
+<h2>Büyük kareden küçüğü çıkar: a² − b²</h2>
+<p>Kenarı <b>15 m</b> kare alandan kenarı <b>5 m</b> kare ağıl ayrıldı. Kalan alan: 15² − 5² = 225 − 25 = <b>200 m².</b></p>
+<p>Ama şunu gör: kalan L şeklini kesip düzeltirsen <b>dikdörtgen</b> olur — bir kenarı (15−5)=10, öbürü (15+5)=20:</p>
+<div class="formulKutu">a² − b² = (a−b)(a+b)<br><span class="kucuk">225 − 25 = 10 × 20 = 200 ✓</span></div>
+<p><b>Soru:</b> 20² − 4² değerini çarpanlara ayırarak bul:</p>
+<div class="soru">
+<button class="secenek">(20−4)(20+4) = 16×24 = 384</button>
+<button class="secenek">(20−4)² = 16² = 256</button>
+</div>
+<div class="gizli" id="k4devam">
+<p><span class="ok">✓</span> 384. İkinci tuzağa dikkat: a²−b² ile (a−b)² <b>farklı şeyler.</b> (a−b)² = a²−2ab+b² (yol ayırınca köşe karesi geri gelir). a²−b² ise (a−b)(a+b) olur. Kanca sorusundaki 21×19 numarası da buydu — tersinden.</p>
+</div>
+</div>
+
+<!-- KART 5: SEKMELER -->
+<div class="kart" id="k5">
+<span class="adim">5</span>
+<h2>Hayatta nerede karşına çıkar?</h2>
+<div class="sekmeBar">
+<button class="sekme">🌾 Buğday desteği</button>
+<button class="sekme">🚌 Servis ücreti</button>
+<button class="sekme">💧 Su faturası</button>
+<button class="sekme">🧱 Fayans hesabı</button>
+</div>
+<div id="sekmeIcerik" class="sekmeIc"></div>
+</div>
+
+<!-- KART 6: TEST -->
+<div class="kart" id="k6">
+<span class="adim yesil">Kendini dene</span>
+<h2>5 soru — çözersen bu konu sende</h2>
+<div id="testAlan"></div>
+<p id="testSonuc" class="gizli"></p>
+<button class="btn2 gizli" id="btnBastan">Baştan dene 🔄</button>
+</div>
+
+<!-- OZET -->
+<div class="kart" id="ozet">
+<span class="adim mor">Özet — sınavdan önce 1 dakika</span>
+<ul class="ozetList">
+<li><b>Değişken:</b> değişen miktarın harfi. Gelir = 24,30x gibi.</li>
+<li>Sabit + değişen: servis = <b>2300 + 60x.</b> İki parçayı karıştırma.</li>
+<li><b>(a+b)² = a² + 2ab + b²</b> — iki şeridi (2ab) unutma!</li>
+<li><b>(a−b)² = a² − 2ab + b²</b> — köşe karesi geri gelir.</li>
+<li><b>a² − b² = (a−b)(a+b)</b> — fark, iki kolay sayının çarpımı olur.</li>
+<li>21×19 = 20²−1 = 399. Özdeşlik = her sayıda çalışan kalıp.</li>
+<li>x(x+3) = x² + 3x — dağılma: dikdörtgeni parçalara ayır.</li>
+</ul>
+</div>
+
+<p class="kucuk" style="margin-top:18px">Kaynaklar: Ulusal Süt Konseyi çiğ süt tavsiye fiyatı (2026); Tarım ve Orman Bakanlığı buğday destek modeli (2025); DİSKİ su tarifesi (2026); Diyarbakır UKOME servis tarifesi (2025-26); MEB 8. sınıf matematik programı.</p>
+</div>
+
+<script>
+function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');e.classList.add('acilis');}}
+
+// K1: 31x29 -> dogru 899 (index 1)
+document.querySelectorAll('#k1 .secenek').forEach(function(b,i){
+  b.onclick=function(){
+    if(i===1){b.classList.add('dogru');ac('k1devam');tit(30);}
+    else{b.classList.add('yanlis');tit([10,30,10]);}
+  };
+});
+
+// K2: sut slider
+var s=document.getElementById('sutSlider');
+s.oninput=function(){
+  var x=parseInt(s.value);
+  document.getElementById('sutLitre').textContent=x;
+  var p=(24.30*x).toFixed(2).replace('.',',');
+  document.getElementById('sutPara').textContent=p;
+  if(x>=10) ac('k2devam');
+};
+
+// K3: 144 (index 1)
+document.querySelectorAll('#k3 .secenek').forEach(function(b,i){
+  b.onclick=function(){
+    if(i===1){b.classList.add('dogru');ac('k3devam');tit(30);}
+    else{b.classList.add('yanlis');tit([10,30,10]);}
+  };
+});
+// K4: index 0
+document.querySelectorAll('#k4 .secenek').forEach(function(b,i){
+  b.onclick=function(){
+    if(i===0){b.classList.add('dogru');ac('k4devam');tit(30);}
+    else{b.classList.add('yanlis');tit([10,30,10]);}
+  };
+});
+
+// K5 sekmeler
+var sekmeler=[
+ '<b>Önce tahmin et:</b> 50 dekar tarlası olan çiftçi ne kadar destek alır? 👇<br><br><b>Buğday desteği.</b> 2025 modeli: dekara 317,2 TL. d dekar için destek = <b>317,2·d</b>. 50 dekar → 15.860 TL, 10 dekar → 3.172 TL. Tek formül, her tarlaya uyar. Devlet desteğini hesaplayamayan, hakkını da takip edemez.',
+ '<b>Önce tahmin et:</b> servis 21 km üstü neden "2300 + 60x" diye yazılır? 👇<br><br><b>Servis ücreti.</b> UKOME tarifesi: 18-21 km arası sabit 2.300 TL; 21 km üstünde her ek km 60 TL. Ücret = <b>2300 + 60x</b>. Ek 4 km → 2.540 TL, ek 7 km → 2.720 TL. Sabit kısım x&#39;e bağlı DEĞİL — cebirin en klasik ayrımı.',
+ '<b>Önce tahmin et:</b> su faturası nasıl bir formülle hesaplanır? 👇<br><br><b>Su faturası.</b> DİSKİ: ilk 18 m³ için m³ başı 25,13 TL (KDV hariç). x m³ → bedel = <b>25,13x</b>. 12 m³ → 301,56 TL, 8 m³ → 201,04 TL. Faturayı formülle kontrol eden, yanlış kesintiyi anında yakalar.',
+ '<b>Önce tahmin et:</b> bir kenarı x, öbürü x+3 sıra fayans — toplam kaç fayans? 👇<br><br><b>Fayans hesabı.</b> x(x+3) = <b>x² + 3x</b>. x=8 → 8×11 = 88 fayans; x=10 → 130. Dağılma özelliği dikdörtgeni x·x ve x·3 diye iki parçaya böler. Usta bunu göz kararı yapar, cebir bilen kâğıt üstünde ispatlar.'
+];
+var sekBtn=document.querySelectorAll('.sekme'), sekIc=document.getElementById('sekmeIcerik');
+sekBtn.forEach(function(b,i){
+  b.onclick=function(){
+    sekBtn.forEach(function(x){x.classList.remove('acik')});
+    b.classList.add('acik'); sekIc.innerHTML=sekmeler[i]; tit(15);
+  };
+});
+sekBtn[0].click();
+
+// TEST — dogru dagilim: 0,1,1,0,1
+var sorular=[
+ {s:'(a+b)² açılımı hangisi?',
+  c:['a² + 2ab + b²','a² + b²'],d:0,
+  n:'İki şeridi unutma: kare büyürken 2 tane ab şeridi eklenir. a²+b² yazmak sınavların bir numaralı tuzağıdır.'},
+ {s:'Litresi 24,30 TL olan sütten x litre satılırsa gelir?',
+  c:['24,30 + x','24,30 · x'],d:1,
+  n:'Her litre 24,30 TL: litre sayısıyla ÇARPILIR. Toplama, "bir kereye mahsus ekleme" durumlarında kullanılır.'},
+ {s:'99 × 101 işleminin kısa yolu?',
+  c:['(100−1)² = 9.801','(100−1)(100+1) = 100²−1 = 9.999'],d:1,
+  n:'99 ve 101, 100&#39;ün iki komşusu: a²−b² kalıbı. (a−b)(a+b)=a²−b² → 10.000−1 = 9.999.'},
+ {s:'x² − 25 çarpanlarına ayrılmış hali?',
+  c:['(x−5)(x+5)','(x−5)²'],d:0,
+  n:'İki kare farkı: x²−5² = (x−5)(x+5). (x−5)² ise x²−10x+25 eder — farklı şey!'},
+ {s:'Servis: sabit 2.300 TL + ek km başı 60 TL. Ek 5 km için ücret?',
+  c:['2.300 × 5 = 11.500 TL','2.300 + 60×5 = 2.600 TL'],d:1,
+  n:'Sabit kısım bir kez ödenir, değişen kısım km ile çarpılır: 2300 + 300 = 2.600 TL. Sabiti de çarparsan 11.500 gibi saçma sonuç çıkar — mantık süzgeci!'}
+];
+var alan=document.getElementById('testAlan'), dogru=0, cevaplanan=0;
+function testKur(){
+  alan.innerHTML=''; dogru=0; cevaplanan=0;
+  document.getElementById('testSonuc').classList.add('gizli');
+  document.getElementById('btnBastan').classList.add('gizli');
+  sorular.forEach(function(q,qi){
+    var d=document.createElement('div'); d.className='tsoru';
+    d.innerHTML='<p><b>'+(qi+1)+'.</b> '+q.s+'</p>';
+    var sec=document.createElement('div'); sec.className='soru';
+    q.c.forEach(function(cc,ci){
+      var b=document.createElement('button'); b.className='secenek'; b.innerHTML=cc;
+      b.onclick=function(){
+        if(d.dataset.done)return; d.dataset.done=1; cevaplanan++;
+        if(ci===q.d){b.classList.add('dogru');dogru++;tit(25);}
+        else{b.classList.add('yanlis');sec.children[q.d].classList.add('dogru');tit([10,30,10]);}
+        var ac2=document.createElement('p'); ac2.className='neden'; ac2.innerHTML='<b>Neden:</b> '+q.n;
+        d.appendChild(ac2);
+        if(cevaplanan===sorular.length){
+          var ts=document.getElementById('testSonuc');
+          ts.classList.remove('gizli');
+          ts.innerHTML= dogru>=4 ? '🎉 '+dogru+'/5 — bu konu sende. 💪' : dogru+'/5 — "Neden" açıklamalarını oku, baştan dene. Utanma, tekrar en iyi öğretmendir.';
+          document.getElementById('btnBastan').classList.remove('gizli');
+        }
+      };
+      sec.appendChild(b);
+    });
+    d.appendChild(sec); alan.appendChild(d);
+  });
+}
+document.getElementById('btnBastan').onclick=testKur;
+testKur();
+</script>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+// Init theme from storage
+window.addEventListener('load', function() {
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+});
+// Note-taking
+function saveNote() {
+  const txt = document.getElementById('notInput').value.trim();
+  if (txt) {
+    const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+    notes.push({page: location.pathname, text: txt, time: new Date().toISOString()});
+    localStorage.setItem('pageNotes', JSON.stringify(notes));
+    showNotes();
+    document.getElementById('notInput').value = '';
+  }
+}
+function clearNotes() {
+  if (window.confirm('Notları silmek istediğinizden emin misiniz?')) {
+    localStorage.removeItem('pageNotes');
+    showNotes();
+  }
+}
+function showNotes() {
+  const container = document.getElementById('notGoster');
+  container.innerHTML = '';
+  const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+  const pageNotes = notes.filter(n => n.page === location.pathname);
+  if (pageNotes.length === 0) {
+    container.innerHTML = '<i>Henüz not yok.</i>';
+    return;
+  }
+  const ul = document.createElement('ul');
+  pageNotes.forEach((n, idx) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${new Date(n.time).toLocaleString()}</strong>: ${n.text}`;
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
+}
+window.addEventListener('load', showNotes);
+</script>
+
+
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Tema</span>
+  <button onclick="toggleTheme()" style="margin-top:5px;">🌙/☀️ Tema Değiştir</button>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Not Defteri</span>
+  <textarea id="notInput" rows="2" placeholder="Bir not yazın..." style="width:100%;box-sizing:border-box;margin-top:5px;"></textarea>
+  <div style="margin-top:8px;">
+    <button id="saveNote" onclick="saveNote()" style="margin-right:5px;">Kaydet</button>
+    <button id="clearNote" onclick="clearNotes()">Sil</button>
+  </div>
+  <div id="notGoster" style="margin-top:10px;font-size:0.9em;color:#8b95ad;"></div>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Gerçek Hayat Örneği</span>
+  <p>cebir konusuyla ilgili gerçek‑hayat örnekleri burada yer alabilir.</p>
+</div>
+
+</body>
+</html>

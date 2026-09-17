@@ -1,0 +1,54 @@
+{
+  "bulgular": [
+    {
+      "iddia": "Kağıt kalınlığı: 0.1 mm × 2^42 = 439.805 km (439,805 km)",
+      "durum": "DOĞRU",
+      "gerekce": "0.1 mm × 2^42 = 439,804,651,110.4 mm = 439,804.65 km ≈ 439,805 km (binlik noktası olarak kullanılan noktayla 439.805 km ifadesi 439,805 km anlamına gelir). Ay ortalama uzaklığı 384,400 km olduğu için kalınlık Ay'ı geçer."
+    },
+    {
+      "iddia": "2^42 değeri",
+      "durum": "DOĞRU",
+      "gerekce": "2^42 = 4,398,046,511,104. HTML'de kalınlık hesaplamasında kullanılan bu değer doğru."
+    },
+    {
+      "iddia": "Ay uzaklığı: 384.400 km (384,400 km)",
+      "durum": "DOĞRU",
+      "gerekce": "Ay-Yer ortalama uzaklığı ~384,400 km (perije 363,300 km, apoge 405,500 km). HTML'de kullanılan 384,400 km değeri ortalama mesafedir ve doğru."
+    },
+    {
+      "iddia": "TÜİK 2023 núfus verileri: Türkiye 85.664.944, Diyarbakır 1.833.684",
+      "durum": "YANLIS",
+      "gerekce": "TÜİK'nin 31 Aralık 2023 tarihli adres tabanlı nüfus kayıt sistemi sonuçları Türkiye núfusunu 85,372,377 olarak gösterir. 85,664,944 sayısı TÜİK'in 2024 ortası veya 2024 sonu núfus tahminidir. Diyarbakır 2023 núfusu 1,818,133 iken 1,833,684 sayısı 2024 núfusudur. Kaynakta TÜİK 2023 olduğu belirtilmişken sayılar 2024'e ait olduğu için iddiayla çelişir."
+    },
+    {
+      "iddia": "Güneş'ten gelen ışık'ın Yer'e varma süresi: 500 saniye",
+      "durum": "YANLIS",
+      "gerekce": "Gerçek Ortalama Birim (AU) = 149,597,870,700 metre, ışık hızı = 299,792,458 m/s. Bölümle süre = 499,004,7838 saniye ≈ 499 s (8 dakika 19 saniye). HTML'de kullanılan 약简化 değerleri (1.5×10¹¹ m ve 3×10⁸ m/s) ile 500 s elde edilir ancak bu değerler gerçek değerlerin yuvarlak approximationsudur; tam doğru değil."
+    },
+    {
+      "iddia": "Satranç 64 kare total buğday sayısı: 2^64−1 = 18.446.744.073.709.551.615",
+      "durum": "DOĞRU",
+      "gerekce": "2^64−1 = 18,446,744,073,709,551,615. HTML'de gösterilen tam sayı değeriyle tamamen aynıdır."
+    },
+    {
+      "iddia": "5^10 değeri: 9.765.625",
+      "durum": "DOĞRU",
+      "gerekce": "5^10 = 9,765,625. HTML'de gösterilen değerle aynıdır."
+    },
+    {
+      "iddia": "Deprem büyüklüğü 1 birim artışında enerji açığa çıkışı ~32 kat",
+      "durum": "DOĞRU",
+      "gerekce": "Deprem büyüklüğü (Richter/MMS) logaritmiktir; 1 birim artışta açıktaki enerji oranı 10^(1.5) ≈ 31.6227766 ≈ 32 (yaklaşık). HTML'de '~32 kat' ifadesi bu açıklamaya uygun ve doğru."
+    },
+    {
+      "iddia": "Wi‑Fi 8 karakterli şifre (64 seçenek/karakter) olasılık alanı: 64^8 = 2^48 ≈ 281 trilyon",
+      "durum": "DOĞRU",
+      "gerekce": "64^8 = (2^6)^8 = 2^48 = 281,474,976,710,656 ≈ 281,475 trilyon. HTML'de '≈ 281 trilyon' ifadesi bu değeri doğru yuvarlar."
+    },
+    {
+      "iddia": "Test soruları cevap anahtarı: (1) 2^4=16, (2) 5^0=1, (3) 2^-3=1/8, (4) 3^4×3^2=3^6, (5) 7.500.000=7,5×10^6",
+      "durum": "DOĞRU",
+      "gerekce": "HTML kodundaki test verileriyle karşılaştırıldığında tüm soruların doğru cevapları işaretlenmiş ve matematiksel olarak doğrudur."
+    }
+  ]
+}

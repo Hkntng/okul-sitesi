@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<title>EBOB mu EKOK mu? — 8. Sınıf Matematik</title>
+<meta name="description" content="EBOB ve EKOK arasında seçim: problemleri oku, [-][+] ile değerleri değiştir, doğru kararı ver. Gerçek‑hayat örneği: El-Cezerî'nin dişli sistemleri.">
+<meta property="og:title" content="EBOB mu EKOK mu? - 8. Sinif">
+<meta property="og:description" content="EBOB ve EKOK arasında seçim: problemleri oku, [-][+] ile değerleri değiştir, doğru kararı ver. Gerçek‑hayat örneği: El-Cezerî'nin dişli sistemleri.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hkntng.github.io/okul-sitesi/5-ebob-ekok-secimi.html">
+<meta property="og:site_name" content="Bu Ne Ise Yariyor?">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#e6edf3;display:flex;justify-content:center;min-height:100vh}
+.telefon{width:100%;max-width:430px;background:#0f1520;padding:18px 16px 70px}
+.ust{padding:6px 0 18px}
+.ust .geri{display:inline-block;margin-bottom:10px;color:#7d8590;text-decoration:none;font-size:14px}
+.ust .konu{font-size:13px;color:#7d8590;letter-spacing:.5px}
+.ust h1{font-size:26px;margin:6px 0 0;line-height:1.25}
+.kart{background:#161d2b;border:1px solid #232d3f;border-radius:16px;padding:18px 16px;margin-bottom:16px}
+.kart p{margin:0 0 10px;font-size:17px;line-height:1.55}
+.kart p:last-child{margin-bottom:0}
+.kart p.buyuk{font-size:19px;font-weight:600}
+.kucuk{color:#8b949e;font-size:15px}
+.sart{background:#0d1420;border-left:3px solid #f0a44b;padding:10px 12px;margin:8px 0;border-radius:0 8px 8px 0;font-size:16px}
+.sart.kucuk{color:#c9b998;font-size:16px}
+.rozet{display:inline-block;font-size:12px;font-weight:700;color:#0d1117;background:#f0c040;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+.rozet.kirmizi{background:#ff7b72}
+.rozet.yesil{background:#3fb950}
+.vurgu{color:#f0c040;font-weight:700}
+.deney{background:#0d1420;border-radius:12px;padding:16px;margin:14px 0}
+.deney .soru{font-size:17px;font-weight:600;margin-bottom:14px;line-height:1.5}
+.secenek{
+  display:block;width:100%;text-align:left;padding:14px;margin-bottom:9px;
+  border-radius:11px;border:1px solid #2c3950;background:#1b2436;
+  color:#c9d3e0;font-size:16px;font-family:inherit;cursor:pointer;transition:.15s;line-height:1.45
+}
+.secenek:active{transform:scale(.99)}
+.secenek.dogru{background:#12251a;border-color:#3fb950;color:#8ce89f}
+.secenek.yanlis{background:#2a1616;border-color:#5c2626;color:#ffb3ab}
+.secenek:disabled{cursor:default}
+.cevap{margin-top:12px;padding:14px;border-radius:11px;background:#161b22;border:1px solid #262d36;font-size:15.5px;line-height:1.6;color:#c9d3e0}
+.cevap .kanit{margin-top:10px;padding-top:9px;border-top:1px solid #262d36;font-size:12.5px;color:#8b949e;line-height:1.5}
+.cevap .kanit a{color:#7da8d8}
+.buyukbtn{width:100%;padding:15px;border-radius:13px;border:none;background:#f0c040;color:#10141c;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px}
+.buyukbtn:active{transform:scale(.98)}
+.buyukbtn.sade{background:#243044;color:#e6edf3}
+.alt{text-align:center;color:#6e7681;font-size:13px;line-height:1.7;padding:14px 0 0}
+.alt a{color:#7d8590}
+.gizli{display:none}
+.acilan{animation:gir .35s ease-out}
+@keyframes gir{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* ---- secim ---- */
+.problemSec{background:#0d1420;border-radius:12px;padding:14px;margin:14px 0}
+.problemSec h3{font-size:18px;margin:0 0 10px;color:#f0c040}
+.problemSec p{margin:0 0 8px;line-height:1.5}
+.secimButonlari{display:flex;gap:12px;margin-top:14px}
+.secimButonlari button{
+  flex:1;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform .08s,background .15s;
+}
+.secimButonlari button:active{transform:scale(.96)}
+.secimButonlari .ebob{background:#f0a44b;color:#10141c}
+.secimButonlari .ekok{background:#3fb950;color:#10141c}
+</style>
+</head>
+<body>
+<div class="telefon">
+  <div class="ust">
+    <a class="geri" href="index.html">← Ana sayfa</a>
+    <div class="konu">8. SINIF MATEMATİK · 5. KONU</div>
+    <h1>EBOB mu EKOK mu?</h1>
+  </div>
+
+  <!-- PROBLEM SECICI -->
+  <div class="kart problemSec">
+    <h3>Bir problem seç:</h3>
+    <div id="problemListesi">
+      <!-- Problemlar JavaScript ile eklenecek -->
+    </div>
+  </div>
+
+  <!-- ACIKLAMA -->
+  <div class="kart">
+    <span class="rozet">Problem</span>
+    <div class="deney">
+      <div class="soru" id="problemMetni">Bir problem seçin.</div>
+      <div class="sayac" style="margin-bottom:10px;">
+        <button id="eksi">−</button>
+        <div class="deger"><b id="degerA">0</b><span>1. değer</span></div>
+        <button id="arti">+</button>
+      </div>
+      <div class="sayac" style="margin-bottom:10px;">
+        <button id="eksiB">−</button>
+        <div class="deger"><b id="degerB">0</b><span>2. değer</span></div>
+        <button id="artiB">+</button>
+      </div>
+      <div class="secimButonlari">
+        <button class="ebob" id="btnEBOB">EBOB hesapla</button>
+        <button class="ekok" id="btnEKOK">EKOK hesapla</button>
+      </div>
+      <div class="cevap gizli" id="sonuc"></div>
+    </div>
+  </div>
+
+  <!-- GERÇEK HAYAT ÖRNEĞİ -->
+  <div class="kart">
+    <span class="adim">Gerçek Hayat Örneği</span>
+    <p>El-Cezerî (1136–1206), Diyarbakırlı mühendis ve matematikçi, "El-Câmi' Büßeâti'l-Hiyaleb" adlı eserinde saatler, fişekler ve su terfi makineleri için dişli sistemleri tasarlamış. Bir dişli sisteminde iki dişin aynı anda tekrar aynı konumda buluşması için EKOK kullanılır; dişlerin eşşit aşınmasını sağlamak için ortak diş sayısı (EBOB)考虑.</p>
+    <p>Kaynak: Hill, Donald R. (1993). "Islamic Science and Engineering". Edinburgh University Press. pp. 173–175. <a href="https://doi.org/10.1515/9781474417356" target="_blank" rel="noopener">doi.org</a></p>
+  </div>
+
+  <div class="alt" id="k6">
+    EBOB: ortakları bölen (küçük ve eşit dağıtım).<br>
+    EKOK: ortakları kat (tekrar ve eşzamanlık).<br>
+    <a href="index.html">Ana sayfaya dön</a> · <a href="ebob-ekok.html">EBOB & EKOK detaylı'na geç</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+  function ac(id){
+    var e=document.getElementById(id);
+    if(!e||!e.classList.contains('gizli')) return;
+    e.classList.remove('gizli'); e.classList.add('acilan');
+  }
+  function kaydir(id){
+    setTimeout(function(){
+      var e=document.getElementById(id);
+      if(e) e.scrollIntoView({behavior:'smooth',block:'start'});
+    },280);
+  }
+
+  // Problemlar: [açıklama, değerA, değerB, beklenen (EBOB veya EKOK)]
+  var problemler = [
+    ["İki 서로 다른 büyük tinelerde suyu boşaltmak için 8 L ve 12 L kapasiteli pompalardaki akış sürelerini eşitlemek isterseniz, her pompanın aynı zaman diliminde aktaracağı su miktarını bulun.", 8, 12, "EKOK"],
+    ["24 kırmızı ve 36 beyaz çiçeği eşit sayıda ve karışık olmadan vazelere koymak istersiniz. Her vazede en çok kaç çiçek olabilir?", 24, 36, "EBOB"],
+    ["Bir fabrikada iki makine 6 saatte bir ve 8 saatte bir bakım gerektirir. İki makine aynı gün aynı saatte bakım gerektiği ilk zaman ne zaman olur?", 6, 8, "EKOK"],
+    ["18 adet çikolata ve 24 adet cukurcuklu eşit dağıtılmak üzere paketlenecek. Her paketteki eşya sayısının en büyük değeri kaçtır?", 18, 24, "EBOB"],
+    ["İki planeta güneş etrafında dönerken birinin dönüş süresi 10 gün, diğeri 15 gün. İki kez aynı doğrusal durağa gelme süresi nedir?", 10, 15, "EKOK"],
+    ["Bir kereste merchant 16 ft ve 24 ft uzunluğunda iki kereste parçasını eşit uzunlukta kırmak ister. Kırtılacak en uzun parçanın uzunluğu nedir?", 16, 24, "EBOB"]
+  ];
+
+  var problemIndex = 0;
+  var degerA = document.getElementById('degerA');
+  var degerB = document.getElementById('degerB');
+  var eksiA = document.getElementById('eksi');
+  var artiA = document.getElementById('arti');
+  var eksiB = document.getElementById('eksiB');
+  var artiB = document.getElementById('artiB');
+  var problemMetni = document.getElementById('problemMetni');
+  var btnEBOB = document.getElementById('btnEBOB');
+  var btnEKOK = document.getElementById('btnEKOK');
+  var sonuc = document.getElementById('sonuc');
+  var problemListesi = document.getElementById('problemListesi');
+
+  function ebob(a,b){ return b===0?a:ebob(b, a%b); }
+  function ekok(a,b){ return (a*b)/ebob(a,b); }
+
+  function gosterProblem(){
+    var p = problemler[problemIndex];
+    problemMetni.textContent = p[0];
+    degerA.textContent = p[1];
+    degerB.textContent = p[2];
+    sonuc.classList.add('gizli');
+    sonuc.textContent = '';
+  }
+
+  function problemiSecimleOlustur(){
+    problemListesi.innerHTML = '';
+    problemler.forEach(function(p, idx){
+      var btn = document.createElement('button');
+      btn.textContent = 'Problem ' + (idx+1);
+      btn.className = idx===problemIndex ? 'secili' : '';
+      btn.onclick = function(){
+        problemIndex = idx;
+        // update active button
+        var btns = problemListesi.getElementsByTagName('button');
+        for(var i=0;i<btns.length;i++) btns[i].className = '';
+        this.className = 'secili';
+        gosterProblem();
+      };
+      problemListesi.appendChild(btn);
+    });
+  }
+
+  // initialize
+  problemiSecimleOlustur();
+  gosterProblem();
+
+  // +/- buttons for value A
+  eksiA.onclick = function(){
+    var v = parseInt(degerA.textContent,10)-1;
+    if(v>=1){ degerA.textContent = v; tit(10); }
+  };
+  artiA.onclick = function(){
+    var v = parseInt(degerA.textContent,10)+1;
+    degerA.textContent = v; tit(10);
+  };
+
+  // +/- buttons for value B
+  eksiB.onclick = function(){
+    var v = parseInt(degerB.textContent,10)-1;
+    if(v>=1){ degerB.textContent = v; tit(10); }
+  };
+  artiB.onclick = function(){
+    var v = parseInt(degerB.textContent,10)+1;
+    degerB.textContent = v; tit(10);
+  };
+
+  // EBOB button
+  btnEBOB.onclick = function(){
+    var a = parseInt(degerA.textContent,10);
+    var b = parseInt(degerB.textContent,10);
+    var sonucDeger = ebob(a,b);
+    var beklenen = problemler[problemIndex][3];
+    var dogru = beklenen === 'EBOB';
+    sonuc.classList.remove('gizli');
+    if(dogru){
+      sonuc.className = 'cevap iyi';
+      sonuc.innerHTML = '<b>Doğru!</b> EBOB('+a+','+b+') = '+sonucDeger+'<br><span class="kucuk">Bu problemde eşşit dağıtım (ör. vazeler, paketler) için EBOB kullanılır.</span>';
+    } else {
+      sonuc.className = 'cevap kotu';
+      sonuc.innerHTML = '<b>Yanlış.</b> EBOB('+a+','+b+') = '+sonucDeger+', ancak bu problemde <b>EKOK</b> gerekir.<br><span class="kucuk">Tekrar ve eşzamanlık (ör. servis, döngüler) için EKOK kullanılır.</span>';
+    }
+    tit([18,40,18]);
+    ac('sonuc'); kaydir('sonuc');
+  };
+
+  // EKOK button
+  btnEKOK.onclick = function(){
+    var a = parseInt(degerA.textContent,10);
+    var b = parseInt(degerB.textContent,10);
+    var sonucDeger = ekok(a,b);
+    var beklenen = problemler[problemIndex][3];
+    var dogru = beklenen === 'EKOK';
+    sonuc.classList.remove('gizli');
+    if(dogru){
+      sonuc.className = 'cevap iyi';
+      sonuc.innerHTML = '<b>Doğru!</b> EKOK('+a+','+b+') = '+sonucDeger+'<br><span class="kucuk">Bu problemde eşzamanlak (ör. servis, döngüler) için EKOK kullanılır.</span>';
+    } else {
+      sonuc.className = 'cevap kotu';
+      sonuc.innerHTML = '<b>Yanlış.</b> EKOK('+a+','+b+') = '+sonucDeger+', ancak bu problemde <b>EBOB</b> gerekir.<br><span class="kucuk">Eşit dağıtım (ör. vazeler, paketler) için EBOB kullanılır.</span>';
+    }
+    tit([18,40,18]);
+    ac('sonuc'); kaydir('sonuc');
+  };
+})();
+</script>
+</body>
+</html>

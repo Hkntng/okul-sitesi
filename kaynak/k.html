@@ -1,0 +1,549 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name=”googlebot” content=”noindex”> 
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Kitap : Anasayfa</title>
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico"/>
+<!-- Font Awesome -->
+<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+<!-- Bootstrap -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- Slick slider -->
+<link href="assets/css/slick.css" rel="stylesheet">
+<!-- Theme color -->
+<link id="switcher" href="assets/css/theme-color/dark-red-theme.css" rel="stylesheet">
+
+<!-- Main Style -->
+<link href="style.css" rel="stylesheet">
+
+<!-- Fonts -->
+
+<!-- Open Sans for body font -->
+<link href="assets/css/font.css" rel="stylesheet">
+<!-- Lato for Title -->
+<link href="assets/css/fontLato.css" rel="stylesheet">
+
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+<style>
+:root { --bg-dark:#0b101e; --bg-light:#fafafa; --text-dark:#e8edf7; --text-light:#111; --accent:#a3e635; }
+body.light { background:var(--bg-light); color:var(--text-light); }
+body.light .kart { background:#fff; border-color:#ddd; color:#111; }
+body.light .adim { background:#a3e635; color:#0b101e; }
+body.light button { background:#a3e635; color:#0b101e; }
+body.light .sekme.secili { background:#a3e635; color:#fff; }
+body.light .sonuc { background:#fff; border-color:#ddd; color:#111; }
+body.light .secenek { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme:active { background:#a3e635; }
+</style>
+
+</head>
+ <body>
+<!-- Start Header -->
+<header id="mu-header" class="" role="banner">
+<div class="container">
+<nav class="navbar navbar-default mu-navbar">
+<div class="container-fluid">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+
+<!-- Text Logo -->
+<!--<a class="navbar-brand" href="index.html"><i class="fa fa-book" aria-hidden="true"></i> Kitap</a><br>-->
+
+<!-- Image Logo -->
+ <a class="navbar-brand" href="index.html"><img id="img-secili-kitap" src="assets/images/logo.png"><span id="aktif" data-id="0">Kitap Yazım Sistemi </span></a> 
+
+
+</div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+</div>
+</header>
+<!-- End Header --> 
+
+ <div class="gizli-liste"></div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" style="width:80%;" >
+    
+      <!-- Modal content-->
+      <div class="modal-content"  style="min-height: 100px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <p>Eklemek istediğiniz Kitabın adının en az 3 harfini yazın.</p>
+        </div>
+        <div class="modal-body">
+          <div style="width:90%;float:left">
+          	<input type="search" onchange="kitap_listele();" id="aranan-kitap" class="form-control">
+          </div>
+          <div style="width:8%;float:left">
+          	<button style="    height: 34px;">Bul</button>
+          </div>
+          <div id="kitap-sec-ajax" style="padding-top: 30px; display: flex-root;"></div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+
+
+	<!-- Start Featured Slider -->
+
+	<section id="mu-hero">
+
+	</section>
+
+	<!-- Start Featured Slider -->
+	
+	<!-- Start main content -->
+		
+	<main role="main">
+
+		<!-- Start Counter -->
+		<section id="mu-counter">
+			<div class="container">
+				<div class="row" style="display:none">
+					<div class="col-md-12">
+						<div class="mu-counter-area">
+
+							<div class="mu-counter-block">
+								<div class="row">
+
+									<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-files-o" aria-hidden="true"></i>
+											<div class="counter-value" data-count="650">0</div>
+											<h5 class="mu-counter-name">Total Pages</h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
+
+									<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-file-text-o" aria-hidden="true"></i>
+											<div class="counter-value" data-count="422">0</div>
+											<h5 class="mu-counter-name">Chapters</h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
+
+									<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-users" aria-hidden="true"></i>
+											<div class="counter-value" data-count="1055">0</div>
+											<h5 class="mu-counter-name">Active Readers</h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
+
+									<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-trophy" aria-hidden="true"></i>
+											<div class="counter-value" data-count="03">0</div>
+											<h5 class="mu-counter-name">Got Awards</h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Counter -->
+
+		
+
+
+		<!-- Start Pricing -->
+		<section id="mu-pricing">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-pricing-area" style="background-color: #00eaff42;  padding: 15px;">
+
+							<div class="mu-heading-area">
+								<h2 class="mu-heading-title">Sistem Girişi</h2>
+								<span class="mu-header-dot"></span>
+								
+								<p></p>
+								
+							</div>
+
+							<!-- Start Pricing Content -->
+							<div class="mu-pricing-content" style="margin-top: 0px">
+								<div class="row">
+ 					<div class="box box-danger" style="margin-bottom: 0;height:244px;padding-top: 0px;">
+	                   <div class="col-md-6">
+	                   <div class="mu-pricing-single"    style="background-color: #00eaff00;">
+                         <a href="https://mebbis.meb.gov.tr/ssologinBIDB.aspx?id=69"  class="btn btn-info btn-block"  ><img src="panel/img/meb_logo2.png" style="height: 150px"></a> 
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                    	<div class="mu-pricing-single"  style="background-color: #00eaff00;">
+                        <a href="sifre.php"   class="btn btn-danger  btn-block" ><img src="panel/img/universite.png" style="height: 150px"></a>
+                        </div>
+                    </div>
+                   </div>
+									
+
+
+
+	</main>
+	
+	<!-- End main content -->	
+			
+	﻿		
+	<!-- Start footer -->
+	<footer id="mu-footer" role="contentinfo">
+		<div class="container">
+			<div class="mu-footer-area">
+				
+				<p class="mu-copyright">&copy; Milli Eğitim Bakanlığı <a rel="nofollow" href="http://ogm.meb.gov.tr">Ortaöğretim Genel Müdürlüğü</a> ve <a rel="nofollow" href="http://tegm.meb.gov.tr">Temel Eğitim Genel Müdürlüğü</a> yapımıdır</p>
+			</div>
+		</div>
+
+	</footer>
+	<!-- End footer -->
+
+	
+	
+    <!-- jQuery library -->
+    <script src="assets/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+	<!-- Slick slider -->
+    <script type="text/javascript" src="assets/js/slick.min.js"></script>
+    <!-- Counter js -->
+    <script type="text/javascript" src="assets/js/counter.js"></script>
+    <!-- Ajax contact form  -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+   
+ 	<script src="assets/js/cookie/jquery.cookie.js" type="text/javascript"></script>
+	
+    <!-- Custom js -->
+	<script type="text/javascript" src="assets/js/custom.js"></script>
+	
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116502252-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116502252-2');
+</script>
+
+    
+  
+<script>
+// Theme toggle
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+// Init theme from storage
+window.addEventListener('load', function() {
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+});
+// Note-taking
+function saveNote() {
+  const txt = document.getElementById('notInput').value.trim();
+  if (txt) {
+    const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+    notes.push({page: location.pathname, text: txt, time: new Date().toISOString()});
+    localStorage.setItem('pageNotes', JSON.stringify(notes));
+    showNotes();
+    document.getElementById('notInput').value = '';
+  }
+}
+function clearNotes() {
+  if (window.confirm('Notları silmek istediğinizden emin misiniz?')) {
+    localStorage.removeItem('pageNotes');
+    showNotes();
+  }
+}
+function showNotes() {
+  const container = document.getElementById('notGoster');
+  container.innerHTML = '';
+  const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+  const pageNotes = notes.filter(n => n.page === location.pathname);
+  if (pageNotes.length === 0) {
+    container.innerHTML = '<i>Henüz not yok.</i>';
+    return;
+  }
+  const ul = document.createElement('ul');
+  pageNotes.forEach((n, idx) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${new Date(n.time).toLocaleString()}</strong>: ${n.text}`;
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
+}
+window.addEventListener('load', showNotes);
+</script>
+
+
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Tema</span>
+  <button onclick="toggleTheme()" style="margin-top:5px;">🌙/☀️ Tema Değiştir</button>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Not Defteri</span>
+  <textarea id="notInput" rows="2" placeholder="Bir not yazın..." style="width:100%;box-sizing:border-box;margin-top:5px;"></textarea>
+  <div style="margin-top:8px;">
+    <button id="saveNote" onclick="saveNote()" style="margin-right:5px;">Kaydet</button>
+    <button id="clearNote" onclick="clearNotes()">Sil</button>
+  </div>
+  <div id="notGoster" style="margin-top:10px;font-size:0.9em;color:#8b95ad;"></div>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Gerçek Hayat Örneği</span>
+  <p>k konusuyla ilgili gerçek‑hayat örnekleri burada yer alabilir.</p>
+</div>
+
+</body>
+</html>	
+	<script>
+
+	//kütühaneye kitap eklemek
+	function kitap_listele(){
+		var ara=$("#aranan-kitap").val();
+		if(ara.length>2){
+			//Kütüphanesinin listesini al
+			var sonc="";
+			$(".kitap-res").each(function(index){
+				sonc+=$( this ).attr("data-kitap")+",";
+				});
+			
+			
+			
+			$.post('ajax/kitap_sec.php',{ARA:ara,HAZIR:sonc},function(data){
+				
+				$("#kitap-sec-ajax").html(data);
+				$(".kitap-panel").click(function(){
+					var ktp=$(this).attr("data-kitap");
+					
+					$("#kutuphane").append("<li class='kitap-res' data-kitap='"+ktp+"'  data-adi='"+$(this).attr("data-adi")+"'  data-sinif='"+$(this).attr("data-sinif")+"'><div class='gizli-resim'><button class='btn btn-danger btn-kapat'  data-kitap='"+ktp+"'>X</button><img   data-adi='"+$(this).attr("data-adi")+"'  data-sinif='"+$(this).attr("data-sinif")+"' class='img-kitap' src='panel/dosyalar/upload/logo/KITAP"+ktp+".PNG' ></li>");
+					kitabi_eklenince_aktif_yap($(this).attr("data-adi"),ktp);
+					cookieye_kayit();
+					kitap_silme_kur();
+					kitap_secimi();
+					$(this).remove();
+					});
+				});
+		}
+	}
+
+	function kitabi_eklenince_aktif_yap(adi,kitap){
+		
+		$("#aktif").text(adi);
+		$("#img-secili-kitap").attr("src",'panel/dosyalar/upload/logo/KITAP'+kitap+'.PNG');
+		$("#aktif").attr("data-id",kitap);	
+		$.cookie("secili-kitap", kitap);
+		$.cookie("secili-kitap-adi", adi);
+		linkleri_ayarla(kitap);
+	}
+
+	
+	// gizleme başlangıç
+	var kitapadi="kitapadi";
+	var isim="kitap";
+	var sinif="sinif";
+	var csatir="adet";
+	
+	var kaynakAdres="http://kitap.eba.gov.tr/";
+	//var kaynakAdres="http://localhost/kitabim/";
+
+	function sayfayi_hazirla()
+		{
+		cookieden_goster();
+		kutuphane_hazirla()
+		//gizle_kur();
+		yer_guncelle();
+		kitap_secimi();
+		}
+
+	function kitap_secimi() {
+		$(".kitap-res").click(function(){
+			
+			$("#aktif").text($(this).attr("data-adi"));
+			$("#img-secili-kitap").attr("src",'panel/dosyalar/upload/logo/KITAP'+$(this).attr("data-kitap")+'.PNG');
+			$("#aktif").attr("data-id",$(this).attr("data-kitap"));	
+			$.cookie("secili-kitap", $( this ).attr("data-kitap"));
+			$.cookie("secili-kitap-adi", $( this ).attr("data-adi"));
+			linkleri_ayarla($( this ).attr("data-kitap"));
+		});
+	}
+
+	function linkleri_ayarla(idKitap){
+		
+		var pdfAdres=kaynakAdres+"panel/json/karekodBilgisi.php?KOD=0&MATERYAL=0&KITAP="+idKitap;
+		var matAdres=kaynakAdres+"panel/json/karekodBilgisi.php?KOD=0&MATERYAL=1&KITAP="+idKitap;	
+			$("#soru-git").attr("href",pdfAdres);
+			$("#materyal-git").attr("href",matAdres);
+			$("#pdf-git").attr("href","pdf_goster_web.php?IDDOSYA="+idKitap);
+			$("#soru-panel").on("click",function(){ 
+				});
+	}
+
+	function linkleri_sifirla(){
+		
+		$("#soru-git").removeAttr("href");
+		$("#soru-panel").on("click",function(){ 
+				alert("Önce sol alt köşedeki simgeyi kullanarak kitap seçmelisiniz");
+				});
+	}
+	
+	function cookieye_kayit()
+		{
+		$("#mymodal").attr("data-gaffar","dd");
+		var sonc="";
+		$(".kitap-res").each(function(index){
+			$.cookie(kitapadi+index, $( this ).attr("data-adi"));
+			$.cookie(isim+index, $( this ).attr("data-kitap"));
+			$.cookie(sinif+index, $( this ).attr("data-sinif"));
+			$.cookie(csatir,index);
+			});
+		}
+		
+	function gizle_kur(){
+		$(".gizle").click(function()
+			{
+			$(this).parent("div").addClass("gizlenen-div");
+			cookieye_kayit();
+			kutuphane_hazirla();
+			$(".geri-ac").show();
+			yer_guncelle();
+			oto_minimize();
+			});
+		}
+
+	function oto_minimize(){
+		setTimeout(function() {
+			$('.geri-ac').hide();
+			yer_guncelle();}
+		, 3000);
+	}
+
+	function kutuphane_hazirla(){
+		var sonc="";
+		sonc="<li  id='kitap-ekle'><img src='images/kitapbul.png' class='gizli-resim'></li>";
+		$(".gizli-liste").html("<ul id='kutuphane' class='nav navbar-nav mu-menu navbar-right'>"+sonc+"</ul>");
+		$("#kitap-ekle").click(
+				function(){
+					$("#myModal").modal();
+				});
+		}
+
+
+	function cookieden_goster(){
+		var adet=$.cookie(csatir);
+		var idkit=$.cookie("secili-kitap");
+		if(idkit>0) {
+			$("#aktif").text($.cookie("secili-kitap-adi"));
+			$("#aktif").attr("data-id",$.cookie("secili-kitap"));	
+			$("#img-secili-kitap").attr("src",'panel/dosyalar/upload/logo/KITAP'+$.cookie("secili-kitap")+'.PNG');
+			linkleri_ayarla($.cookie("secili-kitap"));
+			
+			for (var i=0;i<=adet;++i)
+				{
+				$("#kutuphane").append("<li class='kitap-res' data-kitap='"+$.cookie(isim+i)+"' data-adi='"+$.cookie(kitapadi+i)+"'  data-sinif='"+$.cookie(sinif+i)+"'><div class='gizli-resim'><button class='btn btn-danger btn-kapat'  data-kitap='"+$.cookie(isim+i)+"'>X</button><img  data-adi='"+$.cookie(kitapadi+i)+"'  data-sinif='"+$.cookie(sinif+i)+"' class='img-kitap' src='panel/dosyalar/upload/logo/KITAP"+$.cookie(isim+i)+".PNG' ></li>");
+				
+				}
+			}
+			else{
+				linkleri_sifirla();
+			}
+		}
+
+	function kitap_silme_kur() {
+		$(".btn-kapat").click(function(){
+			var ktp=$(this).attr("data-kitap");
+			kitap_sil(ktp);
+			});
+	}
+
+	function kitap_sil(kitap){
+
+		$("li[data-kitap="+kitap+"]").remove();
+		cookieye_kayit();
+	}
+	
+	$(window).load(function()
+		{
+		
+		
+		kutuphane_hazirla();
+		cookieden_goster()
+		oto_minimize();
+		kitap_silme_kur();
+		kitap_secimi();
+
+		});
+
+		
+	$(window).resize(function() {
+		yer_guncelle();
+		});
+
+	function yer_guncelle()
+		{
+		var yuk=$(window).height()-$(".gizli-liste").height();
+		var ayuk=$(window).height()-30;
+		$(".gizli-liste").css(
+				{
+					'top':yuk
+				});
+
+		$(".alt-menu").css(
+				{
+					'top':ayuk
+				});
+		}
+		
+	function gizle_ac()
+		{//menüyü göster veya minimize et
+		$(".gizli-button").click(function(){
+			$(".geri-ac").toggle();
+			
+			yer_guncelle();
+			})
+		}
+	</script>
+

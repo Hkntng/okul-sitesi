@@ -1,0 +1,1366 @@
+
+===== PDF sayfa 12 =====
+ÜNİTE 1
+12
+Grup hâlinde çalışmak bir problemi çözmede bireysel çalışmadan daha fazla avantaja sahiptir. Ayrıca 
+grup hâlinde çalışmak insana farklı sosyal beceriler de kazandırır. 
+Pozitif Tam Sayıların Pozitif Tam Sayı Çarpanları
+Sınıf mevcudu 24 olduğundan bir masadaki öğrenci sayısı 24’ü kalansız bölen pozitif bir tam sayı 
+olmalıdır. Yani masa sayısı ile bir masadaki öğrenci sayısının çarpımı 24 olmalıdır. Bu yerleşim planı 
+için aşağıdaki tabloyu oluşturabiliriz.
+Birlikte Öğrenelim
+24 kişilik 8/A sınıfına fen bilimleri dersinde asit–baz konusunu anlatacak olan Selim Öğretmen, grup 
+çalışması için öğrencilerle birlikte laboratuvarı kullanacaktır.
+Selim Öğretmen öğrencilerinden laboratuvardaki yeterli sayıda ve genişlikte olan masalara her 
+masada eşit sayıda öğrenci olacak şekilde yerleşmelerini istiyor.
+Buna göre laboratuvardaki bir masaya kaç öğrenci yerleşebilir?
+1. BÖLÜM: ÇARPANLAR VE KATLAR
+Masa Sayısı
+Bir Masadaki Öğrenci Sayısı
+Toplam Öğrenci Sayısı
+1
+24
+1 · 24 = 24
+2
+12
+2 · 12 = 24
+3
+8
+3 · 8 = 24
+4
+6
+4 · 6 = 24
+6
+4
+6 · 4 = 24
+8
+3
+8 · 3 = 24
+12
+2
+12 · 2 = 24
+24
+1
+24 · 1 = 24
+Tablo: Öğrencilerin Yerleşebilecekleri Masa ve Bir Masadaki Öğrenci Sayısı
+Tablo incelendiğinde laboratuvardaki bir masada çalışabilecek öğrenci sayısı  1, 2, 3, 4, 6, 8, 12 ve 
+24 olabilir.
+
+===== PDF sayfa 13 =====
+13
+ÜNİTE 1
+ 
+52 sayısının pozitif tam sayı çarpanlarını bulalım.
+    
+	
+1 · 52 = 52
+	
+2 · 26 = 52	
+	
+4 · 13 = 52
+olduğundan 52’nin pozitif tam sayı çarpanları 1, 2, 4, 13, 26 ve 52’dir.
+Aşağıdaki sayıların pozitif tam sayı çarpanlarını bulunuz.
+	
+a) 12	
+	
+	
+b) 32	
+	
+	
+c) 96	
+	
+	
+ç) 150
+Bilgi Kutusu
+•	 Her doğal sayı, iki doğal sayının çarpımı olarak yazılabilir. Çarpılan bu iki sayıya o doğal sayının 
+çarpanları denir. 
+•	 Bir doğal sayının çarpanları aynı zamanda o doğal sayının bölenleridir.
+Örneğin 
+	
+1 · 24 = 24
+	
+2 · 12 = 24
+	
+3 · 8 = 24
+	
+4 · 6 = 24
+olduğundan 24 sayısının çarpanları 1, 2, 3, 4, 6, 8, 12 ve 24 olur. Bu sayılar aynı zamanda 24’ü 
+kalansız bölen tam sayılardır.
+Çözüm
+Çözümlü Örnek 1
+Sıra Sizde 1
+
+===== PDF sayfa 14 =====
+ÜNİTE 1
+14
+Bölen Listesi Yöntemi: 
+•	 Asal çarpanlarına ayıracağımız sayıyı yazıp yanına dik bir çizgi çekeriz.
+•	 Bu sayıyı kalansız bölen en küçük asal sayıyı çizginin sağına yazarak bölme işlemine başlarız. Bölü-
+mü çizginin solundaki sayının altına yazarız.
+•	 Asal sayılarla bölme işlemine bulduğumuz sonuç 1 oluncaya kadar devam ederiz.
+•	 Çizginin sağına yazdığımız farklı asal sayıları bu sayının asal çarpanları olarak belirleriz.
+ 
+50, 54, 75 ve 121 sayılarının bölen listesi yöntemiyle asal çarpanlarını belirleyerek bu sayı-
+ları tabanı asal sayı olan üslü ifadelerin çarpımı şeklinde yazalım.
+ 
+50    2	 	
+	
+54    2	 	
+	
+75     3	 	
+	
+121     11
+25    5	 	
+	
+27    3	 	
+	
+ 25    5	 	
+	
+   11    11
+  5    5	 	
+	
+  9    3                               5     5	 	
+	
+     1	
+  1     	
+	
+	
+  3    3	 	
+	
+   1	
+  	
+	
+	
+  1
+50 = 2 · 5
+2	
+          54 = 2 · 3
+3 	
+             75 = 3 · 5
+2                           121 = 11
+2
+Bilgi Kutusu
+Bir sayının pozitif tam sayı çarpanlarından asal sayı olanlarına o sayının asal çarpanları denir. 
+Bir sayının asal çarpanlarını belirleyerek bu sayıyı tabanı asal sayı olan üslü ifadelerin çarpımı şek-
+linde yazmak için kullanılan yöntemlerden biri bölen listesi yöntemidir. 
+Çözüm
+Çözümlü Örnek 2
+Aşağıda asal çarpanlarının çarpımı şeklinde verilen sayıları bulalım.
+	
+      a) 2
+2 · 3	
+	
+	
+	
+b) 3
+2 · 5
+2	
+                	
+c) 2
+3 · 7
+2
+Önce üslü ifadelerin değerini bulup daha sonra çarpma işlemini yaparız.
+	
+	
+a) 2
+2 · 3 = 4 · 3 = 12	
+	
+b) 3
+2 · 5
+2 =  9 · 25 = 225	                 c) 2
+3 · 7
+2 = 8 · 49 = 392
+Çözüm
+Çözümlü Örnek 3
+
+===== PDF sayfa 15 =====
+15
+ÜNİTE 1
+Yıllar sonra karşılaşan 4 gezgin arkadaş, gezdikleri ülkelerden bahsetmişlerdir. Sohbet esnasın-
+da gezginlerin gezdiği ülke sayılarının ardışık doğal sayılardan oluştuğu ve bu sayıların çarpımının 
+120’ye eşit olduğu anlaşılmıştır.
+Gezginlerden biri 4 ülke gezdiğine göre diğerlerinin gezdikleri ülke sayılarını bulalım.
+ 
+Bu arkadaşların gezdikleri ülke sayılarının çarpımı 120 olduğundan bu sayıyı ardışık 4 doğal sayının 
+çarpımı şeklinde yazmak bize sorunun cevabını verecektir.
+Bu çarpımı yazabilmek için 120’yi asal çarpanlarına ayırır ve bu çarpanları, içinde 4 de olacak şekilde 
+4 ardışık sayının çarpımı şeklinde yazarız.
+        120     2              
+          60     2 
+          30     2                    
+          15     3              
+            5     5                    
+            1                     
+Öncelikle 2 tane 2’nin çarpımından 4 elde eder sonra da soruda 
+verilen ardışık olma kuralına göre diğer çarpanları belirleriz.
+	
+	
+	
+120 =  2 · 2 · 2 · 3 · 5
+             
+	
+	
+	
+           2    4       3   5                                             
+En az ülke gezen gezginin gittiği ülke sayısı çarpanlardan ilki olan 2’dir. Diğer gezginin gittiği ülke 
+sayısı ise 3’tür. Üçüncü gezginin gezdiği ülke sayısı soruda da verilen ve bizim 2 · 2 = 4 şeklinde 
+gösterdiğimiz çarpandır. En çok ülke gezen gezginin ise gittiği ülke sayısı asal çarpanların sonuncusu 
+olan 5’tir.
+Çözüm
+Çözümlü Örnek 4
+Asal çarpanları 2 ve 5 olan iki basamaklı doğal sayıları bulunuz.
+Sıra Sizde 2
+
+===== PDF sayfa 16 =====
+ÜNİTE 1
+16
+a) 21
+b) 27
+c) 49
+ç) 55
+e) 84
+d) 63
+f) 90
+g) 120
+1  Aşağıdaki tam sayıların pozitif tam sayı çarpanlarını bulunuz.
+ 	
+	
+	
+	
+ 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+2  Aşağıda bazı doğal sayılar ve bu sayıların üslü ifadelerin çarpımı şeklinde yazılmış hâlleri karışık 
+olarak verilmiştir.
+Sayıların başlarındaki kutulara karşılarındaki ifadelerden uygun olanın harfini yazarak eşleştiriniz.
+	
+	
+15	
+	
+	
+	
+	
+	
+a) 2 · 3 · 7
+	
+	
+24	
+	
+	
+	
+	
+	
+ b) 2
+3 · 3
+2
+	
+	
+42                           	
+	
+	
+	
+ c) 5 · 17	
+	
+	
+	
+	
+	
+	
+72	
+	
+	
+	
+	
+	
+  ç) 3 · 5            
+           	 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+85	
+	
+	
+	
+	
+	
+ d) 2
+5 · 5
+2	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+ e) 2
+3 · 3
+3  Aşağıdaki doğal sayıları asal çarpanlarına ayırıp asal çarpanlarının çarpımı şeklinde yazınız.
+a) 25	
+	
+      b) 27 	
+	
+c) 40	
+	
+       ç) 54 	
+	
+d) 100
+4  Aşağıda asal çarpanlarının çarpımı şeklinde verilen sayıları bulunuz.
+    a)  22 · 5 	
+	
+ b) 32 · 7	
+	
+c) 22 · 7 · 11	
+	
+ç) 112 · 13
+ALIŞTIRMALAR
+
+===== PDF sayfa 17 =====
+17
+ÜNİTE 1
+5  İki basamaklı bir sayının kendisi dışındaki en büyük pozitif tam sayı çarpanı ile en küçük 
+pozitif tam sayı çarpanının toplamı 8’dir. Buna göre bu sayı en az kaçtır?
+6  A ve B iki basamaklı birbirinden farklı iki doğal sayıdır. A = 2
+a · 5
+b ve B = 2
+c ·
+ 3
+d · 7  oldu-
+ğuna göre A + B’nin alabileceği en büyük değer kaçtır?
+7  9 ve 10’a bölündüğünde 4 kalanını veren en büyük iki basamaklı sayı kaçtır?
+8  Dik üçgen şeklindeki bir bölgenin alanı 6 cm
+2 ve kenar uzunlukları birer tam sayıdır.
+Buna göre bu üçgensel bölgenin dik kenarlarından uzun olanının santimetre cinsinden alabi-
+leceği en küçük tam sayı değeri kaçtır?
+9  Altlarında alanları yazan dikdörtgen şeklindeki üç fayans aşağıda verilmiştir.
+	
+25 dm
+2	 	
+	
+      35 dm
+2	
+	
+	
+            84 dm
+2
+Fayansların kenar uzunlukları desimetre cinsinden birer tam sayıdır.
+Buna göre bu fayanslardan birer tane kullanılarak aralarında hiç boşluk kalmadan kaplanabi-
+lecek bölgenin çevresinin uzunluğu en az kaç desimetredir?
+
+===== PDF sayfa 18 =====
+DÜŞÜNME 
+         ZAMANI
+Aşağıdaki her bir kapta iki basamaklı iki doğal sayının bütün pozitif tam sayı çarpanlarının ayrı ayrı 
+yazılı olduğu toplar bulunmaktadır. Bu toplardan bazılarının üzerinde yazan sayılar görünmektedir. 
+Görünen çarpanlardan yola çıkarak diğer topların üzerinde yazması gereken çarpanları bulu-
+nuz ve boş topların üzerine yazınız. 
+a) 
+b) 
+d) 
+ç) 
+c) 
+e) 
+18
+
+===== PDF sayfa 19 =====
+19
+ÜNİTE 1
+En Büyük Ortak Bölen (EBOB)
+Sakarya Meydan Muharebesi’nde elde edilen zaferden sonra Türkiye Büyük Millet Meclisi tarafından 
+19 Eylül 1921’de Mustafa Kemal Atatürk’e “Gazi” ünvanı verilmiştir. Ünvanın verildiği günün her yıl 
+dönümü “Gaziler Günü” olarak kutlanmaktadır.
+Ali, Gaziler Günü için yapılacak olan etkinlikte şehitliğe kırmızı karanfil ve beyaz karanfiller bıra-
+kacaktır. Kırmızı karanfil ve beyaz karanfilleri karıştırmadan, hiç artırmadan ve her gruptaki kırmızı 
+karanfil sayısıyla beyaz karanfil sayısı eşit olacak şekilde gruplandırmak istemektedir. Elinde 24 
+kırmızı ve 36 beyaz karanfil bulunan Ali’nin grup sayısı en az olacak şekilde karanfilleri nasıl gruplan-
+dırabileceğini bulalım.
+1. yol:
+24 ve 36’yı tam bölen sayıları bularak kaçar kaçar gruplandırabileceğimizi belirleyelim.
+24 sayısını 1, 2, 3, 4, 6, 8, 12, 24 sayıları tam böler.
+36 sayısını 1, 2, 3, 4, 6, 9, 12,18, 36 sayıları tam böler.
+24 ve 36’yı ortak bölen sayılar 1, 2, 3, 4, 6 ve 12’dir.
+24 ve 36’nın en büyük ortak böleni (EBOB’u) 12’dir. Grup sayısının en az olabilmesi için her bir 
+gruptaki karanfil sayısı en fazla olmalıdır. Bu nedenle bir gruptaki karanfil sayısının 24 ve 36'nın en 
+büyük ortak böleni kadar olması gerekir. O hâlde bir karanfil grubunda en fazla 12 karanfil olmalıdır.
+2. yol:
+EBOB bulurken sayıların bölenlerini bulmak yerine bölen listesi yöntemini de kullanabiliriz.
+24
+12
+6
+3
+1
+36
+18
+9
+9
+3
+1
+2
+2
+2
+3
+3
+24 ve 36 2'ye kalansız bölündüğü için elde edilen bölümler sayıların 
+altlarına yazılır. Aynı işlem 12 ve 18 sayıları için de tekrarlanır.
+9 sayısı 2’ye kalansız bölünmediği için alt satıra aynen yazılır ve bu 
+işleme 1 elde edene kadar devam edilir.
+Hem 24’ü hem de 36’yı bölen asal sayıları belirleyip çarparsak EBOB’a 
+ulaşırız.
+2 2 3
+2
+3
+12
+2
+$
+$
+$
+=
+=
+ olur.
+Birlikte Öğrenelim
+19
+
+===== PDF sayfa 20 =====
+ÜNİTE 1
+20
+3. yol:
+24 ve 36 asal çarpanlarının çarpımı hâlinde yazılır, ortak olan asal çarpanlardan üssü küçük olanların 
+çarpımı EBOB’u verir.
+24
+12
+6
+3
+1
+36
+18
+9
+3
+1
+2
+2
+2
+3
+2
+2
+3
+3
+24
+2
+36
+3
+3
+2
+3
+2
+2
+$
+$
+=
+=
+(
+,
+)
+EBOB 24 36
+2
+3
+12
+2 $
+=
+=
+Sıfırdan farklı en az iki doğal sayının ortak bölenlerinin en büyüğüne en büyük ortak bölen denir ve 
+EBOB şeklinde gösterilir.
+A ve B iki doğal sayı olmak üzere EBOB’ları EBOB(A, B) biçiminde gösterilir.
+2
+2
+2
+3
+7
+(
+,
+)
+EBOB 42 56
+2 7
+14
+$
+=
+=
+42
+21
+21
+21
+7
+1
+56
+28
+14
+7
+7
+1
+Bilgi Kutusu
+Çözümlü Örnek 1
+Çözüm
+42 ve 56 sayılarının en büyük ortak bölenini (EBOB’unu) bulalım.
+Aşağıdaki her bir seçenekte verilen iki doğal sayının en büyük ortak bölenini (EBOB’unu) bulunuz. 
+a) 20  30	
+       	
+  b) 54   90 	
+	
+   c) 48   72	
+                    ç) 75   100
+Sıra Sizde 1
+
+===== PDF sayfa 21 =====
+21
+ÜNİTE 1
+(
+,
+)
+EBOB 50 60
+2 5
+10
+$
+=
+=
+50
+25
+25
+25
+5
+1
+60
+30
+15
+5
+1
+2
+2
+3
+5
+5
+500
+250
+125
+25
+5
+1
+325
+325
+325
+65
+13
+13
+1
+2
+2
+5
+5
+5
+13
+Hasan Usta, 50 m uzunluğundaki kırmızı ve 60 m uzunluğundaki mavi boruyu bütün parçalar eşit 
+uzunlukta olacak şekilde kesmek istemektedir.
+Hasan Usta’nın en az kaç kesim yapması gerektiğini bulalım.
+50 metrelik ve 60 metrelik boruların eşit uzunlukta parçalara ayrılması ve en az sayıda kesimin 
+yapılması istendiğinden parçaların en uzun olacak şekilde seçilmesi gerekir. Bunun için 50 ve 60’ın 
+EBOB’unu bulmalıyız.
+50 metrelik boruyu onar metrelik 5 parçaya ayırmak için
+60 metrelik boruyu onar metrelik 6 parçaya ayırmak için
+4 kesim
+5 kesim
+9 kesim
+yapılmalıdır.
++
+Çözümlü Örnek 3
+Çözüm
+Çözüm
+En az çöp kovası kullanılması için çöp kovaları arasındaki mesafenin en fazla olması gerekir. Eşit 
+aralıklarla çöp kovası konacağından 500 ile 325’in EBOB’unu bulmalıyız.
+Dikdörtgen şeklinde tasarlanan bir botanik park projesinde parkın her bir kenarına köşelere de gelecek 
+şekilde eşit aralıklarla çöp kovası konmak isteniyor. Parkın uzun kenarı 500 m, kısa kenarı ise 325 m 
+ve bir çöp kutusunun maliyeti de 800 TL’dir.
+Buna göre çöp kovaları için en az kaç TL’ye ihtiyaç olduğunu bulalım.
+(
+,
+)
+EBOB 500 325
+5
+25
+2
+=
+=
+ olduğundan 25 m aralıklarla çöp kovası konacaktır.
+Parkın çevresi = 2 · (500 + 325) = 1650 m olduğundan ve 25 m aralıkla çöp kovası konacağından
+	
+m
+m
+25
+1650
+66
+=
+ adet çöp kovası gereklidir.
+Tanesi 800 TL olduğundan en az 66 · 800 = 52 800 TL’ ye ihtiyaç vardır.
+Çözümlü Örnek 2
+
+===== PDF sayfa 22 =====
+ÜNİTE 1
+22
+Birlikte Öğrenelim
+10
+2
+8
+5
+23
+$
+=
+=
+En Küçük Ortak Kat (EKOK)
+Koronavirüs salgını sürecinde ülkemizde ortaya çıkan 
+maske ihtiyacının büyük bir bölümünü farklı illerimizde 
+eğitimlerine devam eden mesleki ve teknik anadolu li-
+selerimiz karşılamıştır. Bu süreçte bir fabrika gibi her 
+gün cerrahi maske üreten meslek liselerimiz olmuştur.
+Bir meslek lisesinde A ve B marka olmak üzere iki tip dikiş makinesi kullanılmaktadır. A marka dikiş 
+makinesi 10 dakikada, B marka dikiş makinesi ise 8 dakikada bir maske dikmektedir. İki makinenin 
+birlikte ilk maskeyi dikmeye başladıktan en az kaç dakika sonra tekrar birlikte bir maske dikimini 
+tamamlayacağını bulalım.
+1. yol:
+İki makine aynı anda dikime başladığında kronometreyi çalıştırdığımızı düşünelim. 
+A makinesi kronometre göstergesi 10’un katlarını gösterdiğinde, B makinesi ise kronometre göstergesi 
+8’in katlarını gösterdiğinde maske dikimini tamamlamaktadır.
+O hâlde 8 ve 10’un ortak katını bularak makinelerin kaç dakika sonra aynı anda maske dikimini ta-
+mamlayacağını bulalım. 
+	
+10, 20, 30, 40, 50, 60,...
+	
+  8, 16, 24, 32, 40, 48,...	
+8 ve 10’un en küçük ortak katı (EKOK’u) 40 olduğundan, A ve B makinesi 40 dakika sonra tekrar 
+birlikte maske dikimini tamamlarlar.
+2. yol: 
+EKOK bulurken sayıların katlarını bulmak yerine bölen listesi yöntemini de kullanabiliriz.
+10
+5
+1
+8
+4
+2
+1
+2
+5
+2
+2
+2
+Elde edilen bu asal sayıların çarpımı 10 ve 8 sayılarının EKOK’una eşittir. 
+Bu durumda EKOK(10, 8) = 23 · 5 = 40 olur.
+Ortak asal çarpanlardan üssü büyük olan çarpanı ve 
+ortak olmayan diğer çarpanları alıp çarparak da 
+23 · 5 = 40 sonucuna ulaşırız.
+3. yol: 
+10 ve 8 sayılarını, asal çarpanlarının çarpımı hâlinde yazarız; ortak olan çarpanlardan üssü büyük 
+olanı, ortak olmayan çarpanların da tamamını alırız ve bunları çarparak EKOK’u buluruz.
+10
+5
+5
+5
+1
+8
+4
+2
+1
+2
+2
+2
+5
+
+===== PDF sayfa 23 =====
+23
+ÜNİTE 1
+5 cm
+6 cm
+Bilgi Kutusu
+Sıfırdan farklı en az iki doğal sayının ortak katlarının en küçüğüne en küçük ortak kat denir ve 
+EKOK şeklinde gösterilir.
+A ve B iki doğal sayı olmak üzere EKOK’ları EKOK(A, B) şeklinde gösterilir.
+24
+12
+6
+3
+1
+36
+18
+9
+9
+3
+1
+2
+2
+2
+3
+3
+EKOK(24, 36) = 23 · 32 = 72’dir.
+Çözümlü Örnek 1
+Çözüm
+24 ve 36 sayılarının EKOK’unu bulalım.
+5
+5
+5
+1
+6
+3
+1
+2
+3
+5
+Çözümlü Örnek 2
+Yüksekliği 72 cm olan buzdolabı rafına aynı türden olanlar üst üste gelmek şartıyla birer sıra saklama 
+kabı yerleştirilecektir. Kaplar, yükseklikleri eşit oluncaya kadar üst üste konulacaktır.
+Buna göre:
+a) En üste konan saklama kapları ile rafın üst kısmı arasındaki boşluğun en az kaç santimet-
+re  olduğunu bulalım.
+b) Üst üste konulabilecek saklama kabı sayısının en fazla kaç olabileceğini bulalım.
+a) İki tür saklama kabının eşit yüksekliğe kadar konması için bu yüksekliğin hem 6’nın hem de 5’in 
+katı olması gereklidir. EKOK(6, 5)’i bularak bu yüksekliğin alabileceği değerleri belirleyebiliriz.
+Çözüm
+EKOK(6, 5) = 2 · 3 · 5 = 30 olur.
+En üste konan saklama kapları ile rafın üst kısmı arasındaki boşluğun en az olması isteniyorsa 
+kapları en çok üst üste gelecek şekilde yerleştirmeliyiz. Her 30 cm’de bir, iki farklı saklama kabının 
+yüksekliği eşit olur. 72 cm’lik yüksekliğe 30’un katı olan 60 cm’lik yükseklikte kap sığar.
+Rafın tavanı ile en üstteki kabın arasında 72 cm - 60 cm = 12 cm boşluk kalır.
+b) 60 cm ÷ 6 cm = 10 kap,
+    60 cm ÷ 5 cm = 12 kap olur.
+Bu durumda rafa, üst üste en fazla 12 saklama kabı konabilir.
+Yükseklikleri yanlarında yazan iki farklı saklama kabı aşağıda verilmiştir.
+
+===== PDF sayfa 24 =====
+ÜNİTE 1
+24
+Çözümlü Örnek 3
+Otobüs
+Numarası sadece 2 ve 2’nin katları olan duraklardan yolcu almaktadır.
+Servis aracı
+Numarası sadece tek sayı olan duraklardan yolcu almaktadır.
+Minibüs
+Numarası sadece 3 ve 3’ün katları olan duraklardan yolcu almaktadır.
+Ömer, Esma ve Mert; farklı ulaşım araçlarının birlikte harekete başladığı ilk duraktan bu araçlara 
+binip 23 duraklık güzergâhı geçerek evlerine gideceklerdir.
+•	 Ömer hem servisle hem de minibüsle evine gidebilmekte,
+•	 Esma hem otobüsle hem de minibüsle evine gidebilmekte,
+•	 Mert ise sadece servisle evine gidebilmektedir.
+Buna göre Ömer, Esma ve Mert’in evlerinin bulunduğu durakların numaralarının toplamının 
+en çok kaç olabileceğini bulalım.
+Çözüm
+Ömer, numarası 3’ün katı olan tek sayılı duraklarda inebilir: 3, 9, 15, 21
+2 ve 3’ün EKOK’u 6 olduğundan Esma, numarası 6’nın katı olan duraklarda inebilir: 6,12,18
+Mert ise numarası tek sayı olan duraklarda inebilir: 1, 3, 5, … , 23
+Her birinin evinin bulunabileceği en büyük numaralı durakları alırsak cevap 21 + 18 + 23 = 62 olur.
+Fatma, 120 adet pembe ve 200 adet mavi boncuğun tamamını pembe ile mavi boncuklar karışma-
+yacak ve her pakette eşit sayıda boncuk olacak şekilde paketleyecektir.
+Her paketi maliyeti 5 kuruş olan tel zımbayla kapatan Fatma’nın zımbalar için en az kaç TL’ye 
+ihtiyacı vardır?
+Zeynep ile Mehmet, karışları ile bir sıranın uzun kenar uzunluğunu tam olarak ölçebilmektedir. Zey-
+nep’in bir karış uzunluğu 5 cm iken Mehmet’in bir karış uzunluğu 7 cm’dir.
+Sıranın uzun kenarının uzunluğu 100 cm’den fazla olduğuna göre Zeynep bu ölçümü en az 
+kaç karış ile yapmıştır?
+1’den 23’e kadar numaralandırılmış durakların bulunduğu bir güzergâhta hareket eden üç farklı ara-
+cın yolcu aldıkları duraklar ile ilgili bilgiler aşağıda verilmiştir.
+Sıra Sizde 1
+Sıra Sizde 2
+
+===== PDF sayfa 25 =====
+Aşağıda alfabemizin harfleriyle eşleşmiş olarak verilen beşgenlerin içindeki sayılardan uygun 
+olanları EBOB ve EKOK tabelalarının içine yerleştiriniz. EBOB tabelalarında eşitliğin sağın-
+da verilen sayılar o tabelaya yerleştirilecek olan sayıların EBOB’unu vermektedir. Aynı durum 
+EKOK tabelası için de geçerlidir. Yerleştirme işlemi bittikten sonra kalan beşgenleri  küçükten 
+büyüğe doğru en alttaki tahta tabelaya yerleştirerek harflerden oluşan gizli kelimeyi bulunuz.
+DÜŞÜNME 
+         ZAMANI
+26
+A
+72
+J
+65
+U
+5
+Ğ
+16
+R
+8
+D
+10
+N
+23
+Z
+14
+C
+125
+L
+121
+V
+15
+I
+21
+Ş
+99
+F
+75
+Ö
+58
+B
+19
+K
+9
+Ü
+6
+H
+54
+S
+25
+E
+145
+O
+3
+Ç
+4
+M
+24
+Y
+20
+İ
+2
+T
+11
+G
+17
+P
+=110
+=12
+=1000
+=85
+=69
+EKOK TABELASI
+EBOB TABELASI
+=7
+=15
+=13
+=18
+=29
+=11
+GİZLİ KELİME
+25
+
+===== PDF sayfa 26 =====
+ÜNİTE 1
+26
+Çözümlü Örnek 5
+Çözüm
+ 1’den başka ortak böleni olmayan iki doğal sayıya aralarında asal sayılar denir. 
+Bilgi Kutusu
+•	 1, bütün pozitif tam sayılarla aralarında asaldır. Örneğin 18 ile 1 aralarında asaldır.
+•	 İki farklı asal sayı aralarında asaldır. Örneğin 23 ve 29 aralarında asaldır.
+•	 Ardışık doğal sayılar aralarında asaldır. Örneğin 42 ve 43 aralarında asaldır.
+y
+1
+x
+3
+24
+21
++
+-
+=
+ eşitliğinde (x - 3) ile (y + 1) aralarında asaldır. Buna göre x - y farkının kaç ola-
+cağını bulalım.
+21 ve 24’ü aralarında asal olacak şekilde sadeleştirelim.
+24
+21
+8
+7
+3
+3
+'
+'
+=
+.
+x
+ise x
+y
+ise y
+olur
+3
+7
+7
+3
+10
+1
+8
+8
+1
+7
+-
+=
+=
++
+=
++
+=
+=
+-
+=
+x
+y
+10
+7
+3
+-
+=
+-
+=
+ olur.
+Bilgi Kutusu
+Çözümlü Örnek 4
+Çözüm
+Aşağıda verilen sayı çiftlerinin aralarında asal olup olmadıklarını belirleyelim.
+	
+	
+a) 8 ve 25	
+	
+b) 32 ve 40 	
+a) 	
+1 · 8 = 8
+	
+2 · 4 = 8 olduğundan 8’in bölenleri 1, 2, 4 ve 8’dir.
+	
+1 · 25 = 25
+	
+5 · 5 = 25 olduğundan 25’in bölenleri 1, 5 ve 25’tir. 
+Görüldüğü gibi 8 ve 25 doğal sayılarının 1’den başka ortak böleni olmadığından bu sayılar aralarında 
+asal sayılardır.
+b) 	
+1 · 32 = 32
+	
+2 · 16 = 32
+	
+4 · 8 = 32 olduğundan 32’nin bölenleri 1, 2, 4, 8, 16 ve 32’dir.
+	
+1 · 40 = 40
+	
+2 · 20 = 40
+	
+4 · 10 = 40
+	
+5 · 8 = 40 olduğundan 40’ın bölenleri 1, 2, 4, 5, 8, 10, 20 ve 40’tır. 
+Görüldüğü gibi 32 ve 40 doğal sayılarının 1’den başka 2, 4 ve 8 gibi ortak bölenleri olduğundan bu 
+sayılar aralarında asal değildir.
+
+===== PDF sayfa 27 =====
+27
+ÜNİTE 1
+Bilgi Kutusu
+Bilgi Kutusu
+Aralarında asal iki doğal sayının EBOB’u 1’e, EKOK’u ise bu iki sayının çarpımına eşittir.
+A ve B aralarında asal iki doğal sayı olsun. 
+•	  EBOB(A, B) = 1
+•	  EKOK(A, B) = A · B’dir.
+A ve B iki pozitif tam sayı olmak üzere bu sayıların çarpımı EBOB ve EKOK’larının çarpımına eşittir. 
+Yani A · B = EBOB(A, B) · EKOK(A, B) şeklinde yazılabilir.
+Çözümlü Örnek 6
+Çözümlü Örnek 7
+Çözüm
+Çözüm
+EBOB(27, 10)
+EKOK(27, 10)
+(
+,
+)
+(
+,
+)
+.
+EBOB
+EKOK
+olur
+27 10
+27 10
+1
+27 10
+1
+270
+270
+$
+=
+=
+=
+27 ve 10'un asal çarpanlarını bulalım. 
+	
+27 = 3
+3
+	
+10 = 2 · 5
+Ortak asal çarpan olmadığından bu sayılar aralarında asaldır. Aralarında asal iki doğal sayının 
+EBOB’u 1’e, EKOK’u ise bu iki sayının çarpımına eşit olduğundan
+EKOK(A, B) = 4
+EBOB(A, B) = 252 olduğuna göre A · B’yi bulalım.
+İki sayının çarpımı, EBOB ve EKOK’larının çarpımı olduğundan 
+	
+A · B = 4 · 252 = 1008 olur.
+işleminin sonucunu bulalım.
+
+===== PDF sayfa 28 =====
+ÜNİTE 1
+28
+Çözüm
+282’den büyük ve aralarında asal en küçük sayı 283’tür.
+283’den büyük ve aralarında asal en küçük sayı 284’tür.
+284’ten küçük ve aralarında asal en küçük sayı 3’tür ve ekranda en son 3 yazar.
+Aşağıdaki doğal sayı çiftlerinden aralarında asal olanları belirleyiniz.
+Bu kilimler üst üste gelmeden eşit uzunluktaki kenarları çakışacak şekilde birleştirilirse 
+oluşan dikdörtgenin çevre uzunluğu en az kaç metre olur?
+Sıra Sizde 1
+Sıra Sizde 2
+Çözümlü Örnek 8
+Yandaki görselde sağa ve sola hareket edebilen bir kol ve bu kolun hareketle-
+rine bağlı olarak değişen sayıları gösteren bir ekran bulunmaktadır. 
+Kol hareket ettirilmediğinde ekranda belli periyotlarda rastgele sayılar çıkmak-
+tadır. Kol sağa hareket ettirildiğinde ekrandaki sayıdan büyük ve aralarında 
+asal olan en küçük sayı, kol sola hareket ettirildiğinde ise ekrandaki sayı ile 
+aralarında asal olan 1’den farklı en küçük doğal sayı hesaplanmaktadır.
+Örneğin ekranda 5 sayısı yazdığında kol sağa hareket ettirilirse 5 ile araların-
+da asal olan 6 sayısı, sola hareket ettirilirse 5 ile aralarında asal ve 1’den farklı 
+en küçük sayı olan 2 ekranda yazmaktadır.
+2 8 2
+Ekranda 282 yazmakta iken kolu 2 kez sağa bir kez sola hareket ettiren Oya’nın hangi sayıya 
+ulaşacağını bulalım.
+15 ve 25
+20 ve 1
+ 8 ve 9
+ 26 ve 65
+21 ve 91
+51 ve 170
+47 ve 53
+32 ve 81
+28 m2
+36 m2
+Etkileşimli içerik için 
+karekodu okutunuz.
+Aşağıda bir müzede sergilenecek olan dikdörtgen şeklindeki kilimler ve bir yüzlerinin alanları göste-
+rilmektedir. Her kilimin kısa ve uzun kenar uzunluklarının metre cinsinden değerleri aralarında asaldır 
+ve kilimlerin birer kenar uzunlukları eşittir.
+
+===== PDF sayfa 29 =====
+29
+ÜNİTE 1
+2  Kış olimpiyatları için Erzurum’a giden 33 Azerbaycanlı ve 42 Kazakistanlı sporcu bir otele yerleş-
+tirilecektir. Aynı ülkeden gelen sporcular aynı odada kalmak şartıyla odalara eşit sayıda dağıtılacaktır. 
+Buna göre sporcuların tamamını istenen şartlarda otele yerleştirmek için en az kaç oda gereklidir?
+3  Bir kitabın sayfa sayısı ile ilgili aşağıdaki bilgiler veriliyor.
+•	 Sayfa sayısı 60 ile 100 arasındadır.
+•	 Sayfa sayısının asal çarpanları 2 ve 3’tür.
+•	 Sayfa sayısını oluşturan rakamlar aralarında asaldır.
+Buna göre aşağıdaki boşluklara kitabın sayfa sayısı ile ilgili  yargılar doğru ise “D”, yanlış ise 
+“Y” yazınız.
+a) 	
+ 25 ile aralarında asaldır.
+b)  	
+ 73 ile EBOB’u 1’dir.
+c)	
+ 5 ile EKOK’u 480’dir.
+ç) 	
+ Çarpanlarından aralarında asal olanların toplamının en küçük değeri 35’tir.
+	
+ a) 6 ve 9	
+	
+b) 12 ve 24	
+	
+ c) 27 ve 36	
+	
+  ç) 30 ve 43
+1  Aşağıdaki sayı çiftlerinin EBOB ve EKOK’larını bulunuz.
+	
+d) 52 ve 64 	
+	
+e) 88 ve 144	
+	
+f) 120 ve 150	
+	
+g) 256 ve 512
+ALIŞTIRMALAR
+
+===== PDF sayfa 30 =====
+ÜNİTE 1
+30
+7  Dikdörtgen şeklindeki bir bahçenin uzun kenarı 240 m ve kısa kenarı 180 m uzunluğundadır. Bu 
+bahçenin kenarlarına köşeleri de dâhil olacak şekilde eşit aralıklarla aydınlatma direği dikilecektir.
+Bir direğin fiyatı 300 TL olduğuna göre bu iş için en az kaç TL’ye ihtiyaç vardır?
+Yukarıdaki 180 m ve 150 m’lik iki yolun arasından akarsu geçmektedir. Belediye, bu akarsuyun üze-
+rine eşit aralıklarla ve birbirine paralel çelik halatlar koymak istemektedir.
+Her iki yolun da başına ve  sonuna halat konulmak şartıyla bu iş için toplam en az kaç halat 
+gerekir? (Halatların kalınlığını dikkate almayınız.)
+6  
+5  İçinde eşit miktarda su bulunan iki damacana yanda verilmiştir. Da-
+macanalar özdeş ve her birinin hacmi 19 litredir. Kaplar her seferinde 
+tam doldurularak 1. damacanadaki su 370 mililitrelik kapla, 2. damaca-
+nadaki su ise 500 mililitrelik kapla boşaltılabilmektedir.
+Buna göre başlangıçta bir damacanada en fazla kaç litre su bu-
+lunmaktadır?
+4  Bir yardım organizasyonu için hazırlanan koliler beşerli ve sekizerli gruplandırıldığında her sefe-
+rinde 1 koli artmaktadır.
+Toplam koli sayısının 3 basamaklı bir sayı olduğu bilindiğine göre en az kaç koli hazırlanmıştır?
+1. Damacana
+2. Damacana
+180 m
+150 m
+
+===== PDF sayfa 31 =====
+31
+ÜNİTE 1
+8  Aynı güzergâh üzerinde hareket eden metro ve tramvaydan, metro 1 saat çalışıp 20 dakika ara 
+vermekte, tramvay ise 1 saat çalışıp 30 dakika ara vermektedir.
+Saat 08.00’de birlikte kalkan bu araçlar 2. kez saat kaçta birlikte harekete geçer?
+ 
+Bu hayvanat bahçesi eş karesel bölgelere ayrılarak yeniden düzenlenecektir. Oluşacak bölgelerle ilgili 
+aşağıdaki bilgiler verilmiştir:
+İki bölgenin köşesi olacak noktalara bambu filizi, dört bölgenin köşesi olacak noktalara su ve tek bir 
+bölgenin köşesi olacak noktalara ise balık konarak pandaların beslenme ihtiyaçları karşılanacaktır. 
+Her bir bambu filizi için günlük 500 TL, su için 40 TL ve balık için 200 TL gerektiğine göre bir 
+günde pandalar için toplam en az kaç TL harcanır?
+10  Yarıçapı r olan çemberin uzunluğu 2πr formülü ile bulunur.
+A aracının tekerleklerinin yarıçapı 30 cm ve B aracının tekerleklerinin yarıçapı 36 cm’dir. Şekilde 
+gösterilen biçimde harekete başlayan her iki araç bitiş çizgisine geldiğinde tekerleklerinin tam tur 
+attığı bilinmektedir.
+Buna göre başlangıç ile bitiş çizgisi arasındaki mesafe en az kaç metredir? (π = 3 alınız.)
+Bitiş Çizgisi
+A
+A
+B
+B
+Başlangıç
+ Çizgisi
+9  Sadece pandaların yaşadığı uzun kenar uzunluğu 480 m ve kısa kenar uzunluğu 360 m olan hay-
+vanat bahçesinin görseli aşağıda verilmiştir. 
+
+===== PDF sayfa 32 =====
+Altlarında verilen dört doğal sayıyı belirtilen kurallara göre yerleştirerek diyagramları doldurunuz. 
+• Her satır ve sütunda her sayıdan birer tane olmalıdır.
+• Aralarında yıldız bulunan komşu hücrelere gelecek iki sayı, aralarında asal olmalıdır.
+DÜŞÜNME 
+         ZAMANI
+51
+32
+45
+18    45    32    51
+25
+87
+87    15    16    25
+35
+91
+91    26    35    28
+81
+20
+81    20    42    65
+32
+
+===== PDF sayfa 33 =====
+33
+ÜNİTE 1
+Tam Sayıların Tam Sayı Kuvvetleri
+Aşağıdaki tabloda verilen sayılar her defasında bir önceki sayının beşte biri alınarak bir sonraki ku-
+tuya yazılmıştır.
+Sayılar
+125
+25
+.........
+1
+5
+1
+.........
+125
+1
+Üslü Gösterim
+53
+.........
+51
+50
+5-1
+.........
+5-3
+Tabloda oluşan örüntüyü inceleyiniz. Tablodan faydalanarak aşağıdaki soruları cevaplayınız.
+• Tabloda boş bırakılan yerleri örüntü kurallarına göre doldurunuz.
+• Bir üslü ifadede üs sıfır ise bu ifadenin değeri kaça eşit olur?
+• Bir üslü ifadede üs negatif ise bu ifadenin değeri nasıl hesaplanır?
+2. BÖLÜM: ÜSLÜ İFADELER
+Tablo: Sayılar ve Üslü Gösterimleri
+Birlikte Öğrenelim
+73, 72, 71, 70, 7-1, 7-2, 7-3 üslü ifadelerinin değerlerini bulalım.
+7
+3
+7
+1
+7
+-1
+7
+2
+7
+0
+7
+-2
+7
+-3
+Kuvvet 1 azaldı. Kuvvet 1 azaldı. Kuvvet 1 azaldı. Kuvvet 1 azaldı.
+Kuvvet 1 azaldı. Kuvvet 1 azaldı.
+7 · 7 · 7
+7 · 7
+7
+1
+343
+49
+7
+1
+7
+1
+7
+1
+7
+1
+7
+1
+2
+$
+=
+7
+1
+7
+1
+7
+1
+7
+1
+3
+$
+$
+=
+7
+1
+49
+1
+343
+1
+÷ 7
+÷ 7
+÷ 7
+÷ 7
+÷ 7
+÷ 7
+7
+3 = 7 · 7 · 7 = 343
+7
+2 = 7 · 7 = 49
+7
+1 = 7
+7
+0 = 1
+Sayı örüntüsünde görüldüğü gibi üssü negatif olan üslü ifadelerin değerleri hesaplanırken pay ve 
+paydaları yer değiştirilerek kuvveti pozitif hâle dönüştürülür.
+(Tabandaki 7 sayısının çarpma işlemine göre tersi alınır. Kuvvetin işareti pozitif 
+olarak yazılır. 7’nin çarpma işlemine göre  tersi 7
+1 ’dir. 7
+1 ’in 1. kuvveti kendisine 
+eşittir.)
+7
+7
+1
+1 =
+-
+(Tabandaki 7 sayısının çarpma işlemine göre tersi alınır. 7’nin çarpma işlemine 
+göre tersi 7
+1 ’dir. 7
+7
+1
+7
+1
+7
+1
+7
+1
+49
+1
+2
+2
+2
+$
+=
+=
+=
+=
+-
+b
+l
+  olur.)
+7
+7
+1
+2
+2
+=
+-
+(Tabandaki 7 sayısının çarpma işlemine göre tersi alınır. 7’nin çarpma işlemine 
+göre tersi 7
+1 ’dir. 7
+7
+1
+7
+1
+7
+1
+7
+1
+7
+1
+343
+1
+3
+3
+3
+$
+$
+=
+=
+=
+=
+-
+b
+l
+ olur.)
+7
+7
+1
+3
+3
+=
+-

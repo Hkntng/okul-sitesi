@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1420">
+<title>Doğrusal Denklemler — Bu Ne İşe Yarıyor?</title>
+<meta name="description" content="Amedspor'un 57 puanı nereden geliyor? Servis ücreti, süt geliri ve sıcaklık dönüşümüyle 8. sınıf doğrusal denklemler.">
+<meta property="og:title" content="Doğrusal Denklemler — Bu Ne İşe Yarıyor?">
+<meta property="og:description" content="P = 3G + B. Amedspor'un puanını sen hesapla, tabloyu sen kontrol et.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--tema:#60a5fa;--tema2:#93c5fd}
+body{background:#0b101e;color:#e8edf7;font-family:'Rubik',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:17px;line-height:1.6;
+background-image:radial-gradient(ellipse 80% 50% at 50% -10%,color-mix(in srgb,var(--tema) 16%,transparent),transparent 70%);background-repeat:no-repeat}
+.kap{max-width:430px;margin:0 auto;padding:16px 14px 60px}
+a{color:var(--tema2)}
+.ust{font-size:14px;color:#8b95ad;margin-bottom:14px}
+.konuIkon{width:62px;height:62px;border-radius:19px;display:flex;align-items:center;justify-content:center;font-size:31px;margin-top:16px;background:color-mix(in srgb,var(--tema) 17%,transparent);border:1px solid color-mix(in srgb,var(--tema) 42%,transparent);box-shadow:0 8px 24px color-mix(in srgb,var(--tema) 26%,transparent)}
+.ust a{text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:6px 12px;border-radius:10px;display:inline-block}
+h1{font-size:34px;line-height:1.1;margin:12px 0 6px;font-weight:900;letter-spacing:-1px;
+background:linear-gradient(100deg,#fff 20%,var(--tema2) 75%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.etiket{display:inline-block;background:color-mix(in srgb,var(--tema) 16%,transparent);color:var(--tema2);border:1px solid color-mix(in srgb,var(--tema) 35%,transparent);font-size:12px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;margin:10px 0 2px}
+.kart{background:linear-gradient(180deg,#151d31,#111828);border:1px solid #27314b;border-radius:18px;padding:18px 16px;margin:16px 0;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.kart::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tema),transparent 70%)}
+.kart h2{font-size:20px;margin-bottom:8px;font-weight:800;letter-spacing:-.3px}
+.kart p{margin:8px 0;font-size:16px}
+.gizli{display:none}
+.acilis{animation:belir .45s ease}
+@keyframes belir{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.adim{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;background:linear-gradient(135deg,var(--tema),var(--tema2));color:#0b101e;font-weight:800;font-size:14px;padding:0 9px;border-radius:13px;margin-bottom:8px;box-shadow:0 3px 10px color-mix(in srgb,var(--tema) 40%,transparent)}
+.adim.yesil{background:linear-gradient(135deg,#22c55e,#4ade80)}
+button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13px 18px;cursor:pointer}
+.btn{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 60%,#3050c8));color:#fff;font-weight:700;width:100%;margin-top:10px;box-shadow:0 6px 18px color-mix(in srgb,var(--tema) 35%,transparent)}
+.btn:active{transform:scale(.97)}
+.btn2{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--tema2);width:100%;margin-top:8px}
+.sonuc{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:13px;margin-top:10px;font-size:16px}
+.buyuk{font-size:23px;font-weight:800;color:var(--tema2)}
+.ok{color:#4ade80}.hata{color:#f87171}
+.kucuk{color:#8b95ad;font-size:14px}
+.vurgu{color:var(--tema2);font-weight:700}
+.kiyas{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:15px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
+.sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.sekme{flex:1;min-width:72px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 6px;border-radius:11px;text-align:center;transition:all .15s}
+.sekme.secili{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--tema) 35%,transparent)}
+.icerik{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:14px;margin-top:8px;font-size:16px}
+.ozet{background:linear-gradient(180deg,#1a1f33,#141a2c);border:1px solid color-mix(in srgb,var(--tema) 45%,transparent);border-radius:18px;padding:18px 16px;margin:20px 0;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.ozet h3{color:var(--tema2);font-size:15px;letter-spacing:2px;margin-bottom:10px}
+.ozetBlok{background:rgba(8,12,24,.7);border-radius:12px;padding:12px;margin:8px 0;font-size:16px}
+.soru{background:rgba(8,12,24,.55);border:1px solid #232d45;border-radius:14px;padding:13px;margin:10px 0}
+.secenek{display:block;width:100%;text-align:left;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:#e8edf7;margin:7px 0;padding:12px 14px;border-radius:11px;font-size:16px;transition:all .15s}
+.secenek:active{background:rgba(255,255,255,.1)}
+.secenek.dogru{background:rgba(34,197,94,.14);border-color:rgba(74,222,128,.5);color:#4ade80;font-weight:700}
+.secenek.yanlis{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.4);color:#f87171}
+.tablo{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
+.tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
+.alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+</style>
+<style>
+.grafKutu{background:#1a2236;border-radius:12px;padding:12px;margin:12px 0;text-align:center}
+.grafKutu svg{width:100%;max-width:320px;height:auto}
+.terazi{display:flex;justify-content:center;gap:10px;align-items:center;font-size:22px;margin:10px 0}
+.puanKutu{display:flex;gap:10px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+.puanKutu .kutu{background:#24304d;border-radius:10px;padding:10px 14px;text-align:center;font-size:14px}
+.puanKutu .kutu b{font-size:22px;display:block}
+</style>
+
+
+<style>
+:root { --bg-dark:#0b101e; --bg-light:#fafafa; --text-dark:#e8edf7; --text-light:#111; --accent:#a3e635; }
+body.light { background:var(--bg-light); color:var(--text-light); }
+body.light .kart { background:#fff; border-color:#ddd; color:#111; }
+body.light .adim { background:#a3e635; color:#0b101e; }
+body.light button { background:#a3e635; color:#0b101e; }
+body.light .sekme.secili { background:#a3e635; color:#fff; }
+body.light .sonuc { background:#fff; border-color:#ddd; color:#111; }
+body.light .secenek { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme:active { background:#a3e635; }
+</style>
+
+</head>
+<body>
+<div class="kap">
+<div class="ust"><a href="index.html">← Ana sayfa</a></div>
+<div class="konuIkon">⚖️</div>
+<h1>Doğrusal Denklemler</h1>
+<p class="kucuk" style="margin-bottom:6px">Denklem = iki kefesi dengede olan terazi. Bilinmeyeni bulmak = teraziyi bozmadan sadeleştirmek.</p>
+<div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KART 1: KANCA - Amedspor puani -->
+<div class="kart" id="k1">
+<span class="adim">1</span>
+<h2>Amedspor'un 57 puanı doğru mu? Sen kontrol et.</h2>
+<p>2024-25 sezonu: <b>14 galibiyet, 15 beraberlik.</b> Galibiyet 3 puan, beraberlik 1 puan. Tablo 57 diyor — doğru mu?</p>
+<div class="puanKutu">
+<div class="kutu"><b>14</b>galibiyet × 3</div>
+<div class="kutu"><b>15</b>beraberlik × 1</div>
+<div class="kutu"><b>?</b>toplam puan</div>
+</div>
+<div class="soru">
+<button class="secenek">3×14 + 15 = 57 ✓ doğru</button>
+<button class="secenek">14 + 15 = 29, tablo yanlış</button>
+</div>
+<div class="gizli" id="k1devam">
+<p><span class="ok">✓</span> P = 3G + B → 42 + 15 = <b>57.</b> İşte bir <b>denklem</b> kurdun: harflerin yerine sayı koyup kontrol ettin.</p>
+<p>Şimdi tersi: Amedspor gelecek sezon 16 galibiyet alsa ve puanı 56 olsa, kaç beraberlik yapmıştır? 3×16 + B = 56 → 48 + B = 56 → <b>B = 8.</b> Bilinmeyeni bulmak = denklem çözmek. Bu sayfa bunun sistemini öğretiyor.</p>
+</div>
+</div>
+
+<!-- KART 2: TERAZI -->
+<div class="kart" id="k2">
+<span class="adim">2</span>
+<h2>Denklem bir terazidir</h2>
+<div class="terazi">⚖️ 3x + 2 = 14</div>
+<p>Kural tek: <b>bir kefeye ne yaparsan öbürüne de aynısını yap.</b> Dengeyi bozmadan x'i yalnız bırak:</p>
+<p style="text-align:center">3x + 2 = 14<br>↓ iki taraftan 2 çıkar<br>3x = 12<br>↓ iki tarafı 3'e böl<br><b>x = 4</b></p>
+<p><b>Kontrol</b> (hep yap!): 3×4 + 2 = 14 ✓</p>
+<p><b>Sıra sende:</b> 5x − 3 = 22 ise x kaçtır?</p>
+<div class="soru">
+<button class="secenek">x = 5</button>
+<button class="secenek">x = 3,8</button>
+</div>
+<div class="gizli" id="k2devam">
+<p><span class="ok">✓</span> İki tarafa 3 ekle: 5x = 25. Beşe böl: <b>x = 5.</b> Kontrol: 5×5−3 = 22 ✓. "−3'ü karşıya +3 atarız" ezberinin sebebi terazidir: aslında iki kefeye de 3 ekliyorsun.</p>
+</div>
+</div>
+
+<!-- KART 3: DOGRU GRAFIGI - sut -->
+<div class="kart" id="k3">
+<span class="adim">3</span>
+<h2>Denklemin resmi: doğru grafiği</h2>
+<p>Süt litresi 24,30 TL. Gelir denklemi: <b>y = 24,30x</b>. Her x için bir y var — noktaları çiz, birleştir: dümdüz bir çizgi çıkar. Adı bu yüzden <b>doğrusal</b> denklem.</p>
+<div class="grafKutu">
+<svg viewBox="0 0 320 230">
+<line x1="40" y1="200" x2="300" y2="200" stroke="#8b96b3" stroke-width="2"/>
+<line x1="40" y1="200" x2="40" y2="15" stroke="#8b96b3" stroke-width="2"/>
+<line x1="40" y1="200" x2="290" y2="30" stroke="#39d98a" stroke-width="3"/>
+<circle cx="40" cy="200" r="5" fill="#ffd23f"/>
+<circle cx="123" cy="143" r="5" fill="#ffd23f"/>
+<circle cx="206" cy="87" r="5" fill="#ffd23f"/>
+<text x="118" y="132" fill="#e8ecf5" font-size="12">(10, 243)</text>
+<text x="201" y="76" fill="#e8ecf5" font-size="12">(20, 486)</text>
+<text x="150" y="222" fill="#8b96b3" font-size="12">litre (x)</text>
+<text x="8" y="110" fill="#8b96b3" font-size="12" transform="rotate(-90 14 110)">gelir TL (y)</text>
+</svg>
+</div>
+<p><b>Eğim</b> = çizginin dikliği = "1 litre daha satarsam gelir kaç TL artar?" = <b>24,30.</b> Eğim büyükse çizgi dik, küçükse yatıktır.</p>
+<p><b>Soru:</b> Gelir 729 TL ise kaç litre satılmıştır?</p>
+<div class="soru">
+<button class="secenek">30 litre</button>
+<button class="secenek">704,70 litre</button>
+</div>
+<div class="gizli" id="k3devam">
+<p><span class="ok">✓</span> 24,30x = 729 → x = 729 ÷ 24,30 = <b>30 litre.</b> Grafikten de okuyabilirsin: y=729 hizasından çizgiye git, aşağı in. Denklem ve grafik aynı bilginin iki dili.</p>
+</div>
+</div>
+
+<!-- KART 4: KOORDINAT -->
+<div class="kart" id="k4">
+<span class="adim">4</span>
+<h2>Koordinat: haritadaki adres</h2>
+<p>Köy meydanı başlangıç (0,0) olsun, her birim 100 m. Okul <b>(2, 3)</b> noktasında: 200 m doğu, 300 m kuzey. Tarla <b>(−1, 4)</b>: 100 m batı, 400 m kuzey.</p>
+<p>Kural: <b>önce yatay (doğu-batı), sonra dikey (kuzey-güney).</b> Sırayı karıştıran yanlış tarlaya gider 😅</p>
+<p><b>Soru:</b> (−3, 2) neresi?</p>
+<div class="soru">
+<button class="secenek">300 m batı, 200 m kuzey</button>
+<button class="secenek">300 m doğu, 200 m güney</button>
+</div>
+<div class="gizli" id="k4devam">
+<p><span class="ok">✓</span> Eksi = batı (yatayda) veya güney (dikeyde). (−3, 2) = <b>300 m batı, 200 m kuzey.</b> Navigasyon, PUBG haritası, deprem koordinatı — hepsi bu sistem.</p>
+</div>
+</div>
+
+<!-- KART 5: SEKMELER -->
+<div class="kart" id="k5">
+<span class="adim">5</span>
+<h2>Hayatta nerede karşına çıkar?</h2>
+<div class="sekmeBar">
+<button class="sekme">🌡️ Derece çevirme</button>
+<button class="sekme">♿ Rampa eğimi</button>
+<button class="sekme">🚌 Servis doğrusu</button>
+<button class="sekme">💰 Asgari ücret</button>
+</div>
+<div id="sekmeIcerik" class="sekmeIc"></div>
+</div>
+
+<!-- KART 6: TEST -->
+<div class="kart" id="k6">
+<span class="adim yesil">Kendini dene</span>
+<h2>5 soru — çözersen bu konu sende</h2>
+<div id="testAlan"></div>
+<p id="testSonuc" class="gizli"></p>
+<button class="btn2 gizli" id="btnBastan">Baştan dene 🔄</button>
+</div>
+
+<!-- OZET -->
+<div class="kart" id="ozet">
+<span class="adim mor">Özet — sınavdan önce 1 dakika</span>
+<ul class="ozetList">
+<li><b>Denklem = terazi.</b> İki tarafa aynı şeyi yap, denge bozulmaz.</li>
+<li>Çözünce <b>kontrol et:</b> bulduğun sayıyı yerine koy.</li>
+<li><b>y = mx + n:</b> m eğim (artış hızı), n başlangıç (sabit).</li>
+<li><b>Eğim</b> = "x bir artarsa y kaç artar?" Süt: 24,30. Fahrenheit: 1,8.</li>
+<li>Sabitli işlerde (servis 2300 + 60x) sabit yalnız BİR KEZ ödenir.</li>
+<li>Koordinat: <b>önce yatay, sonra dikey.</b> (x, y).</li>
+<li>Doğru orijinden geçer ↔ sabit yok (y=24,30x). Sabit varsa yukarıdan başlar.</li>
+</ul>
+</div>
+
+<p class="kucuk" style="margin-top:18px">Kaynaklar: Sporzip 1. Lig 2024-25 puan tablosu; Ulusal Süt Konseyi 2026 fiyatı; UKOME servis tarifesi; TS 9111 rampa standardı; ÇSGB 2026 asgari ücret duyurusu; MEB 8. sınıf programı.</p>
+</div>
+
+<script>
+function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');e.classList.add('acilis');}}
+function soruKur(kartId, dogruIdx, devamId){
+  document.querySelectorAll('#'+kartId+' > .soru .secenek').forEach(function(b,i){
+    b.onclick=function(){
+      if(i===dogruIdx){b.classList.add('dogru');ac(devamId);tit(30);}
+      else{b.classList.add('yanlis');tit([10,30,10]);}
+    };
+  });
+}
+soruKur('k1',0,'k1devam');
+soruKur('k2',0,'k2devam');
+soruKur('k3',0,'k3devam');
+soruKur('k4',0,'k4devam');
+
+var sekmeler=[
+ '<b>Önce tahmin et:</b> telefon 77°F diyor — kaç derece sıcak? 👇<br><br><b>Derece çevirme.</b> F = 1,8C + 32. Suyun donması (0, 32), kaynaması (100, 212) — iki noktadan doğru geçer, eğim (212−32)/100 = 1,8. C=25 → F=77. Yani 77°F = 25°C, gayet güzel hava. 32&#39;yi unutan turist kışın şorta çıkar.',
+ '<b>Önce tahmin et:</b> tekerlekli sandalye rampası neden upuzun yapılır? 👇<br><br><b>Rampa eğimi.</b> TS 9111 standardı: eğim en çok %8, yani y = 0,08x doğrusunun altında kalmalı. 40 cm yükselmek için en az 500 cm yatay yol gerekir. Eğim dikleşirse sandalye geri kaçar — buradaki "eğim" ile grafikteki eğim AYNI kavram.',
+ '<b>Önce tahmin et:</b> 2.720 TL servis ücreti ödeyen öğrencinin yolu kaç km? 👇<br><br><b>Servis doğrusu.</b> 21 km üstü: y = 2300 + 60(x−21). Ücret 2.720 ise: 60(x−21) = 420 → x−21 = 7 → <b>x = 28 km.</b> Denklemi bilen, faturadan yol hesabını geri çıkarır — kimse ona yanlış ücret yazamaz.',
+ '<b>Önce tahmin et:</b> 3 aylık asgari ücret toplamı ne kadar? 👇<br><br><b>Asgari ücret.</b> 2026 net: 28.075,50 TL/ay → y = 28075,50x. Üç ay: 84.226,50 TL. Ters soru: 56.151 TL kaç aylık? x = 56151 ÷ 28075,50 = <b>2 ay.</b> Doğru orijinden geçer: 0 ay çalışan 0 TL alır.'
+];
+var sekBtn=document.querySelectorAll('.sekme'), sekIc=document.getElementById('sekmeIcerik');
+sekBtn.forEach(function(b,i){
+  b.onclick=function(){
+    sekBtn.forEach(function(x){x.classList.remove('acik')});
+    b.classList.add('acik'); sekIc.innerHTML=sekmeler[i]; tit(15);
+  };
+});
+sekBtn[0].click();
+
+// TEST — dagilim: 1,0,1,1,0
+var sorular=[
+ {s:'2x + 6 = 20 ise x kaçtır?',
+  c:['13','7'],d:1,
+  n:'İki taraftan 6 çıkar: 2x=14. İkiye böl: x=7. Kontrol: 2×7+6=20 ✓'},
+ {s:'y = 317,2x denkleminde (buğday desteği) eğim nedir ve ne anlatır?',
+  c:['317,2 — bir dekar daha ekilirse destek 317,2 TL artar','x — tarla sayısını anlatır'],d:0,
+  n:'Eğim, x bir artınca y&#39;nin artış miktarıdır: 317,2 TL/dekar. Eğimin BİRİMİ bile anlamlıdır.'},
+ {s:'Hangi doğru orijinden (0,0) geçer?',
+  c:['y = 2300 + 60x (servis)','y = 24,30x (süt geliri)'],d:1,
+  n:'x=0 koy: süt 0 TL (orijin ✓), serviste 2300 TL kalır (sabit var, orijinden geçmez).'},
+ {s:'P = 3G + B. G=16, B=8 ise puan?',
+  c:['24','56'],d:1,
+  n:'3×16 + 8 = 48 + 8 = 56. Harflerin yerine sayı koy, işlem sırasına dikkat: önce çarpma.'},
+ {s:'(4, −2) noktası köy meydanına göre neresidir? (1 birim = 100 m)',
+  c:['400 m doğu, 200 m güney','400 m kuzey, 200 m batı'],d:0,
+  n:'Önce yatay: +4 = 400 m doğu. Sonra dikey: −2 = 200 m güney. Sıra: (yatay, dikey).'}
+];
+var alan=document.getElementById('testAlan'), dogru=0, cevaplanan=0;
+function testKur(){
+  alan.innerHTML=''; dogru=0; cevaplanan=0;
+  document.getElementById('testSonuc').classList.add('gizli');
+  document.getElementById('btnBastan').classList.add('gizli');
+  sorular.forEach(function(q,qi){
+    var d=document.createElement('div'); d.className='tsoru';
+    d.innerHTML='<p><b>'+(qi+1)+'.</b> '+q.s+'</p>';
+    var sec=document.createElement('div'); sec.className='soru';
+    q.c.forEach(function(cc,ci){
+      var b=document.createElement('button'); b.className='secenek'; b.innerHTML=cc;
+      b.onclick=function(){
+        if(d.dataset.done)return; d.dataset.done=1; cevaplanan++;
+        if(ci===q.d){b.classList.add('dogru');dogru++;tit(25);}
+        else{b.classList.add('yanlis');sec.children[q.d].classList.add('dogru');tit([10,30,10]);}
+        var ac2=document.createElement('p'); ac2.className='neden'; ac2.innerHTML='<b>Neden:</b> '+q.n;
+        d.appendChild(ac2);
+        if(cevaplanan===sorular.length){
+          var ts=document.getElementById('testSonuc');
+          ts.classList.remove('gizli');
+          ts.innerHTML= dogru>=4 ? '🎉 '+dogru+'/5 — bu konu sende. 💪' : dogru+'/5 — "Neden" açıklamalarını oku, baştan dene. Utanma, tekrar en iyi öğretmendir.';
+          document.getElementById('btnBastan').classList.remove('gizli');
+        }
+      };
+      sec.appendChild(b);
+    });
+    d.appendChild(sec); alan.appendChild(d);
+  });
+}
+document.getElementById('btnBastan').onclick=testKur;
+testKur();
+</script>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+// Init theme from storage
+window.addEventListener('load', function() {
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+});
+// Note-taking
+function saveNote() {
+  const txt = document.getElementById('notInput').value.trim();
+  if (txt) {
+    const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+    notes.push({page: location.pathname, text: txt, time: new Date().toISOString()});
+    localStorage.setItem('pageNotes', JSON.stringify(notes));
+    showNotes();
+    document.getElementById('notInput').value = '';
+  }
+}
+function clearNotes() {
+  if (window.confirm('Notları silmek istediğinizden emin misiniz?')) {
+    localStorage.removeItem('pageNotes');
+    showNotes();
+  }
+}
+function showNotes() {
+  const container = document.getElementById('notGoster');
+  container.innerHTML = '';
+  const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+  const pageNotes = notes.filter(n => n.page === location.pathname);
+  if (pageNotes.length === 0) {
+    container.innerHTML = '<i>Henüz not yok.</i>';
+    return;
+  }
+  const ul = document.createElement('ul');
+  pageNotes.forEach((n, idx) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${new Date(n.time).toLocaleString()}</strong>: ${n.text}`;
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
+}
+window.addEventListener('load', showNotes);
+</script>
+
+
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Tema</span>
+  <button onclick="toggleTheme()" style="margin-top:5px;">🌙/☀️ Tema Değiştir</button>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Not Defteri</span>
+  <textarea id="notInput" rows="2" placeholder="Bir not yazın..." style="width:100%;box-sizing:border-box;margin-top:5px;"></textarea>
+  <div style="margin-top:8px;">
+    <button id="saveNote" onclick="saveNote()" style="margin-right:5px;">Kaydet</button>
+    <button id="clearNote" onclick="clearNotes()">Sil</button>
+  </div>
+  <div id="notGoster" style="margin-top:10px;font-size:0.9em;color:#8b95ad;"></div>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Gerçek Hayat Örneği</span>
+  <p>denklemler konusuyla ilgili gerçek‑hayat örnekleri burada yer alabilir.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<title>EBOB &amp; EKOK — 8. Sınıf Matematik</title>
+<meta name="description" content="EBOB ve EKOK gercek hayatta ne ise yarar? Fayans, servis saatleri, disli carklar. Etkilesimli 8. sinif konusu.">
+<meta property="og:title" content="EBOB & EKOK - 8. Sinif">
+<meta property="og:description" content="EBOB ve EKOK gercek hayatta ne ise yarar? Fayans, servis saatleri, disli carklar. Etkilesimli 8. sinif konusu.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hkntng.github.io/okul-sitesi/ebob-ekok.html">
+<meta property="og:site_name" content="Bu Ne Ise Yariyor?">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:#0d1117;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:#e6edf3; display:flex; justify-content:center; min-height:100vh;
+}
+.telefon{width:100%;max-width:430px;background:#0f1520;padding:18px 16px 70px}
+
+.ust{padding:6px 0 18px}
+.ust .konu{font-size:13px;color:#7d8590;letter-spacing:.5px}
+.ust h1{font-size:26px;margin:6px 0 0;line-height:1.25}
+.ust .geri{display:inline-block;margin-bottom:10px;color:#7d8590;text-decoration:none;font-size:14px}
+
+.kart{background:#161d2b;border:1px solid #232d3f;border-radius:16px;padding:18px 16px;margin-bottom:16px}
+.adim{display:inline-block;font-size:12px;font-weight:700;color:#0d1117;background:#f0a44b;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+.adim.mavi{background:#58a6ff}
+.adim.yesil{background:#3fb950}
+.kart p{margin:0 0 10px;font-size:17px;line-height:1.55}
+.kart p.buyuk{font-size:19px;font-weight:600}
+.kart p.sart{background:#0d1420;border-left:3px solid #f0a44b;padding:10px 12px;margin:8px 0;border-radius:0 8px 8px 0;font-size:16px}
+.vurgu{color:#f0a44b;font-weight:700}
+.vurguMavi{color:#58a6ff;font-weight:700}
+.kucuk{color:#8b949e;font-size:15px}
+.gizli{display:none}
+.acilan{animation:gir .35s ease-out}
+@keyframes gir{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---- fayans secici ---- */
+.secEtiket{text-align:center;font-size:14px;color:#7d8590;margin-bottom:8px}
+.olculer{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;scrollbar-width:none}
+.olculer::-webkit-scrollbar{display:none}
+.olcu{
+  flex:0 0 auto;padding:12px 14px;border-radius:12px;border:1px solid #2c3950;
+  background:#1b2436;color:#c9d3e0;font-size:15px;font-weight:700;
+  cursor:pointer;font-family:inherit;transition:.15s;
+}
+.olcu.aktif{background:#f0a44b;border-color:#f0a44b;color:#10141c}
+
+/* ---- zemin cizimi ---- */
+.zeminKutu{background:#0d1420;border-radius:12px;padding:14px 12px 12px;margin-bottom:12px}
+.zeminSar{text-align:center;padding:0}
+.olcuUst{font-size:13px;font-weight:700;color:#8b949e;margin-bottom:6px;text-align:center}
+.zeminOrta{display:flex;align-items:center;justify-content:center;gap:8px}
+.olcuSol{font-size:13px;font-weight:700;color:#8b949e;writing-mode:vertical-rl;transform:rotate(180deg)}
+.zemin{
+  display:inline-block;position:relative;line-height:0;
+  border:2px solid #3d4a60;border-radius:4px;padding:0;
+  transition:border-color .25s;
+}
+.zemin.tam{border-color:#3fb950}
+.zemin.kesik{border-color:#8b5a3c}
+.fsira{display:flex}
+.fy{
+  border:1px solid rgba(13,20,32,.85);
+  background:linear-gradient(140deg,#d8cfc0,#b9ad99);
+  flex:0 0 auto;transition:background .2s;
+}
+.fy.kesik{background:repeating-linear-gradient(45deg,#7a4a3a,#7a4a3a 4px,#5c3428 4px,#5c3428 8px)}
+.olcuUstEski{display:none}
+.olcuSagEski{display:none}
+
+.durum{text-align:center;padding:13px;border-radius:12px;font-size:16px;font-weight:600;line-height:1.5}
+.durum.ok{background:#12251a;color:#5ddc7a;border:1px solid #235c33}
+.durum.yok{background:#2a1616;color:#ff8f80;border:1px solid #5c2626}
+
+.ilerleme{margin-top:11px;padding:9px 12px;border-radius:9px;background:#161b22;border:1px solid #262d36;font-size:13.5px;color:#9aa4b0;text-align:center;line-height:1.5}
+.ilerleme b{color:#e6a341;font-size:15px}
+.ilerleme.tamam{background:#12251a;border-color:#235c33;color:#5ddc7a}
+.yardim{display:block;width:100%;margin-top:10px;padding:11px;border-radius:9px;border:1px dashed #3d4a60;background:transparent;color:#8b949e;font-size:13.5px;font-family:inherit;cursor:pointer}
+.yardim:active{background:#161b22}
+.altinKural{margin-top:14px;padding:12px 13px;border-radius:9px;background:#1a1710;border:1px solid #4a3a1c;font-size:14px;color:#d9c9a8;line-height:1.6}
+.altinKural b{color:#f0c040}
+.kiyas{background:#0d1420;border-radius:9px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:17px;margin:4px 0;font-family:ui-monospace,Menlo,monospace}
+.kiyasSatir .ks{display:inline-block;width:46px;color:#8b949e}
+.kiyasIki{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}
+.kutuMavi,.kutuYesil{border-radius:10px;padding:11px 10px;text-align:center}
+.kutuMavi{background:#101c2e;border:1px solid #1f4e79}
+.kutuYesil{background:#0f2118;border:1px solid #235c33}
+.kbas{font-size:13px;font-weight:700;letter-spacing:.5px;color:#8b949e;margin-bottom:5px}
+.kal{font-size:13.5px;color:#9aa4b0;line-height:1.4;margin-bottom:7px;min-height:36px}
+.khes{font-size:15px;font-weight:700;font-family:ui-monospace,Menlo,monospace}
+.vurguYesil{color:#3fb950}
+.ozet{background:#12100a;border:1px solid #4a3a1c;border-radius:12px;padding:16px 15px;margin-bottom:16px}
+.ozet h3{margin:0 0 12px;font-size:14px;letter-spacing:1px;color:#f0c040}
+.ozetBlok{margin-bottom:14px;padding-left:11px;border-left:3px solid #1f4e79}
+.ozetBlok.ek{border-left-color:#235c33}
+.ozetBlok b.ad{font-size:16px;color:#e6edf3}
+.ozetBlok div{font-size:14.5px;color:#9aa4b0;line-height:1.6;margin-top:3px}
+.ozetBlok .et{color:#6e7681}
+.hile{margin-top:12px;padding-top:11px;border-top:1px solid #2a2418;font-size:14px;color:#c9b998;line-height:1.55}
+.sr{margin-bottom:10px;padding:12px 13px;border-radius:10px;background:#161b22;border:1px solid #262d36}
+.srMetin{font-size:15px;line-height:1.55;margin-bottom:10px}
+.srBtn{display:flex;gap:8px}
+.srBtn button{flex:1;padding:11px;border-radius:8px;border:1px solid #33415a;background:#1f2a3c;color:#cfe0f5;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
+.srBtn button:active{transform:scale(.97)}
+.sr.dogru{border-color:#235c33;background:#12251a}
+.sr.yanlis{border-color:#5c2a2a;background:#251414}
+.srGeri{margin-top:9px;font-size:13.5px;line-height:1.55;color:#9aa4b0}
+.sr.dogru .srGeri{color:#5ddc7a}
+.sr.yanlis .srGeri{color:#f0857d}
+
+.cipler{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;min-height:30px}
+.cip{padding:6px 12px;border-radius:20px;background:#1f2a3c;border:1px solid #33415a;font-size:15px;font-weight:700;color:#9fb4d0;animation:gir .25s}
+.cip.enbuyuk{background:#f0a44b;border-color:#f0a44b;color:#10141c}
+
+/* ---- carpan agaci ---- */
+.agacKutu{background:#0d1420;border-radius:12px;padding:16px 10px;margin:12px 0;text-align:center;min-height:120px}
+.satir{display:flex;justify-content:center;align-items:center;gap:9px;margin-bottom:9px;flex-wrap:wrap}
+.dugum{display:inline-block;min-width:38px;padding:8px 11px;border-radius:10px;background:#1f2a3c;border:1px solid #33415a;font-size:17px;font-weight:700;animation:gir .25s}
+.dugum.asal{background:#2d2412;border-color:#6b5320;color:#f0c040}
+.dugum.ortak{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.kol{color:#7d8590;font-size:15px}
+
+.buyukbtn{
+  width:100%;padding:15px;border-radius:13px;border:none;
+  background:#243044;color:#e6edf3;font-size:16px;font-weight:700;
+  cursor:pointer;font-family:inherit;margin-top:6px;transition:.12s;
+}
+.buyukbtn:active{transform:scale(.98)}
+.buyukbtn.turuncu{background:#f0a44b;color:#10141c}
+.buyukbtn.mavi{background:#58a6ff;color:#08111f}
+.buyukbtn:disabled{opacity:.3}
+
+/* ---- ekok zaman cizgisi ---- */
+.zamanKutu{background:#0d1420;border-radius:12px;padding:16px 12px;margin-bottom:12px}
+.hat{margin-bottom:16px}
+.hatBas{font-size:14px;font-weight:700;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center}
+.hatBas .sure{font-size:13px;color:#7d8590;font-weight:600}
+.nokta{display:flex;gap:1px;align-items:flex-end;height:26px}
+.nk{flex:1 1 0;min-width:0;height:10px;border-radius:1px;background:#1b2436;transition:background .2s,height .2s}
+.nk.var{background:#58a6ff;height:24px}
+.nk.var2{background:#f0a44b;height:24px}
+.nk.cakis{background:#3fb950;height:26px;box-shadow:0 0 8px rgba(63,185,80,.9)}
+.dk{font-size:11px;color:#6e7681;display:flex;justify-content:space-between;margin-top:4px}
+
+/* ---- bu ne ise yariyor ---- */
+.kart.ise{border-color:#5c4a1e;background:#1a1710}
+.baslikk{font-size:19px;font-weight:700;margin:0 0 4px}
+.baslikk.sari{color:#f0c040}
+.sekmeler{display:flex;gap:6px;margin:12px 0 14px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.sekmeler::-webkit-scrollbar{display:none}
+.sekme{flex:0 0 auto;white-space:nowrap;padding:11px 13px;border-radius:10px;border:1px solid #3a3520;background:#241f14;color:#c9bfa0;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+.sekme.aktif{background:#f0c040;border-color:#f0c040;color:#1a1710}
+.icerik{background:#0f0d08;border-radius:12px;padding:15px;min-height:160px}
+.icerik h4{margin:0 0 10px;font-size:17px;color:#f0c040}
+.icerik p{font-size:16px;line-height:1.6;margin:0 0 10px}
+.icerik .kanit{margin-top:12px;padding-top:10px;border-top:1px solid #2a2418;font-size:12.5px;color:#8a8168;line-height:1.5}
+.vurguSari{color:#f0c040;font-weight:700}
+
+.alt{text-align:center;color:#6e7681;font-size:13px;line-height:1.7;padding:14px 0 0}
+.alt a{color:#7d8590}
+</style>
+
+<style>
+:root { --bg-dark:#0b101e; --bg-light:#fafafa; --text-dark:#e8edf7; --text-light:#111; --accent:#a3e635; }
+body.light { background:var(--bg-light); color:var(--text-light); }
+body.light .kart { background:#fff; border-color:#ddd; color:#111; }
+body.light .adim { background:#a3e635; color:#0b101e; }
+body.light button { background:#a3e635; color:#0b101e; }
+body.light .sekme.secili { background:#a3e635; color:#fff; }
+body.light .sonuc { background:#fff; border-color:#ddd; color:#111; }
+body.light .secenek { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme:active { background:#a3e635; }
+</style>
+
+</head>
+<body>
+<div class="telefon">
+
+  <div class="ust">
+    <a class="geri" href="index.html">← Ana sayfa</a>
+    <div class="konu">ORTAOKUL MATEMATİK · MEB kazanımı MAT.6.1.4</div>
+    <h1>EBOB &amp; EKOK</h1>
+  </div>
+
+  <!-- ADIM 1: PROBLEM -->
+  <div class="kart">
+    <span class="adim">1</span>
+    <p class="buyuk">Banyonun zeminine fayans döşeyeceksin.</p>
+    <p>Zemin <span class="vurgu">120 cm × 90 cm</span>.</p>
+    <p class="sart">Ustanın tek şartı var:<br>
+      <b>Hiçbir fayans kesilmeyecek.</b> Hepsi tam kare, hepsi aynı boy.</p>
+    <p class="kucuk">Fayanslar ne kadar büyükse, aralarındaki ek yeri (derz) o kadar az olur.<br>
+      Derz kir tutar. Az derz = az temizlik.<br>
+      O yüzden usta hep <b>en büyük</b> kareyi arar.</p>
+  </div>
+
+  <!-- ADIM 2: DENE -->
+  <div class="kart">
+    <span class="adim">2</span>
+    <div class="secEtiket">Kesmeden döşenen 3 ölçü var — önce hepsini bul, sonra en büyüğünü seçeceğiz</div>
+    <div class="olculer" id="olculer"></div>
+
+    <div class="zeminKutu">
+      <div class="olcuUst">120 cm</div>
+      <div class="zeminOrta">
+        <div class="olcuSol">90 cm</div>
+        <div class="zeminSar"><div class="zemin" id="zemin"></div></div>
+      </div>
+    </div>
+
+    <div class="durum yok" id="durum">Bir ölçü seç</div>
+    <div class="ilerleme" id="ilerleme"></div>
+    <div class="cipler" id="cipler"></div>
+    <button class="yardim gizli" id="btnYardim">Takıldım, cevabı göster</button>
+  </div>
+
+  <!-- ADIM 3: TANIM -->
+  <div class="kart gizli" id="k3">
+    <span class="adim mavi">3. Bunun adı varmış</span>
+    <p>Kesmeden döşenen ölçüler: <span class="vurguMavi" id="listeTxt"></span></p>
+    <p>Bunların hepsi <b>hem 120'yi hem 90'ı</b> tam bölüyor.
+      Matematikte bunlara <span class="vurguMavi">ortak bölen</span> deniyor.</p>
+    <p class="sart">En büyüğü <b>30</b>.<br>
+      İşte buna <span class="vurguMavi">EBOB(120, 90) = 30</span> deniyor.<br>
+      <span class="kucuk">E-B-O-B = <b>E</b>n <b>B</b>üyük <b>O</b>rtak <b>B</b>ölen</span></p>
+    <p class="kucuk">Yani sen az önce kafandan EBOB hesapladın. Adını bilmiyordun, o kadar.</p>
+    <p class="kucuk" style="border-top:1px solid #262d36;padding-top:10px;margin-top:12px">
+      <b>Dikkat — sınavda lazım olur:</b> sana 8 ölçü verdik, içlerinden 3'ü uydu.
+      Ama 120 ile 90'ın ortak bölenleri aslında <b>8 tane</b>: 1, 2, 3, 5, 6, 10, 15, 30.
+      1 cm'lik fayans da kesmeden döşenir — kimse döşemez, o kadar.
+      En büyüğü yine <b>30</b>. Soru "kaç ortak böleni var" diye sorarsa cevap 8'dir.</p>
+  </div>
+
+  <!-- ADIM 4: NASIL BULUNUR -->
+  <div class="kart gizli" id="k4">
+    <span class="adim mavi">4. Peki tek tek denemeden?</span>
+    <p>Sayılar büyüyünce tek tek denemek biter. Kısa yol şu:
+      <b>ikisini de asal çarpanlarına ayır, ortak olanları al.</b></p>
+    <div class="agacKutu" id="agac"></div>
+    <button class="buyukbtn turuncu" id="btnAgac">Adım adım göster</button>
+  </div>
+
+  <!-- ADIM 5: EKOK -->
+  <div class="kart gizli" id="k5">
+    <span class="adim yesil">5. Şimdi ters soru</span>
+    <p class="buyuk">Köyden iki servis kalkıyor.</p>
+    <p>Mavi servis her <span class="vurguMavi">12 dakikada</span> bir,
+       turuncu servis her <span class="vurgu">18 dakikada</span> bir.</p>
+    <p>Şu an ikisi de duraktan aynı anda kalktı.
+       <b>Bir daha ne zaman yan yana olacaklar?</b></p>
+
+    <div class="zamanKutu">
+      <div class="hat">
+        <div class="hatBas"><span class="vurguMavi">Mavi servis</span><span class="sure">12 dk</span></div>
+        <div class="nokta" id="hatA"></div>
+      </div>
+      <div class="hat">
+        <div class="hatBas"><span class="vurgu">Turuncu servis</span><span class="sure">18 dk</span></div>
+        <div class="nokta" id="hatB"></div>
+      </div>
+      <div class="hat" style="margin-bottom:0">
+        <div class="hatBas"><span style="color:#5ddc7a">İkisi birden</span><span class="sure" id="cakisTxt">—</span></div>
+        <div class="nokta" id="hatC"></div>
+        <div class="dk"><span>0 dk</span><span>36 dk</span><span>72 dk</span></div>
+      </div>
+    </div>
+    <button class="buyukbtn mavi" id="btnZaman">Zamanı ilerlet</button>
+    <div class="durum yok" id="durumE" style="margin-top:12px">Butona bas</div>
+  </div>
+
+  <!-- ADIM 6: EKOK TANIM -->
+  <div class="kart gizli" id="k6">
+    <span class="adim yesil">6. Bunun da adı var</span>
+    <p>12'nin katları: 12, 24, <b>36</b>, 48…<br>
+       18'in katları: 18, <b>36</b>, 54…</p>
+    <p class="sart">İlk buluştukları yer <b>36</b>.<br>
+      <span style="color:#5ddc7a;font-weight:700">EKOK(12, 18) = 36</span><br>
+      <span class="kucuk">E-K-O-K = <b>E</b>n <b>K</b>üçük <b>O</b>rtak <b>K</b>at</span></p>
+    <p><b>Farkı aklında tut:</b></p>
+    <p class="kucuk">• Bir şeyi <b>parçalara böleceksen</b> → EBOB (fayans, tarla, paket)<br>
+       • Bir şey <b>tekrar tekrar olup buluşacaksa</b> → EKOK (servis, dişli, ritim)</p>
+  </div>
+
+  <!-- ADIM 7: NE ISE YARIYOR -->
+  <div class="kart ise gizli" id="k7">
+    <div class="baslikk sari">Bu gerçekten nerede var?</div>
+    <p class="kucuk" style="margin:0">Aşağıdakilerin hepsini kendin kontrol edebilirsin.</p>
+    <div class="sekmeler" id="sekmeler"></div>
+    <div class="icerik" id="icerik"></div>
+  </div>
+
+  <div class="kart gizli" id="k65">
+    <span class="adim yesil">Kısa yol</span>
+    <p class="buyuk">Kat yazmak her zaman işe yaramaz</p>
+    <p>12 ve 18 küçüktü, katlarını yazdık. Ya 24 ile 36 olsaydı? Liste uzar, şaşarsın.</p>
+    <p>İkisinde de aynı alet işe yarıyor: <b>asal çarpanlara ayır.</b></p>
+    <div class="kiyas">
+      <div class="kiyasSatir"><span class="ks">12 =</span><b>2 × 2 × 3</b></div>
+      <div class="kiyasSatir"><span class="ks">18 =</span><b>2 × 3 × 3</b></div>
+    </div>
+    <div class="kiyasIki">
+      <div class="kutuMavi">
+        <div class="kbas">EBOB</div>
+        <div class="kal">ortak olanların <b>en azı</b></div>
+        <div class="khes">2 × 3 = <span class="vurguMavi">6</span></div>
+      </div>
+      <div class="kutuYesil">
+        <div class="kbas">EKOK</div>
+        <div class="kal">her tuğladan <b>en çoğu</b></div>
+        <div class="khes">2 × 2 × 3 × 3 = <span class="vurguYesil">36</span></div>
+      </div>
+    </div>
+    <p class="kucuk">Aynı ayrım, iki farklı okuma. Birinde az alırsın, birinde çok.</p>
+  </div>
+
+  <div class="kart gizli" id="k75">
+    <span class="adim mavi">Kendini dene</span>
+    <p class="buyuk">Hangisi EBOB, hangisi EKOK?</p>
+    <p class="kucuk">Soruyu oku, butona bas. Yanlışsa neden yanlış olduğunu söyleyecek.</p>
+    <div id="testAlan"></div>
+    <div class="ilerleme" id="testSkor"></div>
+    <div class="altinKural">
+      <b>Altın kural:</b> cevap sayılardan <b>küçük</b> çıktıysa EBOB.
+      <b>Büyük</b> çıktıysa EKOK. Ters çıktıysa yanlış yöntemi seçmişsin.
+    </div>
+  </div>
+
+  <div class="ozet" id="ozet">
+    <h3>CEBİNDE KALSIN</h3>
+    <div class="ozetBlok">
+      <b class="ad">EBOB</b> <span class="et">— En Büyük Ortak Bölen</span>
+      <div>
+        <b>Ne zaman:</b> böleceksen, paylaştıracaksan, kesmeyeceksen<br>
+        <b>Nasıl:</b> asal çarpanlara ayır → <b>ortak</b> olanların <b>en azını</b> çarp<br>
+        <b>Kontrol:</b> cevap sayılardan <b>küçük</b> çıkar &nbsp;·&nbsp; EBOB(120, 90) = 30
+      </div>
+    </div>
+    <div class="ozetBlok ek">
+      <b class="ad">EKOK</b> <span class="et">— En Küçük Ortak Kat</span>
+      <div>
+        <b>Ne zaman:</b> tekrar eden iki şey buluşacaksa<br>
+        <b>Nasıl:</b> asal çarpanlara ayır → <b>her</b> tuğladan <b>en çoğunu</b> çarp<br>
+        <b>Kontrol:</b> cevap sayılardan <b>büyük</b> çıkar &nbsp;·&nbsp; EKOK(12, 18) = 36
+      </div>
+    </div>
+    <div class="hile">
+      <b>Cep hilesi:</b> EBOB × EKOK = iki sayının çarpımı.<br>
+      12 ve 18 için: 6 × 36 = 216, &nbsp; 12 × 18 = 216 ✓ &nbsp; Cevabını böyle kontrol et.
+    </div>
+  </div>
+
+  <div class="alt gizli" id="k8">
+    Bitirdin. <a href="index.html">Ana sayfaya dön</a><br>
+    Anlamadığın yer olduysa hocana söyle, beraber bakalım.<br>
+    <button class="yardim" id="btnBastan" style="margin-top:14px">↺ Baştan dene</button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  /* ================= ADIM 2: FAYANS ================= */
+  var EN=120, BOY=90;
+  var OLCULER=[10,15,20,25,30,40,45,60];
+  var bulunan=[], secili=null;
+  var TAMLAR=[10,15,30];           // hem 120 hem 90'i bolenler (bu listede)
+  var hedef=TAMLAR.length;
+
+  var elOlcu=document.getElementById('olculer'),
+      elZemin=document.getElementById('zemin'),
+      elDurum=document.getElementById('durum'),
+      elIler=document.getElementById('ilerleme'),
+      elCip=document.getElementById('cipler');
+
+  function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+
+  OLCULER.forEach(function(o){
+    var b=document.createElement('button');
+    b.className='olcu'; b.textContent=o; b.setAttribute('data-o',o);
+    b.onclick=function(){ sec(o); };
+    elOlcu.appendChild(b);
+  });
+
+  function sec(o){
+    secili=o;
+    [].forEach.call(elOlcu.children,function(c){
+      c.className='olcu'+(+c.getAttribute('data-o')===o?' aktif':'');
+    });
+    ciz();
+  }
+
+  function ciz(){
+    var o=secili;
+    // ekrana sigacak olcek
+    var olcek=Math.min(2.75, 300/EN);
+    var sut=Math.ceil(EN/o), sat=Math.ceil(BOY/o);
+    var tamEn=(EN%o===0), tamBoy=(BOY%o===0), tam=(tamEn&&tamBoy);
+
+    elZemin.innerHTML='';
+    elZemin.className='zemin '+(tam?'tam':'kesik');
+
+    for(var r=0;r<sat;r++){
+      var sr=document.createElement('div'); sr.className='fsira';
+      var yuk=Math.min(o, BOY-r*o);
+      for(var c=0;c<sut;c++){
+        var gen=Math.min(o, EN-c*o);
+        var d=document.createElement('div');
+        d.className='fy'+((gen<o||yuk<o)?' kesik':'');
+        d.style.width=(gen*olcek)+'px';
+        d.style.height=(yuk*olcek)+'px';
+        sr.appendChild(d);
+      }
+      elZemin.appendChild(sr);
+    }
+    var ou=document.createElement('div'); ou.className='olcuUstEski';
+    elZemin.appendChild(ou);
+
+    if(tam){
+      elDurum.className='durum ok';
+      elDurum.textContent='✓ Tam oturdu — '+sut+' × '+sat+' = '+(sut*sat)+' fayans, hiç kesme yok';
+      if(bulunan.indexOf(o)===-1){ bulunan.push(o); bulunan.sort(function(a,b){return a-b;});
+        tit([18,40,18]); serit(); kontrol(); } else tit(12);
+    }else{
+      elDurum.className='durum yok';
+      var n=[]; if(!tamEn)n.push('120'); if(!tamBoy)n.push('90');
+      elDurum.textContent='✗ Kesmen gerekiyor — '+o+' cm, '+n.join(' ve ')+' cm kenara tam sığmıyor';
+      tit(30);
+    }
+  }
+
+  function serit(){
+    elCip.innerHTML='';
+    bulunan.forEach(function(v){
+      var c=document.createElement('div');
+      c.className='cip'+(v===30?' enbuyuk':'');
+      c.textContent=v+' cm'; elCip.appendChild(c);
+    });
+    var kaldi=hedef-bulunan.length;
+    if(kaldi>0){
+      elIler.className='ilerleme';
+      elIler.innerHTML='<b>'+bulunan.length+' / '+hedef+'</b> kesmeden döşenen ölçü bulundu &nbsp;·&nbsp; '+kaldi+' tane daha var';
+    }else{
+      elIler.className='ilerleme tamam';
+      elIler.innerHTML='✓ Listedeki '+hedef+' ölçüyü de buldun';
+    }
+  }
+
+  function ac(id){
+    var e=document.getElementById(id);
+    if(!e||!e.classList.contains('gizli')) return;
+    e.classList.remove('gizli'); e.classList.add('acilan');
+    setTimeout(function(){e.scrollIntoView({behavior:'smooth',block:'start'});},280);
+  }
+
+  function kontrol(){
+    if(bulunan.length<hedef) return;
+    document.getElementById('listeTxt').textContent=bulunan.join(' cm, ')+' cm';
+    ac('k3'); setTimeout(function(){ document.getElementById('k4').classList.remove('gizli'); },400);
+  }
+
+  elIler.className='ilerleme';
+  elIler.innerHTML='<b>0 / '+hedef+'</b> &nbsp;·&nbsp; yukarıdan bir ölçü seç, kesmeden döşenenleri bul';
+
+  /* takilan ogrenci icin cikis yolu: 25 sn sonra yardim butonu */
+  var btnY=document.getElementById('btnYardim');
+  setTimeout(function(){
+    if(bulunan.length<hedef) btnY.classList.remove('gizli');
+  },25000);
+  btnY.addEventListener('click',function(){
+    TAMLAR.forEach(function(v){ if(bulunan.indexOf(v)<0) bulunan.push(v); });
+    bulunan.sort(function(a,b){return a-b;});
+    secili=30; ciz(); serit(); btnY.classList.add('gizli');
+    document.querySelectorAll('.olcu').forEach(function(b){
+      b.classList.toggle('aktif', +b.dataset.o===30);
+    });
+    kontrol();
+  });
+
+  /* ================= ADIM 4: AGAC ================= */
+  var aAdim=0, elAgac=document.getElementById('agac'), btnA=document.getElementById('btnAgac');
+  var SAHNE=[
+    '<div class="satir"><span class="dugum">120</span><span class="kol">ve</span><span class="dugum">90</span></div>',
+
+    '<div class="satir"><span class="dugum">120</span></div>'+
+    '<div class="satir"><span class="dugum asal">2</span><span class="kol">×</span><span class="dugum asal">2</span><span class="kol">×</span><span class="dugum asal">2</span><span class="kol">×</span><span class="dugum asal">3</span><span class="kol">×</span><span class="dugum asal">5</span></div>',
+
+    '<div class="satir"><span class="dugum">120</span></div>'+
+    '<div class="satir"><span class="dugum asal">2</span><span class="kol">×</span><span class="dugum asal">2</span><span class="kol">×</span><span class="dugum asal">2</span><span class="kol">×</span><span class="dugum asal">3</span><span class="kol">×</span><span class="dugum asal">5</span></div>'+
+    '<div class="satir" style="margin-top:14px"><span class="dugum">90</span></div>'+
+    '<div class="satir"><span class="dugum asal">2</span><span class="kol">×</span><span class="dugum asal">3</span><span class="kol">×</span><span class="dugum asal">3</span><span class="kol">×</span><span class="dugum asal">5</span></div>',
+
+    '<div class="satir"><span class="dugum">120</span></div>'+
+    '<div class="satir"><span class="dugum ortak">2</span><span class="kol">×</span><span class="dugum">2</span><span class="kol">×</span><span class="dugum">2</span><span class="kol">×</span><span class="dugum ortak">3</span><span class="kol">×</span><span class="dugum ortak">5</span></div>'+
+    '<div class="satir" style="margin-top:14px"><span class="dugum">90</span></div>'+
+    '<div class="satir"><span class="dugum ortak">2</span><span class="kol">×</span><span class="dugum">3</span><span class="kol">×</span><span class="dugum ortak">3</span><span class="kol">×</span><span class="dugum ortak">5</span></div>'+
+    '<div class="satir" style="margin-top:8px"><span class="kucuk">yeşiller ikisinde de var</span></div>',
+
+    '<div class="satir"><span class="dugum ortak">2</span><span class="kol">×</span><span class="dugum ortak">3</span><span class="kol">×</span><span class="dugum ortak">5</span><span class="kol">=</span><span class="dugum ortak" style="font-size:20px">30</span></div>'+
+    '<div class="satir" style="margin-top:10px"><span class="kucuk">EBOB(120, 90) = 30 — senin bulduğun sayı</span></div>'
+  ];
+  var YAZI=['Adım adım göster','Devam','Devam','Ortakları işaretle','Sonucu göster','Tamam ✓'];
+
+  elAgac.innerHTML=SAHNE[0];
+  btnA.onclick=function(){
+    aAdim++;
+    if(aAdim<SAHNE.length){
+      elAgac.innerHTML=SAHNE[aAdim];
+      btnA.textContent=YAZI[aAdim+1]||'Devam';
+      tit(12);
+      if(aAdim===SAHNE.length-1){ btnA.disabled=true; btnA.textContent='✓'; ac('k5'); zamanCiz(); }
+    }
+  };
+
+  /* ================= ADIM 5: EKOK ================= */
+  var TOPLAM=72, adimDk=0;
+  var hA=document.getElementById('hatA'), hB=document.getElementById('hatB'), hC=document.getElementById('hatC');
+  var btnZ=document.getElementById('btnZaman'), dE=document.getElementById('durumE'),
+      cT=document.getElementById('cakisTxt');
+
+  function zamanCiz(){
+    [hA,hB,hC].forEach(function(h){ h.innerHTML='';
+      for(var i=1;i<=TOPLAM;i++){ var d=document.createElement('div'); d.className='nk'; h.appendChild(d); }
+    });
+  }
+
+  btnZ.onclick=function(){
+    adimDk+=6;
+    if(adimDk>TOPLAM) adimDk=TOPLAM;
+    for(var i=1;i<=adimDk;i++){
+      var a=(i%12===0), b=(i%18===0);
+      if(a) hA.children[i-1].className='nk var';
+      if(b) hB.children[i-1].className='nk var2';
+      if(a&&b) hC.children[i-1].className='nk cakis';
+    }
+    if(adimDk>=36){
+      if(adimDk>=72){
+        cT.textContent='36. ve 72. dakika';
+        dE.className='durum ok';
+        dE.textContent='✓ 36 ve 72 — ikisinde de birlikteydiler';
+      }else{
+        cT.textContent='36. dakika';
+        dE.className='durum ok';
+        dE.textContent='✓ 36. dakikada ikisi de duraktaydı';
+      }
+      tit([18,40,18]);
+      ac('k6');
+      setTimeout(function(){ ac('k65'); ac('k7'); ac('k75'); document.getElementById('k8').classList.remove('gizli'); },500);
+    }else{
+      dE.className='durum yok';
+      dE.textContent=adimDk+'. dakika — henüz buluşmadılar';
+    }
+    if(adimDk>=TOPLAM){ btnZ.disabled=true; btnZ.textContent='✓ 72 dakika doldu'; }
+  };
+
+  /* ================= ADIM 7: ISE YARIYOR ================= */
+  var ISE=[
+    {b:'Müzik', h:'3 zamanlı ve 4 zamanlı ritim nerede buluşur?',
+     i:'<p>Bir davulcu <b>3</b>\'lük vuruyor, diğeri <b>4</b>\'lük. İkisinin vuruşu her <span class="vurguSari">12</span> vuruşta bir üst üste gelir. EKOK(3,4)=12.</p>'+
+       '<p>Halayda da böyledir: ayak bir sayıda, davul başka sayıda giderse, belli bir vuruşta buluşurlar.</p>',
+     k:'Kendin dene: masaya bir elinle 3\'lük, öbür elinle 4\'lük vur. 12\'de aynı anda düştüklerini duyacaksın.'},
+
+    {b:'Fayans', h:'Neden 30×30 ve 60×60 bu kadar yaygın?',
+     i:'<p>Oda ölçüleri genelde 10\'un katıdır. 30 ve 60 çoğu oda ölçüsünü tam böler — yani usta az keser, az fire verir.</p>'+
+       '<p>Fire = çöpe giden para. Usta EBOB\'u bilmese de <span class="vurguSari">elinde bilir</span>.</p>',
+     k:'Evdeki fayansı mezuraya vur. 30, 45 veya 60 cm çıkacak. Sonra odanın kenarını ölç, bölünüyor mu bak.'},
+
+    {b:'Dişli', h:'Motor zinciri ve dişliler',
+     i:'<p>Motosikletin ön dişlisi <b>48</b>, arka dişlisi <b>18</b> dişli olsun. Aynı iki diş yeniden karşılaşana kadar EKOK(48,18)=<span class="vurguSari">144</span> diş geçmesi gerekir.</p>'+
+       '<p>Mühendis bunu bilerek diş sayısı seçer: aynı ikili sürekli çarpışırsa o iki diş erken aşınır, zincir çabuk gider.</p>',
+     k:'Motorun ya da bisikletin varsa dişleri say. Ön ve arka dişlinin ortak böleni ne kadar azsa, aşınma o kadar dengeli dağılır — usta da bunu bilir.'},
+
+    {b:'Paketleme', h:'İki çuval, eşit poşetler',
+     i:'<p>Elinde <b>120</b> kg buğday, <b>90</b> kg arpa var. İkisini de <b>aynı boy</b> poşetlere dolduracaksın, hiç artmayacak, karıştırmayacaksın.</p>'+
+       '<p>En büyük poşet <span class="vurguSari">30 kg</span>. Buğday 4 poşet, arpa 3 poşet. Aynı fayans sorusu, kılık değiştirmiş hali.</p>',
+     k:'Bu soru sınavda hep çıkar. "En fazla kaç kişiye eşit dağıtılır" da aynı sorudur — cevabı EBOB.'},
+
+    {b:'Sulama', h:'İki tarlanın sulama sırası',
+     i:'<p>Köyde su sırası var. Sizin tarla <b>4</b> günde bir, amcanızın tarla <b>6</b> günde bir sulanıyor. Bugün ikisi de sulandı.</p>'+
+       '<p>Bir daha aynı gün sulanmaları için <span class="vurguSari">12</span> gün geçmeli. 4\'ün katları: 4, 8, <b>12</b>. 6\'nın katları: 6, <b>12</b>.</p>',
+     k:'İki iş belli aralıklarla tekrar ediyorsa, ne zaman aynı güne düşeceklerini EKOK söyler.'},
+  ];
+
+  var elSek=document.getElementById('sekmeler'), elIc=document.getElementById('icerik');
+  ISE.forEach(function(d,ix){
+    var b=document.createElement('button');
+    b.className='sekme'+(ix===0?' aktif':''); b.textContent=d.b;
+    b.onclick=function(){
+      [].forEach.call(elSek.children,function(c){c.className='sekme';});
+      b.className='sekme aktif'; goster(ix); tit(10);
+    };
+    elSek.appendChild(b);
+  });
+  function goster(ix){
+    var d=ISE[ix];
+    elIc.innerHTML='<h4>'+d.h+'</h4>'+d.i+'<div class="kanit">'+d.k+'</div>';
+  }
+  goster(0);
+
+  /* ================= KENDINI DENE ================= */
+  var SORULAR=[
+    {s:'120 kg buğday ve 90 kg arpayı, hiç artmadan <b>aynı boy</b> poşetlere dolduracaksın. Poşet en fazla kaç kiloluk olur?',
+     c:'EBOB', n:'Bir şeyi <b>bölüyorsun</b>. Cevap 30 — sayılardan küçük.'},
+    {s:'Bir servis 12 dakikada, öbürü 18 dakikada bir geliyor. İkisi ne zaman aynı anda durakta olur?',
+     c:'EKOK', n:'İki iş <b>tekrar tekrar</b> olup buluşuyor. Cevap 36 — sayılardan büyük.'},
+    {s:'Elinde 24 kalem, 36 silgi var. En fazla kaç öğrenciye eşit dağıtabilirsin?',
+     c:'EBOB', n:'Yine <b>dağıtma</b> var. Cevap 12 — sayılardan küçük.'},
+    {s:'İki lamba var: biri 6 saniyede, öbürü 8 saniyede bir yanıp sönüyor. Kaç saniyede bir birlikte yanarlar?',
+     c:'EKOK', n:'<b>Tekrar eden</b> iki iş buluşuyor. Cevap 24 — sayılardan büyük.'},
+    {s:'Zemine kesmeden, en büyük kare fayans döşeyeceksin.',
+     c:'EBOB', n:'Zemini <b>parçalara</b> ayırıyorsun. En büyük ortak bölen.'},
+    {s:'Şanlıurfa otobüsü 3 günde bir, Diyarbakır otobüsü 5 günde bir geliyor. Kaç günde bir aynı gün gelirler?',
+     c:'EKOK', n:'İki sefer <b>tekrar edip</b> buluşuyor. Cevap 15 — sayılardan büyük.'}
+  ];
+  var elTest=document.getElementById('testAlan'), elSkor=document.getElementById('testSkor');
+  var dogruSayi=0, cevaplanan=0;
+  function skorYaz(){
+    if(cevaplanan<SORULAR.length){
+      elSkor.className='ilerleme';
+      elSkor.innerHTML='<b>'+dogruSayi+' / '+SORULAR.length+'</b> doğru &nbsp;·&nbsp; '+(SORULAR.length-cevaplanan)+' soru kaldı';
+    }else{
+      elSkor.className='ilerleme tamam';
+      elSkor.innerHTML='✓ Bitti — '+dogruSayi+' / '+SORULAR.length+' doğru';
+    }
+  }
+  SORULAR.forEach(function(q){
+    var d=document.createElement('div'); d.className='sr';
+    d.innerHTML='<div class="srMetin">'+q.s+'</div>'+
+                '<div class="srBtn"><button data-c="EBOB">EBOB</button><button data-c="EKOK">EKOK</button></div>'+
+                '<div class="srGeri"></div>';
+    var cevaplandi=false;
+    [].forEach.call(d.querySelectorAll('button'), function(b){
+      b.onclick=function(){
+        if(cevaplandi) return;
+        cevaplandi=true; cevaplanan++;
+        var ok=(b.dataset.c===q.c);
+        if(ok) dogruSayi++;
+        d.className='sr '+(ok?'dogru':'yanlis');
+        d.querySelector('.srGeri').innerHTML=(ok?'✓ Doğru. ':'✗ Bu '+q.c+'. ')+q.n;
+        [].forEach.call(d.querySelectorAll('button'),function(x){x.disabled=true;});
+        tit(ok?12:[25,40,25]);
+        skorYaz();
+      };
+    });
+    elTest.appendChild(d);
+  });
+  skorYaz();
+
+  var btnB=document.getElementById('btnBastan');
+  if(btnB) btnB.onclick=function(){ location.reload(); };
+
+})();
+</script>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+// Init theme from storage
+window.addEventListener('load', function() {
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+});
+// Note-taking
+function saveNote() {
+  const txt = document.getElementById('notInput').value.trim();
+  if (txt) {
+    const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+    notes.push({page: location.pathname, text: txt, time: new Date().toISOString()});
+    localStorage.setItem('pageNotes', JSON.stringify(notes));
+    showNotes();
+    document.getElementById('notInput').value = '';
+  }
+}
+function clearNotes() {
+  if (window.confirm('Notları silmek istediğinizden emin misiniz?')) {
+    localStorage.removeItem('pageNotes');
+    showNotes();
+  }
+}
+function showNotes() {
+  const container = document.getElementById('notGoster');
+  container.innerHTML = '';
+  const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+  const pageNotes = notes.filter(n => n.page === location.pathname);
+  if (pageNotes.length === 0) {
+    container.innerHTML = '<i>Henüz not yok.</i>';
+    return;
+  }
+  const ul = document.createElement('ul');
+  pageNotes.forEach((n, idx) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${new Date(n.time).toLocaleString()}</strong>: ${n.text}`;
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
+}
+window.addEventListener('load', showNotes);
+</script>
+
+
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Tema</span>
+  <button onclick="toggleTheme()" style="margin-top:5px;">🌙/☀️ Tema Değiştir</button>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Not Defteri</span>
+  <textarea id="notInput" rows="2" placeholder="Bir not yazın..." style="width:100%;box-sizing:border-box;margin-top:5px;"></textarea>
+  <div style="margin-top:8px;">
+    <button id="saveNote" onclick="saveNote()" style="margin-right:5px;">Kaydet</button>
+    <button id="clearNote" onclick="clearNotes()">Sil</button>
+  </div>
+  <div id="notGoster" style="margin-top:10px;font-size:0.9em;color:#8b95ad;"></div>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Gerçek Hayat Örneği</span>
+  <p>ebob ekok konusuyla ilgili gerçek‑hayat örnekleri burada yer alabilir.</p>
+</div>
+
+</body>
+</html>

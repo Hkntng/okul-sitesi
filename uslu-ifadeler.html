@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1420">
+<title>Üslü İfadeler — Bu Ne İşe Yarıyor?</title>
+<meta name="description" content="Kağıdı 42 kez katlasan Ay'a ulaşır. Üslü ifadeler ne işe yarar: bakteriler, deprem, satranç ve telefon hafızasıyla öğren.">
+<meta property="og:title" content="Üslü İfadeler — Bu Ne İşe Yarıyor?">
+<meta property="og:description" content="Kağıdı 42 kez katlasan Ay'a ulaşır. İnanmıyor musun? Gel, birlikte katlayalım.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--tema:#f59e0b;--tema2:#fbbf24}
+body{background:#0b101e;color:#e8edf7;font-family:'Rubik',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:17px;line-height:1.6;
+background-image:radial-gradient(ellipse 80% 50% at 50% -10%,color-mix(in srgb,var(--tema) 16%,transparent),transparent 70%);background-repeat:no-repeat}
+.kap{max-width:430px;margin:0 auto;padding:16px 14px 60px}
+a{color:var(--tema2)}
+.ust{font-size:14px;color:#8b95ad;margin-bottom:14px}
+.konuIkon{width:62px;height:62px;border-radius:19px;display:flex;align-items:center;justify-content:center;font-size:31px;margin-top:16px;background:color-mix(in srgb,var(--tema) 17%,transparent);border:1px solid color-mix(in srgb,var(--tema) 42%,transparent);box-shadow:0 8px 24px color-mix(in srgb,var(--tema) 26%,transparent)}
+.ust a{text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:6px 12px;border-radius:10px;display:inline-block}
+h1{font-size:34px;line-height:1.1;margin:12px 0 6px;font-weight:900;letter-spacing:-1px;
+background:linear-gradient(100deg,#fff 20%,var(--tema2) 75%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.etiket{display:inline-block;background:color-mix(in srgb,var(--tema) 16%,transparent);color:var(--tema2);border:1px solid color-mix(in srgb,var(--tema) 35%,transparent);font-size:12px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;margin:10px 0 2px}
+.kart{background:linear-gradient(180deg,#151d31,#111828);border:1px solid #27314b;border-radius:18px;padding:18px 16px;margin:16px 0;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.kart::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tema),transparent 70%)}
+.kart h2{font-size:20px;margin-bottom:8px;font-weight:800;letter-spacing:-.3px}
+.kart p{margin:8px 0;font-size:16px}
+.gizli{display:none}
+.acilis{animation:belir .45s ease}
+@keyframes belir{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.adim{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;background:linear-gradient(135deg,var(--tema),var(--tema2));color:#0b101e;font-weight:800;font-size:14px;padding:0 9px;border-radius:13px;margin-bottom:8px;box-shadow:0 3px 10px color-mix(in srgb,var(--tema) 40%,transparent)}
+.adim.yesil{background:linear-gradient(135deg,#22c55e,#4ade80)}
+button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13px 18px;cursor:pointer}
+.btn{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 60%,#3050c8));color:#fff;font-weight:700;width:100%;margin-top:10px;box-shadow:0 6px 18px color-mix(in srgb,var(--tema) 35%,transparent)}
+.btn:active{transform:scale(.97)}
+.btn2{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--tema2);width:100%;margin-top:8px}
+.sonuc{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:13px;margin-top:10px;font-size:16px}
+.buyuk{font-size:23px;font-weight:800;color:var(--tema2)}
+.ok{color:#4ade80}.hata{color:#f87171}
+.kucuk{color:#8b95ad;font-size:14px}
+.vurgu{color:var(--tema2);font-weight:700}
+.kiyas{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:12px;margin:12px 0}
+.kiyasSatir{font-size:15px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
+.sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.sekme{flex:1;min-width:72px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 6px;border-radius:11px;text-align:center;transition:all .15s}
+.sekme.secili{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--tema) 35%,transparent)}
+.icerik{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:14px;margin-top:8px;font-size:16px}
+.ozet{background:linear-gradient(180deg,#1a1f33,#141a2c);border:1px solid color-mix(in srgb,var(--tema) 45%,transparent);border-radius:18px;padding:18px 16px;margin:20px 0;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.ozet h3{color:var(--tema2);font-size:15px;letter-spacing:2px;margin-bottom:10px}
+.ozetBlok{background:rgba(8,12,24,.7);border-radius:12px;padding:12px;margin:8px 0;font-size:16px}
+.soru{background:rgba(8,12,24,.55);border:1px solid #232d45;border-radius:14px;padding:13px;margin:10px 0}
+.secenek{display:block;width:100%;text-align:left;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:#e8edf7;margin:7px 0;padding:12px 14px;border-radius:11px;font-size:16px;transition:all .15s}
+.secenek:active{background:rgba(255,255,255,.1)}
+.secenek.dogru{background:rgba(34,197,94,.14);border-color:rgba(74,222,128,.5);color:#4ade80;font-weight:700}
+.secenek.yanlis{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.4);color:#f87171}
+.tablo{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
+.tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
+.alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+</style>
+
+<style>
+:root { --bg-dark:#0b101e; --bg-light:#fafafa; --text-dark:#e8edf7; --text-light:#111; --accent:#a3e635; }
+body.light { background:var(--bg-light); color:var(--text-light); }
+body.light .kart { background:#fff; border-color:#ddd; color:#111; }
+body.light .adim { background:#a3e635; color:#0b101e; }
+body.light button { background:#a3e635; color:#0b101e; }
+body.light .sekme.secili { background:#a3e635; color:#fff; }
+body.light .sonuc { background:#fff; border-color:#ddd; color:#111; }
+body.light .secenek { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
+body.light .sekme:active { background:#a3e635; }
+</style>
+
+</head>
+<body>
+<div class="kap">
+<div class="ust"><a href="index.html">← Ana sayfa</a></div>
+<span class="etiket">Matematik · 8. Sınıf · MAT.8.1.1</span>
+<div class="konuIkon">🚀</div>
+<h1>Üslü İfadeler</h1>
+<p class="kucuk" style="margin-bottom:6px">Yani: bir sayıyı kendisiyle defalarca çarpmanın kısa yolu. Ama önce bir iddia var.</p>
+<div style="font-size:14px;margin:4px 0 2px"><a href="#k6">↓ Hayatta nerede?</a> · <a href="#k7">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KART 1: KANCA - kagit katlama -->
+<div class="kart" id="k1">
+<span class="adim">1</span>
+<h2>İddia: Bu kağıdı Ay'a kadar katlayabilirsin</h2>
+<p>Elinde bir kağıt var. Kalınlığı <b>0,1 mm</b> — yani saç teli kadar.</p>
+<p>Onu ikiye katla. Sonra bir daha. Bir daha...</p>
+<p><b>Soru:</b> 42 kez katlasan kalınlık ne olur?</p>
+<button class="btn" id="btnKatla">KATLA 📄</button>
+<button class="btn2 gizli" id="btnSar">⏩ Sona sar — 42'ye kadar</button>
+<div class="sonuc" id="katSonuc">Katlama: <span class="buyuk" id="katSayi">0</span><br>
+Kalınlık: <span class="buyuk" id="katKalin">0,1 mm</span><br>
+<span class="kucuk" id="katNot">Her katlamada kalınlık İKİYE katlanıyor.</span></div>
+<div class="gizli" id="katFinal">
+<p style="margin-top:10px">📏 <b>439.805 km.</b> Ay'a uzaklık 384.400 km. <span class="vurgu">Ay'ı geçtin.</span></p>
+<p class="kucuk">Gerçekte kağıdı 7-8 kezden fazla katlayamazsın — denenmiştir, kağıt dayanmaz. Ama sayılar yalan söylemez: her katlama ×2, ve ×2'ler birikince patlama olur.</p>
+</div>
+</div>
+
+<!-- KART 2: ISIM SONRA -->
+<div class="kart" id="k2">
+<span class="adim">2</span>
+<h2>42 katlamayı yazmayı dene</h2>
+<p>Az önce yaptığın şey şuydu:</p>
+<p style="font-family:ui-monospace,Menlo,monospace;font-size:14px;word-break:break-all">2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2</p>
+<p>42 tane 2. Yazması eziyet, okuması eziyet. Matematikçiler de üşenmiş ve kısaltmış:</p>
+<p style="text-align:center;font-size:34px;margin:12px 0"><b>2<sup>42</sup></b></p>
+<p>Okunuşu: "2 üzeri 42". Alttaki sayı <b>taban</b> (neyi çarpıyoruz), üstteki <b>üs</b> (kaç kez).</p>
+<div class="kiyas">
+<div class="kiyasSatir">⚠️ En klasik tuzak:</div>
+<div class="kiyasSatir">2<sup>5</sup> = 2·2·2·2·2 = <span class="ok">32</span></div>
+<div class="kiyasSatir">2 × 5 = <span class="hata">10</span> — bu DEĞİL</div>
+</div>
+<p class="kucuk">Üs "kaç kez çarp" demek, "kaçla çarp" demek değil.</p>
+</div>
+
+<!-- KART 3: ORUNTU - sifir ve negatif us -->
+<div class="kart" id="k3">
+<span class="adim">3</span>
+<h2>Şimdi sen keşfet: 3<sup>0</sup> kaçtır?</h2>
+<p>Kural falan ezberlemeden. Sadece şu örüntüye bak — her adımda <b>3'e bölüyoruz</b>:</p>
+<div class="kiyas">
+<div class="kiyasSatir">3<sup>3</sup> = 27</div>
+<div class="kiyasSatir">3<sup>2</sup> = 9 &nbsp;<span class="kucuk">(27 ÷ 3)</span></div>
+<div class="kiyasSatir">3<sup>1</sup> = 3 &nbsp;<span class="kucuk">(9 ÷ 3)</span></div>
+<div class="kiyasSatir">3<sup>0</sup> = <b>?</b> &nbsp;<span class="kucuk">(3 ÷ 3)</span></div>
+</div>
+<div class="soru">
+<button class="secenek" data-c="0">0</button>
+<button class="secenek" data-c="1">1</button>
+<button class="secenek" data-c="3">3</button>
+</div>
+<div class="gizli" id="k3devam">
+<p><span class="ok">✓ 1.</span> Çünkü 3÷3=1. Herhangi bir sayının 0. kuvveti 1'dir — ezber değil, örüntünün devamı.</p>
+<p>Peki örüntü durmazsa? Devam et bölmeye:</p>
+<div class="kiyas">
+<div class="kiyasSatir">3<sup>-1</sup> = 1/3 &nbsp;<span class="kucuk">(1 ÷ 3)</span></div>
+<div class="kiyasSatir">3<sup>-2</sup> = 1/9 &nbsp;<span class="kucuk">(1/3 ÷ 3)</span></div>
+</div>
+<p><b>Negatif üs = küçülme.</b> Pozitif üs dev sayılar üretir, negatif üs kırıntılar.</p>
+<p class="kucuk">Nerede lazım? Bir virüs ~100 nanometre. Nanometre = metrenin milyarda biri (10<sup>-9</sup> m) — yani 100 nanometre = 10<sup>-7</sup> metre. 1 milimetreye yan yana <b>10.000 virüs</b> sığar. Mikroskop dünyası negatif üsle yazılır.</p>
+</div>
+</div>
+
+<!-- KART 4: CARPMA KURALI KESIF -->
+<div class="kart" id="k4">
+<span class="adim">4</span>
+<h2>Kuralı sana söylemeyeceğim, bulacaksın</h2>
+<p>2<sup>3</sup> × 2<sup>2</sup> kaç eder? Aç bakalım içini:</p>
+<div class="kiyas">
+<div class="kiyasSatir">2<sup>3</sup> × 2<sup>2</sup> = (2·2·2) × (2·2)</div>
+<div class="kiyasSatir">= 2·2·2·2·2 = 2<sup>?</sup></div>
+</div>
+<div class="soru">
+<button class="secenek" data-k="5">2<sup>5</sup></button>
+<button class="secenek" data-k="6">2<sup>6</sup></button>
+</div>
+<div class="gizli" id="k4devam">
+<p><span class="ok">✓ 2<sup>5</sup>.</span> Üç tane 2, yanına iki tane 2 daha = beş tane 2. <b>Çarpınca üsler toplanır.</b></p>
+<p>Bölme de tersi — üsler çıkar: 2<sup>15</sup> ÷ 2<sup>3</sup> = 2<sup>12</sup> = 4096.</p>
+<p class="kucuk">Bunu ezberden değil buradan bil: üs zaten "kaç tane çarpım var"ın sayacı. Sayaçlar toplanır.</p>
+<p class="kucuk">Köyden örnek: bir çift tavşan her ay ikiye katlansa 12 ay sonra 2<sup>12</sup> = 4.096 çift olur. Pazardaki "hızla çoğalır" lafının matematiği budur.</p>
+</div>
+</div>
+
+<!-- KART 5: BILIMSEL GOSTERIM -->
+<div class="kart" id="k5">
+<span class="adim">5</span>
+<h2>Türkiye'nin nüfusunu yaz bakalım</h2>
+<p>85.664.944 kişi. Haberlerde, raporlarda bu sayı şöyle yazılır:</p>
+<p style="text-align:center;font-size:26px;margin:10px 0"><b>≈ 8,57 × 10<sup>7</sup></b></p>
+<p>Buna <b>bilimsel gösterim</b> denir: 1 ile 10 arası bir sayı × 10'un kuvveti. Neden? Çünkü sıfır saymak hata kaynağıdır — üs saymak değildir.</p>
+<table class="tablo">
+<tr><th>Ne</th><th>Sayı</th><th>Bilimsel</th></tr>
+<tr><td>Türkiye</td><td>85.664.944</td><td>8,57 × 10<sup>7</sup></td></tr>
+<tr><td>Diyarbakır</td><td>1.833.684</td><td>1,83 × 10<sup>6</sup></td></tr>
+<tr><td>Dünya</td><td>~8 milyar</td><td>8 × 10<sup>9</sup></td></tr>
+</table>
+<p>Üslere bak: 10<sup>7</sup> ile 10<sup>6</sup>. Aradaki fark bir üs = <b>~10 kat</b>. Gerçek oran: 85,7/1,83 ≈ <b>47 kat</b>. Üsler sana saniyede "kaç basamak fark var" söyler.</p>
+<p class="kucuk">☀️ Güneş'ten çıkan ışık sana 1,5 × 10<sup>11</sup> metre yol gelir. Hızı 3 × 10<sup>8</sup> m/sn. Bölme yap: üsler çıkar → 0,5 × 10<sup>3</sup> = 500 saniye ≈ <b>8 dakika</b>. (Sayıları yuvarladık; tam hesap 8 dk 19 sn verir — üslü gösterim işte bu yüzden var: kabaca ama çok hızlı hesap.) Yani şu an gördüğün Güneş, 8 dakika önceki Güneş.</p>
+</div>
+
+<!-- KART 6: SEKMELER -->
+<div class="kart" id="k6">
+<span class="adim yesil">Hayatta nerede?</span>
+<h2>Seç, bak</h2>
+<div class="sekmeler">
+<div class="sekme secili" data-s="0">♟️ Satranç</div>
+<div class="sekme" data-s="1">🌍 Deprem</div>
+<div class="sekme" data-s="2">📱 Telefon</div>
+<div class="sekme" data-s="3">💬 Zincir</div>
+</div>
+<div class="icerik" id="sekmeIcerik"></div>
+</div>
+
+<!-- KART 7: TEST -->
+<div class="kart" id="k7">
+<span class="adim yesil">Kendini dene</span>
+<h2>5 soru — çözersen bu konu sende</h2>
+<div id="testAlan"></div>
+<div class="sonuc gizli" id="testSonuc"></div>
+<button class="btn2 gizli" id="btnBastan">Baştan dene</button>
+</div>
+
+<!-- OZET: HER ZAMAN ACIK -->
+<div class="ozet" id="ozet">
+<h3>📌 CEBİNDE KALSIN</h3>
+<div class="ozetBlok"><b>Üs nedir?</b> Aynı sayıyı kaç kez çarptığının sayacı. 2<sup>5</sup> = 2·2·2·2·2 = 32. (2×5=10 DEĞİL!)</div>
+<div class="ozetBlok"><b>Sıfırıncı kuvvet:</b> her sayıda 1. Çünkü örüntü öyle diyor: 27→9→3→<b>1</b></div>
+<div class="ozetBlok"><b>Negatif üs:</b> kesir. 3<sup>-2</sup> = 1/9. Küçülen dünya (virüs, atom) bununla yazılır.</div>
+<div class="ozetBlok"><b>Çarpmada üsler toplanır,</b> bölmede çıkar: 2<sup>3</sup>·2<sup>2</sup>=2<sup>5</sup>, 2<sup>15</sup>÷2<sup>3</sup>=2<sup>12</sup></div>
+<div class="ozetBlok"><b>Bilimsel gösterim:</b> 85.664.944 ≈ 8,57×10<sup>7</sup>. Sıfır sayma, üs say.</div>
+</div>
+
+<div class="alt">
+<a href="index.html">← Ana sayfa</a> · <a href="ebob-ekok.html">EBOB &amp; EKOK</a><br><br>
+Kaynaklar: TÜİK 2024 nüfus verileri (ADNKS) · MEB Türkiye Yüzyılı Maarif Modeli (MAT.8.1.1)<br>
+Bir hata gördün mü? Hocana söyle, düzeltelim.
+</div>
+</div>
+
+<script>
+function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
+function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');e.classList.add('acilis');}}
+
+// KART 1: katlama
+var kat=0;
+var hedefler={7:"1,3 cm — kalem kalınlığı. Gerçekte burada takılırsın!",10:"10 cm — el kadar",15:"3,3 metre — oda tavanı",20:"105 metre — 30 katlı bina",25:"3,4 km — uçak yüksekliğine yaklaştın",30:"107 km — uzay sınırını geçtin",35:"3.436 km — Türkiye'nin bir ucundan öbürüne",42:"439.805 km — AY'I GEÇTİN 🌕"};
+function katGoster(){
+  var kalin=0.1*Math.pow(2,kat); // mm
+  var s;
+  if(kalin<10)s=kalin.toFixed(1).replace('.',',')+" mm";
+  else if(kalin<1000)s=(kalin/10).toFixed(1).replace('.',',')+" cm";
+  else if(kalin<1e6)s=(kalin/1000).toFixed(1).replace('.',',')+" m";
+  else s=Math.round(kalin/1e6).toLocaleString('tr-TR')+" km";
+  document.getElementById('katSayi').textContent=kat;
+  document.getElementById('katKalin').textContent=s;
+  if(hedefler[kat])document.getElementById('katNot').textContent="📍 "+hedefler[kat];
+}
+function katBitti(){
+  ac('katFinal');
+  document.getElementById('btnKatla').textContent="Bitti — 42 katlama ✓";
+  document.getElementById('btnKatla').disabled=true;
+  document.getElementById('btnSar').classList.add('gizli');
+  tit([18,40,18]);
+}
+document.getElementById('btnKatla').addEventListener('click',function(){
+  if(kat>=42)return;
+  kat++; katGoster(); tit(10);
+  if(kat===10)ac('btnSar');
+  if(kat===42)katBitti();
+});
+document.getElementById('btnSar').addEventListener('click',function(){
+  var t=setInterval(function(){
+    kat++; katGoster();
+    if(kat>=42){clearInterval(t);katBitti();}
+  },90);
+  this.disabled=true;
+});
+
+// KART 3: 3^0 sorusu
+document.querySelectorAll('#k3 .secenek').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#k3 .secenek').forEach(function(x){x.disabled=true;});
+    if(this.dataset.c==="1"){this.classList.add('dogru');tit([18,40,18]);}
+    else{this.classList.add('yanlis');
+      document.querySelector('#k3 .secenek[data-c="1"]').classList.add('dogru');}
+    ac('k3devam');
+  });
+});
+
+// KART 4: kural kesfi
+document.querySelectorAll('#k4 .secenek').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#k4 .secenek').forEach(function(x){x.disabled=true;});
+    if(this.dataset.k==="5"){this.classList.add('dogru');tit([18,40,18]);}
+    else{this.classList.add('yanlis');
+      document.querySelector('#k4 .secenek[data-k="5"]').classList.add('dogru');}
+    ac('k4devam');
+  });
+});
+
+// KART 6: sekmeler
+var sekmeler=[
+ '<b>Önce tahmin et:</b> 64. karede kaç buğday olur — milyon mu, milyar mı, daha mı fazla? 👇<br><br><b>Satranç ve buğday.</b> Efsaneye göre mucit, kralından şunu ister: 1. kareye 1 buğday, 2. kareye 2, sonra 4, 8... her karede iki kat. Kral güler, "hepsi bu mu?" der. 64. karede sayı: 2<sup>63</sup>. Toplam: 2<sup>64</sup>−1 = <b>18.446.744.073.709.551.615</b> tane. Dünyanın yıllık üretiminin yüzlerce katı. Kral üs bilmediği için kandı.',
+ '<b>Önce tahmin et:</b> 7,7 ile 5,7 deprem arasında enerji farkı kaç kat? 2 kat mı? 👇<br><br><b>Deprem büyüklüğü üslü bir ölçektir.</b> Büyüklük 1 birim artınca yerin sarsıntısı 10 kat, açığa çıkan enerji ~32 kat artar. 2 birim fark = enerji ~<b>1000 kat</b>. Yani 7,7 ile 5,7 arasındaki fark "biraz daha büyük" değil, bin kat daha fazla enerjidir. Binaların neden sıkı denetlendiğinin matematiği budur.',
+ '<b>Önce tahmin et:</b> telefon hafızaları neden hep 32-64-128 GB olur da 100 GB olmaz? 👇<br><br><b>Telefonundaki her şey 2\'nin kuvveti.</b> 128 GB hafıza: 2<sup>7</sup> GB. Bir renk kanalı 0-255 arası: 2<sup>8</sup> değer. Wi-Fi şifren 8 karakterse ve her karakter için ~64 seçenek varsa olasılık 64<sup>8</sup> = 2<sup>48</sup> ≈ 281 trilyon deneme. Bilgisayar dünyası 2 tabanında konuşur çünkü devrede iki durum var: akım var / yok.',
+ '<b>Önce tahmin et:</b> Herkes 5 kişiye gönderse 10 adımda kaç kişiye ulaşır? 👇<br><br><b>"Bu mesajı 5 kişiye gönder" zinciri.</b> Herkes 5 kişiye gönderse: 1. adımda 5, 2. adımda 25, 10. adımda 5<sup>10</sup> = <b>9.765.625</b> kişi. 13. adımda Türkiye nüfusunu geçer. Zincir mesajlar bu yüzden "herkese ulaşır" ve bu yüzden çoğu dolandırıcılıktır: üstel büyüme bedava reklamdır.'
+];
+function sekmeGoster(i){
+  document.getElementById('sekmeIcerik').innerHTML=sekmeler[i];
+  document.querySelectorAll('.sekme').forEach(function(s,j){s.classList.toggle('secili',j===i);});
+}
+document.querySelectorAll('.sekme').forEach(function(s,i){
+  s.addEventListener('click',function(){sekmeGoster(i);tit(10);});
+});
+sekmeGoster(0);
+
+// KART 7: TEST — her cevapta "Neden" aciklamasi
+var sorular=[
+ {s:"2<sup>4</sup> kaçtır?", c:["16","8"], d:0,
+  n:"2·2·2·2 = 16. Üs 'kaç kez çarp' der: dört kez. 2×4=8 tuzağına düşme."},
+ {s:"5<sup>0</sup> kaçtır?", c:["0","1"], d:1,
+  n:"Örüntüyü hatırla: 125→25→5→1. Her adım 5'e bölme. 5÷5=1. Sıfırıncı kuvvet her sayıda 1."},
+ {s:"2<sup>-3</sup> kaçtır?", c:["1/8","-8"], d:0,
+  n:"Negatif üs = kesir, eksili sayı DEĞİL. 2<sup>-3</sup> = 1/2<sup>3</sup> = 1/8. Bölme örüntüsünün devamı."},
+ {s:"3<sup>4</sup> × 3<sup>2</sup> = ?", c:["3<sup>6</sup>","3<sup>8</sup>"], d:0,
+  n:"Dört tane 3'ün yanına iki tane 3 daha = altı tane 3. Çarpınca üsler TOPLANIR: 4+2=6. Üsleri çarpma tuzağına (4×2=8) düşme."},
+ {s:"7.500.000 sayısının bilimsel gösterimi?", c:["7,5 × 10<sup>6</sup>","75 × 10<sup>5</sup>"], d:0,
+  n:"İkisi de aynı değer ama bilimsel gösterimde baştaki sayı 1 ile 10 arasında olmalı. 75 olmaz, 7,5 olur."}
+];
+var dogru=0, cevaplanan=0;
+var alan=document.getElementById('testAlan');
+sorular.forEach(function(q,qi){
+  var kutu=document.createElement('div');kutu.className='soru';
+  kutu.innerHTML='<p><b>'+(qi+1)+'.</b> '+q.s+'</p>';
+  q.c.forEach(function(sec,si){
+    var b=document.createElement('button');b.className='secenek';b.innerHTML=sec;
+    b.addEventListener('click',function(){
+      if(kutu.dataset.ok)return;
+      kutu.dataset.ok="1";cevaplanan++;
+      kutu.querySelectorAll('.secenek').forEach(function(x,xi){
+        x.disabled=true;
+        if(xi===q.d)x.classList.add('dogru');
+      });
+      if(si===q.d){dogru++;tit([18,40,18]);}
+      else{b.classList.add('yanlis');}
+      var ne=document.createElement('p');ne.className='kucuk';
+      ne.innerHTML='<b>Neden:</b> '+q.n;kutu.appendChild(ne);
+      if(cevaplanan===sorular.length){
+        var ts=document.getElementById('testSonuc');
+        ts.classList.remove('gizli');
+        ts.innerHTML = dogru===5 ? '<span class="ok">5/5 — bu konu sende. 💪</span>'
+          : '<b>'+dogru+'/5.</b> Yanlışların "Neden" satırını oku, sonra baştan dene.';
+        ac('btnBastan');
+      }
+    });
+    kutu.appendChild(b);
+  });
+  alan.appendChild(kutu);
+});
+document.getElementById('btnBastan').addEventListener('click',function(){location.reload();});
+</script>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+// Init theme from storage
+window.addEventListener('load', function() {
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+});
+// Note-taking
+function saveNote() {
+  const txt = document.getElementById('notInput').value.trim();
+  if (txt) {
+    const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+    notes.push({page: location.pathname, text: txt, time: new Date().toISOString()});
+    localStorage.setItem('pageNotes', JSON.stringify(notes));
+    showNotes();
+    document.getElementById('notInput').value = '';
+  }
+}
+function clearNotes() {
+  if (window.confirm('Notları silmek istediğinizden emin misiniz?')) {
+    localStorage.removeItem('pageNotes');
+    showNotes();
+  }
+}
+function showNotes() {
+  const container = document.getElementById('notGoster');
+  container.innerHTML = '';
+  const notes = JSON.parse(localStorage.getItem('pageNotes') || '[]');
+  const pageNotes = notes.filter(n => n.page === location.pathname);
+  if (pageNotes.length === 0) {
+    container.innerHTML = '<i>Henüz not yok.</i>';
+    return;
+  }
+  const ul = document.createElement('ul');
+  pageNotes.forEach((n, idx) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${new Date(n.time).toLocaleString()}</strong>: ${n.text}`;
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
+}
+window.addEventListener('load', showNotes);
+</script>
+
+
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Tema</span>
+  <button onclick="toggleTheme()" style="margin-top:5px;">🌙/☀️ Tema Değiştir</button>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Not Defteri</span>
+  <textarea id="notInput" rows="2" placeholder="Bir not yazın..." style="width:100%;box-sizing:border-box;margin-top:5px;"></textarea>
+  <div style="margin-top:8px;">
+    <button id="saveNote" onclick="saveNote()" style="margin-right:5px;">Kaydet</button>
+    <button id="clearNote" onclick="clearNotes()">Sil</button>
+  </div>
+  <div id="notGoster" style="margin-top:10px;font-size:0.9em;color:#8b95ad;"></div>
+</div>
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Gerçek Hayat Örneği</span>
+  <p>uslu ifadeler konusuyla ilgili gerçek‑hayat örnekleri burada yer alabilir.</p>
+</div>
+
+</body>
+</html>
