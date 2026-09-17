@@ -248,5 +248,24 @@ window.addEventListener('load', showNotes);
   <p>index konusuyla ilgili gerçek‑hayat örnekleri burada yer alabilir.</p>
 </div>
 
+<!-- okul-nav-progress -->
+<script>
+(function(){
+  var slugs=['1-carpanlar', 'ebob-ekok', 'uslu-ifadeler', 'karekok', 'veri-analizi', 'olasilik', 'cebir', 'denklemler', 'esitsizlikler', 'ucgenler', 'benzerlik', 'donusum', 'cisimler'];
+  slugs.forEach(function(s){
+    if(localStorage.getItem('okul_done_'+s)==='1'){
+      var a=document.querySelector('a[href="'+s+'.html"]');
+      if(a){
+        var b=document.createElement('span');
+        b.textContent=' ✓';
+        b.style.color='#3fb950';b.style.fontWeight='800';
+        var h=a.querySelector('b,strong,h3')||a;
+        h.appendChild(b);
+      }
+    }
+  });
+})();
+</script>
+
 </body>
 </html>

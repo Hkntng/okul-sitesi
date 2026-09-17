@@ -344,5 +344,31 @@ window.addEventListener('load', showNotes);
   <p>donusum konusuyla ilgili gerçek‑hayat örnekleri burada yer alabilir.</p>
 </div>
 
+<!-- okul-nav-progress -->
+<div style="max-width:430px;margin:24px auto 0;padding:0 16px">
+  <button id="okulDoneBtn" onclick="okulToggleDone()" style="width:100%;padding:14px;border-radius:13px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit">✓ Bu konuyu bitirdim</button>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin:18px 0 30px;gap:10px;flex-wrap:wrap">
+    <a href="benzerlik.html" style="color:#7da8d8;text-decoration:none;font-size:15px">← Eşlik ve Benzerlik</a>
+    <a href="index.html" style="color:#8b949e;text-decoration:none;font-size:14px">Ana sayfa</a>
+    <a href="cisimler.html" style="color:#7da8d8;text-decoration:none;font-size:15px">Geometrik Cisimler →</a>
+  </div>
+</div>
+<script>
+(function(){
+  var slug='donusum';
+  var key='okul_done_'+slug;
+  var btn=document.getElementById('okulDoneBtn');
+  function render(){
+    if(localStorage.getItem(key)==='1'){btn.textContent='✓ Bitirdin! (geri almak için dokun)';btn.style.background='#12251a';btn.style.borderColor='#3fb950';btn.style.color='#8ce89f';}
+    else{btn.textContent='✓ Bu konuyu bitirdim';btn.style.background='#1b2436';btn.style.borderColor='#2c3950';btn.style.color='#c9d3e0';}
+  }
+  window.okulToggleDone=function(){
+    if(localStorage.getItem(key)==='1')localStorage.removeItem(key);else localStorage.setItem(key,'1');
+    render();
+  };
+  render();
+})();
+</script>
+
 </body>
 </html>
