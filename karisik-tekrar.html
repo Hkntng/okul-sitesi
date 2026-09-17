@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Karışık Tekrar — 8. Sınıf Matematik</title>
+<meta name="description" content="12 konudan karışık sorularla kendini test et. Araştırmalar karışık tekrarın en kalıcı öğrenme yolu olduğunu gösteriyor.">
+<meta property="og:title" content="Karışık Tekrar — 8. Sınıf Matematik">
+<meta property="og:description" content="12 konudan karışık soru: hatırlama alıştırması ile kalıcı öğren.">
+<meta property="og:url" content="https://hkntng.github.io/okul-sitesi/karisik-tekrar.html">
+<style>
+:root{color-scheme:dark}
+body{margin:0;background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.55}
+.sar{max-width:430px;margin:0 auto;padding:24px 16px 60px}
+h1{font-size:24px;margin:10px 0 4px}
+.alt-baslik{color:#8b949e;font-size:14px;margin-bottom:18px}
+.kart{background:#161d2b;border:1px solid #2c3950;border-radius:14px;padding:18px;margin-bottom:14px}
+.rozet{display:inline-block;background:#1f2b3f;color:#7da8d8;font-size:12px;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.soruTxt{font-size:16px;font-weight:600;margin:6px 0 14px}
+.sik{display:block;width:100%;box-sizing:border-box;padding:13px;margin-bottom:8px;border-radius:10px;border:1px solid #2c3950;background:#10151f;color:#e6edf3;font-size:15px;cursor:pointer;text-align:left;font-family:inherit}
+.sik.dogru{background:#12251a;border-color:#3fb950;color:#8ce89f}
+.sik.yanlis{background:#2b1518;border-color:#f85149;color:#ffa198}
+.aciklama{display:none;font-size:14px;padding:10px 12px;border-radius:10px;margin-top:6px}
+.aciklama.g{display:block;background:#12251a;color:#8ce89f}
+.aciklama.k{display:block;background:#2b1518;color:#ffa198}
+.ilerle{width:100%;padding:14px;border-radius:12px;border:0;background:#2f81f7;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px}
+.ilerle:disabled{opacity:.4;cursor:default}
+.skorKutu{text-align:center;padding:30px 18px}
+.buyukSkor{font-size:44px;font-weight:800;margin-bottom:6px}
+.bar{height:6px;background:#1f2733;border-radius:3px;overflow:hidden;margin:14px 0 22px}
+.bar>div{height:100%;background:#2f81f7;transition:width .3s}
+a{color:#7da8d8}
+.nav{display:flex;justify-content:space-between;margin-top:26px;font-size:14px}
+.nav a{text-decoration:none}
+</style>
+</head>
+<body>
+<div class="sar">
+  <h1>🔀 Karışık Tekrar</h1>
+  <div class="alt-baslik">12 konudan rastgele 8 soru. Araştırmalara göre karışık tekrar, tek konuyu üst üste çözmekten çok daha kalıcı öğrenme sağlar.<br><span style="font-size:12px">Kaynak: <a href="https://pdf.retrievalpractice.org/SpacingGuide.pdf" target="_blank" rel="noopener">retrievalpractice.org</a> · Cepeda vd. (2006)</span></div>
+  <div class="bar"><div id="bar" style="width:0%"></div></div>
+  <div id="alan"></div>
+  <div class="nav"><a href="index.html">← Ana sayfa</a><a href="#" onclick="location.reload();return false">↺ Yeni set</a></div>
+</div>
+<script>
+(function(){
+var BANKA=[
+ {k:"Çarpanlar",s:"60 sayısının asal çarpan gösterimi hangisi?",c:["2²×3×5","2×3×10","4×15"],d:0,a:"60=2×2×3×5. 10 ve 15 asal değildir, dallanmaya devam edilir."},
+ {k:"Çarpanlar",s:"EBOB(24,36) kaçtır?",c:["12","6","72"],d:0,a:"24=2³×3, 36=2²×3². Ortak asalların küçük üsleri: 2²×3=12. 72 ise EKOK'tur."},
+ {k:"Üslü İfadeler",s:"2⁵ × 2³ işleminin sonucu hangisine eşittir?",c:["2⁸","2¹⁵","4⁸"],d:0,a:"Tabanlar aynıysa üsler toplanır: 5+3=8. Üsler çarpılmaz, tabanlar da çarpılmaz."},
+ {k:"Üslü İfadeler",s:"0,00042 sayısının bilimsel gösterimi?",c:["4,2×10⁻⁴","42×10⁻⁵","4,2×10⁴"],d:0,a:"Katsayı 1≤a<10 olmalı: 4,2. Virgül 4 basamak sağa gitti → 10⁻⁴."},
+ {k:"Karekök",s:"√50 ifadesinin a√b biçimi hangisi?",c:["5√2","2√5","25√2"],d:0,a:"50=25×2 → √50=√25×√2=5√2."},
+ {k:"Karekök",s:"√30 hangi iki doğal sayı arasındadır?",c:["5 ile 6","4 ile 5","6 ile 7"],d:0,a:"5²=25 < 30 < 36=6². Yani 5 ile 6 arasında."},
+ {k:"Veri Analizi",s:"5, 7, 7, 9, 12 verisinin medyanı (ortanca) kaçtır?",c:["7","9","8"],d:0,a:"Sıralı 5 elemanın ortasındaki (3.) değer 7'dir. 8 aritmetik ortalamadır."},
+ {k:"Veri Analizi",s:"Hangi grafik, bütünün parçalarını göstermek için en uygundur?",c:["Daire grafiği","Çizgi grafiği","Histogram"],d:0,a:"Daire grafiği yüzde/pay gösterir. Çizgi zamana bağlı değişim, histogram gruplandırılmış veri içindir."},
+ {k:"Olasılık",s:"Bir zar atılıyor. Asal sayı gelme olasılığı kaçtır?",c:["3/6","2/6","4/6"],d:0,a:"Zarda asallar: 2, 3, 5 → 3 tane. Olasılık 3/6=1/2. (1 asal değildir!)"},
+ {k:"Olasılık",s:"Bir torbada 3 kırmızı, 5 mavi top var. Kırmızı çekme olasılığı?",c:["3/8","3/5","5/8"],d:0,a:"Toplam 8 top, istenen 3 → 3/8. Payda her zaman TÜM durumlardır."},
+ {k:"Cebir",s:"(x+3)² özdeşliğinin açılımı hangisi?",c:["x²+6x+9","x²+9","x²+3x+9"],d:0,a:"(a+b)²=a²+2ab+b². Orta terim 2·x·3=6x unutulmaz!"},
+ {k:"Cebir",s:"x²−16 ifadesinin çarpanlara ayrılmış hâli?",c:["(x−4)(x+4)","(x−4)²","(x−8)(x+2)"],d:0,a:"İki kare farkı: a²−b²=(a−b)(a+b). 16=4²."},
+ {k:"Denklemler",s:"3x−7=8 denkleminde x kaçtır?",c:["5","3","15"],d:0,a:"3x=15 → x=5. Önce sabit karşıya atılır, sonra bölünür."},
+ {k:"Denklemler",s:"y=2x+1 doğrusunun eğimi kaçtır?",c:["2","1","3"],d:0,a:"y=mx+n biçiminde m eğimdir → 2. Sabit terim 1, y eksenini kestiği yerdir."},
+ {k:"Eşitsizlikler",s:"−2x > 6 eşitsizliğinin çözümü hangisi?",c:["x < −3","x > −3","x < 3"],d:0,a:"Negatifle bölünce eşitsizlik YÖN DEĞİŞTİRİR: x < −3. En sık yapılan hata!"},
+ {k:"Eşitsizlikler",s:"'En az 12' ifadesinin matematik dili hangisi?",c:["x ≥ 12","x > 12","x ≤ 12"],d:0,a:"'En az' alt sınırı DAHİL eder → ≥. 'den fazla' olsaydı > olurdu."},
+ {k:"Üçgenler",s:"Kenarları 3, 4, 5 olan üçgen için hangisi doğrudur?",c:["Dik üçgendir","Eşkenar üçgendir","Üçgen oluşmaz"],d:0,a:"3²+4²=9+16=25=5² → Pisagor sağlanır, dik üçgendir."},
+ {k:"Üçgenler",s:"Bir üçgende iki kenar 5 ve 9 ise üçüncü kenar hangisi OLAMAZ?",c:["14","6","10"],d:0,a:"Üçüncü kenar |9−5|=4 ile 9+5=14 ARASINDA olmalı (uçlar hariç). 14 olamaz."},
+ {k:"Benzerlik",s:"Benzerlik oranı 2/3 olan üçgenlerde küçüğün çevresi 12 ise büyüğünki kaç?",c:["18","8","24"],d:0,a:"Çevreler de benzerlik oranındadır: 12÷(2/3)=18."},
+ {k:"Benzerlik",s:"Eş üçgenler için hangisi her zaman doğrudur?",c:["Alanları eşittir","Sadece açıları eşittir","Kenarları orantılıdır ama eşit değildir"],d:0,a:"Eşlik = tüm kenar ve açılar eşit → alanlar da eşit. Benzerlikte ise oran vardır."},
+ {k:"Dönüşüm",s:"A(3,−2) noktasının x eksenine göre yansıması hangisi?",c:["(3,2)","(−3,−2)","(−3,2)"],d:0,a:"x eksenine göre yansımada x aynı kalır, y işaret değiştirir."},
+ {k:"Dönüşüm",s:"Bir şekil 5 birim sağa ötelenirse hangisi değişir?",c:["Konumu","Boyutu","Açıları"],d:0,a:"Öteleme sadece konum değiştirir; boyut, açı ve biçim korunur."},
+ {k:"Cisimler",s:"Taban yarıçapı 3, yüksekliği 5 olan silindirin hacmi kaç π'dir?",c:["45π","30π","15π"],d:0,a:"V=πr²h=π×9×5=45π. Önce yarıçapın KARESİ alınır."},
+ {k:"Cisimler",s:"Bir dik prizmanın hacmi neye eşittir?",c:["Taban alanı × yükseklik","Taban çevresi × yükseklik","Tüm yüzey alanları toplamı"],d:0,a:"Hacim = taban alanı × yükseklik. Çevre×yükseklik yanal alanı verir."}
+];
+// Karıştır, 8 soru seç, şıkları da karıştır
+function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+var sorular=shuf(BANKA.slice()).slice(0,8).map(function(q){
+  var idx=shuf(q.c.map(function(_,i){return i}));
+  return {k:q.k,s:q.s,c:idx.map(function(i){return q.c[i]}),d:idx.indexOf(q.d),a:q.a};
+});
+var i=0, dogru=0, alan=document.getElementById('alan'), bar=document.getElementById('bar');
+function goster(){
+  bar.style.width=(i/sorular.length*100)+'%';
+  if(i>=sorular.length){ return bitir(); }
+  var q=sorular[i], h='<div class="kart"><span class="rozet">'+q.k+' · '+(i+1)+'/'+sorular.length+'</span>';
+  h+='<div class="soruTxt">'+q.s+'</div>';
+  q.c.forEach(function(c,j){ h+='<button class="sik" data-j="'+j+'">'+c+'</button>'; });
+  h+='<div class="aciklama" id="ac"></div>';
+  h+='<button class="ilerle" id="devam" disabled>Sonraki soru →</button></div>';
+  alan.innerHTML=h;
+  Array.prototype.forEach.call(alan.querySelectorAll('.sik'),function(b){
+    b.onclick=function(){
+      if(document.getElementById('devam').disabled===false) return;
+      var j=+b.getAttribute('data-j'), ac=document.getElementById('ac');
+      Array.prototype.forEach.call(alan.querySelectorAll('.sik'),function(x,xi){
+        if(xi===q.d) x.classList.add('dogru');
+      });
+      if(j===q.d){ dogru++; ac.className='aciklama g'; ac.textContent='✓ Doğru! '+q.a; }
+      else { b.classList.add('yanlis'); ac.className='aciklama k'; ac.textContent='✗ '+q.a; }
+      document.getElementById('devam').disabled=false;
+    };
+  });
+  document.getElementById('devam').onclick=function(){ i++; goster(); };
+}
+function bitir(){
+  bar.style.width='100%';
+  var yuzde=Math.round(dogru/sorular.length*100);
+  var msg = yuzde>=80 ? 'Harika! Konulara hâkimsin.' : yuzde>=50 ? 'İyi gidiyorsun — yanlış yaptığın konuların sayfalarına dön.' : 'Sorun değil: yanlışların açıklamalarını oku, konu sayfalarını tekrar et, yarın yeni set çöz.';
+  try{
+    var g=JSON.parse(localStorage.getItem('karisikSkorlar')||'[]');
+    g.push({t:Date.now(),d:dogru,n:sorular.length});
+    localStorage.setItem('karisikSkorlar',JSON.stringify(g.slice(-20)));
+    var son=g.slice(-5).map(function(x){return x.d+'/'+x.n}).join(' · ');
+  }catch(e){ var son=''; }
+  alan.innerHTML='<div class="kart skorKutu"><div class="buyukSkor">'+dogru+'/'+sorular.length+'</div><div>'+msg+'</div>'+(son?'<div style="margin-top:14px;font-size:13px;color:#8b949e">Son denemeler: '+son+'</div>':'')+'<button class="ilerle" onclick="location.reload()" style="margin-top:18px">↺ Yeni karışık set</button></div>';
+}
+goster();
+})();
+</script>
+</body>
+</html>

@@ -111,11 +111,27 @@ body.light .sekme:active { background:#a3e635; }
     <span class="rzt">🆓 Ücretsiz</span>
   </div>
 
+  <div id="ilerlemeKutu" style="display:none;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:13px 16px;margin-bottom:20px">
+    <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:#c7d2fe;margin-bottom:8px">
+      <span>İlerlemen</span><span id="ilerlemeTxt"></span>
+    </div>
+    <div style="height:7px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden">
+      <div id="ilerlemeBar" style="height:100%;width:0%;background:linear-gradient(90deg,#a3e635,#22d3ee);transition:width .4s"></div>
+    </div>
+  </div>
+
   <a class="oncu" href="nasil-calisilir.html">
     <div class="ikon">🧠</div>
     <h2>Önce bunu oku: Ders nasıl çalışılır?</h2>
     <p>Saatlerce oturup hiçbir şey öğrenememenin sebebi tembellik değil — yanlış yöntem. Doğrusu 5 dakikada burada.</p>
     <span class="git">Başla →</span>
+  </a>
+
+  <a class="oncu" href="karisik-tekrar.html" style="border-color:rgba(34,211,238,.35)">
+    <div class="ikon">🔀</div>
+    <h2>Karışık Tekrar</h2>
+    <p>12 konudan rastgele 8 soru. Araştırmalara göre kalıcı öğrenmenin en etkili yolu: karışık, aralıklı tekrar.</p>
+    <span class="git" style="color:#22d3ee">Teste başla →</span>
   </a>
 
   <div class="bolumBaslik"><h3>Konular</h3><span>8. sınıf matematik</span></div>
@@ -243,17 +259,14 @@ window.addEventListener('load', showNotes);
   </div>
   <div id="notGoster" style="margin-top:10px;font-size:0.9em;color:#8b95ad;"></div>
 </div>
-<div class="kart" style="margin-top:20px;">
-  <span class="adim">Gerçek Hayat Örneği</span>
-  <p>index konusuyla ilgili gerçek‑hayat örnekleri burada yer alabilir.</p>
-</div>
-
 <!-- okul-nav-progress -->
 <script>
 (function(){
   var slugs=['1-carpanlar', 'ebob-ekok', 'uslu-ifadeler', 'karekok', 'veri-analizi', 'olasilik', 'cebir', 'denklemler', 'esitsizlikler', 'ucgenler', 'benzerlik', 'donusum', 'cisimler'];
+  var biten=0;
   slugs.forEach(function(s){
     if(localStorage.getItem('okul_done_'+s)==='1'){
+      biten++;
       var a=document.querySelector('a[href="'+s+'.html"]');
       if(a){
         var b=document.createElement('span');
@@ -262,6 +275,27 @@ window.addEventListener('load', showNotes);
         var h=a.querySelector('b,strong,h3')||a;
         h.appendChild(b);
       }
+    }
+  });
+  // İlerleme çubuğu (nasil-calisilir hariç konu sayfaları)
+  if(biten>0){
+    var kutu=document.getElementById('ilerlemeKutu');
+    if(kutu){
+      kutu.style.display='block';
+      document.getElementById('ilerlemeTxt').textContent=biten+' / '+slugs.length+' konu';
+      document.getElementById('ilerlemeBar').style.width=Math.round(biten/slugs.length*100)+'%';
+    }
+  }
+  // LGS soru sayısı rozetleri (2020-2025 ortalama dağılımı, MEB örnek soruları)
+  var lgs={'karekok':3,'denklemler':3,'uslu-ifadeler':2,'cebir':2,'esitsizlikler':2,'ucgenler':2};
+  Object.keys(lgs).forEach(function(s){
+    var a=document.querySelector('a[href="'+s+'.html"]');
+    if(a&&!a.querySelector('.lgsRzt')){
+      var r=document.createElement('span');
+      r.className='lgsRzt';
+      r.textContent='LGS ~'+lgs[s]+' soru';
+      r.style.cssText='position:absolute;bottom:10px;right:11px;font-size:10px;font-weight:700;color:#facc15;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.3);padding:2px 7px;border-radius:999px';
+      a.appendChild(r);
     }
   });
 })();
