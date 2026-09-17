@@ -723,6 +723,42 @@ window.addEventListener('load', showNotes);
   <p style="font-size:0.85em;color:#8b95ad">Kaynak: MEB Matematik 8 ders kitabı, 1. ünite uygulama soruları</p>
 </div>
 
+<div class="kart" style="margin-top:20px;">
+  <span class="adim">Kendini Dene</span>
+  <p style="margin-bottom:10px"><b>Soru 1:</b> EBOB(12, 18) kaçtır?</p>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+    <button class="qz" data-q="1" data-ok="1">6</button>
+    <button class="qz" data-q="1" data-ok="0" data-neden="36 = EKOK(12,18). EBOB en büyük ORTAK BÖLEN'dir, kat değil.">36</button>
+    <button class="qz" data-q="1" data-ok="0" data-neden="3 ortak bölen ama en büyüğü değil: 6 da ikisini böler.">3</button>
+  </div>
+  <p class="qzCevap" id="qzC1" style="display:none;font-size:14px;margin-bottom:14px"></p>
+  <p style="margin-bottom:10px"><b>Soru 2:</b> İki otobüs 8 ve 12 dakikada bir kalkıyor. Birlikte kalktıktan kaç dk sonra yine birlikte kalkarlar?</p>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+    <button class="qz" data-q="2" data-ok="0" data-neden="4 = EBOB(8,12). Buluşma sorusu KAT sorusudur → EKOK gerekir.">4</button>
+    <button class="qz" data-q="2" data-ok="1">24</button>
+    <button class="qz" data-q="2" data-ok="0" data-neden="96 = 8×12. Çarpım her zaman EKOK değildir; ortak çarpanı iki kez sayarsın.">96</button>
+  </div>
+  <p class="qzCevap" id="qzC2" style="display:none;font-size:14px"></p>
+</div>
+<script>
+(function(){
+  var st=document.createElement('style');
+  st.textContent='.qz{padding:12px;border-radius:10px;border:1px solid #2c3950;background:#161d2b;color:#e6edf3;font-size:15px;cursor:pointer;text-align:left;font-family:inherit}.qz.dogru{background:#12251a;border-color:#3fb950;color:#8ce89f}.qz.yanlis{background:#2b1518;border-color:#f85149;color:#ffa198}';
+  document.head.appendChild(st);
+  Array.prototype.forEach.call(document.querySelectorAll('.qz'),function(b){
+    b.onclick=function(){
+      var q=b.getAttribute('data-q'), c=document.getElementById('qzC'+q);
+      Array.prototype.forEach.call(document.querySelectorAll('.qz[data-q="'+q+'"]'),function(x){x.classList.remove('dogru','yanlis');});
+      var ok=b.getAttribute('data-ok')==='1';
+      b.classList.add(ok?'dogru':'yanlis');
+      c.style.display='block';
+      c.style.color=ok?'#8ce89f':'#ffa198';
+      c.textContent=ok?'✓ Doğru!':'✗ '+(b.getAttribute('data-neden')||'Tekrar dene.');
+    };
+  });
+})();
+</script>
+
 <div style="max-width:430px;margin:24px auto 0;padding:0 16px">
   <a href="5-ebob-ekok-secimi.html" style="display:block;padding:14px;border-radius:13px;border:1px dashed #4a5a75;background:#141b2a;color:#9db4d4;font-size:15px;text-decoration:none;text-align:center">🎯 Derine in: EBOB mu EKOK mu? Soruda hangisi isteniyor?</a>
 </div>
