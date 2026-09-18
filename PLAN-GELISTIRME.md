@@ -435,3 +435,18 @@ Test: `node test/dogrula.js` → CLEAN; ubHesapla Node'da denendi: 3^4=81, 2^0=1
 9^5=59.049, 2^-3=1/8=0,125, 9^-3=1/729≈0,00137, 5^3=125 (Python ile eşleşti).
 Yapılamayan: gerçek Chrome/390px testi (Chrome crashpad/ProcessSingleton "Operation not permitted");
 `git push origin main` izin/ağ engeliyle yapılamadı, canlı doğrulama yok. Elle push gerekiyor (TUR 7-11).
+
+## 2026-09-18 — TUR 12: Veri analizi — ortalama/ortanca/tepe değeri/açıklık aracı (commit df5ab86, push BEKLIYOR)
+Yapılan: veri-analizi.html'e k4b kartı: 5 arkadaşın matematik neti (0–20) için 5 slider; sıralı çipler
+(ortanca vurgulu), ortalama (toplam ÷ 5), ortanca (3. sıra), tepe değeri (yoksa "yok", çift tepe "3 ve 9")
+ve açıklık canlı hesaplanıyor. Ortalama–ortanca farkı ≥2 ise uç değer uyarısı. "Takıldım, göster"
+düğmesi tanımları ve 12,14,14,15,20 örneğini açıklıyor. Yeni id'ler `vb` önekli; kullanılan CSS sınıfları
+(ueSlider, vbSatir, vbSira, vbChip, sonuc, btn2, gizli, kucuk, buyuk, hata) sayfada tanımlı.
+Yeni localStorage anahtarı YOK. sw.js cache 18r→18s. Yeni konu sayfası açılmadı.
+Test: `node test/dogrula.js` → CLEAN; araç mantığı Node'da DOM taklidiyle denendi, elle doğrulandı:
+[12,14,14,15,20]→ort 15, ortanca 14, tepe 14, açıklık 8; [1..5]→3/3/yok/4; [0,0,20,20,20]→12/20/20/20;
+[12,14,14,15,0]→11/14/14/15; [3,3,9,9,10]→6,8/9/"3 ve 9"/7.
+Yapılamayan: gerçek Chrome/390px testi (crashpad/ProcessSingleton "Operation not permitted", HOME
+değiştirilerek de denendi); push: `git push origin main` "Claude requested permissions to use Bash"
+ile reddedildi → canlı doğrulama yapılamadı. Not: `git ls-remote` ile uzak main = b67d960 görüldü
+(TUR 7-11 uzakta), yani yalnızca TUR 12 commit'leri bekliyor.
