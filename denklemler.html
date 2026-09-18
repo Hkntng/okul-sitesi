@@ -70,6 +70,8 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .puanKutu{display:flex;gap:10px;justify-content:center;margin:12px 0;flex-wrap:wrap}
 .puanKutu .kutu{background:#24304d;border-radius:10px;padding:10px 14px;text-align:center;font-size:14px}
 .puanKutu .kutu b{font-size:22px;display:block}
+.ueSlider{width:100%;accent-color:var(--tema)}
+.ueEtiket{display:flex;justify-content:space-between;font-size:13px;color:#8b95ad;margin-top:4px;margin-bottom:10px}
 </style>
 
 
@@ -134,6 +136,29 @@ body.light .sekme:active { background:#a3e635; }
 </div>
 <div class="gizli" id="k2devam">
 <p><span class="ok">✓</span> İki tarafa 3 ekle: 5x = 25. Beşe böl: <b>x = 5.</b> Kontrol: 5×5−3 = 22 ✓. "−3'ü karşıya +3 atarız" ezberinin sebebi terazidir: aslında iki kefeye de 3 ekliyorsun.</p>
+</div>
+</div>
+
+<!-- KART 2b: TERAZI HESAPLAYICI -->
+<div class="kart" id="k2b">
+<span class="adim">2b</span>
+<h2>Kendi denklemini kur, teraziyle çöz</h2>
+<p>Sliderları oynat: <b>ax + b = c</b> denklemi anında kurulsun, terazi adım adım çözülsün.</p>
+<label class="kucuk">a (x'in katsayısı): <b id="dzAgoster">3</b></label>
+<input type="range" id="dzA" class="ueSlider" min="1" max="9" value="3">
+<div class="ueEtiket"><span>1</span><span>9</span></div>
+<label class="kucuk">b (sabit): <b id="dzBgoster">2</b></label>
+<input type="range" id="dzB" class="ueSlider" min="-15" max="15" value="2">
+<div class="ueEtiket"><span>−15</span><span>15</span></div>
+<label class="kucuk">c (eşitliğin sağı): <b id="dzCgoster">14</b></label>
+<input type="range" id="dzC" class="ueSlider" min="-15" max="15" value="14">
+<div class="ueEtiket"><span>−15</span><span>15</span></div>
+<div class="sonuc">
+<div id="dzDenklem" style="text-align:center;font-size:19px;font-weight:800"></div>
+<p id="dzAdim1" class="kucuk" style="margin-top:8px"></p>
+<p id="dzAdim2" class="kucuk"></p>
+<div id="dzXSonuc" class="buyuk" style="text-align:center;margin-top:6px"></div>
+<p id="dzKontrol" class="kucuk" style="text-align:center"></p>
 </div>
 </div>
 
@@ -237,6 +262,32 @@ soruKur('k1',0,'k1devam');
 soruKur('k2',0,'k2devam');
 soruKur('k3',0,'k3devam');
 soruKur('k4',0,'k4devam');
+
+// TERAZI HESAPLAYICI (k2b)
+function trFormat(n){
+  n = Math.round(n*100)/100;
+  var s = (Number.isInteger(n) ? String(n) : n.toFixed(2).replace(/0+$/,'').replace(/\.$/,''));
+  return s.replace('.',',').replace('-','−');
+}
+function dzHesapla(){
+  var a = parseInt(document.getElementById('dzA').value,10);
+  var b = parseInt(document.getElementById('dzB').value,10);
+  var c = parseInt(document.getElementById('dzC').value,10);
+  document.getElementById('dzAgoster').textContent = a;
+  document.getElementById('dzBgoster').textContent = trFormat(b);
+  document.getElementById('dzCgoster').textContent = trFormat(c);
+  var x = (c-b)/a;
+  var bIsaret = b>=0 ? ('+ '+trFormat(b)) : ('− '+trFormat(Math.abs(b)));
+  document.getElementById('dzDenklem').textContent = a+'x '+bIsaret+' = '+trFormat(c);
+  document.getElementById('dzAdim1').innerHTML = "<b>1.</b> b'yi karşıya geçir (işareti değişir): "+a+'x = '+trFormat(c)+' '+(b>=0?'−':'+')+' '+trFormat(Math.abs(b))+' = '+trFormat(c-b);
+  document.getElementById('dzAdim2').innerHTML = '<b>2.</b> İki tarafı '+a+"'e böl: x = "+trFormat(c-b)+' ÷ '+a+' = '+trFormat(x);
+  document.getElementById('dzXSonuc').textContent = 'x = '+trFormat(x);
+  document.getElementById('dzKontrol').innerHTML = 'Kontrol: '+a+'×('+trFormat(x)+') '+(b>=0?'+':'−')+' '+trFormat(Math.abs(b))+' = '+trFormat(a*x+b)+' <span class="ok">✓</span>';
+}
+['dzA','dzB','dzC'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', dzHesapla);
+});
+dzHesapla();
 
 var sekmeler=[
  '<b>Önce tahmin et:</b> telefon 77°F diyor — kaç derece sıcak? 👇<br><br><b>Derece çevirme.</b> F = 1,8C + 32. Suyun donması (0, 32), kaynaması (100, 212) — iki noktadan doğru geçer, eğim (212−32)/100 = 1,8. C=25 → F=77. Yani 77°F = 25°C, gayet güzel hava. 32&#39;yi unutan turist kışın şorta çıkar.',
