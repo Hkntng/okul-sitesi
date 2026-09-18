@@ -121,7 +121,31 @@ window.SORU_BANKASI = [
  {k:"Dönüşüm",s:"A(2,3) noktasının x eksenine göre yansıması hangisidir?",c:["(2,−3)","(−2,3)","(−2,−3)"],d:0,a:"x eksenine yansımada x aynı kalır, y'nin işareti değişir: (2,−3). (−2,3) y eksenine yansımadır."},
  {k:"Dönüşüm",s:"A(1,4) noktası 3 birim sağa ve 2 birim aşağı ötelenirse yeni koordinatları ne olur?",c:["(3,6)","(4,2)","(−2,6)"],d:1,a:"Sağa 3 → x: 1+3=4. Aşağı 2 → y: 4−2=2. Yeni nokta (4,2)."},
  {k:"Cisimler",s:"Taban yarıçapı 3 cm ve yüksekliği 10 cm olan dik dairesel silindirin hacmi kaç π cm³'tür?",c:["30π","60π","90π"],d:2,a:"V=πr²h=π×3²×10=90π. Yarıçap kare alınmazsa 30π gibi yanlış sonuç çıkar."},
- {k:"Cisimler",s:"Bir kenarı 4 cm olan küpün yüzey alanı kaç cm²'dir?",c:["96","64","24"],d:0,a:"Küpün 6 yüzü vardır, her yüz 4×4=16: 6×16=96. 64 hacimdir."}
+ {k:"Cisimler",s:"Bir kenarı 4 cm olan küpün yüzey alanı kaç cm²'dir?",c:["96","64","24"],d:0,a:"Küpün 6 yüzü vardır, her yüz 4×4=16: 6×16=96. 64 hacimdir."},
+ {k:"Çarpanlar",s:"36 sayısının kaç tane pozitif böleni vardır?",c:["6","9","12"],d:1,a:"36=2²×3² → (2+1)×(2+1)=9 bölen: 1,2,3,4,6,9,12,18,36."},
+ {k:"Çarpanlar",s:"EBOB(30,45) kaçtır?",c:["15","90","5"],d:0,a:"30=2×3×5, 45=3²×5. Ortak asallar küçük üsle: 3×5=15. 90 ise EKOK'tur."},
+ {k:"Üslü İfadeler",s:"(−3)² − 3² işleminin sonucu kaçtır?",c:["0","18","−18"],d:0,a:"(−3)²=(−3)×(−3)=9, ama 3²'nin önündeki eksi üssün dışında değildir: 9−9=0."},
+ {k:"Üslü İfadeler",s:"4×10³ + 5×10² işleminin sonucu kaçtır?",c:["9000","450","4500"],d:2,a:"4×1000=4000, 5×100=500 → 4000+500=4500. Üsler toplanmaz, önce her terim hesaplanır."},
+ {k:"Karekök",s:"√75 ifadesinin a√b biçimi hangisi?",c:["3√5","5√3","25√3"],d:1,a:"75=25×3 → √75=√25×√3=5√3. Kontrol: 25×3=75."},
+ {k:"Karekök",s:"√48 ÷ √3 işleminin sonucu kaçtır?",c:["4","16","√45"],d:0,a:"Bölmede kök içleri bölünür: √(48÷3)=√16=4."},
+ {k:"Veri Analizi",s:"1, 2, 3, 4, 15 verisinde aritmetik ortalama ile ortanca arasındaki fark kaçtır?",c:["2","0","5"],d:0,a:"Ortalama=25÷5=5, ortanca=3 → fark 2. Uç değer (15) ortalamayı çeker, ortancayı değiştirmez."},
+ {k:"Veri Analizi",s:"20 öğrencinin not ortalaması 60, 10 öğrencinin 90'dır. 30 öğrencinin genel ortalaması kaçtır?",c:["70","75","65"],d:0,a:"Toplamlar: 20×60=1200, 10×90=900 → 2100÷30=70. Ortalamaların ortalaması (75) alınmaz, ağırlık gerekir."},
+ {k:"Olasılık",s:"Bir torbada 4 sarı ve 6 yeşil top var. Çekilen topun sarı OLMAMA olasılığı kaçtır?",c:["2/5","1/6","3/5"],d:2,a:"Sarı olmayan = yeşil: 6/10=3/5. Kontrol: 4/10+6/10=1."},
+ {k:"Olasılık",s:"İki zar birlikte atılıyor. İkisinin toplamının 12 gelme olasılığı kaçtır?",c:["1/36","1/12","1/6"],d:0,a:"Toplam 36 durum var; 12 yalnızca (6,6) ile gelir → 1/36."},
+ {k:"Denklemler",s:"3(x+2)=21 denkleminde x kaçtır?",c:["5","9","3"],d:0,a:"Önce 3'e böl: x+2=7 → x=5. Kontrol: 3×(5+2)=21."},
+ {k:"Denklemler",s:"y=−x+4 doğrusu y eksenini hangi noktada keser?",c:["(0,4)","(4,0)","(0,−1)"],d:0,a:"y eksenini keserken x=0: y=−0+4=4 → (0,4). (4,0) x eksenini kestiği noktadır."},
+ {k:"Eşitsizlikler",s:"x+5 < 2 eşitsizliğinin çözümü hangisidir?",c:["x<7","x>−3","x<−3"],d:2,a:"İki yandan 5 çıkar: x<−3. Toplama/çıkarmada yön değişmez. Kontrol: x=−4 → 1<2 ✓."},
+ {k:"Eşitsizlikler",s:"−4 < x ≤ 2 koşulunu sağlayan kaç tam sayı vardır?",c:["5","7","6"],d:2,a:"−4 dahil değil, 2 dahil: −3,−2,−1,0,1,2 → 6 tam sayı."},
+ {k:"Üçgenler",s:"Bir üçgenin iç açıları 2x, 3x ve 4x ise en büyük açı kaç derecedir?",c:["60°","80°","90°"],d:1,a:"2x+3x+4x=180 → 9x=180 → x=20. En büyük açı 4x=80°."},
+ {k:"Üçgenler",s:"Hipotenüsü 10 cm, bir dik kenarı 6 cm olan dik üçgenin alanı kaç cm²'dir?",c:["48","30","24"],d:2,a:"Diğer dik kenar: √(100−36)=8. Alan=6×8÷2=24. (6-8-10 üçlüsü)"},
+ {k:"Benzerlik",s:"Benzerlik oranı 3 olan iki üçgenden küçüğünün alanı 4 cm² ise büyüğünün alanı kaç cm²'dir?",c:["12","18","36"],d:2,a:"Alanlar oranı, oranın karesidir: 3²=9 → 4×9=36. Oranı 3 ile çarpıp 12 bulma!"},
+ {k:"Benzerlik",s:"Ölçeği 1/50 olan bir maketin bir kenarı 12 cm ise gerçek uzunluk kaç metredir?",c:["0,24","6","60"],d:1,a:"12×50=600 cm=6 m. (100 cm=1 m olduğundan 600 cm→6 m.)"},
+ {k:"Dönüşüm",s:"B(−2,5) noktası 3 birim sağa ötelenirse yeni koordinatları ne olur?",c:["(1,5)","(−5,5)","(−2,8)"],d:0,a:"Sağa gitmek x'i artırır: −2+3=1; y değişmez → (1,5)."},
+ {k:"Dönüşüm",s:"P(2,0) noktası orijin etrafında saat yönünün tersine 90° döndürülürse görüntüsü hangisi?",c:["(0,−2)","(−2,0)","(0,2)"],d:2,a:"90° (saat yönünün tersi) kuralı: (x,y)→(−y,x). (2,0)→(0,2). Noktayı çizerek de kontrol et."},
+ {k:"Cisimler",s:"Taban alanı 10 cm², yüksekliği 6 cm olan koninin hacmi kaç cm³'tür?",c:["60","20","30"],d:1,a:"Koni hacmi=(1/3)×taban alanı×yükseklik=(1/3)×10×6=20. 1/3'ü unutursan 60 bulursun."},
+ {k:"Cisimler",s:"Ayrıtları 3 cm, 4 cm ve 5 cm olan dikdörtgenler prizmasının yüzey alanı kaç cm²'dir?",c:["60","47","94"],d:2,a:"2×(3·4+3·5+4·5)=2×(12+15+20)=2×47=94. 60 hacimdir, 47 ise yarı yüzey alanı."},
+ {k:"Cebir",s:"(x−5)² ifadesinin açılımı hangisidir?",c:["x²−25","x²−10x−25","x²−10x+25"],d:2,a:"(a−b)²=a²−2ab+b². Orta terim −10x, son terim (−5)²=+25 (hep artı)."},
+ {k:"Cebir",s:"a+b=7 ve a·b=12 ise a²+b² kaçtır?",c:["19","49","25"],d:2,a:"(a+b)²=a²+2ab+b² → 49=a²+b²+24 → a²+b²=25. (a=3,b=4 ile kontrol.)"}
 ];
 window.KONU_SAYFA = {"Çarpanlar":"1-carpanlar.html","Üslü İfadeler":"uslu-ifadeler.html","Karekök":"karekok.html","Veri Analizi":"veri-analizi.html","Olasılık":"olasilik.html","Cebir":"cebir.html","Denklemler":"denklemler.html","Eşitsizlikler":"esitsizlikler.html","Üçgenler":"ucgenler.html","Benzerlik":"benzerlik.html","Dönüşüm":"donusum.html","Cisimler":"cisimler.html"};
 
