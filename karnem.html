@@ -39,6 +39,11 @@ h2{font-size:16px;margin:2px 2px 12px;color:#adbac7}
 .mini{font-size:13px;color:#8b949e;margin-top:4px}
 .spark{display:inline-flex;align-items:flex-end;gap:3px;height:26px;margin-top:6px}
 .spark span{width:8px;background:#2f81f7;border-radius:2px 2px 0 0;min-height:3px}
+.zsatir{margin:8px 0}
+.zbas{display:flex;justify-content:space-between;font-size:13px;color:#adbac7;margin-bottom:3px}
+.zbas b{color:#e6edf3}
+.zbar{height:9px;background:#21262d;border-radius:5px;overflow:hidden}
+.zbar>span{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#f0883e,#f85149)}
 .oneri{padding:12px 14px;border:1px solid #3a2f12;background:#241d0c;border-radius:12px;color:#f0d090;font-size:14px;margin-top:10px}
 .oneri a{color:#ffd772;font-weight:700}
 .bos{color:#6e7681;font-size:14px;padding:10px 2px}
@@ -107,6 +112,13 @@ button.sifirla{width:100%;padding:11px;border-radius:12px;border:1px solid #5c2a
   <div class="kart">
     <span class="rozet">Toplam emek</span>
     <div class="mini" id="emekTxt">Henüz deneme çözmedin.</div>
+  </div>
+
+  <div class="kart" id="zayifKart" style="display:none">
+    <span class="rozet">Zayıf konuların</span>
+    <div class="mini" style="margin-bottom:10px">Yanlış Kutum'da hâlâ bekleyen soruların konulara göre dağılımı. Çok soru olan konu, en çok tekrar etmen gereken yerdir.</div>
+    <div id="zayifListe"></div>
+    <div class="nav" style="margin-top:12px"><a href="yanlis-kutum.html">📌 Yanlış Kutum'u çöz →</a></div>
   </div>
 
   <div class="kart" id="oneriKart" style="display:none">
@@ -199,6 +211,34 @@ button.sifirla{width:100%;padding:11px;border-radius:12px;border:1px solid #5c2a
       '<b style="color:#e6edf3;font-size:16px">'+toplamSoru+' soru</b> çözdün, toplam <b style="color:#e6edf3">'+toplamDeneme+' deneme</b> tamamladın. Devam et — düzenli tekrar en çok işe yarayan yöntem.';
   }
 
+  // ---- Zayif konular: Yanlis Kutum konu dagilimi (salt okuma) ----
+  (function(){
+    var kutu; try{ kutu=JSON.parse(localStorage.getItem('yanlisKutum')||'[]'); }catch(e){ kutu=[]; }
+    if(!Array.isArray(kutu)||!kutu.length) return; // kutu bossa kart gizli kalir
+    var say={};
+    kutu.forEach(function(id){
+      if(typeof id!=='string') return;
+      var konu=id.split('|')[0]; if(!konu) return;
+      say[konu]=(say[konu]||0)+1;
+    });
+    var liste=Object.keys(say).map(function(k){ return [k,say[k]]; });
+    if(!liste.length) return;
+    liste.sort(function(a,b){ return b[1]-a[1]; });
+    var enCok=liste[0][1];
+    var toplam=liste.reduce(function(s,x){ return s+x[1]; },0);
+    var h='';
+    liste.forEach(function(x){
+      var w=Math.round(x[1]/enCok*100);
+      h+='<div class="zsatir"><div class="zbas"><span>'+x[0]+'</span><b>'+x[1]+' soru</b></div>'+
+         '<div class="zbar"><span style="width:'+w+'%"></span></div></div>';
+    });
+    document.getElementById('zayifListe').innerHTML=h;
+    document.getElementById('zayifKart').style.display='block';
+    // sonraki adim onerisine en zayif konuyu ekle
+    window.__enZayifKonu = liste[0][0];
+    window.__zayifToplam = toplam;
+  })();
+
   // ---- Calisma serisi (streak) — sinav+karisik zaman damgalarindan, salt okuma ----
   (function(){
     var MS=86400000;
@@ -272,6 +312,9 @@ button.sifirla{width:100%;padding:11px;border-radius:12px;border:1px solid #5c2a
   }
   if(toplamDeneme===0){
     oneriler=['Henüz deneme çözmedin. Önce bir konu çalış, sonra <a href="karisik-tekrar.html">Karışık Tekrar</a> ile kendini sına.'];
+  }
+  if(window.__enZayifKonu){
+    oneriler.push('Yanlış Kutun\'da en çok <b>'+window.__enZayifKonu+'</b> sorusu birikmiş. Bugün <a href="yanlis-kutum.html">Yanlış Kutum</a>\'a gir, önce o konuyu çöz.');
   }
   if(oneriler.length){
     document.getElementById('oneriKart').style.display='block';
