@@ -164,3 +164,33 @@ enZayif dogru); gercek tarayicida (localhost, prod yolu) kart render + bar genis
 - Test: JS parse OK, sayi dogrusu n=2..99 oran 0-1 gecerli; tarayicida
   karekok(30)=5,48 / (80)=8,94-9'a yakin / (49)=7 tam kare / (2)=1,41 davranisi
   dogrulandi, ekran goruntusuyle.
+
+## 2026-09-18 — TUR 1: oksuz sayfa linki + kalici test + eksik Kaynak (commit bekliyor)
+Yapilan:
+1. index.html: 2-sayinin-parmak-izi.html ve 5-ebob-ekok-secimi.html icin cikan
+   iki yeni fayans karti eklendi (carpanlar/ebob-ekok kartlarinin hemen yaninda,
+   ayni --k rengiyle, yeni stil icat edilmedi). sitemap.xml ve sw.js onbellek
+   listesi zaten onceki bir turda guncellenmisti (dogrulandi); sw.js cache
+   surumu yine de 18h->18i'ye alindi (index degisti).
+2. YENI test/dogrula.js: `node test/dogrula.js` tek komutla calisir. Kapsam:
+   soru-bankasi.js butunlugu (96 soru, 12 konu x8 esit dagilim, d 0-2, tekrar
+   soru/sik yok, bos alan yok), 6 API fonksiyonu (soruId/kutuOku/kutuYaz/
+   kutuyaEkle/kutudanCikar/kutuSorulari), tum .html'lerde div/script/style tag
+   dengesi, index.html'den linksiz sayfa kontrolu, inline <script> JS gecerliligi
+   (vm.Script ile derleme). Hata varsa Turkce mesaj + exit 1, temizse "CLEAN".
+   Sahte bozuk dosyayla (dengesiz div + syntax hatali script + linksiz sayfa)
+   3 hatayi da yakaladigi ayrica dogrulandi.
+3. Kaynak satiri eksik 5 dosyadan index.html ve 404.html muaf; kalan 3'ten
+   sinav.html ve yanlis-kutum.html'e mevcut sitede zaten kullanilan (baska
+   sayfalarda gercekten var olan, uydurulmamis) atiflar eklendi: sinav.html ->
+   Adesope, Trevisan & Sundararajan (2017) practice-testing meta-analizi (ayni
+   atif nasil-calisilir.html'de zaten var, sinav = pratik test oldugu icin
+   doğrudan ilgili); yanlis-kutum.html -> Cepeda vd. (2006) / retrievalpractice.org
+   (ayni atif karisik-tekrar.html'de zaten var, yanlis sorulari araliklarla
+   tekrar etmek = spaced retrieval). karnem.html ATLANDI: sayfa sadece
+   ogrencinin kendi verisini gosteren bir panel, disaridan dogrulanabilir bir
+   kazanim/arastirma iddiasi yok — uydurma kaynak eklenmedi.
+Test: `node test/dogrula.js` -> CLEAN. Sandbox local HTTP server dinlemeyi
+reddettigi icin (nice/bind izni yok) canli tarayici/390px testi bu turda
+YAPILAMADI — statik dogrulama (tag dengesi + JS syntax + link kontrolu) ile
+sinirli kalindi, bu acikca belirtiliyor.

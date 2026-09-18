@@ -1,5 +1,5 @@
 // Otomatik üretildi — sürümü her dağıtımda değiştir
-const CACHE = 'okul-v2026-09-18h';
+const CACHE = 'okul-v2026-09-18i';
 const URLS = [
   '/okul-sitesi/',
   '/okul-sitesi/1-carpanlar.html',
