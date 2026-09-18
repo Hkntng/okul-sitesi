@@ -62,6 +62,9 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
 .tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
 .alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+.ueSlider{width:100%;accent-color:var(--tema)}
+.ueEtiket{display:flex;justify-content:space-between;font-size:13px;color:#8b95ad;margin-top:4px;margin-bottom:10px}
+.ubIfade{font-size:15px;font-family:ui-monospace,Menlo,monospace;word-break:break-word;margin:6px 0}
 </style>
 
 <style>
@@ -152,6 +155,22 @@ Kalınlık: <span class="buyuk" id="katKalin">0,1 mm</span><br>
 <p><b>Negatif üs = küçülme.</b> Pozitif üs dev sayılar üretir, negatif üs kırıntılar.</p>
 <p class="kucuk">Nerede lazım? Bir virüs ~100 nanometre. Nanometre = metrenin milyarda biri (10<sup>-9</sup> m) — yani 100 nanometre = 10<sup>-7</sup> metre. 1 milimetreye yan yana <b>10.000 virüs</b> sığar. Mikroskop dünyası negatif üsle yazılır.</p>
 </div>
+</div>
+
+<!-- KART 3B: TABAN VE US ARACI -->
+<div class="kart" id="k3b">
+<span class="adim">3+</span>
+<h2>Tabanı ve üssü sen seç</h2>
+<p>İki kaydırıcıyı oynat. Üs eksiye inince ne olduğunu izle.</p>
+<label class="kucuk" for="ubT">Taban: <b id="ubTYaz">3</b></label>
+<input type="range" id="ubT" class="ueSlider" min="2" max="9" value="3">
+<div class="ueEtiket"><span>2</span><span>9</span></div>
+<label class="kucuk" for="ubU">Üs: <b id="ubUYaz">4</b></label>
+<input type="range" id="ubU" class="ueSlider" min="-3" max="5" value="4">
+<div class="ueEtiket"><span>−3</span><span>5</span></div>
+<div class="sonuc" id="ubSonuc" aria-live="polite"></div>
+<button class="btn2" id="ubTakildim">Takıldım, göster</button>
+<p class="kucuk gizli" id="ubIpucu">Üs, tabanın kaç kez çarpılacağını söyler: 3<sup>4</sup> = 3·3·3·3 = 81. Üs bir azalınca sonuç tabana bölünür: 81 → 27 → 9 → 3 → 1 (3<sup>0</sup>) → 1/3 (3<sup>−1</sup>) → 1/9 (3<sup>−2</sup>). Yani sıfırıncı kuvvet 1'dir, negatif üs eksili sayı değil, kesirdir: 3<sup>−2</sup> = 1/3<sup>2</sup> = 1/9.</p>
 </div>
 
 <!-- KART 4: CARPMA KURALI KESIF -->
@@ -280,6 +299,32 @@ document.querySelectorAll('#k3 .secenek').forEach(function(b){
     ac('k3devam');
   });
 });
+
+// KART 3B: taban ve us araci
+function ubSayi(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.');}
+function ubOndalik(x){return String(parseFloat(x.toPrecision(3))).replace('.',',');}
+function ubHesapla(t,u){
+  var m=Math.abs(u), pay=Math.pow(t,m), i, c=[];
+  var ad=t+'<sup>'+(u<0?'−'+m:u)+'</sup>';
+  if(u>0){
+    for(i=0;i<u;i++)c.push(t);
+    return ad+' = '+c.join(' × ')+' = <span class="buyuk">'+ubSayi(pay)+'</span>';
+  }
+  if(u===0)return ad+' = <span class="buyuk">1</span><br><span class="kucuk">Sıfırıncı kuvvet her sayıda 1 eder.</span>';
+  for(i=0;i<m;i++)c.push(t);
+  return ad+' = 1 / '+t+'<sup>'+m+'</sup> = 1 / '+(m>1?'('+c.join(' × ')+')':t)+' = <span class="buyuk">1/'+ubSayi(pay)+'</span><br><span class="kucuk">≈ '+ubOndalik(1/pay)+' — eksili değil, küçücük bir kesir.</span>';
+}
+function ubGuncelle(){
+  var t=parseInt(document.getElementById('ubT').value,10);
+  var u=parseInt(document.getElementById('ubU').value,10);
+  document.getElementById('ubTYaz').textContent=t;
+  document.getElementById('ubUYaz').textContent=(u<0?'−'+(-u):u);
+  document.getElementById('ubSonuc').innerHTML='<div class="ubIfade">'+ubHesapla(t,u)+'</div>';
+}
+document.getElementById('ubT').addEventListener('input',ubGuncelle);
+document.getElementById('ubU').addEventListener('input',ubGuncelle);
+document.getElementById('ubTakildim').addEventListener('click',function(){ac('ubIpucu');this.classList.add('gizli');});
+ubGuncelle();
 
 // KART 4: kural kesfi
 document.querySelectorAll('#k4 .secenek').forEach(function(b){
