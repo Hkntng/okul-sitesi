@@ -424,3 +424,14 @@ taklidiyle denendi: 3/10=0,3=%30; 1/3≈0,33≈%33,3 (çıkmama 2/3≈0,67); 0/8
 Yapılamayan: gerçek Chrome/390px testi (Chrome crashpad "Permission denied", sandbox);
 `git push origin main` "Claude requested permissions to use Bash" ile reddedildi → origin/main'e
 gitmedi, canlı doğrulama yapılamadı. Elle `git push origin main` gerekiyor (TUR 7-10 bekliyor).
+
+## 2026-09-18 — TUR 11: Üslü ifadeler — interaktif taban ve üs aracı (commit d58f2a5, push BEKLIYOR)
+Yapılan: uslu-ifadeler.html'e k3b kartı: taban slider'ı (2–9) + üs slider'ı (−3..5). Pozitif üs
+açılımla (3×3×3×3=81), 0 üs "= 1", negatif üs "1/3² = 1/9 ≈ 0,111" olarak canlı gösteriliyor.
+"Takıldım, göster" düğmesi 81→27→9→3→1→1/3→1/9 örüntüsünü açıklıyor. Yeni id'ler `ub` önekli;
+kullanılan CSS sınıfları sayfada tanımlı (ueSlider/ueEtiket/ubIfade bu turda eklendi).
+Yeni localStorage anahtarı YOK. sw.js cache 18q→18r. Yeni konu sayfası açılmadı.
+Test: `node test/dogrula.js` → CLEAN; ubHesapla Node'da denendi: 3^4=81, 2^0=1, 3^-2=1/9≈0,111,
+9^5=59.049, 2^-3=1/8=0,125, 9^-3=1/729≈0,00137, 5^3=125 (Python ile eşleşti).
+Yapılamayan: gerçek Chrome/390px testi (Chrome crashpad/ProcessSingleton "Operation not permitted");
+`git push origin main` izin/ağ engeliyle yapılamadı, canlı doğrulama yok. Elle push gerekiyor (TUR 7-11).
