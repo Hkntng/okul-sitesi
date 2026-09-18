@@ -101,6 +101,43 @@ body.light .sekme:active { background:#a3e635; }
 .vbChip.orta{background:color-mix(in srgb,var(--tema) 30%,transparent);border-color:var(--tema);color:#fff}
 </style>
 
+<style>
+.vsKart{border-color:#2f4a7a}
+.vsKart .buyuk{font-size:19px;line-height:1.4}
+.vsNoktalar{display:flex;gap:6px;margin:2px 0 12px}
+.vsNokta{flex:1;height:5px;border-radius:3px;background:#243044;transition:background .2s}
+.vsNokta.on{background:var(--tema)}
+.vsBaslik{font-size:12px;font-weight:700;color:#7d8590;letter-spacing:.5px;margin-bottom:6px}
+.vsSahne{background:#0d1420;border-radius:12px;padding:12px 10px;margin:10px 0}
+.vsSatir{display:flex;align-items:center;gap:6px;margin:6px 0}
+.vsAd{flex:0 0 52px;font-size:13px;color:#9fb0d0;overflow:hidden;text-overflow:ellipsis}
+.vsRay{position:relative;flex:1;height:26px;background:#131b2a;border:1px solid #27314b;border-radius:7px;overflow:hidden}
+.vsBar{height:100%;width:0;background:#3b6ea5;border-radius:0 6px 6px 0;transition:width .45s ease-out,background .3s}
+.vsBar.esit{background:#4ade80}
+.vsBar.orta{background:#f0a44b}
+.vsBar.ver{animation:vsVer .7s ease}
+.vsBar.al{animation:vsAl .7s ease}
+@keyframes vsVer{0%,60%{background:#f87171}100%{background:#3b6ea5}}
+@keyframes vsAl{0%,60%{background:#4ade80}100%{background:#3b6ea5}}
+.vsCizgi{position:absolute;top:0;bottom:0;width:0;border-left:2px dashed #f0a44b;pointer-events:none;transition:left .45s ease-out}
+.vsDeg{flex:0 0 52px;text-align:right;font-size:14px;font-weight:700;color:#e8edf7}
+.vsYaz{margin-top:8px;font-size:15px;color:#c9d3e0;text-align:center;min-height:24px}
+.vsYaz b{color:#fff}
+.vsChipler{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.vsChip{min-width:64px;padding:11px 12px;border-radius:10px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:16px;font-weight:700}
+.vsChip.dogru{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.vsChip.yanlis{background:#251414;border-color:#5c2a2a;color:#f0857d}
+.vsDurum{margin-top:10px;padding:11px 12px;border-radius:10px;font-size:15px;background:#1a2236;color:#c9d3e0}
+.vsDurum.ok{background:#12251a;color:#8ce89f;border:1px solid #3fb950}
+.vsDurum.bozuk{background:#251414;color:#f0a09a;border:1px solid #5c2a2a}
+.vsYol{display:flex;gap:8px;margin-top:10px}
+.vsYol .btn{margin-top:0}
+.vsYol .btn:disabled{opacity:.4;box-shadow:none;cursor:default}
+.vsYol .vsGeri{flex:0 0 auto;width:auto;margin-top:0}
+.vsLink{display:block;margin-top:9px;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-size:15px;font-weight:700}
+.vsLink.bir{background:var(--tema);color:#0b101e}
+.vsLink.iki{background:#1b2436;border:1px solid #33415a;color:#cfe0f5}
+</style>
 <link rel="canonical" href="https://hkntng.github.io/okul-sitesi/veri-analizi.html">
 <link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -113,6 +150,204 @@ body.light .sekme:active { background:#a3e635; }
 <h1>Veri Analizi</h1>
 <p class="kucuk" style="margin-bottom:6px">Sayı yığınını "bir bakışta anlaşılır resme" çevirme sanatı. Hepsi gerçek veri: MGM ve TÜİK.</p>
 <div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- HARCLIK SENARYOSU: adım adım, önce dene sonra ad -->
+<div class="kart vsKart" id="vsKart">
+<span class="adim yesil">Önce bir deneme</span>
+<div class="vsNoktalar" id="vsNoktalar" aria-hidden="true"></div>
+<div class="vsBaslik" id="vsBaslik"></div>
+<p class="buyuk" id="vsSoru"></p>
+<p class="kucuk" id="vsAlt"></p>
+<div class="vsSahne" id="vsSahne"></div>
+<div id="vsKontrol"></div>
+<div class="vsDurum gizli" id="vsDurum" role="status" aria-live="polite"></div>
+<div class="vsYol">
+  <button class="btn2 vsGeri gizli" id="vsGeri" type="button">← Geri</button>
+  <button class="btn" id="vsIleri" type="button" disabled>Devam et →</button>
+</div>
+</div>
+
+<script>
+(function(){
+  /* ================= HARÇLIK SENARYOSU ================= */
+  var ADLAR = ['Ali', 'Ece', 'Can', 'Zeynep', 'Mert'];
+  var A = [20, 30, 30, 40, 80];      // adım 1: toplam 200, eşit pay 40
+  var B = [30, 40, 50, 60, 70];      // adım 2: toplam 250, eşit pay 50
+  var C = [20, 30, 30, 40, 200];     // adım 3: toplam 320, eşit pay 64, ortadaki 30
+  var ADIM_SAYISI = 4;
+  var $ = function(id){ return document.getElementById(id); };
+  function topla(a){ return a.reduce(function(x, y){ return x + y; }, 0); }
+  var adim = 0;
+  var s1 = { v: A.slice(), n: 0 }, s2 = { ok: false, gecen: {} }, s3 = { a: false, b: false, gecen: {} };
+  var olcek = 100;
+
+  function satirlar(v, max, cizgi){
+    olcek = max;
+    var h = '';
+    v.forEach(function(d, i){
+      h += '<div class="vsSatir"><span class="vsAd">' + ADLAR[i] + '</span><div class="vsRay"><div class="vsBar" id="vsB' + i + '" style="width:' + (d * 100 / max) + '%"></div>' +
+        (cizgi ? '<span class="vsCizgi" style="left:' + (cizgi * 100 / max) + '%"></span>' : '') + '</div><b class="vsDeg" id="vsD' + i + '">' + d + ' TL</b></div>';
+    });
+    return h;
+  }
+  function guncelle(v, sinif){
+    v.forEach(function(d, i){
+      var b = $('vsB' + i);
+      b.style.width = (d * 100 / olcek) + '%';
+      b.classList.remove('ver', 'al');
+      if (sinif) b.classList.add(sinif);
+      $('vsD' + i).textContent = d + ' TL';
+    });
+  }
+  function durumYaz(tur, m){ var d = $('vsDurum'); d.className = 'vsDurum ' + tur; d.textContent = m; }
+  function durumGizle(){ $('vsDurum').className = 'vsDurum gizli'; }
+  function chipler(liste, gecen, dogru, ek){
+    var h = '<div class="vsChipler">';
+    liste.forEach(function(v){
+      var s = gecen[v] ? ' yanlis' : (gecen.bitti && v === dogru ? ' dogru' : '');
+      h += '<button type="button" class="vsChip' + s + '" data-v="' + v + '">' + v + (ek || '') + '</button>';
+    });
+    return h + '</div>';
+  }
+  function chipBagla(fn){
+    [].forEach.call($('vsKontrol').querySelectorAll('.vsChip'), function(b){
+      b.onclick = function(){ if (!b.classList.contains('yanlis') && !b.classList.contains('dogru')) fn(b.getAttribute('data-v')); };
+    });
+  }
+
+  /* ---- adım 1: eşitle ---- */
+  function esitMi(v){ return v.every(function(d){ return d === v[0]; }); }
+  function kurAdim1(){
+    var bitti = esitMi(s1.v), ort = topla(A) / A.length;
+    $('vsSahne').innerHTML = satirlar(s1.v, 100, ort) + '<div class="vsYaz" id="vsYaz"></div>';
+    guncelle(s1.v, bitti ? 'esit' : '');
+    yazi1(null);
+    $('vsKontrol').innerHTML = '<button type="button" class="btn" id="vsAktar"' + (bitti ? ' disabled' : '') + '>🔄 10 TL aktar</button>';
+    $('vsAktar').onclick = aktar;
+    if (bitti) durumYaz('ok', 'Hepsi ' + s1.v[0] + ' TL oldu. Toplam hâlâ ' + topla(s1.v) + ' TL: 5 × ' + s1.v[0] + ' = ' + topla(s1.v) + '.'); else durumGizle();
+  }
+  function yazi1(msg){
+    var t = topla(s1.v);
+    $('vsYaz').innerHTML = msg || (esitMi(s1.v) ? 'Kesikli çizgi: <b>' + s1.v[0] + ' TL</b>' : 'Toplam para: <b>' + t + ' TL</b> · Kesikli çizgi: herkesin eşit payı');
+  }
+  function aktar(){
+    var v = s1.v, mx = v.indexOf(Math.max.apply(null, v)), mn = v.indexOf(Math.min.apply(null, v));
+    v[mx] -= 10; v[mn] += 10; s1.n++;
+    guncelle(v, '');
+    var g = $('vsB' + mx), a = $('vsB' + mn);
+    void g.offsetWidth;
+    g.classList.add('ver'); a.classList.add('al');
+    if (esitMi(v)) {
+      [].forEach.call(document.querySelectorAll('.vsBar'), function(b){ b.classList.remove('ver', 'al'); b.classList.add('esit'); });
+      $('vsAktar').disabled = true;
+      yazi1(null);
+      durumYaz('ok', 'Hepsi ' + v[0] + ' TL oldu (' + s1.n + ' aktarma). Toplam hâlâ ' + topla(v) + ' TL: 5 × ' + v[0] + ' = ' + topla(v) + '.');
+    } else {
+      yazi1('<b>' + ADLAR[mx] + '</b> → <b>' + ADLAR[mn] + '</b>: 10 TL geçti. Toplam hâlâ <b>' + topla(v) + ' TL</b>.');
+    }
+    ilerleDurumu();
+  }
+
+  /* ---- adım 2: tahmin ---- */
+  function kurAdim2(){
+    $('vsSahne').innerHTML = satirlar(B, 100, 0) + '<div class="vsYaz">Toplam para: <b>' + topla(B) + ' TL</b> · 5 arkadaş</div>';
+    guncelle(B, '');
+    if (s2.ok) guncelle([50, 50, 50, 50, 50], 'esit');
+    $('vsKontrol').innerHTML = chipler(['30', '50', '250'], s2.gecen, '50', ' TL');
+    chipBagla(function(v){
+      if (v === '50') {
+        s2.ok = true; s2.gecen.bitti = true;
+        durumYaz('ok', 'Doğru: 250 TL ÷ 5 kişi = 50 TL. Mert’ten 20 TL Ali’ye, Zeynep’ten 10 TL Ece’ye gitse herkes 50 olur.');
+      } else {
+        s2.gecen[v] = true;
+        durumYaz('bozuk', v === '250'
+          ? '250 TL, hepsinin parasının toplamı. Bu para 5 arkadaşa paylaşılıyor, her birine ne düşer?'
+          : '30 TL, en az parası olan arkadaşın parası. Para paylaşılınca onunki artar, hemen 30’da kalmaz.');
+      }
+      kurAdim2(); ilerleDurumu();
+    });
+    if (s2.ok) durumYaz('ok', 'Doğru: 250 TL ÷ 5 kişi = 50 TL. Mert’ten 20 TL Ali’ye, Zeynep’ten 10 TL Ece’ye gitse herkes 50 olur.');
+    else durumGizle();
+  }
+
+  /* ---- adım 3: tuzak ---- */
+  function kurAdim3(){
+    var ort = topla(C) / C.length;
+    $('vsSahne').innerHTML = satirlar(C, 200, ort) +
+      '<div class="vsYaz">Kesikli çizgi = eşit pay: <b>' + ort + ' TL</b> (320 ÷ 5)</div>';
+    guncelle(C, '');
+    if (s3.a) { $('vsB2').classList.add('orta'); }
+    if (!s3.a) {
+      $('vsKontrol').innerHTML = '<p class="kucuk" style="text-align:center;margin-top:10px">Eşit paylaşsak herkese 64 TL düşer. Kaç arkadaşın parası 64 TL’den fazla?</p>' + chipler(['1', '3', '5'], s3.gecen, '1', ' kişi');
+      chipBagla(function(v){
+        if (v === '1') { s3.a = true; s3.gecen = {}; }
+        else {
+          s3.gecen[v] = true;
+          durumYaz('bozuk', v === '3' ? 'Çizgiye bak: Ali, Ece, Can ve Zeynep çizginin çok solunda kalıyor.' : 'Çubukların çoğu çizgiye ulaşmıyor. Tek tek bak.');
+          kurAdim3(); return;
+        }
+        kurAdim3(); ilerleDurumu();
+      });
+    } else {
+      $('vsKontrol').innerHTML = '<p class="kucuk" style="text-align:center;margin-top:10px">Doğru: sadece Mert. Sıraya dizince tam ortadaki Can (turuncu) 30 TL alıyor. Sınıfın “genelde” aldığı harçlığı söylesen hangisini seçersin?</p>' + chipler(['30', '64'], s3.gecen, '30', ' TL');
+      chipBagla(function(v){
+        if (v === '30') { s3.b = true; s3.gecen.bitti = true; }
+        else { s3.gecen[v] = true; durumYaz('bozuk', '64 TL’yi kimse almıyor: dördü 40 TL ve altında. Tek bir 200 TL, eşit payı yukarı çekti.'); kurAdim3(); return; }
+        kurAdim3(); ilerleDurumu();
+      });
+    }
+    if (s3.b) durumYaz('ok', 'Doğru: 4 arkadaşın parası 20–40 TL arasında. Tek bir 200 TL, eşit payı 64’e çıkardı.');
+    else if (s3.a) durumYaz('ok', 'Doğru: 64 TL’den fazla parası olan sadece Mert.');
+    else durumGizle();
+  }
+
+  /* ---- adım 4: adı ---- */
+  function kurAdim4(){
+    durumGizle();
+    $('vsSahne').innerHTML = '<table class="tablo"><tr><th></th><th>5 kişi<br>(Mert 200)</th><th>4 kişi<br>(Mert yok)</th></tr>' +
+      '<tr><td>Eşit pay<br>toplam ÷ kişi</td><td>320 ÷ 5 = <b>64</b></td><td>120 ÷ 4 = <b>30</b></td></tr>' +
+      '<tr><td>Sıraya dizince ortadaki</td><td><b>30</b></td><td><b>30</b><br><span class="kucuk">(ortadaki iki sayı: 30, 30)</span></td></tr></table>';
+    $('vsKontrol').innerHTML =
+      '<p style="margin-top:10px">Mert’i çıkarınca eşit pay <b>64’ten 30’a</b> düştü, ortadaki ise hiç oynamadı.</p>' +
+      '<p>Eşit paylaşınca herkese düşen sayıya <b class="vurgu">ortalama</b> denir (toplam ÷ kişi sayısı). Sıraya dizince ortada kalan sayıya <b class="vurgu">ortanca</b> denir. Tek bir çok büyük sayı ortalamayı çok çeker, ortancayı çekmez.</p>' +
+      '<p class="buyuk" style="margin-top:14px">Şimdi bunu denemeye ne dersin?</p>' +
+      '<a class="vsLink bir" href="#k6">5 soruyla dene →</a>' +
+      '<a class="vsLink iki" href="#k4b">🎚️ Kaydırıcılarla oyna</a>' +
+      '<a class="vsLink iki" href="karisik-tekrar.html">🔀 Karışık tekrar (8 soru)</a>';
+  }
+
+  var ADIMLAR = [
+    { baslik: '1 / 4 · HARÇLIK', soru: '5 arkadaşın haftalık harçlığı farklı. Hepsi eşit olsun istiyorlar.',
+      alt: 'Düğmeye bas: en çok parası olandan en az olana 10 TL geçsin. Kaç aktarmada eşitlenirler?', kur: kurAdim1 },
+    { baslik: '2 / 4 · TAHMİN', soru: 'Başka bir grup: 30, 40, 50, 60, 70 TL. Eşitlenirlerse herkeste kaç TL olur?',
+      alt: 'Tek tek aktarmadan bulmayı dene.', kur: kurAdim2 },
+    { baslik: '3 / 4 · TUZAK', soru: 'Mert doğum gününde 200 TL aldı.',
+      alt: 'Çubuklara bak, sonra sorulara cevap ver.', kur: kurAdim3 },
+    { baslik: '4 / 4 · ADI NE?', soru: 'Gördüğün iki sayının adı var.',
+      alt: 'Yan yana koyalım.', kur: kurAdim4 }
+  ];
+
+  function ilerleDurumu(){
+    var acik = adim === 0 ? esitMi(s1.v) : adim === 1 ? s2.ok : adim === 2 ? s3.b : true;
+    $('vsIleri').disabled = !acik;
+    $('vsIleri').classList.toggle('gizli', adim === ADIM_SAYISI - 1);
+    $('vsGeri').classList.toggle('gizli', adim === 0);
+  }
+  function goster(){
+    var a = ADIMLAR[adim], n = '';
+    for (var i = 0; i < ADIM_SAYISI; i++) n += '<span class="vsNokta' + (i <= adim ? ' on' : '') + '"></span>';
+    $('vsNoktalar').innerHTML = n;
+    $('vsBaslik').textContent = a.baslik;
+    $('vsSoru').textContent = a.soru;
+    $('vsAlt').textContent = a.alt;
+    a.kur();
+    ilerleDurumu();
+  }
+  $('vsIleri').onclick = function(){ if (adim < ADIM_SAYISI - 1) { adim++; goster(); } };
+  $('vsGeri').onclick = function(){ if (adim > 0) { adim--; goster(); } };
+  goster();
+})();
+</script>
 
 <!-- KART 1: KANCA -->
 <div class="kart" id="k1">

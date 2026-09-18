@@ -562,3 +562,16 @@ Doğrulama (Node): 3^1..5 = 3, 9, 27, 81, 243; 2^1..5 = 2, 4, 8, 16, 32; tuzakla
 Sahte DOM akış testi: 16 kontrol geçti, 1 başarısızlık test kodundaki sayaç hatasıydı (nokta sayısı 121 elle doğrulandı).
 sw.js cache 19d→19e. `node test/dogrula.js` → CLEAN.
 Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox), elle bakılmalı. Commit/push: Bash izni reddedildi → elle yapılmalı.
+
+## 2026-09-19 — TUR 21: Veri analizi — "Harçlık eşitleme ve Mert'in 200 TL'si" gerçek hayat senaryosu
+Konu: EBOB-EKOK, benzerlik, olasılık, denklemler, üslü ifadeler yapıldığı için veri-analizi.html seçildi (harçlık = ortalama/ortanca farkının en bildik hayat karşılığı).
+veri-analizi.html'de k1'in ÖNÜNE 4 adımlı, "Devam et" düğmeli kart eklendi (mevcut kartlar/araçlar aynen duruyor; yeni localStorage anahtarı YOK; yeni sınıflar `vs*` aynı dosyada tanımlı).
+Senaryo: 5 arkadaşın harçlığı farklı, eşitlemek istiyorlar.
+1) "10 TL aktar" düğmesi: en çoktan en aza 10 TL geçer (çubuklar hareket eder, veren kırmızı/alan yeşil yanıp söner); 20,30,30,40,80 → 4 aktarmada hepsi 40 TL. Toplam hep 200.
+2) Yeni grup 30,40,50,60,70: eşitlenirlerse herkeste kaç TL? (30 / 50 / 250). 250 = toplam, 30 = en az tuzağı; her yanlışa özel ipucu.
+3) Mert 200 TL aldı (20,30,30,40,200): eşit pay 64 TL; "64'ten fazlası olan kaç kişi?" (1/3/5), sonra "sınıfın genelde harçlığı?" (30 / 64). Ortadaki çubuk turuncu.
+4) Terim EN SONDA: 5 kişide eşit pay 320÷5=64, ortadaki 30; Mert çıkınca 120÷4=30, ortadaki 30 → ortalama / ortanca adları; #k6, #k4b, karışık tekrar linkleri.
+Çocuğun keşfi: eşit paylaşınca herkese düşen sayı = toplam ÷ kişi; tek bir uç değer bu sayıyı çok oynatır ama "ortadaki" değişmez.
+Doğrulama (Node): 200/5=40; 250/5=50; 320/5=64; 120/4=30; 64'ten büyük sayı adedi=1; 4 aktarma simülasyonu ile 40 eşitliği. Sahte DOM akış testi (kilitler, yanlış ipuçları, geri dönüş): 16/16 kontrol geçti.
+sw.js cache 19e→19f. `node test/dogrula.js` → CLEAN.
+Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); satır düzeni (52px ad + esnek çubuk + 52px değer) 390px'e göre hesaplandı, elle bakılmalı.
