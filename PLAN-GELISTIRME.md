@@ -233,3 +233,33 @@ granted it yet" — 4 kez denendi, aynı hata), muhtemelen non-interactive
 oturumda push için canlı kullanıcı onayı beklendiğinden. Commit 01cc753
 YALNIZCA yerelde mevcut, origin/main'e gitmedi. Kullanıcının elle
 `git push origin main` çalıştırması veya izni onaylaması gerekiyor.
+
+## 2026-09-18 — TUR 3: "Gerçek Hayat Örneği" kartlarındaki içerik hataları (commit 1ab8dc1, push BEKLIYOR)
+Yapılan: Önceki turlarda toplu eklenmiş "Gerçek Hayat Örneği" mini-kartları taranırken
+5 gerçek hata bulundu ve düzeltildi:
+1. 5-ebob-ekok-secimi.html — El-Cezerî kartında mojibake: Çince karakter (考虑) ve
+   bozuk kitap adı ("El-Câmi' Büßeâti'l-Hiyaleb"). Doğru eser adıyla
+   ("el-Câmi' Beyne'l-İlm ve'l-Amel en-Nâfi' fî Sınâati'l-Hiyel", web ile doğrulandı)
+   değiştirildi.
+2. olasilik.html — "Zar atma: 6 yielding 1/6" (Türkçe cümleye sızmış İngilizce kelime,
+   anlamsız) düzgün Türkçe açıklamayla değiştirildi.
+3. veri-analizi.html — "standart sapma≈1.67" iddiası elle hesaplandı: gerçek değer
+   (popülasyon std) ≈1,62. Sayı düzeltildi.
+4. esitsizlikler.html — kart, kaçışsız "<" karakterleri içeriyordu ("2x+5 < 11") ve
+   konuyla ilişkisi zayıf, sayfanın geri kalanındaki zengin içerikle tutarsızdı.
+   3 yeni, doğrulanmış, konuya uygun eşitsizlik örneğiyle (asansör kapasitesi,
+   sepet ağırlığı, indirim eşiği) değiştirildi.
+5. nasil-calisilir.html — kart iç içe tekrarlanmış (bozuk div yapısı, başlık iki kez).
+   Tek karta indirildi. Doğrulanamayan "Zeno vd. (2020)" atfı web aramasıyla
+   bulunamadı, kaldırıldı. Cirillo (2018) atfı doğru yayınevi (Virgin Books, Londra)
+   ile düzeltildi. "mentale yorunmayı" yazım hatası giderildi.
+sw.js değişmedi (cache sürümü sabit kaldı — bu turda önbelleklenen bir dosya
+değişmedi, hepsi zaten sw.js listesinde olan sayfalar).
+Test: `node test/dogrula.js` → CLEAN. Sandbox'ta socket bind izni yine reddedildi
+(`python3 -m http.server` → PermissionError: Operation not permitted, iki kez
+denendi) — gerçek tarayıcı/390px testi bu turda da YAPILAMADI, statik
+doğrulama + elle matematik/kaynak kontrolüyle sınırlı kalındı.
+PUSH DURUMU: `git push origin main` bu ortamda "Claude requested permissions to
+use Bash, but you haven't granted it yet" hatasıyla reddedildi (2 kez denendi,
+aynı hata) — commit 1ab8dc1 YALNIZCA yerelde mevcut, origin/main'e gitmedi.
+Kullanıcının elle `git push origin main` çalıştırması gerekiyor.
