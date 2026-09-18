@@ -128,3 +128,16 @@ Test: node --check + bütünlük betiği — 96 soru, 12 konu×8 tam denge, tekr
 tüm d indeksleri 0-2 aralığında geçerli, şık tekrarı 0, 6 API fonksiyonu mevcut
 (SONUÇ: CLEAN); her yeni sorunun matematiği elle hesaplanarak doğrulandı. (Tarayıcı
 davranış testi canlı URL'de doğrulandı — file:// göreli yol banka yüklemiyor.)
+
+
+## TUR 9 (2026-09-18) — klavye + erisilebilirlik
+Yapilan: Sinav Modu ve Karisik Tekrar'a klavye kisayolu + erisilebilirlik.
+Siklara numara rozeti (1/2/3) ve aria-label eklendi; sure sayacina aria-live.
+Klavye: 1-9 tuslari sik secer (karisikta cevap kilidine saygi duyar), Enter/ok
+sonraki soru/onaylar, sol-ok onceki soru (sinavda). Fare gerekmeden hizli cozum,
+erisilebilirlik faydasi. Yeni localStorage anahtari yok; mevcut anahtarlar
+degismedi. sw.js cache e->f.
+Test: node ile JS gecerliligi + tag/button dengesi (sinav 5/5, karisik 3/3, CLEAN);
+gercek tarayicida (localhost, prod yolu /okul-sitesi/) — sinav: banka 96, 2 tusu
+2. siki secti, Enter sonraki, sol-ok onceki; karisik: 1 tusu cevabi degerlendirdi
+(dogru sik + aciklama acildi), Enter sonraki soru (1/8->2/8).

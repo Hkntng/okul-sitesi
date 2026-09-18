@@ -20,6 +20,9 @@ h1{font-size:24px;margin:10px 0 4px}
 .sik{display:block;width:100%;box-sizing:border-box;padding:13px;margin-bottom:8px;border-radius:10px;border:1px solid #2c3950;background:#10151f;color:#e6edf3;font-size:15px;cursor:pointer;text-align:left;font-family:inherit}
 .sik.dogru{background:#12251a;border-color:#3fb950;color:#8ce89f}
 .sik.yanlis{background:#2b1518;border-color:#f85149;color:#ffa198}
+.siktus{display:inline-block;min-width:20px;height:20px;line-height:20px;text-align:center;background:#1c2740;border:1px solid #2c3950;border-radius:5px;font-size:12px;color:#8b949e;margin-right:9px;font-weight:600}
+.sik.dogru .siktus{background:#3fb950;border-color:#3fb950;color:#0d1117}
+.sik.yanlis .siktus{background:#f85149;border-color:#f85149;color:#0d1117}
 .aciklama{display:none;font-size:14px;padding:10px 12px;border-radius:10px;margin-top:6px}
 .aciklama.g{display:block;background:#12251a;color:#8ce89f}
 .aciklama.k{display:block;background:#2b1518;color:#ffa198}
@@ -65,7 +68,7 @@ function goster(){
   if(i>=sorular.length){ return bitir(); }
   var q=sorular[i], h='<div class="kart"><span class="rozet">'+q.k+' · '+(i+1)+'/'+sorular.length+'</span>';
   h+='<div class="soruTxt">'+q.s+'</div>';
-  q.c.forEach(function(c,j){ h+='<button class="sik" data-j="'+j+'">'+c+'</button>'; });
+  q.c.forEach(function(c,j){ h+='<button class="sik" data-j="'+j+'" aria-label="'+(j+1)+'. şık: '+c.replace(/"/g,"&quot;")+'"><span class="siktus">'+(j+1)+'</span>'+c+'</button>'; });
   h+='<div class="aciklama" id="ac"></div>';
   h+='<button class="ilerle" id="devam" disabled>Sonraki soru →</button></div>';
   alan.innerHTML=h;
@@ -82,6 +85,16 @@ function goster(){
     };
   });
   document.getElementById('devam').onclick=function(){ i++; goster(); };
+  document.onkeydown=function(e){
+    if(e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+    var dv=document.getElementById('devam');
+    if(e.key>='1' && e.key<='9'){
+      var siks=alan.querySelectorAll('.sik'), idx=+e.key-1;
+      if(idx<siks.length && dv && dv.disabled){ siks[idx].click(); e.preventDefault(); }
+    } else if(e.key==='Enter' || e.key==='ArrowRight'){
+      if(dv && !dv.disabled){ dv.click(); e.preventDefault(); }
+    }
+  };
 }
 function bitir(){
   bar.style.width='100%';

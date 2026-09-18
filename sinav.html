@@ -20,6 +20,8 @@ h1{font-size:24px;margin:10px 0 4px}
 .soruTxt{font-size:16px;font-weight:600;margin:6px 0 14px}
 .sik{display:block;width:100%;box-sizing:border-box;padding:13px;margin-bottom:8px;border-radius:10px;border:1px solid #2c3950;background:#10151f;color:#e6edf3;font-size:15px;cursor:pointer;text-align:left;font-family:inherit}
 .sik.sec{background:#16233b;border-color:#2f81f7;color:#cfe0ff}
+.siktus{display:inline-block;min-width:20px;height:20px;line-height:20px;text-align:center;background:#1c2740;border:1px solid #2c3950;border-radius:5px;font-size:12px;color:#8b949e;margin-right:9px;font-weight:600}
+.sik.sec .siktus{background:#2f81f7;border-color:#2f81f7;color:#fff}
 .ilerle{width:100%;padding:14px;border-radius:12px;border:0;background:#2f81f7;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px}
 .ilerle:disabled{opacity:.4;cursor:default}
 .geri{width:100%;padding:11px;border-radius:12px;border:1px solid #2c3950;background:transparent;color:#8b949e;font-size:14px;cursor:pointer;font-family:inherit;margin-top:8px}
@@ -106,10 +108,10 @@ function guncelleSayac(){
 function goster(){
   bar.style.width=(i/sorular.length*100)+'%';
   var q=sorular[i];
-  var h='<div class="sayac"><span class="zaman'+(kalan<=60?' az':'')+'" id="zaman">'+mmss(kalan)+'</span><span class="no">Soru '+(i+1)+' / '+sorular.length+'</span></div>';
+  var h='<div class="sayac"><span class="zaman'+(kalan<=60?' az':'')+'" id="zaman" aria-live="polite" aria-label="Kalan süre">'+mmss(kalan)+'</span><span class="no">Soru '+(i+1)+' / '+sorular.length+'</span></div>';
   h+='<div class="kart"><span class="rozet">'+q.k+'</span>';
   h+='<div class="soruTxt">'+q.s+'</div>';
-  q.c.forEach(function(c,j){ h+='<button class="sik'+(cevaplar[i]===j?' sec':'')+'" data-j="'+j+'">'+c+'</button>'; });
+  q.c.forEach(function(c,j){ h+='<button class="sik'+(cevaplar[i]===j?' sec':'')+'" data-j="'+j+'" aria-label="'+(j+1)+'. şık: '+c.replace(/"/g,"&quot;")+'"><span class="siktus">'+(j+1)+'</span>'+c+'</button>'; });
   h+='<button class="ilerle" id="devam">'+(i===sorular.length-1?'Sınavı bitir ✓':'Sonraki soru →')+'</button>';
   if(i>0) h+='<button class="geri" id="onceki">← Önceki soru</button>';
   h+='</div>';
@@ -126,6 +128,20 @@ function goster(){
   };
   var ob=document.getElementById('onceki');
   if(ob) ob.onclick=function(){ i--; goster(); };
+  document.onkeydown=function(e){
+    if(e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+    var siks=alan.querySelectorAll('.sik');
+    if(e.key>='1' && e.key<='9'){
+      var idx=+e.key-1;
+      if(idx<siks.length){ siks[idx].click(); e.preventDefault(); }
+    } else if(e.key==='Enter'){
+      var d=document.getElementById('devam'); if(d){ d.click(); e.preventDefault(); }
+    } else if(e.key==='ArrowLeft'){
+      var o=document.getElementById('onceki'); if(o){ o.click(); e.preventDefault(); }
+    } else if(e.key==='ArrowRight'){
+      var d2=document.getElementById('devam'); if(d2){ d2.click(); e.preventDefault(); }
+    }
+  };
 }
 
 function bitir(sureBitti){
