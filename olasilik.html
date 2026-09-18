@@ -86,6 +86,47 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 .obSecim.aktif{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent}
 .obTorba{display:flex;flex-wrap:wrap;gap:4px;min-height:34px;font-size:22px;line-height:1}
 .obTorba span{opacity:.35}.obTorba span.hedef{opacity:1}
+/* ---- kermes çekilişi senaryosu (adım adım) ---- */
+.snKart{border-color:#4a3f7a}
+.snKart .buyuk{font-size:19px;line-height:1.4}
+.snNoktalar{display:flex;gap:6px;margin:2px 0 12px}
+.snNokta{flex:1;height:5px;border-radius:3px;background:#243044;transition:background .2s}
+.snNokta.on{background:#a78bfa}
+.snBaslik{font-size:12px;font-weight:700;color:#7d8590;letter-spacing:.5px;margin-bottom:6px}
+.snSahne{background:#0d1420;border-radius:12px;padding:12px 10px;margin:10px 0}
+.snSatir{display:flex;gap:8px;justify-content:center;align-items:flex-start}
+.snKutu{flex:1;min-width:0;max-width:110px;text-align:center;font-size:12px;color:#9aa4b0;border:1px solid #33415a;border-radius:10px;padding:8px 4px;background:#131b2a;transition:border-color .2s,background .2s}
+.snKutu.ok{border-color:#3fb950;background:#0f2118}
+.snKutu.sec{border-color:#a78bfa}
+.snKutu b{display:block;font-size:15px;color:#e8edf7;margin-bottom:6px}
+.snIzgara{display:grid;grid-template-columns:repeat(4,16px);gap:3px;justify-content:center;margin-bottom:6px}
+.snK{width:16px;height:16px;border-radius:4px}
+.snK.g{background:#f5c542;box-shadow:0 0 6px rgba(245,197,66,.6)}
+.snK.b{background:#243044}
+.snIz{background:rgba(8,12,24,.8);border:1px solid #232d45;border-radius:6px;height:10px;overflow:hidden;margin-top:6px}
+.snDolu{height:100%;width:0;background:#a78bfa;transition:width .8s ease-out}
+.snKutu.ok .snDolu{background:#3fb950}
+.snYaz{margin-top:3px;font-size:13px;color:#c9d3e0;min-height:18px}
+.snChipler{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.snChip{min-width:64px;padding:11px 10px;border-radius:10px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:16px;font-weight:700;cursor:pointer}
+.snChip.aktif{outline:2px solid #f0a44b;outline-offset:1px}
+.snChip.dogru{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.snChip.yanlis{background:#251414;border-color:#5c2a2a;color:#f0857d}
+.snDurum{margin-top:10px;padding:11px 12px;border-radius:10px;font-size:15px;background:#1a2236;color:#c9d3e0}
+.snDurum.ok{background:#12251a;color:#8ce89f;border:1px solid #3fb950}
+.snDurum.bozuk{background:#251414;color:#f0a09a;border:1px solid #5c2a2a}
+.snTablo{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0}
+.snTablo td,.snTablo th{border:1px solid #27314b;padding:6px 4px;text-align:center}
+.snTablo th{background:rgba(255,255,255,.05);color:var(--tema2);font-size:12px}
+.snTablo .snEn{background:#12251a;color:#5ddc7a;font-weight:700}
+.snYol{display:flex;gap:8px;margin-top:10px}
+.snYol .btn{margin-top:0}
+.snYol .btn:disabled{opacity:.4;box-shadow:none;cursor:default}
+.snYol .snGeri{flex:0 0 auto;width:auto;margin-top:0}
+.snLink{display:block;margin-top:9px;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-size:15px;font-weight:700}
+.snLink.bir{background:#a78bfa;color:#160c30}
+.snLink.iki{background:#1b2436;border:1px solid #33415a;color:#cfe0f5}
+
 </style>
 
 
@@ -114,6 +155,22 @@ body.light .sekme:active { background:#a3e635; }
 <h1>Olasılık</h1>
 <p class="kucuk" style="margin-bottom:6px">"Kesin", "imkânsız", "belki" — hepsinin bir sayısı var. 0 ile 1 arasında.</p>
 <div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KERMES ÇEKİLİŞİ SENARYOSU: adım adım, önce dene sonra ad -->
+<div class="kart snKart" id="snKart">
+<span class="adim yesil">Önce bir deneme</span>
+<div class="snNoktalar" id="snNoktalar" aria-hidden="true"></div>
+<div class="snBaslik" id="snBaslik"></div>
+<p class="buyuk" id="snSoru"></p>
+<p class="kucuk" id="snAlt"></p>
+<div class="snSahne"><div class="snSatir" id="snSatir"></div></div>
+<div id="snKontrol"></div>
+<div class="snDurum gizli" id="snDurum" role="status" aria-live="polite"></div>
+<div class="snYol">
+  <button class="btn2 snGeri gizli" id="snGeri" type="button">← Geri</button>
+  <button class="btn" id="snIleri" type="button" disabled>Devam et →</button>
+</div>
+</div>
 
 <!-- KART 1: KANCA - torba oyunu -->
 <div class="kart" id="k1">
@@ -244,6 +301,166 @@ body.light .sekme:active { background:#a3e635; }
 
 <p class="kucuk" style="margin-top:18px">Kaynaklar: Milli Piyango oyun kuralları; Sporx Süper Lig penaltı raporu (2019); Sporzip 1. Lig 2024-25; Türk Kızılay kan grubu dağılımı; MGM yağışlı gün istatistikleri; Sağlık Bakanlığı aşı bilgilendirmesi.</p>
 </div>
+
+<script>
+(function(){
+  /* ================= KERMES ÇEKİLİŞİ SENARYOSU ================= */
+  // n: kutudaki kağıt sayısı, g: altın (hediyeli) kağıt sayısı
+  var KUTU = { A: { n: 12, g: 3 }, B: { n: 5, g: 2 }, C: { n: 20, g: 4 }, D: { n: 8, g: 6 } };
+  var ADIM_SAYISI = 4;
+  var $ = function(id){ return document.getElementById(id); };
+  function yuzde(k){ return KUTU[k].g * 100 / KUTU[k].n; }          // 100 çocuktan kaçı kazanır
+  var enIyi = 'A';
+  ['B', 'C'].forEach(function(k){ if (yuzde(k) > yuzde(enIyi)) enIyi = k; });
+  var enCok = 'A';                                                   // en çok altın kağıt hangi kutuda
+  ['B', 'C'].forEach(function(k){ if (KUTU[k].g > KUTU[enCok].g) enCok = k; });
+  var adim = 0, tahmin = '', yuzBitti = false, s3 = { ok: false, yanlis: 0, sec: 0 };
+
+  function kutuHtml(k, sinif, cubuk){
+    var b = KUTU[k], g = '';
+    for (var i = 0; i < b.n; i++) g += '<span class="snK ' + (i < b.g ? 'g' : 'b') + '"></span>';
+    var alt = cubuk ? '<div class="snIz"><div class="snDolu" data-w="' + yuzde(k) + '"></div></div><div class="snYaz" data-k="' + k + '"></div>' : '';
+    return '<div class="snKutu ' + sinif + '" data-k="' + k + '"><b>' + k + ' kutusu</b><div class="snIzgara" role="img" aria-label="' +
+      k + ' kutusu: ' + b.n + ' kağıt, ' + b.g + ' altın">' + g + '</div>' + b.n + ' kağıt<br>' + b.g + ' altın' + alt + '</div>';
+  }
+  function ciz(liste, sinifFn, cubuk){
+    $('snSatir').innerHTML = liste.map(function(k){ return kutuHtml(k, sinifFn ? sinifFn(k) : '', cubuk); }).join('');
+  }
+  function durumYaz(tur, metin){ var d = $('snDurum'); d.className = 'snDurum ' + tur; d.textContent = metin; }
+  function durumGizle(){ $('snDurum').className = 'snDurum gizli'; }
+  function chipBagla(fn){
+    [].forEach.call($('snKontrol').querySelectorAll('.snChip'), function(b){
+      b.onclick = function(){ fn(b.getAttribute('data-v'), b); };
+    });
+  }
+
+  /* ---- adım 1: tahmin ---- */
+  function kurAdim1(){
+    ciz(['A', 'B', 'C'], function(k){ return k === tahmin ? 'sec' : ''; });
+    durumGizle();
+    var h = '<div class="snChipler">';
+    ['A', 'B', 'C'].forEach(function(k){
+      h += '<button type="button" class="snChip' + (k === tahmin ? ' aktif' : '') + '" data-v="' + k + '">' + k + ' kutusu</button>';
+    });
+    $('snKontrol').innerHTML = h + '</div>';
+    chipBagla(function(k){
+      tahmin = k; kurAdim1();
+      durumYaz('', k + ' kutusunu seçtin (' + KUTU[k].g + ' altın, ' + KUTU[k].n + ' kağıt). Tahmin tamam — şimdi gerçekten deneyelim.');
+      ilerleDurumu();
+    });
+    if (tahmin) durumYaz('', tahmin + ' kutusunu seçtin (' + KUTU[tahmin].g + ' altın, ' + KUTU[tahmin].n + ' kağıt). Tahmin tamam — şimdi gerçekten deneyelim.');
+  }
+
+  /* ---- adım 2: 100 çocuk çeksin ---- */
+  function cubuklariAc(){
+    [].forEach.call($('snSatir').querySelectorAll('.snDolu'), function(el){ el.style.width = el.getAttribute('data-w') + '%'; });
+    [].forEach.call($('snSatir').querySelectorAll('.snYaz'), function(el){ el.textContent = 'yaklaşık ' + yuzde(el.getAttribute('data-k')) + ' kişi'; });
+  }
+  function yuzSonuc(){
+    var m = tahmin === enIyi ? 'Tahmin tuttu! ' : (tahmin + ' dedin ama ' + enIyi + ' kutusu kazanıyor. ');
+    m += 'En çok altın kağıt ' + enCok + ' kutusunda (' + KUTU[enCok].g + ') ama ' + KUTU[enCok].n + ' kağıdın içinde kaybolmuş. ' +
+      enIyi + ' kutusunda ' + KUTU[enIyi].n + ' kağıttan ' + KUTU[enIyi].g + '’si altın: her 100 çocuktan yaklaşık ' + yuzde(enIyi) + ' kişi hediye alıyor.';
+    durumYaz(tahmin === enIyi ? 'ok' : 'bozuk', m);
+  }
+  function kurAdim2(){
+    ciz(['A', 'B', 'C'], function(k){ return yuzBitti && k === enIyi ? 'ok' : ''; }, true);
+    $('snKontrol').innerHTML = '<button type="button" class="btn" id="snYuz">👧🧒 100 çocuk sırayla çeksin</button>' +
+      '<p class="kucuk" style="text-align:center">Her çocuk bir kağıt çeker, bakar, geri koyar. Sayılar yaklaşıktır; gerçekte birkaç kişi az çok olabilir.</p>';
+    durumGizle();
+    function ac(){
+      yuzBitti = true;
+      ciz(['A', 'B', 'C'], function(k){ return k === enIyi ? 'ok' : ''; }, true);
+      requestAnimationFrame(function(){ requestAnimationFrame(cubuklariAc); });
+      $('snYuz').disabled = true;
+      yuzSonuc(); ilerleDurumu();
+    }
+    $('snYuz').onclick = ac;
+    if (yuzBitti) {
+      $('snYuz').disabled = true; cubuklariAc(); yuzSonuc();
+    }
+  }
+
+  /* ---- adım 3: yeni kutu, kuralı kendin uygula ---- */
+  var IPUCU = {
+    '6': '6, altın kağıdın sayısı. Ama çeken 100 çocuk; kağıt sayısı değil. 8 kağıttan kaçı altın diye oranına bak.',
+    '25': '25, altın OLMAYANların oranı (8 kağıttan 2 boş). Biz altın olanları arıyoruz: 8 kağıttan 6’sı.'
+  };
+  function kurAdim3(){
+    ciz(['D'], function(){ return s3.ok ? 'ok' : ''; });
+    var h = '<div class="snChipler">';
+    ['6', '25', '75'].forEach(function(v){
+      var sinif = s3.ok && v === '75' ? ' dogru' : (s3.gecen && s3.gecen[v] ? ' yanlis' : '');
+      h += '<button type="button" class="snChip' + sinif + '" data-v="' + v + '">' + v + ' kişi</button>';
+    });
+    $('snKontrol').innerHTML = h + '</div>';
+    chipBagla(function(v, b){
+      if (s3.ok) return;
+      if (v === '75') {
+        s3.ok = true; b.classList.add('dogru');
+        ciz(['D'], function(){ return 'ok'; });
+        durumYaz('ok', 'Evet! 8 kağıttan 6’sı altın, yani her 8 çocuktan 6’sı kazanıyor. 100 çocukta bu yaklaşık 75 kişi eder. Kuralı kendin uyguladın.');
+      } else {
+        s3.gecen = s3.gecen || {}; s3.gecen[v] = true; s3.yanlis++;
+        b.classList.add('yanlis');
+        durumYaz('bozuk', IPUCU[v]);
+      }
+      ilerleDurumu();
+    });
+    if (s3.ok) durumYaz('ok', 'Evet! 8 kağıttan 6’sı altın, yani her 8 çocuktan 6’sı kazanıyor. 100 çocukta bu yaklaşık 75 kişi eder. Kuralı kendin uyguladın.');
+    else durumGizle();
+  }
+
+  /* ---- adım 4: adı ---- */
+  function kurAdim4(){
+    $('snSatir').innerHTML = '';
+    durumGizle();
+    var satir = { A: ['3/12', '1/4', '%25'], B: ['2/5', '2/5', '%40'], C: ['4/20', '1/5', '%20'], D: ['6/8', '3/4', '%75'] };
+    var t = '<table class="snTablo"><tr><th>Kutu</th><th>altın / tüm kağıt</th><th>sadeleşmiş</th><th>100 çocukta</th></tr>';
+    ['A', 'B', 'C', 'D'].forEach(function(k){
+      t += '<tr><td>' + k + '</td><td>' + satir[k][0] + '</td><td>' + satir[k][1] + '</td><td' + (k === 'D' ? ' class="snEn"' : '') + '>' + satir[k][2] + '</td></tr>';
+    });
+    t += '</table>';
+    $('snKontrol').innerHTML = t +
+      '<p style="margin-top:10px">Her kutuda yaptığın şey aynıydı: <b>altın kağıt sayısı ÷ kutudaki tüm kağıt sayısı.</b> Kutuya kağıt kattıkça aynı sayıda altın kağıdın şansı azalır.</p>' +
+      '<p>Bu orana <b class="vurgu">olasılık</b> deniyor. B kutusunda hediye çekme olasılığı <b>2/5</b>. ' +
+      'Hiç altın kağıt yoksa olasılık <b>0</b> (imkânsız), bütün kağıtlar altınsa <b>1</b> (kesin).</p>' +
+      '<p class="buyuk" style="margin-top:14px">Şimdi bunu denemeye ne dersin?</p>' +
+      '<a class="snLink bir" href="#k6">5 soruyla dene →</a>' +
+      '<a class="snLink iki" href="karisik-tekrar.html">🔀 Karışık tekrar (8 soru)</a>';
+  }
+
+  var ADIMLAR = [
+    { baslik: '1 / 4 · KERMES', soru: 'Okul kermesinde üç çekiliş kutusu var.',
+      alt: 'Altın kağıt çıkarsan hediye kazanırsın. Gözün kapalı tek kağıt çekeceksin. Sence hangi kutudan hediye çıkma şansın en yüksek?', kur: kurAdim1 },
+    { baslik: '2 / 4 · DENEYELİM', soru: '100 çocuk sırayla çekseydi ne olurdu?',
+      alt: 'Düğmeye bas: her kutu için kaç çocuğun hediye kazandığını görelim.', kur: kurAdim2 },
+    { baslik: '3 / 4 · SIRA SENDE', soru: 'Yeni bir D kutusu geldi: 8 kağıt, 6 altın.',
+      alt: '100 çocuk çekse yaklaşık kaç kişi hediye kazanır?', kur: kurAdim3 },
+    { baslik: '4 / 4 · ADI NE?', soru: 'Kuralı sen buldun.',
+      alt: 'Dört kutuyu yan yana koyalım.', kur: kurAdim4 }
+  ];
+
+  function ilerleDurumu(){
+    var acik = adim === 0 ? !!tahmin : adim === 1 ? yuzBitti : adim === 2 ? s3.ok : true;
+    $('snIleri').disabled = !acik;
+    $('snIleri').classList.toggle('gizli', adim === ADIM_SAYISI - 1);
+    $('snGeri').classList.toggle('gizli', adim === 0);
+  }
+  function goster(){
+    var a = ADIMLAR[adim], n = '';
+    for (var i = 0; i < ADIM_SAYISI; i++) n += '<span class="snNokta' + (i <= adim ? ' on' : '') + '"></span>';
+    $('snNoktalar').innerHTML = n;
+    $('snBaslik').textContent = a.baslik;
+    $('snSoru').textContent = a.soru;
+    $('snAlt').textContent = a.alt;
+    a.kur();
+    ilerleDurumu();
+  }
+  $('snIleri').onclick = function(){ if (adim < ADIM_SAYISI - 1) { adim++; goster(); } };
+  $('snGeri').onclick = function(){ if (adim > 0) { adim--; goster(); } };
+  goster();
+})();
+</script>
 
 <script>
 (function(){

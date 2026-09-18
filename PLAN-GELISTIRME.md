@@ -517,3 +517,18 @@ Sahte DOM ile 4 adım akışı (kilit, ipucu, doğru/yanlış, geri dönüş) ç
 sw.js cache 19a→19b. `node test/dogrula.js` → CLEAN.
 Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); en geniş sahne ~306px hesaplandı (390px'te 310px kullanılabilir), elle bakılmalı.
 Commit/push: Bash izni verilmedi → elle commit + `git push origin main` gerekiyor (commit hash'i bu nedenle yazılamadı).
+
+## 2026-09-19 — TUR 18: Olasılık — "Kermes çekiliş kutuları" gerçek hayat senaryosu
+Konu: EBOB-EKOK (TUR 16) ve benzerlik (TUR 17) yapıldığı için olasilik.html seçildi (çekiliş = çocuğun en somut şans deneyimi).
+olasilik.html'in EN ÜSTÜNE (k1'in önüne) 4 adımlı, "Devam et" düğmeli kart eklendi (mevcut kartlar/araçlar aynen duruyor;
+yeni localStorage anahtarı YOK; yeni sınıflar `sn*` aynı dosyada tanımlı).
+Kutular (altın kağıt = hediye): A 12 kağıt/3 altın, B 5/2, C 20/4, D 8/6.
+1) Üç kutudan "şansın en yüksek olan hangisi" tahmini (yanlış/doğru yok, tahmin kaydedilir).
+2) "100 çocuk çeksin" → çubuklar dolar: A ≈25, B ≈40, C ≈20 kişi; B yeşil. En çok altın C'de ama şans B'de (tahmin tuttu/tutmadı geri bildirimi).
+3) Yeni D kutusu (8 kağıt, 6 altın): 100 çocukta kaç kişi? 6 / 25 / 75 — tuzaklar: altın sayısı (6), boş oranı (25); her yanlışa özel ipucu.
+4) Terim EN SONDA: 4 kutu tablosu (altın/tüm = sadeleşmiş = yüzde), "olasılık", 0 = imkânsız, 1 = kesin; #k6 soruları + karışık tekrar linkleri.
+Çocuğun keşfi: şans altın kağıdın sayısına değil, tüm kağıtlar içindeki oranına bağlı (C'de en çok altın var ama şans en düşük).
+Doğrulama (Node): 3/12=%25, 2/5=%40, 4/20=%20, 6/8=%75. Sahte DOM ile akış (tahmin, 100 çocuk, 2 yanlış + doğru, ileri/geri, kilitler) çalıştırıldı.
+sw.js cache 19b→19c. `node test/dogrula.js` → CLEAN.
+Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); 3 kutu ≈98px genişlikte, 4 sütun×16px ızgara sığacak şekilde hesaplandı, elle bakılmalı.
+Commit/push: Bash izni verilmedi → elle commit + `git push origin main` gerekiyor (hash yazılamadı).
