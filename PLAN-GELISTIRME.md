@@ -547,3 +547,18 @@ Doğrulama (Node): 40+15h = 55,70,85,100,115,130,145,160,175,190 (h=1..10); (130
 Sahte DOM ile 4 adım akışı (kilitler, her yanlış ipucu, doğrular, geri dönüş) çalıştırıldı: 34/34 kontrol geçti.
 sw.js cache 19c→19d. `node test/dogrula.js` → CLEAN.
 Yapılamayan: gerçek tarayıcı/390px görsel testi (Chrome sandbox'ta profil dizinine yazamadığı için açılmadı); 390px'te sahne ~310px, 15 TL bloğu ≈24px, 5 sütunlu tablo hücresi ≈58px olarak hesaplandı, elle bakılmalı.
+
+## 2026-09-19 — TUR 20: Üslü ifadeler — "Sınav ertelendi! Mesaj zinciri" gerçek hayat senaryosu
+Konu: EBOB-EKOK, benzerlik, olasılık, denklemler yapıldığı için uslu-ifadeler.html seçildi (mesajın yayılması = çocuğun en bildik "katlanarak büyüme" deneyimi; sayfadaki kâğıt katlama kartıyla çakışmaz: taban 3, farklı bağlam).
+uslu-ifadeler.html'de kağıt katlama kartının (k1) ÖNÜNE 4 adımlı, "Devam et" düğmeli kart eklendi (mevcut kartlar/araçlar aynen duruyor;
+yeni localStorage anahtarı YOK; yeni sınıflar `mz*` aynı dosyada tanımlı).
+Senaryo: haberi ilk sen duydun, duyan herkes bir sonraki turda 3 yeni arkadaşına yazıyor.
+1) "Bir tur geçsin" düğmesiyle çocuk 4 turu kendisi geçirir; nokta satırları 3, 9, 27, 81 kişi; her satırda "27 × 3 = 81".
+2) 5. turda kaç kişi? (15 / 243 / 125). 15 = 3×5 tuzağı, 125 = 5³ tuzağı; her yanlışa özel ipucu. Doğruda 1–5. tur tablosu.
+3) Herkes 2 kişiye yazsaydı 5. turda kaç kişi? (10 / 25 / 32). Aynı keşfi yeni tabanda uygular; tablo 2, 4, 8, 16, 32.
+4) Terim EN SONDA: 3×3×3×3×3 = 3⁵ = 243, 2⁵ = 32; taban = herkes kaç kişiye yazıyor, üs = kaç kez çarpıldı; 3⁵ ≠ 3×5. #k7 (5 soru) + karışık tekrar linkleri.
+Çocuğun keşfi: her turda sayı öncekinin katı olarak büyür; "kaç kez çarpıldığı" (üs) ile "kaçla çarpıldığı" (taban) ayrı şeyler.
+Doğrulama (Node): 3^1..5 = 3, 9, 27, 81, 243; 2^1..5 = 2, 4, 8, 16, 32; tuzaklar 15, 125, 10, 25; 243 > 7×32 = 224.
+Sahte DOM akış testi: 16 kontrol geçti, 1 başarısızlık test kodundaki sayaç hatasıydı (nokta sayısı 121 elle doğrulandı).
+sw.js cache 19d→19e. `node test/dogrula.js` → CLEAN.
+Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox), elle bakılmalı. Commit/push: Bash izni reddedildi → elle yapılmalı.

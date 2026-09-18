@@ -88,6 +88,48 @@ body.light .sekme:active { background:#a3e635; }
 <link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="apple-touch-icon" href="/okul-sitesi/icons/icon-192.png">
+<style>
+/* ---- mesaj zinciri senaryosu (adım adım) ---- */
+.mzKart{border-color:#7a5a2f}
+.mzKart .buyuk{font-size:19px;line-height:1.4}
+.mzNoktalar{display:flex;gap:6px;margin:2px 0 12px}
+.mzNokta{flex:1;height:5px;border-radius:3px;background:#243044;transition:background .2s}
+.mzNokta.on{background:var(--tema)}
+.mzBaslik{font-size:12px;font-weight:700;color:#7d8590;letter-spacing:.5px;margin-bottom:6px}
+.mzSahne{background:#0d1420;border-radius:12px;padding:12px 10px;margin:10px 0}
+.mzSatir{padding:6px 0;border-bottom:1px solid #1c2638}
+.mzSatir:last-child{border-bottom:0}
+.mzEtiket{font-size:13px;color:#a9b4c9;margin-bottom:4px}
+.mzEtiket b{color:#fff}
+.mzNok{display:flex;flex-wrap:wrap;gap:2px}
+.mzN{width:8px;height:8px;border-radius:50%;background:var(--tema)}
+.mzN.sen{background:#4ade80;width:12px;height:12px}
+.mzN.yeni{animation:mzParla .6s ease}
+.mzN.gizemli{background:#a78bfa}
+@keyframes mzParla{from{transform:scale(2.2);filter:brightness(2)}to{transform:none;filter:none}}
+.mzYaz{margin-top:8px;font-size:15px;color:#c9d3e0;text-align:center;min-height:24px}
+.mzYaz b{color:#fff}
+.mzGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:10px}
+.mzHuc{background:#131b2a;border:1px solid #27314b;border-radius:8px;padding:4px 2px;text-align:center;font-size:14px;font-weight:700;color:#e8edf7}
+.mzHuc small{display:block;font-size:10px;font-weight:400;color:#8b95ad}
+.mzHuc.son{border-color:#4ade80;color:#4ade80}
+.mzChipler{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.mzChip{min-width:64px;padding:11px 12px;border-radius:10px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:16px;font-weight:700;cursor:pointer}
+.mzChip.dogru{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.mzChip.yanlis{background:#251414;border-color:#5c2a2a;color:#f0857d}
+.mzDurum{margin-top:10px;padding:11px 12px;border-radius:10px;font-size:15px;background:#1a2236;color:#c9d3e0}
+.mzDurum.ok{background:#12251a;color:#8ce89f;border:1px solid #3fb950}
+.mzDurum.bozuk{background:#251414;color:#f0a09a;border:1px solid #5c2a2a}
+.mzYol{display:flex;gap:8px;margin-top:10px}
+.mzYol .btn{margin-top:0}
+.mzYol .btn:disabled{opacity:.4;box-shadow:none;cursor:default}
+.mzYol .mzGeri{flex:0 0 auto;width:auto;margin-top:0}
+.mzLink{display:block;margin-top:9px;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-size:15px;font-weight:700}
+.mzLink.bir{background:var(--tema);color:#0b101e}
+.mzLink.iki{background:#1b2436;border:1px solid #33415a;color:#cfe0f5}
+.mzZincir{display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0;font-size:18px;font-weight:700;flex-wrap:wrap}
+.mzZincir span{background:#131b2a;border:1px solid #33415a;border-radius:10px;padding:8px 12px}
+</style>
 </head>
 <body>
 <div class="kap">
@@ -97,6 +139,161 @@ body.light .sekme:active { background:#a3e635; }
 <h1>Üslü İfadeler</h1>
 <p class="kucuk" style="margin-bottom:6px">Yani: bir sayıyı kendisiyle defalarca çarpmanın kısa yolu. Ama önce bir iddia var.</p>
 <div style="font-size:14px;margin:4px 0 2px"><a href="#k6">↓ Hayatta nerede?</a> · <a href="#k7">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- MESAJ ZİNCİRİ SENARYOSU: adım adım, önce dene sonra ad -->
+<div class="kart mzKart" id="mzKart">
+<span class="adim yesil">Önce bir deneme</span>
+<div class="mzNoktalar" id="mzNoktalar" aria-hidden="true"></div>
+<div class="mzBaslik" id="mzBaslik"></div>
+<p class="buyuk" id="mzSoru"></p>
+<p class="kucuk" id="mzAlt"></p>
+<div class="mzSahne" id="mzSahne"></div>
+<div id="mzKontrol"></div>
+<div class="mzDurum gizli" id="mzDurum" role="status" aria-live="polite"></div>
+<div class="mzYol">
+  <button class="btn2 mzGeri gizli" id="mzGeri" type="button">← Geri</button>
+  <button class="btn" id="mzIleri" type="button" disabled>Devam et →</button>
+</div>
+</div>
+
+<script>
+(function(){
+  /* ================= MESAJ ZİNCİRİ SENARYOSU ================= */
+  var KAC = 3, TUR = 5;      // herkes 3 yeni kişiye yazar; 5. tura kadar bakılır
+  var ADIM_SAYISI = 4;
+  var $ = function(id){ return document.getElementById(id); };
+  function kisi(k, tur){ var n = 1; for (var i = 0; i < tur; i++) n *= k; return n; }   // tur sonunda yeni duyan sayısı
+  var adim = 0, tur = 0, s2 = { ok: false, gecen: {} }, s3 = { ok: false, gecen: {} };
+
+  function nokta(n, sinif){ var h = ''; for (var i = 0; i < n; i++) h += '<span class="mzN ' + sinif + '"></span>'; return h; }
+  // tur satırı: yalnız tur 0..son arası; yeni: son satırı yanıp söndür
+  function satirlar(k, son, yeni){
+    var h = '<div class="mzSatir"><div class="mzEtiket"><b>Sen</b> · haberi ilk duyan</div><div class="mzNok">' + nokta(1, 'sen') + '</div></div>';
+    for (var t = 1; t <= son; t++) {
+      var n = kisi(k, t), ne = kisi(k, t - 1) + ' × ' + k;
+      h += '<div class="mzSatir"><div class="mzEtiket"><b>' + t + '. tur:</b> ' + ne + ' = <b>' + n + ' kişi</b></div><div class="mzNok">' + nokta(n, yeni && t === son ? 'yeni' : '') + '</div></div>';
+    }
+    return h;
+  }
+  function durumYaz(t, m){ var d = $('mzDurum'); d.className = 'mzDurum ' + t; d.textContent = m; }
+  function durumGizle(){ $('mzDurum').className = 'mzDurum gizli'; }
+  function grid(k){
+    var h = '<div class="mzGrid">';
+    for (var i = 1; i <= TUR; i++) h += '<div class="mzHuc' + (i === TUR ? ' son' : '') + '"><small>' + i + '. tur</small>' + kisi(k, i) + '</div>';
+    return h + '</div>';
+  }
+  function chipler(liste, dogru, gecen, bitti){
+    var h = '<div class="mzChipler">';
+    liste.forEach(function(v){
+      h += '<button type="button" class="mzChip' + (gecen[v] ? ' yanlis' : (bitti && v === dogru ? ' dogru' : '')) + '" data-v="' + v + '">' + v + ' kişi</button>';
+    });
+    return h + '</div>';
+  }
+  function chipBagla(fn){
+    [].forEach.call($('mzKontrol').querySelectorAll('.mzChip'), function(b){
+      b.onclick = function(){ fn(b.getAttribute('data-v'), b); };
+    });
+  }
+
+  /* ---- adım 1: turları sen geçir ---- */
+  function kurAdim1(yeni){
+    var bitti = tur >= 4;
+    $('mzSahne').innerHTML = satirlar(KAC, tur, yeni) +
+      '<div class="mzYaz">' + (tur ? '<b>' + tur + '. turda ' + kisi(KAC, tur) + ' kişi</b> yeni duydu.' : 'Şimdilik haberi yalnız sen biliyorsun.') + '</div>';
+    $('mzKontrol').innerHTML = '<button type="button" class="btn" id="mzTur"' + (bitti ? ' disabled' : '') + '>📱 Bir tur geçsin (herkes 3 kişiye yazsın)</button>';
+    $('mzTur').onclick = function(){ if (tur >= 4) return; tur++; kurAdim1(true); ilerleDurumu(); };
+    if (bitti) durumYaz('ok', '4 turda ' + kisi(KAC, 4) + ' kişi yeni duydu. Her turu tek tek geçirerek buldun.');
+    else durumGizle();
+  }
+
+  /* ---- adım 2: 5. tur tahmini ---- */
+  var IPUCU2 = {
+    '15': '15 = 3 × 5: her turda sadece 3 kişi eklenmiş gibi saymışsın. Oysa her turda HERKES 3 kişiye yazıyor. 4. turda 81 kişi vardı; her biri 3 kişiye yazacak.',
+    '125': '125 = 5 × 5 × 5. Ama burada 5’le değil 3’le çarpıyoruz. Her turda sayı 3 katına çıkıyor.'
+  };
+  function kurAdim2(){
+    $('mzSahne').innerHTML = s2.ok
+      ? grid(KAC)
+      : satirlar(KAC, 4) + '<div class="mzSatir"><div class="mzEtiket"><b>5. tur:</b> ? kişi</div><div class="mzNok">' + nokta(3, 'gizemli') + '</div></div>';
+    $('mzKontrol').innerHTML = chipler(['15', '243', '125'], '243', s2.gecen, s2.ok);
+    chipBagla(function(v, b){
+      if (s2.ok) return;
+      if (v === '243') { s2.ok = true; kurAdim2(); }
+      else { s2.gecen[v] = true; b.classList.add('yanlis'); durumYaz('bozuk', IPUCU2[v]); }
+      ilerleDurumu();
+    });
+    if (s2.ok) durumYaz('ok', 'Evet, 243! 81 × 3 = 243. Yani 3’ü tam 5 kez çarptın: 3 × 3 × 3 × 3 × 3. Tabloda her tur bir öncekinin 3 katı.');
+    else durumGizle();
+  }
+
+  /* ---- adım 3: 2 kişiye yazsaydı ---- */
+  var IPUCU3 = {
+    '10': '10 = 2 × 5: her turda 2 kişi eklenmiş gibi saymışsın. Oysa her turda herkes 2 kişiye yazıyor; sayı 2 katına çıkıyor.',
+    '25': '25 = 5 × 5. Ama burada 2’yi çarpıyoruz: 1. tur 2, 2. tur 2 × 2 = 4… 2’yi 5 kez çarp.'
+  };
+  function kurAdim3(){
+    $('mzSahne').innerHTML = s3.ok
+      ? grid(2) + '<div class="mzYaz">3 kişiye yazınca 5. turda <b>243</b>, 2 kişiye yazınca <b>32</b> kişi.</div>'
+      : '<div class="mzYaz" style="margin:0">Herkes 3 yerine <b>2</b> kişiye yazsaydı:<br>1. tur 2 kişi, 2. tur 4 kişi…</div>' +
+        '<div class="mzSatir"><div class="mzEtiket"><b>5. tur:</b> ? kişi</div><div class="mzNok">' + nokta(2, 'gizemli') + '</div></div>';
+    $('mzKontrol').innerHTML = chipler(['10', '25', '32'], '32', s3.gecen, s3.ok);
+    chipBagla(function(v, b){
+      if (s3.ok) return;
+      if (v === '32') { s3.ok = true; kurAdim3(); }
+      else { s3.gecen[v] = true; b.classList.add('yanlis'); durumYaz('bozuk', IPUCU3[v]); }
+      ilerleDurumu();
+    });
+    if (s3.ok) durumYaz('ok', 'Doğru: 2 × 2 × 2 × 2 × 2 = 32. Tek tek saymadan buldun! Küçük bir fark: 3 kişiye yazınca 5. turda 243, yani 32’nin 7 katından fazla.');
+    else durumGizle();
+  }
+
+  /* ---- adım 4: adı ---- */
+  function kurAdim4(){
+    durumGizle();
+    $('mzSahne').innerHTML =
+      '<div class="mzZincir"><span>3 × 3 × 3 × 3 × 3</span><span>=</span><span style="border-color:#4ade80;color:#4ade80">3<sup>5</sup></span><span>=</span><span>243</span></div>' +
+      '<div class="mzZincir"><span>2 × 2 × 2 × 2 × 2</span><span>=</span><span style="border-color:#4ade80;color:#4ade80">2<sup>5</sup></span><span>=</span><span>32</span></div>';
+    $('mzKontrol').innerHTML =
+      '<p style="margin-top:10px">Aynı sayıyı arka arkaya çarpmanın kısa yazılışına <b class="vurgu">üslü ifade</b> denir.</p>' +
+      '<p>Alttaki sayı <b>taban</b>: herkes kaç kişiye yazıyor. Üstteki sayı <b>üs</b>: kaç tur, yani kaç kez çarptın.</p>' +
+      '<p>Dikkat: 3<sup>5</sup> = 3 × 3 × 3 × 3 × 3 = 243. 3 × 5 = 15 <b>değil</b>; az önce o yanlışı gördün.</p>' +
+      '<p class="buyuk" style="margin-top:14px">Şimdi bunu denemeye ne dersin?</p>' +
+      '<a class="mzLink bir" href="#k7">5 soruyla dene →</a>' +
+      '<a class="mzLink iki" href="karisik-tekrar.html">🔀 Karışık tekrar (8 soru)</a>';
+  }
+
+  var ADIMLAR = [
+    { baslik: '1 / 4 · HABER YAYILIYOR', soru: 'Yarınki sınav ertelendi! Haberi ilk sen duydun.',
+      alt: 'Haberi duyan herkes bir sonraki turda 3 yeni arkadaşına yazıyor. Turları sen geçir.', kur: kurAdim1 },
+    { baslik: '2 / 4 · TAHMİN', soru: '5. turda kaç kişi yeni duyar?',
+      alt: 'Tek tek çizmeden bulmayı dene.', kur: kurAdim2 },
+    { baslik: '3 / 4 · SEN BUL', soru: 'Herkes 3 yerine 2 kişiye yazsaydı, 5. turda kaç kişi duyardı?',
+      alt: 'Aynı yolu bu sefer kendin uygula.', kur: kurAdim3 },
+    { baslik: '4 / 4 · ADI NE?', soru: 'Yaptığın şeyin adı var.',
+      alt: 'Kısaca yazalım.', kur: kurAdim4 }
+  ];
+
+  function ilerleDurumu(){
+    var acik = adim === 0 ? tur >= 4 : adim === 1 ? s2.ok : adim === 2 ? s3.ok : true;
+    $('mzIleri').disabled = !acik;
+    $('mzIleri').classList.toggle('gizli', adim === ADIM_SAYISI - 1);
+    $('mzGeri').classList.toggle('gizli', adim === 0);
+  }
+  function goster(){
+    var a = ADIMLAR[adim], n = '';
+    for (var i = 0; i < ADIM_SAYISI; i++) n += '<span class="mzNokta' + (i <= adim ? ' on' : '') + '"></span>';
+    $('mzNoktalar').innerHTML = n;
+    $('mzBaslik').textContent = a.baslik;
+    $('mzSoru').textContent = a.soru;
+    $('mzAlt').textContent = a.alt;
+    a.kur();
+    ilerleDurumu();
+  }
+  $('mzIleri').onclick = function(){ if (adim < ADIM_SAYISI - 1) { adim++; goster(); } };
+  $('mzGeri').onclick = function(){ if (adim > 0) { adim--; goster(); } };
+  goster();
+})();
+</script>
 
 <!-- KART 1: KANCA - kagit katlama -->
 <div class="kart" id="k1">
