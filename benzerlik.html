@@ -124,6 +124,33 @@ body.light .sekme:active { background:#a3e635; }
 </div>
 </div>
 
+<!-- KART 1b: GOLGE ORANI ARACI -->
+<div class="kart" id="k1b">
+<span class="adim">1b</span>
+<h2>Kendi gölge oranını dene</h2>
+<p>Çubuğu ve gölgesini sen seç, sonra binanın gölgesini uzat — boy canlı hesaplansın.</p>
+<div class="golgeKutu">
+<svg viewBox="0 0 320 170" id="boSvg">
+<rect id="boCubuk" x="30" width="10" fill="#8891a8"/>
+<line id="boCubukGolge" y1="140" y2="140" stroke="#ffb84d" stroke-width="4"/>
+<rect id="boBina" x="220" width="14" fill="#39d98a"/>
+<line id="boBinaGolge" y1="140" y2="140" stroke="#ffb84d" stroke-width="4"/>
+<text id="boCubukEtiket" x="18" y="158" fill="#e8ecf5" font-size="11"></text>
+<text id="boBinaEtiket" x="205" y="158" fill="#e8ecf5" font-size="11"></text>
+</svg>
+</div>
+<p class="kucuk">Çubuk boyu: <span id="boCubukBoyEt" class="vurgu">1,5 m</span></p>
+<input type="range" class="oranSlider" id="boCubukBoy" min="0.5" max="3" step="0.1" value="1.5">
+<p class="kucuk">Çubuğun gölgesi: <span id="boCubukGolgeEt" class="vurgu">2 m</span></p>
+<input type="range" class="oranSlider" id="boCubukGolgeS" min="0.5" max="6" step="0.1" value="2">
+<p class="kucuk">Binanın gölgesi: <span id="boBinaGolgeEt" class="vurgu">40 m</span></p>
+<input type="range" class="oranSlider" id="boBinaGolgeS" min="5" max="100" step="1" value="40">
+<div class="sonuc">
+<span class="kucuk">Oran: çubuk boyu ÷ çubuk gölgesi = <span id="boOran" class="vurgu">0,75</span></span><br>
+Bina boyu ≈ <span id="boSonuc" class="buyuk">30 m</span>
+</div>
+</div>
+
 <!-- KART 2: HARITA -->
 <div class="kart" id="k2">
 <span class="adim">2</span>
@@ -223,6 +250,39 @@ soruKur('k1',0,'k1devam');
 soruKur('k2',0,'k2devam');
 soruKur('k3',0,'k3devam');
 soruKur('k4',0,'k4devam');
+
+// KART 1b: golge orani araci
+(function(){
+  var cubukBoy=document.getElementById('boCubukBoy'), cubukGolge=document.getElementById('boCubukGolgeS'), binaGolge=document.getElementById('boBinaGolgeS');
+  var cubukBoyEt=document.getElementById('boCubukBoyEt'), cubukGolgeEt=document.getElementById('boCubukGolgeEt'), binaGolgeEt=document.getElementById('boBinaGolgeEt');
+  var oranEt=document.getElementById('boOran'), sonucEt=document.getElementById('boSonuc');
+  var svgCubuk=document.getElementById('boCubuk'), svgCubukGolge=document.getElementById('boCubukGolge');
+  var svgBina=document.getElementById('boBina'), svgBinaGolge=document.getElementById('boBinaGolge');
+  var boCubukEtiket=document.getElementById('boCubukEtiket'), boBinaEtiket=document.getElementById('boBinaEtiket');
+  function fmt(n){return n.toLocaleString('tr-TR',{maximumFractionDigits:2});}
+  function guncelle(){
+    var cb=parseFloat(cubukBoy.value), cg=parseFloat(cubukGolge.value), bg=parseFloat(binaGolge.value);
+    var oran=cb/cg, bina=oran*bg;
+    cubukBoyEt.textContent=fmt(cb)+' m';
+    cubukGolgeEt.textContent=fmt(cg)+' m';
+    binaGolgeEt.textContent=fmt(bg)+' m';
+    oranEt.textContent=fmt(oran);
+    sonucEt.textContent=fmt(bina)+' m';
+    // gorsel: cubuk yuksekligi sabit 40px'e olceklenir, bina orana gore (40..130px arasi kirpilir)
+    var cubukPx=Math.max(15,Math.min(55,cb*20));
+    var binaPx=Math.max(20,Math.min(130,bina*3));
+    svgCubuk.setAttribute('y',140-cubukPx); svgCubuk.setAttribute('height',cubukPx);
+    svgBina.setAttribute('y',140-binaPx); svgBina.setAttribute('height',binaPx);
+    var cubukGolgePx=Math.max(10,Math.min(80,cg*12));
+    var binaGolgePx=Math.max(15,Math.min(90,bg*0.85));
+    svgCubukGolge.setAttribute('x1',40); svgCubukGolge.setAttribute('x2',40+cubukGolgePx);
+    svgBinaGolge.setAttribute('x1',227); svgBinaGolge.setAttribute('x2',227+binaGolgePx);
+    boCubukEtiket.textContent='çubuk '+fmt(cb)+' m';
+    boBinaEtiket.textContent='bina ≈ '+fmt(bina)+' m';
+  }
+  [cubukBoy,cubukGolge,binaGolge].forEach(function(el){el.addEventListener('input',guncelle);});
+  guncelle();
+})();
 
 var sekmeler=[
  '<b>Önce tahmin et:</b> 1/100 planda 8 m sınıf kaç cm çizilir? 👇<br><br><b>Mimari plan.</b> Köye okul yapılırken mimar 1/200 (ön), 1/100 (kesin), 1/50 (uygulama) ölçekli planlar çizer. 8 m sınıf: 1/100&#39;de <b>8 cm</b>, 1/50&#39;de 16 cm. Aynı bina, farklı oran, açılar hep aynı — hepsi binanın benzeri. Usta ölçeği yanlış okursa duvarı iki kat uzun yapar; bu yüzden ölçekler yönetmelikle sabit.',
