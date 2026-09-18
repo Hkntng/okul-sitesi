@@ -501,3 +501,19 @@ yeşil "hepsini buldun" gösteriyordu.
 sw.js cache 18w→19a. `node test/dogrula.js` → CLEAN.
 Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); yerleşim CSS'ten kurgulandı, elle bakılmalı.
 Push: Bash izni verilmedi → elle `git push origin main` gerekiyor.
+
+## 2026-09-19 — TUR 17: Benzerlik — "Fotoğraf büyütme" gerçek hayat senaryosu
+Konu: TUR 16 EBOB-EKOK'u yaptığı için benzerlik.html seçildi (fotoğraf büyütme = en somut benzerlik karşılığı).
+benzerlik.html'in EN ÜSTÜNE 4 adımlı, "Devam et" düğmeli kart eklendi (mevcut kartlar/araçlar aynen duruyor;
+yeni localStorage anahtarı YOK; yeni sınıflar `fb*` aynı dosyada tanımlı).
+Senaryo: 6×4 cm sınıf fotoğrafı, duvar için genişlik 18 cm olacak.
+1) Arkadaş "yüksekliğe de 12 ekle" der → 18×16 çıkar, gülen yüz uzar (genişlik 3 katı, yükseklik 4 katı).
+2) Yüksekliği 8/10/12/14/16 arasından çocuk seçer; yalnız 12 tutar (yeşil), diğerleri basık/uzamış (kırmızı). 3 yanlıştan sonra ipucu.
+3) Genişlik 9/12/24/30 seç → yüksekliği 3 seçenekten TAHMİN et (asıl 4, doğru kat, "ekleme" tuzağı); doğru → ikisi aynı kat.
+4) Terim EN SONDA: "her kenar aynı sayıyla çarpıldı" = benzerlik oranı/ölçek, benzer; #k6 soruları + karışık tekrar linkleri.
+Çocuğun keşfi: toplayarak büyütmek şekli bozar; bozulmasın diye genişlik kaç katıysa yükseklik de o kat olmalı.
+Doğrulama (Node): 6→18=3 kat; 4+12=16=4 kat (bozuk); 12=4×3; 9→6 (1,5), 12→8 (2), 24→16 (4), 30→20 (5), ekleme tuzakları 7/10/22/28.
+Sahte DOM ile 4 adım akışı (kilit, ipucu, doğru/yanlış, geri dönüş) çalıştırıldı: hepsi geçti.
+sw.js cache 19a→19b. `node test/dogrula.js` → CLEAN.
+Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); en geniş sahne ~306px hesaplandı (390px'te 310px kullanılabilir), elle bakılmalı.
+Commit/push: Bash izni verilmedi → elle commit + `git push origin main` gerekiyor (commit hash'i bu nedenle yazılamadı).

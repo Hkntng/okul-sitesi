@@ -71,6 +71,41 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 .golgeKutu{background:#1a2236;border-radius:12px;padding:14px;margin:12px 0;text-align:center}
 .golgeKutu svg{max-width:100%;height:auto}
 .oranSlider{width:100%;margin:10px 0}
+
+/* ---- fotoğraf büyütme senaryosu (adım adım) ---- */
+.fbKart{border-color:#5b3a66}
+.fbKart .buyuk{font-size:19px;line-height:1.4}
+.fbNoktalar{display:flex;gap:6px;margin:2px 0 12px}
+.fbNokta{flex:1;height:5px;border-radius:3px;background:#243044;transition:background .2s}
+.fbNokta.on{background:#e879f9}
+.fbBaslik{font-size:12px;font-weight:700;color:#7d8590;letter-spacing:.5px;margin-bottom:6px}
+.fbSahne{background:#0d1420;border-radius:12px;padding:12px 10px;margin:10px 0}
+.fbSatir{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:10px}
+.fbKutu{text-align:center;font-size:12px;color:#9aa4b0}
+.fbFoto{display:block;border:2px solid #33415a;border-radius:4px;margin:0 auto 4px;transition:border-color .2s,box-shadow .2s}
+.fbKutu.ok .fbFoto{border-color:#3fb950;box-shadow:0 0 12px rgba(63,185,80,.5)}
+.fbKutu.bozuk .fbFoto{border-color:#e5484d;box-shadow:0 0 12px rgba(229,72,77,.5)}
+.fbOlcu{font-size:14px;color:#c9d3e0;text-align:center;margin-top:10px;line-height:1.7}
+.fbOlcu b{color:#f0abfc}
+.fbOlcu .fbKat{display:inline-block;padding:1px 8px;border-radius:8px;background:#1f2a3c;border:1px solid #33415a;font-weight:700}
+.fbOlcu .fbKat.ok{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.fbOlcu .fbKat.bozuk{background:#251414;border-color:#5c2a2a;color:#f0857d}
+.fbChipler{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.fbChip{min-width:56px;padding:11px 8px;border-radius:10px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:16px;font-weight:700;cursor:pointer}
+.fbChip.tutar{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.fbChip.tutmaz{background:#251414;border-color:#5c2a2a;color:#f0857d}
+.fbChip.aktif{outline:2px solid #f0a44b;outline-offset:1px}
+.fbEtiket{text-align:center;font-size:13px;color:#8b95ad;margin-top:10px}
+.fbDurum{margin-top:10px;padding:11px 12px;border-radius:10px;font-size:15px;background:#1a2236;color:#c9d3e0}
+.fbDurum.ok{background:#12251a;color:#8ce89f;border:1px solid #3fb950}
+.fbDurum.bozuk{background:#251414;color:#f0a09a;border:1px solid #5c2a2a}
+.fbYol{display:flex;gap:8px;margin-top:10px}
+.fbYol .btn{margin-top:0}
+.fbYol .btn:disabled{opacity:.4;box-shadow:none;cursor:default}
+.fbYol .fbGeri{flex:0 0 auto;width:auto;margin-top:0}
+.fbLink{display:block;margin-top:9px;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-size:15px;font-weight:700}
+.fbLink.bir{background:#e879f9;color:#1b0b20}
+.fbLink.iki{background:#1b2436;border:1px solid #33415a;color:#cfe0f5}
 </style>
 
 
@@ -99,6 +134,25 @@ body.light .sekme:active { background:#a3e635; }
 <h1>Eşlik ve Benzerlik</h1>
 <p class="kucuk" style="margin-bottom:6px">Kavağın boyunu tırmanmadan ölçebilir misin? 2600 yıl önce bir adam piramidi böyle ölçtü.</p>
 <div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- FOTOĞRAF SENARYOSU: adım adım, önce dene sonra ad -->
+<div class="kart fbKart" id="fbKart">
+<span class="adim yesil">Önce bir deneme</span>
+<div class="fbNoktalar" id="fbNoktalar" aria-hidden="true"></div>
+<div class="fbBaslik" id="fbBaslik"></div>
+<p class="buyuk" id="fbSoru"></p>
+<p class="kucuk" id="fbAlt"></p>
+<div class="fbSahne" id="fbSahne">
+  <div class="fbSatir" id="fbSatir"></div>
+  <div class="fbOlcu" id="fbOlcu"></div>
+</div>
+<div id="fbKontrol"></div>
+<div class="fbDurum gizli" id="fbDurum" role="status" aria-live="polite"></div>
+<div class="fbYol">
+  <button class="btn2 fbGeri gizli" id="fbGeri" type="button">← Geri</button>
+  <button class="btn" id="fbIleri" type="button" disabled>Devam et →</button>
+</div>
+</div>
 
 <!-- KART 1: KANCA - Thales golge -->
 <div class="kart" id="k1">
@@ -446,6 +500,196 @@ window.addEventListener('load', showNotes);
 })();
 </script>
 
+<script>
+(function(){
+  /* ================= FOTOĞRAF BÜYÜTME SENARYOSU ================= */
+  var W0 = 6, H0 = 4, W1 = 18, H1 = H0 * W1 / W0;   // 6x4 cm foto; 18 cm genişliğe büyüyor -> yükseklik 12
+  var ADIM_SAYISI = 4, K_BUYUK = 11, K_KUCUK = 7;    // 1 cm = kaç piksel
+  var $ = function(id){ return document.getElementById(id); };
+  var adim = 0, s1Bitti = false, s2 = { denenen: {}, yanlis: 0, bulundu: false, son: 0 };
+  var s3 = { w: 0, h: 0, ok: false };
+
+  function fmt(n){ return String(n).replace('.', ','); }
+
+  function fotoHtml(w, h, k, durum, etiket){
+    return '<div class="fbKutu ' + durum + '"><svg class="fbFoto" width="' + (w * k) + '" height="' + (h * k) +
+      '" viewBox="0 0 60 40" preserveAspectRatio="none" role="img" aria-label="Fotoğraf, ' + fmt(w) + ' × ' + fmt(h) + ' cm">' +
+      '<rect width="60" height="40" fill="#27466f"/><rect y="32" width="60" height="8" fill="#2f6b45"/>' +
+      '<circle cx="30" cy="19" r="12" fill="#f5c542"/>' +
+      '<circle cx="26" cy="16.5" r="1.6" fill="#3a2a00"/><circle cx="34" cy="16.5" r="1.6" fill="#3a2a00"/>' +
+      '<path d="M24 22 Q30 28 36 22" stroke="#3a2a00" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>' +
+      etiket + ' ' + fmt(w) + ' × ' + fmt(h) + ' cm</div>';
+  }
+  function katHtml(sinif, kat){ return '<span class="fbKat ' + sinif + '">' + fmt(kat) + ' katı</span>'; }
+
+  // w,h: büyük fotoğraf (h yoksa sadece asıl foto gösterilir)
+  function ciz(k, w, h, durum){
+    var s = fotoHtml(W0, H0, k, '', 'Asıl foto');
+    var o = '';
+    if (h) {
+      s += fotoHtml(w, h, k, durum, 'Büyütülen');
+      o = 'Genişlik: ' + W0 + ' → ' + fmt(w) + ' cm &nbsp;' + katHtml(durum === 'ok' ? 'ok' : '', w / W0) + '<br>' +
+          'Yükseklik: ' + H0 + ' → ' + fmt(h) + ' cm &nbsp;' + katHtml(durum, h / H0);
+    } else if (w) {
+      o = 'Genişlik: ' + W0 + ' → ' + fmt(w) + ' cm &nbsp;' + katHtml('', w / W0) + '<br>Yükseklik: ' + H0 + ' → ? cm';
+    }
+    $('fbSatir').innerHTML = s;
+    $('fbOlcu').innerHTML = o;
+  }
+  function durumYaz(tur, metin){ var d = $('fbDurum'); d.className = 'fbDurum ' + tur; d.textContent = metin; }
+  function durumGizle(){ $('fbDurum').className = 'fbDurum gizli'; }
+
+  function chipler(deger, sinifFn, dataAd){
+    var s = '';
+    deger.forEach(function(v){
+      s += '<button type="button" class="fbChip ' + sinifFn(v) + '" data-' + dataAd + '="' + v + '">' + v + '</button>';
+    });
+    return s;
+  }
+  function chipBagla(kapsayici, dataAd, fn){
+    [].forEach.call(kapsayici.querySelectorAll('.fbChip'), function(b){
+      b.onclick = function(){ fn(+b.getAttribute('data-' + dataAd)); };
+    });
+  }
+
+  /* ---- adım 1: toplayarak büyüt ---- */
+  function adim1Sonuc(){
+    ciz(K_BUYUK, W1, H0 + (W1 - W0), 'bozuk');
+    durumYaz('bozuk', 'Bir tuhaflık var: gülen yüz uzamış. Genişlik 3 katına çıktı (6 → 18) ama yükseklik 4 katına çıktı (4 → 16). İkisi aynı kat büyümedi.');
+  }
+  function kurAdim1(){
+    ciz(K_BUYUK, 0, 0, '');
+    $('fbKontrol').innerHTML = '<button type="button" class="btn" id="fbEkle">Yüksekliğe de 12 cm ekleyip büyüt</button>';
+    $('fbEkle').onclick = function(){ adim1Sonuc(); s1Bitti = true; ilerleDurumu(); };
+    if (s1Bitti) adim1Sonuc();
+  }
+
+  /* ---- adım 2: yüksekliği sen seç ---- */
+  var YUKSEKLER = [8, 10, 12, 14, 16];
+  function yukDene(h){
+    var tuttu = h === H1;
+    s2.denenen[h] = tuttu; s2.son = h;
+    if (tuttu) s2.bulundu = true; else s2.yanlis++;
+    ciz(K_BUYUK, W1, h, tuttu ? 'ok' : 'bozuk');
+    if (tuttu) {
+      durumYaz('ok', 'Tuttu! Genişlik 6 → 18: 3 katı. Yükseklik 4 → 12: o da 3 katı. Gülen yüz yuvarlak kaldı.');
+    } else {
+      durumYaz('bozuk', 'Gülen yüz ' + (h < H1 ? 'basık' : 'uzamış') + ' oldu. Genişlik 3 katına çıktı ama yükseklik ' +
+        fmt(h / H0) + ' katına çıktı.' + (!s2.bulundu && s2.yanlis >= 3 ? ' İpucu: yükseklik de 3 katına çıksa?' : ''));
+    }
+    kurYukChip(); ilerleDurumu();
+  }
+  function kurYukChip(){
+    $('fbKontrol').innerHTML = '<div class="fbEtiket">Yükseklik kaç cm olsun?</div><div class="fbChipler" id="fbCh">' +
+      chipler(YUKSEKLER, function(v){
+        return (v in s2.denenen ? (s2.denenen[v] ? 'tutar' : 'tutmaz') : '') + (v === s2.son ? ' aktif' : '');
+      }, 'h') + '</div>';
+    chipBagla($('fbCh'), 'h', yukDene);
+  }
+  function kurAdim2(){
+    ciz(K_BUYUK, 0, 0, '');
+    kurYukChip();
+    if (s2.son) yukDene(s2.son);
+  }
+
+  /* ---- adım 3: başka genişlikler, önce tahmin ---- */
+  var GENISLIKLER = [9, 12, 24, 30];
+  function yukSecenekleri(w){
+    var dogru = H0 * w / W0, ekle = H0 + (w - W0);
+    return [H0, dogru, ekle].sort(function(a, b){ return a - b; });
+  }
+  function kurYukSecenek(){
+    var w = s3.w, s = '';
+    if (w) {
+      s = '<div class="fbEtiket">Yükseklik kaç cm olmalı?</div><div class="fbChipler" id="fbCh2">' +
+        chipler(yukSecenekleri(w), function(v){
+          return v === s3.h ? (v === H0 * w / W0 ? 'tutar aktif' : 'tutmaz aktif') : '';
+        }, 'h') + '</div>';
+    }
+    $('fbYuk').innerHTML = s;
+    if (w) chipBagla($('fbCh2'), 'h', yukSec);
+  }
+  function genSec(w){
+    s3.w = w; s3.h = 0;
+    durumGizle(); ciz(K_KUCUK, w, 0, '');
+    kurGenChip(); kurYukSecenek();
+  }
+  function yukSec(h){
+    var dogru = H0 * s3.w / W0, kat = s3.w / W0;
+    s3.h = h;
+    ciz(K_KUCUK, s3.w, h, h === dogru ? 'ok' : 'bozuk');
+    if (h === dogru) {
+      s3.ok = true;
+      durumYaz('ok', 'Tuttu! Genişlik ' + fmt(kat) + ' katına çıktı, yükseklik de ' + fmt(kat) + ' katına çıktı (4 → ' + fmt(dogru) + ').');
+    } else {
+      durumYaz('bozuk', 'Gülen yüz yamulmuş: genişlik ' + fmt(kat) + ' katı, yükseklik ' + fmt(h / H0) + ' katı oldu. ' +
+        (h === H0 + (s3.w - W0) ? 'Üstüne ekleyince olmuyor, kaç katı olduğuna bak.' : 'İkisi aynı kat olmalı.'));
+    }
+    kurYukSecenek(); ilerleDurumu();
+  }
+  function kurGenChip(){
+    $('fbGen').innerHTML = '<div class="fbEtiket">Bu sefer genişlik kaç cm olsun?</div><div class="fbChipler" id="fbCh1">' +
+      chipler(GENISLIKLER, function(v){ return v === s3.w ? 'aktif' : ''; }, 'w') + '</div>';
+    chipBagla($('fbCh1'), 'w', genSec);
+  }
+  function kurAdim3(){
+    $('fbKontrol').innerHTML = '<div id="fbGen"></div><div id="fbYuk"></div>';
+    ciz(K_KUCUK, 0, 0, '');
+    kurGenChip();
+    if (s3.w) { ciz(K_KUCUK, s3.w, 0, ''); kurYukSecenek(); if (s3.h) yukSec(s3.h); }
+  }
+
+  /* ---- adım 4: adı ne? ---- */
+  function kurAdim4(){
+    $('fbSahne').classList.add('gizli'); durumGizle();
+    $('fbKontrol').innerHTML =
+      '<p>Az önce şunu yaptın: <b>her kenarı aynı sayıyla çarptın</b>. Fotoğraf büyüdü ama bozulmadı.</p>' +
+      '<table class="tablo"><tr><th></th><th>Küçük</th><th>Büyük</th><th>Kaç katı</th></tr>' +
+      '<tr><td>Genişlik</td><td>' + W0 + '</td><td>' + W1 + '</td><td class="ok">3</td></tr>' +
+      '<tr><td>Yükseklik</td><td>' + H0 + '</td><td>' + H1 + '</td><td class="ok">3</td></tr></table>' +
+      '<div class="sonuc">Şekli bozmadan büyütünce (ya da küçültünce) <b>bütün kenarlar aynı sayıyla çarpılır</b>. ' +
+      'Bu sayıya <span class="vurgu">benzerlik oranı</span> (ölçek) denir, böyle iki şekle de <span class="vurgu">benzer</span> denir. ' +
+      'Üstüne +12 ekleyince kenarlar farklı kat büyür, şekil bozulur, benzer olmaz.</div>' +
+      '<p class="kucuk">Haritalar, maketler ve fotokopi büyütme de aynı fikirle çalışır.</p>' +
+      '<p class="buyuk" style="margin-top:14px">Şimdi bunu denemeye ne dersin?</p>' +
+      '<a class="fbLink bir" href="#k6">Bu sayfadaki 5 soruya geç ↓</a>' +
+      '<a class="fbLink iki" href="karisik-tekrar.html">🔀 Karışık tekrar (8 soru)</a>';
+  }
+
+  var ADIMLAR = [
+    { baslik: '1 / 4 · FOTOĞRAF ASMAK', soru: 'Sınıf fotoğrafın 6 cm × 4 cm. Duvara asmak için genişliği 18 cm olacak şekilde büyüteceksin.',
+      alt: 'Arkadaşın diyor ki: "Genişlik 12 cm arttı, yüksekliğe de 12 cm ekle, olur biter." Dene bakalım.', kur: kurAdim1 },
+    { baslik: '2 / 4 · SEN DENE', soru: 'Genişlik 18 cm oldu. Yükseklik kaç cm olursa fotoğraf bozulmaz?',
+      alt: 'Bir sayıya bas, gülen yüze bak. Yeşil tutar, kırmızı tutmaz.', kur: kurAdim2 },
+    { baslik: '3 / 4 · BAŞKA BOYLAR', soru: 'Aynı fotoğrafı başka genişliklerde de bastıralım.',
+      alt: 'Önce genişliği seç, sonra yüksekliğin kaç olması gerektiğini tahmin et.', kur: kurAdim3 },
+    { baslik: '4 / 4 · ADI NE?', soru: 'Az önce kafandan bir şey hesapladın.', alt: '', kur: kurAdim4 }
+  ];
+
+  function ilerleDurumu(){
+    var hazir = adim === 0 ? s1Bitti : adim === 1 ? s2.bulundu : adim === 2 ? s3.ok : true;
+    $('fbIleri').disabled = !hazir;
+    $('fbIleri').classList.toggle('gizli', adim === ADIM_SAYISI - 1);
+    $('fbGeri').classList.toggle('gizli', adim === 0);
+  }
+  function goster(){
+    var a = ADIMLAR[adim], nok = '';
+    for (var i = 0; i < ADIM_SAYISI; i++) nok += '<div class="fbNokta' + (i <= adim ? ' on' : '') + '"></div>';
+    $('fbNoktalar').innerHTML = nok;
+    $('fbBaslik').textContent = a.baslik;
+    $('fbSoru').textContent = a.soru;
+    $('fbAlt').textContent = a.alt;
+    $('fbAlt').classList.toggle('gizli', !a.alt);
+    $('fbSahne').classList.remove('gizli');
+    durumGizle();
+    a.kur();
+    ilerleDurumu();
+  }
+  $('fbIleri').onclick = function(){ if (adim < ADIM_SAYISI - 1) { adim++; goster(); } };
+  $('fbGeri').onclick = function(){ if (adim > 0) { adim--; goster(); } };
+  goster();
+})();
+</script>
 <script>
 if ('serviceWorker' in navigator && location.protocol === 'https:') {
   navigator.serviceWorker.register('/okul-sitesi/sw.js', {scope: '/okul-sitesi/'});
