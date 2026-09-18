@@ -141,3 +141,16 @@ Test: node ile JS gecerliligi + tag/button dengesi (sinav 5/5, karisik 3/3, CLEA
 gercek tarayicida (localhost, prod yolu /okul-sitesi/) — sinav: banka 96, 2 tusu
 2. siki secti, Enter sonraki, sol-ok onceki; karisik: 1 tusu cevabi degerlendirdi
 (dogru sik + aciklama acildi), Enter sonraki soru (1/8->2/8).
+
+
+## TUR 10 (2026-09-18) - Karnem: zayif konular karti
+Yapilan: Karnem'e "Zayif konularin" karti eklendi. Yanlis Kutum'daki (yanlisKutum
+anahtari) bekleyen sorular konu bazinda sayilip bar grafikle siralanir; en cok soru
+olan konu barin basinda gorunur. "Sonraki adim" onerisi en zayif konuyu dogrudan
+Yanlis Kutum'a yonlendirir. Kutu bossa kart gizli. Salt okuma - yeni localStorage
+anahtari yok, mevcut anahtarlar (okulDone*, karisikSkorlar, sinavGecmisi, yanlisKutum)
+degismedi. sw cache f->g. Commit bc1dc26.
+Test: div/script/style tag dengesi OK (49/49, 1/1, 1/1), node --check JS gecerli;
+node ile sayim/siralama davranisi GECTI (Ucgenler3>Cebir2>Karekok1, bar %100/67/33,
+enZayif dogru); gercek tarayicida (localhost, prod yolu) kart render + bar genislikleri
+100/67/33 + oneri en zayif konuyu bagladi (ekran goruntusuyle dogrulandi).
