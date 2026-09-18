@@ -137,6 +137,8 @@ function bitir(sureBitti){
     if(d) dogru++;
     if(!konuIst[q.k]) konuIst[q.k]={d:0,t:0};
     konuIst[q.k].t++; if(d) konuIst[q.k].d++;
+    // Yanlış Kutum: yanlış/boşsa ekle, doğruysa çıkar
+    if(window.kutuyaEkle){ if(d) window.kutudanCikar(q); else window.kutuyaEkle(q); }
   });
   var yuzde=Math.round(dogru/sorular.length*100);
   // kaydet
@@ -159,6 +161,7 @@ function bitir(sureBitti){
   ozetH+='</div>';
   alan.innerHTML='<div class="kart skorKutu"><div class="buyukSkor">'+dogru+'/'+sorular.length+'</div><div>'+msg+'</div>'+sureNot+ozetH+
     '<button class="ilerle" onclick="location.reload()" style="margin-top:18px">↺ Yeni sınav</button>'+
+    (window.kutuOku&&window.kutuOku().length?'<a href="yanlis-kutum.html" style="display:block;margin-top:10px;color:#f0b429;text-decoration:none;font-size:14px">📌 Yanlış Kutum ('+window.kutuOku().length+' soru) — sadece hatalarını çöz</a>':'')+
     '<a href="karisik-tekrar.html" style="display:block;margin-top:10px;color:#79c0ff;text-decoration:none;font-size:14px">🔀 Kısa karışık tekrar (8 soru)</a></div>';
 }
 

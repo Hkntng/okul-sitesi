@@ -154,6 +154,13 @@ body.light .sekme:active { background:#a3e635; }
     <span class="git" style="color:#3fb950">Karnemi gör →</span>
   </a>
 
+  <a class="oncu" href="yanlis-kutum.html" id="kutuKart" style="border-color:rgba(240,180,41,.4)">
+    <div class="ikon">📌</div>
+    <h2>Yanlış Kutum <span id="kutuRozet"></span></h2>
+    <p>Sınav ve karışık tekrarda yanlış yaptığın sorular buraya düşer. Sadece hatalarını çöz; doğru yapınca soru kutudan çıkar. Zayıf noktalarını hedefli tekrarla kapat.</p>
+    <span class="git" style="color:#f0b429">Hatalarını çöz →</span>
+  </a>
+
   <div class="bolumBaslik"><h3>Konular</h3><span>8. sınıf matematik</span></div>
 
   <div class="izgara">
@@ -324,6 +331,15 @@ window.addEventListener('load', showNotes);
       a.appendChild(r);
     }
   });
+  // Yanlış Kutum sayacı (soru-bankasi.js yüklemeden, doğrudan localStorage)
+  try{
+    var kutuArr=JSON.parse(localStorage.getItem('yanlisKutum')||'[]');
+    var rz=document.getElementById('kutuRozet');
+    if(rz&&kutuArr.length>0){
+      rz.textContent=kutuArr.length+' soru';
+      rz.style.cssText='display:inline-block;font-size:12px;font-weight:700;color:#f0b429;background:rgba(240,180,41,.14);border:1px solid rgba(240,180,41,.35);padding:1px 9px;border-radius:999px;vertical-align:middle;margin-left:6px';
+    }
+  }catch(e){}
 })();
 </script>
 

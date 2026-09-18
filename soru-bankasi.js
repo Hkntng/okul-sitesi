@@ -76,3 +76,30 @@ window.SORU_BANKASI = [
  {k:"Cisimler",s:"Bir küpün hacmi 27 cm³ ise bir ayrıtı kaç cm'dir?",c:["3","9","6"],d:0,a:"V=a³=27 → a=∛27=3 cm."}
 ];
 window.KONU_SAYFA = {"Çarpanlar":"1-carpanlar.html","Üslü İfadeler":"uslu-ifadeler.html","Karekök":"karekok.html","Veri Analizi":"veri-analizi.html","Olasılık":"olasilik.html","Cebir":"cebir.html","Denklemler":"denklemler.html","Eşitsizlikler":"esitsizlikler.html","Üçgenler":"ucgenler.html","Benzerlik":"benzerlik.html","Dönüşüm":"donusum.html","Cisimler":"cisimler.html"};
+
+// ── Yanlış Kutum API'si ──────────────────────────────────────────────
+// Yanlış yapılan soruların kimliği (konu|metin) localStorage 'yanlisKutum'da tutulur.
+// Kimlik banka sırasından bağımsızdır; soru metni değişmedikçe stabildir.
+// mevcut anahtarlar (okulDone*, karisikSkorlar, sinavGecmisi) ASLA değişmez; bu yeni bir anahtar.
+window.soruId = function(q){ return q.k + "|" + q.s; };
+window.kutuOku = function(){
+  try{ return JSON.parse(localStorage.getItem('yanlisKutum')||'[]'); }catch(e){ return []; }
+};
+window.kutuYaz = function(a){
+  try{ localStorage.setItem('yanlisKutum', JSON.stringify(a.slice(0,200))); }catch(e){}
+};
+// Yanlış yapılan soruyu kutuya ekle (varsa yinelemez)
+window.kutuyaEkle = function(q){
+  var id=window.soruId(q), a=window.kutuOku();
+  if(a.indexOf(id)===-1){ a.push(id); window.kutuYaz(a); }
+};
+// Doğru yapılan soruyu kutudan çıkar (öğrenildi sayılır)
+window.kutudanCikar = function(q){
+  var id=window.soruId(q), a=window.kutuOku(), i=a.indexOf(id);
+  if(i!==-1){ a.splice(i,1); window.kutuYaz(a); }
+};
+// Kutudaki id'lere karşılık gelen TAM soru nesnelerini döndür (bankada hâlâ varsa)
+window.kutuSorulari = function(){
+  var set={}; window.kutuOku().forEach(function(id){ set[id]=1; });
+  return window.SORU_BANKASI.filter(function(q){ return set[window.soruId(q)]; });
+};

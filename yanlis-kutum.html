@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yanlış Kutum — 8. Sınıf Matematik</title>
+<meta name="description" content="Sınav ve karışık tekrarda yanlış yaptığın soruları burada topla ve sadece onları tekrar çöz. Doğru yapınca soru kutudan çıkar.">
+<meta property="og:title" content="Yanlış Kutum — 8. Sınıf Matematik">
+<meta property="og:description" content="Sadece hatalarını çöz: yanlış yaptığın soruları biriktir, öğrenince kutudan çıkar.">
+<meta property="og:url" content="https://hkntng.github.io/okul-sitesi/yanlis-kutum.html">
+<style>
+:root{color-scheme:dark}
+body{margin:0;background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.55}
+.sar{max-width:430px;margin:0 auto;padding:24px 16px 60px}
+h1{font-size:24px;margin:10px 0 4px}
+.alt-baslik{color:#8b949e;font-size:14px;margin-bottom:18px}
+.kart{background:#161d2b;border:1px solid #2c3950;border-radius:14px;padding:18px;margin-bottom:14px}
+.rozet{display:inline-block;background:#2a2312;color:#f0b429;font-size:12px;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.soruTxt{font-size:16px;font-weight:600;margin:6px 0 14px}
+.sik{display:block;width:100%;box-sizing:border-box;padding:13px;margin-bottom:8px;border-radius:10px;border:1px solid #2c3950;background:#10151f;color:#e6edf3;font-size:15px;cursor:pointer;text-align:left;font-family:inherit}
+.sik.dogru{background:#12251a;border-color:#3fb950;color:#8ce89f}
+.sik.yanlis{background:#2b1518;border-color:#f85149;color:#ffa198}
+.aciklama{display:none;font-size:14px;padding:10px 12px;border-radius:10px;margin-top:6px}
+.aciklama.g{display:block;background:#12251a;color:#8ce89f}
+.aciklama.k{display:block;background:#2b1518;color:#ffa198}
+.ilerle{width:100%;padding:14px;border-radius:12px;border:0;background:#2f81f7;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px}
+.ilerle:disabled{opacity:.4;cursor:default}
+.skorKutu{text-align:center;padding:30px 18px}
+.buyukSkor{font-size:44px;font-weight:800;margin-bottom:6px}
+.bar{height:6px;background:#1f2733;border-radius:3px;overflow:hidden;margin:14px 0 22px}
+.bar>div{height:100%;background:#f0b429;transition:width .3s}
+a{color:#7da8d8}
+.nav{display:flex;justify-content:space-between;margin-top:26px;font-size:14px}
+.nav a{text-decoration:none}
+.bosKutu{text-align:center;padding:34px 18px}
+.bosKutu .em{font-size:46px;margin-bottom:10px}
+</style>
+<link rel="icon" href="/okul-sitesi/icons/icon-192.png">
+<link rel="canonical" href="https://hkntng.github.io/okul-sitesi/yanlis-kutum.html">
+<link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/okul-sitesi/icons/icon-192.png">
+<meta name="theme-color" content="#070b16">
+</head>
+<body>
+<div class="sar">
+  <h1>📌 Yanlış Kutum</h1>
+  <div class="alt-baslik">Sınav ve karışık tekrarda yanlış yaptığın sorular burada birikir. Sadece onları çöz: <b>doğru yapınca soru kutudan çıkar</b>, yanlış yaparsan kalır. Böylece zayıf olduğun soruları sen öğrenene kadar tekrar edersin.<br><span style="font-size:12px">Bu, en verimli çalışma yöntemlerinden biridir: hatalı hatırlamaları hedefli tekrarla düzeltmek.</span></div>
+  <div class="bar"><div id="bar" style="width:0%"></div></div>
+  <div id="alan"></div>
+  <div class="nav"><a href="index.html">← Ana sayfa</a><a href="karnem.html">📊 Karnem</a></div>
+</div>
+<script src="/okul-sitesi/soru-bankasi.js"></script>
+<script>
+(function(){
+var KONU_SAYFA=window.KONU_SAYFA;
+function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+var alan=document.getElementById('alan'), bar=document.getElementById('bar');
+// Kutudaki soruları al (banka sırasından bağımsız), sonra karıştır ve şıkları karıştır
+var kutu=window.kutuSorulari();
+var sorular=shuf(kutu.slice()).map(function(q){
+  var idx=shuf(q.c.map(function(_,i){return i}));
+  return {orj:q,k:q.k,s:q.s,c:idx.map(function(i){return q.c[i]}),d:idx.indexOf(q.d),a:q.a};
+});
+var i=0, dogru=0, cikan=0, kalan=0;
+
+function bosEkran(){
+  alan.innerHTML='<div class="kart bosKutu"><div class="em">🎉</div><div style="font-size:18px;font-weight:700;margin-bottom:8px">Kutun boş!</div>'+
+    '<div style="color:#8b949e;font-size:14px">Şu an tekrar etmen gereken yanlış soru yok. Sınav Modu veya Karışık Tekrar çöz; yanlış yaptığın sorular otomatik buraya düşer, sonra sadece onlara odaklanırsın.</div>'+
+    '<a href="sinav.html" style="display:block;margin-top:18px;color:#f87171;text-decoration:none;font-size:14px">⏱️ Sınav Moduna gir →</a>'+
+    '<a href="karisik-tekrar.html" style="display:block;margin-top:10px;color:#79c0ff;text-decoration:none;font-size:14px">🔀 Karışık Tekrar →</a></div>';
+}
+
+function goster(){
+  bar.style.width=(i/sorular.length*100)+'%';
+  if(i>=sorular.length){ return bitir(); }
+  var q=sorular[i], h='<div class="kart"><span class="rozet">'+q.k+' · '+(i+1)+'/'+sorular.length+'</span>';
+  h+='<div class="soruTxt">'+q.s+'</div>';
+  q.c.forEach(function(c,j){ h+='<button class="sik" data-j="'+j+'">'+c+'</button>'; });
+  h+='<div class="aciklama" id="ac"></div>';
+  h+='<button class="ilerle" id="devam" disabled>Sonraki soru →</button></div>';
+  alan.innerHTML=h;
+  Array.prototype.forEach.call(alan.querySelectorAll('.sik'),function(b){
+    b.onclick=function(){
+      if(document.getElementById('devam').disabled===false) return;
+      var j=+b.getAttribute('data-j'), ac=document.getElementById('ac');
+      Array.prototype.forEach.call(alan.querySelectorAll('.sik'),function(x,xi){
+        if(xi===q.d) x.classList.add('dogru');
+      });
+      if(j===q.d){
+        dogru++; cikan++; ac.className='aciklama g';
+        ac.textContent='✓ Doğru! Bu soru kutudan çıktı. '+q.a;
+        window.kutudanCikar(q.orj);
+      } else {
+        b.classList.add('yanlis'); kalan++; ac.className='aciklama k';
+        ac.textContent='✗ Bu soru kutunda kalıyor, tekrar karşına çıkacak. '+q.a;
+      }
+      document.getElementById('devam').disabled=false;
+    };
+  });
+  document.getElementById('devam').onclick=function(){ i++; goster(); };
+}
+
+function bitir(){
+  bar.style.width='100%';
+  var kalanKutu=window.kutuOku().length;
+  var msg = kalanKutu===0 ? 'Tebrikler! Kutundaki tüm soruları öğrendin — kutu boşaldı.' :
+    'Bu turda '+cikan+' soru kutudan çıktı. Kutunda hâlâ '+kalanKutu+' soru var; yarın tekrar çözersen kalıcı olur.';
+  var devamH = kalanKutu>0 ? '<button class="ilerle" onclick="location.reload()" style="margin-top:18px">↺ Kalan '+kalanKutu+' soruyu tekrar çöz</button>' :
+    '<a href="index.html" style="display:block;margin-top:18px;color:#79c0ff;text-decoration:none">← Ana sayfaya dön</a>';
+  alan.innerHTML='<div class="kart skorKutu"><div class="buyukSkor">'+dogru+'/'+sorular.length+'</div><div>'+msg+'</div>'+
+    '<div style="margin-top:14px;font-size:13px;color:#8b949e">Çıkan: '+cikan+' · Kalan: '+kalan+'</div>'+devamH+'</div>';
+}
+
+if(sorular.length===0){ bar.style.width='100%'; bosEkran(); } else { goster(); }
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('/okul-sitesi/sw.js', {scope: '/okul-sitesi/'});
+}
+</script>
+</body>
+</html>

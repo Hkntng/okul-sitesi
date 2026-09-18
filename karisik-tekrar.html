@@ -76,8 +76,8 @@ function goster(){
       Array.prototype.forEach.call(alan.querySelectorAll('.sik'),function(x,xi){
         if(xi===q.d) x.classList.add('dogru');
       });
-      if(j===q.d){ dogru++; ac.className='aciklama g'; ac.textContent='✓ Doğru! '+q.a; }
-      else { b.classList.add('yanlis'); ac.className='aciklama k'; ac.textContent='✗ '+q.a; yanlisKonular[q.k]=1; }
+      if(j===q.d){ dogru++; ac.className='aciklama g'; ac.textContent='✓ Doğru! '+q.a; if(window.kutudanCikar) window.kutudanCikar(q); }
+      else { b.classList.add('yanlis'); ac.className='aciklama k'; ac.textContent='✗ '+q.a; yanlisKonular[q.k]=1; if(window.kutuyaEkle) window.kutuyaEkle(q); }
       document.getElementById('devam').disabled=false;
     };
   });
