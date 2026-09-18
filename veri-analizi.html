@@ -283,8 +283,9 @@ body.light .sekme:active { background:#a3e635; }
         if (v === '1') { s3.a = true; s3.gecen = {}; }
         else {
           s3.gecen[v] = true;
+          kurAdim3();
           durumYaz('bozuk', v === '3' ? 'Çizgiye bak: Ali, Ece, Can ve Zeynep çizginin çok solunda kalıyor.' : 'Çubukların çoğu çizgiye ulaşmıyor. Tek tek bak.');
-          kurAdim3(); return;
+          return;
         }
         kurAdim3(); ilerleDurumu();
       });
@@ -292,7 +293,7 @@ body.light .sekme:active { background:#a3e635; }
       $('vsKontrol').innerHTML = '<p class="kucuk" style="text-align:center;margin-top:10px">Doğru: sadece Mert. Sıraya dizince tam ortadaki Can (turuncu) 30 TL alıyor. Sınıfın “genelde” aldığı harçlığı söylesen hangisini seçersin?</p>' + chipler(['30', '64'], s3.gecen, '30', ' TL');
       chipBagla(function(v){
         if (v === '30') { s3.b = true; s3.gecen.bitti = true; }
-        else { s3.gecen[v] = true; durumYaz('bozuk', '64 TL’yi kimse almıyor: dördü 40 TL ve altında. Tek bir 200 TL, eşit payı yukarı çekti.'); kurAdim3(); return; }
+        else { s3.gecen[v] = true; kurAdim3(); durumYaz('bozuk', '64 TL’yi kimse almıyor: dördü 40 TL ve altında. Tek bir 200 TL, eşit payı yukarı çekti.'); return; }
         kurAdim3(); ilerleDurumu();
       });
     }
