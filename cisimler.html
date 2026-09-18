@@ -92,6 +92,47 @@ body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
 body.light .sekme:active { background:#a3e635; }
 </style>
 
+<style>
+.mkKart{border-color:#2f5f86}
+.mkKart .buyuk{font-size:19px;line-height:1.4}
+.mkNoktalar{display:flex;gap:6px;margin:2px 0 12px}
+.mkNokta{flex:1;height:5px;border-radius:3px;background:#243044;transition:background .2s}
+.mkNokta.on{background:var(--tema)}
+.mkBaslik{font-size:12px;font-weight:700;color:#7d8590;letter-spacing:.5px;margin-bottom:6px}
+.mkSahne{display:flex;align-items:flex-end;justify-content:center;gap:14px;background:#0d1420;border-radius:12px;padding:16px 10px 12px;margin:10px 0}
+.mkKol{display:flex;flex-direction:column;align-items:center;flex:0 0 auto}
+.mkAd{margin-top:8px;font-size:13px;color:#9fb0d0;text-align:center;line-height:1.3}
+.mkAd b{color:#fff}
+.mkOk{font-size:24px;color:#5b6b8a;align-self:center;margin-bottom:34px}
+.mkKonikKap{filter:drop-shadow(0 0 1px #8fa0c4) drop-shadow(0 0 1px #8fa0c4)}
+.mkKonik{position:relative;width:96px;height:120px;background:#1c2740;clip-path:polygon(0 0,100% 0,50% 100%)}
+.mkSuKonik{position:absolute;left:0;right:0;bottom:0;background:#38bdf8;transition:height .6s ease-in}
+.mkBardak{position:relative;width:96px;height:120px;border:3px solid #8fa0c4;border-top:0;border-radius:0 0 14px 14px;background:#131b2a;overflow:hidden;transition:border-color .3s}
+.mkBardak.dolu{border-color:#4ade80;animation:mkParla .9s ease}
+@keyframes mkParla{0%,100%{box-shadow:0 0 0 rgba(74,222,128,0)}50%{box-shadow:0 0 18px rgba(74,222,128,.8)}}
+.mkSuBardak{position:absolute;left:0;right:0;bottom:0;background:#0ea5e9;transition:height .7s ease-out}
+.mkCizgi{position:absolute;left:0;right:0;border-top:2px dashed rgba(255,255,255,.4)}
+.mkEt{position:absolute;left:0;right:0;text-align:center;font-size:13px;font-weight:800;color:#04182b;transform:translateY(50%)}
+.mkYaz{margin-top:8px;font-size:15px;color:#c9d3e0;text-align:center;min-height:24px}
+.mkYaz b{color:#fff}
+.mkChipler{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.mkChip{min-width:64px;padding:11px 12px;border-radius:10px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:16px;font-weight:700}
+.mkChip.dogru{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.mkChip.yanlis{background:#251414;border-color:#5c2a2a;color:#f0857d}
+.mkDurum{margin-top:10px;padding:11px 12px;border-radius:10px;font-size:15px;background:#1a2236;color:#c9d3e0}
+.mkDurum.ok{background:#12251a;color:#8ce89f;border:1px solid #3fb950}
+.mkDurum.bozuk{background:#251414;color:#f0a09a;border:1px solid #5c2a2a}
+.mkYol{display:flex;gap:8px;margin-top:10px}
+.mkYol .btn{margin-top:0}
+.mkYol .btn:disabled{opacity:.4;box-shadow:none;cursor:default}
+.mkYol .mkGeri{flex:0 0 auto;width:auto;margin-top:0}
+.mkSurahi{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+.mkMini{width:30px;height:34px;background:#38bdf8;clip-path:polygon(0 0,100% 0,50% 100%);animation:mkBelir .4s ease both}
+@keyframes mkBelir{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.mkLink{display:block;margin-top:9px;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-size:15px;font-weight:700}
+.mkLink.bir{background:var(--tema);color:#0b101e}
+.mkLink.iki{background:#1b2436;border:1px solid #33415a;color:#cfe0f5}
+</style>
 <link rel="canonical" href="https://hkntng.github.io/okul-sitesi/cisimler.html">
 <link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,6 +145,180 @@ body.light .sekme:active { background:#a3e635; }
 <h1>Geometrik Cisimler</h1>
 <p class="kucuk" style="margin-bottom:6px">Prizma, silindir, koni, piramit. Damdaki depodan buğday yığınına.</p>
 <div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- SEBIL BARDAGI SENARYOSU: adım adım, önce dene sonra ad -->
+<div class="kart mkKart" id="mkKart">
+<span class="adim yesil">Önce bir deneme</span>
+<div class="mkNoktalar" id="mkNoktalar" aria-hidden="true"></div>
+<div class="mkBaslik" id="mkBaslik"></div>
+<p class="buyuk" id="mkSoru"></p>
+<p class="kucuk" id="mkAlt"></p>
+<div id="mkSahne"></div>
+<div id="mkKontrol"></div>
+<div class="mkDurum gizli" id="mkDurum" role="status" aria-live="polite"></div>
+<div class="mkYol">
+  <button class="btn2 mkGeri gizli" id="mkGeri" type="button">← Geri</button>
+  <button class="btn" id="mkIleri" type="button" disabled>Devam et →</button>
+</div>
+</div>
+
+<script>
+(function(){
+  /* ================= SEBİL BARDAĞI SENARYOSU ================= */
+  var BARDAK = 300, SEBIL = 100, SURAHI = 900;   // mL: 300 ÷ 3 = 100, 900 ÷ 100 = 9
+  var ADIM_SAYISI = 4;
+  var $ = function(id){ return document.getElementById(id); };
+  var adim = 0, zaman = 0;
+  var s1 = { n: 0, mesgul: false }, s2 = { ok: false, gecen: {} }, s3 = { ok: false, gecen: {} };
+
+  function sahne(bardakOran, sebilOran, sebilEt, bardakEt, uclu){
+    var et = '';
+    if (uclu) { [1, 3, 5].forEach(function(k){ et += '<div class="mkEt" style="bottom:' + (k * 100 / 6) + '%">' + uclu + '</div>'; }); }
+    return '<div class="mkSahne">' +
+      '<div class="mkKol"><div class="mkKonikKap"><div class="mkKonik"><div class="mkSuKonik" id="mkSK" style="height:' + (sebilOran * 100) + '%"></div></div></div><div class="mkAd">' + sebilEt + '</div></div>' +
+      '<div class="mkOk" aria-hidden="true">➜</div>' +
+      '<div class="mkKol"><div class="mkBardak' + (bardakOran >= 1 ? ' dolu' : '') + '" id="mkB"><div class="mkSuBardak" id="mkSB" style="height:' + (bardakOran * 100) + '%"></div>' +
+      '<div class="mkCizgi" style="bottom:33.33%"></div><div class="mkCizgi" style="bottom:66.66%"></div>' + et + '</div><div class="mkAd">' + bardakEt + '</div></div></div>';
+  }
+  function durumYaz(tur, m){ var d = $('mkDurum'); d.className = 'mkDurum ' + tur; d.textContent = m; }
+  function durumGizle(){ $('mkDurum').className = 'mkDurum gizli'; }
+  function chipler(liste, gecen, dogru, ek){
+    var h = '<div class="mkChipler">';
+    liste.forEach(function(v){
+      var s = gecen[v] ? ' yanlis' : (gecen.bitti && v === dogru ? ' dogru' : '');
+      h += '<button type="button" class="mkChip' + s + '" data-v="' + v + '">' + v + (ek || '') + '</button>';
+    });
+    return h + '</div>';
+  }
+  function chipBagla(fn){
+    [].forEach.call($('mkKontrol').querySelectorAll('.mkChip'), function(b){
+      b.onclick = function(){ if (!b.classList.contains('yanlis') && !b.classList.contains('dogru')) fn(b.getAttribute('data-v')); };
+    });
+  }
+
+  /* ---- adım 1: boşalt ---- */
+  var YAZI1 = ['', '1 sebil bardağı: normal bardağın <b>üçte biri</b> doldu.', '2 sebil bardağı: <b>üçte ikisi</b> doldu.', '3 sebil bardağı: bardak <b>tam doldu</b>. Taşmadı, boşluk da kalmadı.'];
+  function kurAdim1(){
+    var n = s1.n;
+    $('mkSahne').innerHTML = sahne(n / 3, n < 3 ? 1 : 0, 'Sebil bardağı<br>(koni)', 'Normal bardak', '') + '<div class="mkYaz" id="mkYaz">' + (n ? YAZI1[n] : 'Kesikli çizgiler bardağı üç eşit parçaya böler.') + '</div>';
+    $('mkKontrol').innerHTML = '<button type="button" class="btn" id="mkBosalt"' + (n >= 3 ? ' disabled' : '') + '>💧 Sebil bardağını boşalt</button>';
+    $('mkBosalt').onclick = bosalt;
+    if (n >= 3) durumYaz('ok', 'Bardak dolmak için tam 3 sebil bardağı gerekti: 1 normal bardak = 3 sebil bardağı.'); else durumGizle();
+  }
+  function bosalt(){
+    if (s1.mesgul || s1.n >= 3) return;
+    s1.mesgul = true; s1.n++;
+    var n = s1.n, bt = $('mkBosalt'), sk = $('mkSK'), sb = $('mkSB');
+    bt.disabled = true;
+    sk.style.height = '0%';
+    sb.style.height = (n * 100 / 3) + '%';
+    var mevcut = ++zaman;
+    setTimeout(function(){
+      if (mevcut !== zaman) { s1.mesgul = false; return; }
+      $('mkYaz').innerHTML = YAZI1[n];
+      if (n >= 3) {
+        $('mkB').classList.add('dolu');
+        durumYaz('ok', 'Bardak dolmak için tam 3 sebil bardağı gerekti: 1 normal bardak = 3 sebil bardağı.');
+        s1.mesgul = false; ilerleDurumu();
+      } else {
+        $('mkSK').style.height = '100%';
+        bt.disabled = false; s1.mesgul = false;
+      }
+    }, 800);
+  }
+
+  /* ---- adım 2: tahmin ---- */
+  function kurAdim2(){
+    var ok = s2.ok;
+    $('mkSahne').innerHTML = sahne(1, 1, 'Sebil bardağı<br><b>' + (ok ? SEBIL + ' mL' : '? mL') + '</b>', 'Normal bardak<br><b>' + BARDAK + ' mL</b>', ok ? SEBIL + ' mL' : '');
+    $('mkKontrol').innerHTML = '<p class="kucuk" style="text-align:center;margin-top:10px">Normal bardağa 300 mL su sığıyor. Sebil bardağına kaç mL sığar?</p>' + chipler(['100', '150', '900'], s2.gecen, '100', ' mL');
+    chipBagla(function(v){
+      if (v === '100') { s2.ok = true; s2.gecen.bitti = true; }
+      else {
+        s2.gecen[v] = true;
+        kurAdim2();
+        durumYaz('bozuk', v === '150'
+          ? '150 mL: iki sebil bardağı 300 mL eder, ama az önce bardak 3 sebil bardağıyla doldu.'
+          : '900 mL sebil bardağından büyük olurdu: normal bardak sadece 300 mL. Sebil bardağı ondan KÜÇÜK.');
+        return;
+      }
+      kurAdim2(); ilerleDurumu();
+    });
+    if (ok) durumYaz('ok', 'Doğru: 3 sebil bardağı 300 mL doldurdu. Biri 300 ÷ 3 = 100 mL. Kontrol: 3 × 100 = 300.'); else durumGizle();
+  }
+
+  /* ---- adım 3: yeni durum ---- */
+  function kurAdim3(){
+    var ok = s3.ok, mini = '';
+    if (ok) { for (var i = 0; i < 9; i++) mini += '<span class="mkMini" style="animation-delay:' + (i * 90) + 'ms"></span>'; }
+    $('mkSahne').innerHTML = '<div class="mkSahne" style="flex-direction:column;align-items:center"><div class="mkAd" style="font-size:15px"><b>Sürahide ' + SURAHI + ' mL su var</b></div>' +
+      '<div class="mkSurahi" id="mkSurahi" style="min-height:40px">' + mini + '</div>' +
+      '<div class="mkYaz">' + (ok ? '9 × 100 = 900 mL' : 'Her sebil bardağı ağzına kadar dolacak (100 mL).') + '</div></div>';
+    $('mkKontrol').innerHTML = '<p class="kucuk" style="text-align:center;margin-top:10px">Kaç kişiye birer sebil bardağı dolusu su verebilirsin?</p>' + chipler(['3', '9', '27'], s3.gecen, '9', ' kişi');
+    chipBagla(function(v){
+      if (v === '9') { s3.ok = true; s3.gecen.bitti = true; }
+      else {
+        s3.gecen[v] = true;
+        kurAdim3();
+        durumYaz('bozuk', v === '3'
+          ? '3 kişi, normal bardakla (300 mL) olurdu: 900 ÷ 300. Sebil bardağı 3 kat küçük, kaç tane çıkar?'
+          : '27 bardak 2700 mL su ister. Sürahide sadece 900 mL var.');
+        return;
+      }
+      kurAdim3(); ilerleDurumu();
+    });
+    if (ok) durumYaz('ok', 'Doğru: 900 ÷ 100 = 9 kişi. Sürahi 3 normal bardak doldurur, her normal bardak 3 sebil bardağı: 3 × 3 = 9.'); else durumGizle();
+  }
+
+  /* ---- adım 4: adı ---- */
+  function kurAdim4(){
+    durumGizle();
+    $('mkSahne').innerHTML = '<table class="tablo"><tr><th></th><th>Normal bardak</th><th>Sebil bardağı</th></tr>' +
+      '<tr><td>Şekil adı</td><td><b>silindir</b></td><td><b>koni</b></td></tr>' +
+      '<tr><td>Aldığı su</td><td><b>300 mL</b></td><td><b>100 mL</b></td></tr>' +
+      '<tr><td>Doldurduğu</td><td>1 bardak</td><td>3’te 1 bardak</td></tr></table>';
+    $('mkKontrol').innerHTML =
+      '<p style="margin-top:10px">Bardağı 3 sebil bardağı doldurdu, 300 ÷ 3 = 100 mL.</p>' +
+      '<p>Normal bardağın şekline <b class="vurgu">silindir</b>, sebil bardağının şekline <b class="vurgu">koni</b> denir. <b class="vurgu">Aynı genişlikte ve aynı boydaysa koni, silindirin hacminin üçte birini alır.</b></p>' +
+      '<p class="buyuk" style="margin-top:14px">Şimdi bunu denemeye ne dersin?</p>' +
+      '<a class="mkLink bir" href="#k6">5 soruyla dene →</a>' +
+      '<a class="mkLink iki" href="#k4b">🎚️ Kaydırıcılarla oyna</a>' +
+      '<a class="mkLink iki" href="karisik-tekrar.html">🔀 Karışık tekrar (8 soru)</a>';
+  }
+
+  var ADIMLAR = [
+    { baslik: '1 / 4 · SEBİL', soru: 'Su sebilinin yanında iki bardak var: koni şeklinde kâğıt bardak ve normal bardak. İkisi de aynı genişlikte, aynı boyda.',
+      alt: 'Sebil bardağını doldurup normal bardağa boşaltalım. Normal bardak dolana kadar düğmeye bas.', kur: kurAdim1 },
+    { baslik: '2 / 4 · TAHMİN', soru: 'Kaç mL?',
+      alt: 'Az önce gördüğünü kullan.', kur: kurAdim2 },
+    { baslik: '3 / 4 · SÜRAHİ', soru: 'Sınıfa bir sürahi su geldi.',
+      alt: 'Yeni durum, aynı fikir.', kur: kurAdim3 },
+    { baslik: '4 / 4 · ADI NE?', soru: 'Gördüğün iki bardağın adı var.',
+      alt: 'Yan yana koyalım.', kur: kurAdim4 }
+  ];
+
+  function ilerleDurumu(){
+    var acik = adim === 0 ? s1.n >= 3 : adim === 1 ? s2.ok : adim === 2 ? s3.ok : true;
+    $('mkIleri').disabled = !acik;
+    $('mkIleri').classList.toggle('gizli', adim === ADIM_SAYISI - 1);
+    $('mkGeri').classList.toggle('gizli', adim === 0);
+  }
+  function goster(){
+    var a = ADIMLAR[adim], n = '';
+    zaman++; s1.mesgul = false;
+    for (var i = 0; i < ADIM_SAYISI; i++) n += '<span class="mkNokta' + (i <= adim ? ' on' : '') + '"></span>';
+    $('mkNoktalar').innerHTML = n;
+    $('mkBaslik').textContent = a.baslik;
+    $('mkSoru').textContent = a.soru;
+    $('mkAlt').textContent = a.alt;
+    a.kur();
+    ilerleDurumu();
+  }
+  $('mkIleri').onclick = function(){ if (adim < ADIM_SAYISI - 1) { adim++; goster(); } };
+  $('mkGeri').onclick = function(){ if (adim > 0) { adim--; goster(); } };
+  goster();
+})();
+</script>
 
 <!-- KART 1: KANCA - su deposu -->
 <div class="kart" id="k1">

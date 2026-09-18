@@ -575,3 +575,15 @@ Senaryo: 5 arkadaşın harçlığı farklı, eşitlemek istiyorlar.
 Doğrulama (Node): 200/5=40; 250/5=50; 320/5=64; 120/4=30; 64'ten büyük sayı adedi=1; 4 aktarma simülasyonu ile 40 eşitliği. Sahte DOM akış testi (kilitler, yanlış ipuçları, geri dönüş): 16/16 kontrol geçti.
 sw.js cache 19e→19f. `node test/dogrula.js` → CLEAN.
 Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); satır düzeni (52px ad + esnek çubuk + 52px değer) 390px'e göre hesaplandı, elle bakılmalı.
+
+## 2026-09-19 — TUR 22: Cisimler — "Su sebilindeki koni bardak" gerçek hayat senaryosu
+Konu: cisimler.html seçildi (sebil bardağı = koninin en bildik hayat karşılığı; "koni = silindirin üçte biri" elle deneyerek görülür). Eşitsizlikler sayfası radar oyunuyla zaten hayat odaklı olduğu için sona bırakıldı.
+cisimler.html'de k1'in ÖNÜNE 4 adımlı, "Devam et" düğmeli kart eklendi (mevcut kartlar/araçlar aynen duruyor; yeni localStorage anahtarı YOK; yeni sınıflar `mk*` aynı dosyada tanımlı).
+Senaryo: sebilin yanında koni kâğıt bardak ve normal bardak var, ikisi aynı genişlikte ve boyda.
+1) "Sebil bardağını boşalt" düğmesi: su normal bardağa geçer (seviye 1/3, 2/3, tam); 3. boşaltmada bardak yeşil yanar. Çocuk kaç bardak gerektiğini kendisi sayar.
+2) Normal bardak 300 mL: sebil bardağı kaç mL? (100 / 150 / 900). 150 ve 900 tuzak; her yanlışa özel ipucu. Doğruda bardakta üç dilim "100 mL".
+3) Sürahide 900 mL: kaç kişiye birer sebil bardağı? (3 / 9 / 27). 3 = normal bardakla hesap, 27 = sürahiden çok su; doğruda 9 mini koni belirir.
+4) Terim EN SONDA: normal bardak = silindir, sebil bardağı = koni; "aynı genişlik ve boyda koni silindirin üçte biri". #k6, #k4b, karışık tekrar linkleri.
+Çocuğun keşfi: aynı genişlik ve boydaki koni silindirin üçte biri kadar su alır (3 koni = 1 silindir); bunu yeni bir sayıya (900 mL) kendisi uygular.
+Doğrulama (Node): 300÷3=100; 900÷100=9; 900÷300=3; 27×100=2700; 3×3=9. Sahte DOM akış testi: 24/24 kontrol geçti. sw.js cache 19g→19h. `node test/dogrula.js` → CLEAN.
+Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); sahne ≈244px genişlik hesaplandı, elle bakılmalı. Bardak ölçüleri (aynı genişlik/boy, 300 mL) varsayımdır.
