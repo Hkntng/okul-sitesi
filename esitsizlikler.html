@@ -114,6 +114,216 @@ body.light .sekme:active { background:#a3e635; }
 <p class="kucuk" style="margin-bottom:6px">Hayatın yarısı kuraldır: "en az 18", "en çok 120", "18 tonu geçme". Kuralların dili eşitsizliktir.</p>
 <div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
 
+<style>
+.asKart{border-color:#8a5a2b}
+.asKart .buyuk{font-size:19px;line-height:1.4}
+.asNoktalar{display:flex;gap:6px;margin:2px 0 12px}
+.asNokta{flex:1;height:5px;border-radius:3px;background:#243044;transition:background .2s}
+.asNokta.on{background:var(--tema)}
+.asBaslik{font-size:12px;font-weight:700;color:#7d8590;letter-spacing:.5px;margin-bottom:6px}
+.asSahne{background:#0d1420;border-radius:12px;padding:12px 10px;margin:10px 0}
+.asKabin{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:flex-end;min-height:74px;border:3px solid #5b6b8a;border-radius:10px;padding:8px 6px;background:#131b2a;transition:border-color .3s}
+.asKabin.tam{border-color:#4ade80;animation:asParla .9s ease}
+.asKabin.fazla{border-color:#f87171;animation:asTitre .4s ease}
+@keyframes asParla{0%,100%{box-shadow:0 0 0 rgba(74,222,128,0)}50%{box-shadow:0 0 18px rgba(74,222,128,.8)}}
+@keyframes asTitre{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.asKisi{display:flex;flex-direction:column;align-items:center;width:52px;animation:asBelir .35s ease both}
+.asKisi span{font-size:30px;line-height:1.1}
+.asKisi i{font-style:normal;font-size:12px;color:#9fb0d0}
+.asKisi.disari{opacity:.9}
+.asKisi.disari i{color:#f0857d;font-weight:700}
+@keyframes asBelir{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.asOlcer{position:relative;height:14px;border-radius:7px;background:#243044;margin:14px 0 4px}
+.asDolu{height:100%;border-radius:7px;background:#4ade80;transition:width .5s ease,background .3s}
+.asDolu.fazla{background:#f87171}
+.asSinir{position:absolute;top:-5px;bottom:-5px;left:75%;border-left:3px dashed #fbbf24}
+.asSinirEt{position:relative;height:16px;font-size:12px;color:#fbbf24;font-weight:700}
+.asSinirEt b{position:absolute;left:75%;transform:translateX(-50%);white-space:nowrap}
+.asToplam{text-align:center;font-size:16px;color:#c9d3e0;min-height:24px}
+.asToplam b{color:#fff}
+.asChipler{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.asChip{min-width:64px;padding:11px 12px;border-radius:10px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:16px;font-weight:700}
+.asChip.dogru{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.asChip.yanlis{background:#251414;border-color:#5c2a2a;color:#f0857d}
+.asDurum{margin-top:10px;padding:11px 12px;border-radius:10px;font-size:15px;background:#1a2236;color:#c9d3e0}
+.asDurum.ok{background:#12251a;color:#8ce89f;border:1px solid #3fb950}
+.asDurum.bozuk{background:#251414;color:#f0a09a;border:1px solid #5c2a2a}
+.asYol{display:flex;gap:8px;margin-top:10px}
+.asYol .btn{margin-top:0}
+.asYol .btn:disabled{opacity:.4;box-shadow:none;cursor:default}
+.asYol .asGeri{flex:0 0 auto;width:auto;margin-top:0}
+.asLink{display:block;margin-top:9px;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-size:15px;font-weight:700}
+.asLink.bir{background:var(--tema);color:#0b101e}
+.asLink.iki{background:#1b2436;border:1px solid #33415a;color:#cfe0f5}
+</style>
+
+<!-- ASANSÖR SENARYOSU: adım adım, önce dene sonra ad -->
+<div class="kart asKart" id="asKart">
+<span class="adim yesil">Önce bir deneme</span>
+<div class="asNoktalar" id="asNoktalar" aria-hidden="true"></div>
+<div class="asBaslik" id="asBaslik"></div>
+<p class="buyuk" id="asSoru"></p>
+<p class="kucuk" id="asAlt"></p>
+<div id="asSahne"></div>
+<div id="asKontrol"></div>
+<div class="asDurum gizli" id="asDurum" role="status" aria-live="polite"></div>
+<div class="asYol">
+  <button class="btn2 asGeri gizli" id="asGeri" type="button">← Geri</button>
+  <button class="btn" id="asIleri" type="button" disabled>Devam et →</button>
+</div>
+</div>
+
+<script>
+(function(){
+  /* ================= ASANSÖR SENARYOSU ================= */
+  // kg: 5 × 60 = 300; 2 × 70 + 4 × 40 = 300; 4 × 55 + 80 = 300
+  var SINIR = 300, OLCEK = 400, KILO1 = 60, YETISKIN = 70, COCUK = 40, ICERDE3 = 220;
+  var ADIM_SAYISI = 4;
+  var $ = function(id){ return document.getElementById(id); };
+  var adim = 0;
+  var s1 = { n: 0, tasti: false }, s2 = { son: 0, ok: false, gecen: {} }, s3 = { deneme: {}, son: 0 };
+
+  function kisi(em, kg, cls){ return '<div class="asKisi' + (cls ? ' ' + cls : '') + '"><span>' + em + '</span><i>' + kg + ' kg</i></div>'; }
+  function tekrar(em, kg, n){ var h = ''; for (var i = 0; i < n; i++) h += kisi(em, kg); return h; }
+  function sahne(icerik, toplam, dis){
+    var cls = toplam > SINIR ? ' fazla' : (toplam === SINIR ? ' tam' : '');
+    var yuzde = Math.min(toplam / OLCEK * 100, 100);
+    return '<div class="asSahne"><div class="asKabin' + cls + '">' + (icerik || '<span class="kucuk">Asansör boş</span>') + '</div>' +
+      (dis ? '<div class="asKabin" style="border:0;background:none;min-height:0;padding:4px 0 0"><span class="kucuk" style="align-self:center;margin-right:6px">dışarıda:</span>' + dis + '</div>' : '') +
+      '<div class="asOlcer"><div class="asDolu' + (toplam > SINIR ? ' fazla' : '') + '" style="width:' + yuzde + '%"></div><div class="asSinir"></div></div>' +
+      '<div class="asSinirEt"><b>en çok ' + SINIR + ' kg</b></div>' +
+      '<div class="asToplam">Toplam: <b>' + toplam + ' kg</b>' + (toplam > SINIR ? ' — <span class="hata">fazla!</span>' : toplam === SINIR ? ' — <span class="ok">tam sınırda</span>' : '') + '</div></div>';
+  }
+  function durumYaz(tur, m){ var d = $('asDurum'); d.className = 'asDurum ' + tur; d.textContent = m; }
+  function durumGizle(){ $('asDurum').className = 'asDurum gizli'; }
+  function chipler(liste, isaret, ek){
+    var h = '<div class="asChipler">';
+    liste.forEach(function(v){
+      h += '<button type="button" class="asChip' + (isaret[v] ? ' ' + isaret[v] : '') + '" data-v="' + v + '">' + v + (ek || '') + '</button>';
+    });
+    return h + '</div>';
+  }
+  function chipBagla(fn){
+    [].forEach.call($('asKontrol').querySelectorAll('.asChip'), function(b){
+      b.onclick = function(){ if (!b.classList.contains('yanlis') && !b.classList.contains('dogru')) fn(b.getAttribute('data-v')); };
+    });
+  }
+
+  /* ---- adım 1: biri daha bin ---- */
+  function kurAdim1(){
+    var n = s1.n, top = n * KILO1;
+    var dis = s1.tasti ? kisi('🧍', KILO1, 'disari') : '';
+    $('asSahne').innerHTML = sahne(tekrar('🧍', KILO1, n), s1.tasti ? top + KILO1 : top, dis);
+    $('asKontrol').innerHTML = '<button type="button" class="btn" id="asBin"' + (s1.tasti ? ' disabled' : '') + '>🧍 Biri daha bin (' + KILO1 + ' kg)</button>';
+    $('asBin').onclick = bin;
+    if (s1.tasti) durumYaz('ok', '5 kişi = 300 kg: asansör kalktı. 6. kişiyle 360 kg oldu: kalkmadı. Yani 300 kg tam sınırdaydı ve asansör onu kabul etti.'); else durumGizle();
+  }
+  function bin(){
+    if (s1.tasti) return;
+    if (s1.n < 5) {
+      s1.n++;
+      kurAdim1();
+      if (s1.n === 5) durumYaz('ok', '5 kişi × 60 = 300 kg. Tam sınırda ama asansör kalkıyor.');
+      else durumYaz('', s1.n + ' kişi = ' + (s1.n * KILO1) + ' kg. Sınırın altında, yer var.');
+    } else {
+      s1.tasti = true;
+      kurAdim1(); ilerleDurumu();
+    }
+  }
+
+  /* ---- adım 2: kaç çocuk ---- */
+  function kurAdim2(){
+    var k = s2.son, top = 2 * YETISKIN + k * COCUK;
+    $('asSahne').innerHTML = sahne(tekrar('🧑', YETISKIN, 2) + tekrar('🧒', COCUK, k), top);
+    var isaret = {}; Object.keys(s2.gecen).forEach(function(v){ if (v !== 'bitti') isaret[v] = 'yanlis'; });
+    if (s2.ok) isaret['4'] = 'dogru';
+    $('asKontrol').innerHTML = '<p class="kucuk" style="text-align:center;margin-top:10px">Asansörde 2 yetişkin var (70 + 70). Her çocuk 40 kg. En fazla kaç çocuk daha binebilir?</p>' + chipler(['3', '4', '5'], isaret, ' çocuk');
+    chipBagla(function(v){
+      s2.son = +v;
+      if (v === '4') { s2.ok = true; kurAdim2(); ilerleDurumu(); return; }
+      s2.gecen[v] = true;
+      kurAdim2();
+      durumYaz('bozuk', v === '3'
+        ? '3 çocuk sığar (260 kg) ama 40 kg daha yer kalıyor. "En fazla" diye sordum: bir çocuk daha binebilir mi?'
+        : '5 çocuk: 140 + 200 = 340 kg. 300\'ü geçti, asansör kalkmaz.');
+    });
+    if (s2.ok) durumYaz('ok', 'Doğru: 300 − 140 = 160 kg yer var. Her çocuk 40 kg: 160 ÷ 40 = 4 çocuk. Kontrol: 140 + 4 × 40 = 300.');
+    else if (!Object.keys(s2.gecen).length) durumGizle();
+  }
+
+  /* ---- adım 3: Ali kaç kilo olabilir ---- */
+  var ALI = { '60': ['ok', '220 + 60 = 280 kg: sığar.'], '80': ['ok', '220 + 80 = 300 kg: tam sınır, sığar.'],
+              '81': ['bozuk', '220 + 81 = 301 kg: sadece 1 kg fazla, ama kalkmaz.'], '100': ['bozuk', '220 + 100 = 320 kg: fazla.'] };
+  function kurAdim3(){
+    var a = s3.son, top = ICERDE3 + a;
+    $('asSahne').innerHTML = sahne(tekrar('🧍', 55, 4) + (a ? kisi('🧑', a) : ''), top);
+    var isaret = {}; Object.keys(s3.deneme).forEach(function(v){ isaret[v] = ALI[v][0] === 'ok' ? 'dogru' : 'yanlis'; });
+    $('asKontrol').innerHTML = '<p class="kucuk" style="text-align:center;margin-top:10px">Asansörde 4 kişi var: 4 × 55 = 220 kg. Ali binmek istiyor. Kaç kilo olursa sığar? Dört kiloyu da dene.</p>' + chipler(['60', '80', '81', '100'], isaret, ' kg');
+    [].forEach.call($('asKontrol').querySelectorAll('.asChip'), function(b){
+      b.onclick = function(){
+        var v = b.getAttribute('data-v');
+        s3.deneme[v] = ALI[v]; s3.son = +v;
+        kurAdim3();
+        if (Object.keys(s3.deneme).length >= 4) durumYaz('ok', 'Ali en çok 80 kg olabilir: 300 − 220 = 80. 80 dahil, 81 hayır. ' + ALI[v][1]);
+        else durumYaz(ALI[v][0], ALI[v][1]);
+        ilerleDurumu();
+      };
+    });
+    var n = Object.keys(s3.deneme).length;
+    if (n === 0) durumGizle();
+  }
+
+  /* ---- adım 4: adı ---- */
+  function kurAdim4(){
+    durumGizle();
+    $('asSahne').innerHTML = '<div class="dogruCizgi"><p class="kucuk"><b>Asansördeki yük ≤ 300 kg</b> (300 dahil → dolu nokta)</p>' +
+      '<div class="dc"><div class="dcHat"></div><div class="dcTaralı" style="left:4%;right:30%"></div><div class="dcNokta dcDolu" style="left:70%"></div><span class="dcEtiket" style="left:70%">300</span></div></div>' +
+      '<table class="tablo"><tr><th>Durum</th><th>Hesap</th><th>Sonuç</th></tr>' +
+      '<tr><td>5 kişi (60 kg)</td><td>300</td><td>kalkar</td></tr>' +
+      '<tr><td>2 yetişkin + çocuklar</td><td>140 + 40 × ? ≤ 300</td><td>en çok 4</td></tr>' +
+      '<tr><td>4 kişi + Ali</td><td>220 + ? ≤ 300</td><td>en çok 80 kg</td></tr></table>';
+    $('asKontrol').innerHTML =
+      '<p style="margin-top:10px">Her seferinde aynı işi yaptın: sınırdan (300) içerideki kiloyu çıkardın, kalanı tek kişinin kilosuna böldün.</p>' +
+      '<p>"En çok 300 kg" gibi kurallara matematikte <b class="vurgu">eşitsizlik</b> denir ve <b class="vurgu">yük ≤ 300</b> diye yazılır. Çizgi, 300\'ün kendisinin de olabileceğini söyler. "En az" deseydi ≥ yazardık.</p>' +
+      '<p class="buyuk" style="margin-top:14px">Şimdi bunu denemeye ne dersin?</p>' +
+      '<a class="asLink bir" href="#k6">5 soruyla dene →</a>' +
+      '<a class="asLink iki" href="#k2b">🎚️ Sayı doğrusunu sen kur</a>' +
+      '<a class="asLink iki" href="karisik-tekrar.html">🔀 Karışık tekrar (8 soru)</a>';
+  }
+
+  var ADIMLAR = [
+    { baslik: '1 / 4 · ASANSÖR', soru: 'Apartmanın asansöründe yazıyor: "En çok 300 kg". Komşular sırayla biniyor, her biri 60 kg.',
+      alt: 'Düğmeye basıp kişileri tek tek bindir. Kaçıncı kişide ne olacak?', kur: kurAdim1 },
+    { baslik: '2 / 4 · ÇOCUKLAR', soru: 'İçeride iki yetişkin var, çocuklar da binmek istiyor.',
+      alt: 'Boş yeri hesapla, sonra bir cevaba dokun.', kur: kurAdim2 },
+    { baslik: '3 / 4 · ALİ', soru: 'Bu sefer içeride 220 kg var ve Ali geliyor.',
+      alt: 'Her kiloyu dene, hangisinde asansör kalkıyor gör.', kur: kurAdim3 },
+    { baslik: '4 / 4 · ADI NE?', soru: 'Üç denemede de aynı kuralı kullandın.',
+      alt: 'Yazılışına bakalım.', kur: kurAdim4 }
+  ];
+
+  function ilerleDurumu(){
+    var acik = adim === 0 ? s1.tasti : adim === 1 ? s2.ok : adim === 2 ? Object.keys(s3.deneme).length >= 4 : true;
+    $('asIleri').disabled = !acik;
+    $('asIleri').classList.toggle('gizli', adim === ADIM_SAYISI - 1);
+    $('asGeri').classList.toggle('gizli', adim === 0);
+  }
+  function goster(){
+    var a = ADIMLAR[adim], n = '';
+    for (var i = 0; i < ADIM_SAYISI; i++) n += '<span class="asNokta' + (i <= adim ? ' on' : '') + '"></span>';
+    $('asNoktalar').innerHTML = n;
+    $('asBaslik').textContent = a.baslik;
+    $('asSoru').textContent = a.soru;
+    $('asAlt').textContent = a.alt;
+    a.kur();
+    ilerleDurumu();
+  }
+  $('asIleri').onclick = function(){ if (adim < ADIM_SAYISI - 1) { adim++; goster(); } };
+  $('asGeri').onclick = function(){ if (adim > 0) { adim--; goster(); } };
+  goster();
+})();
+</script>
+
 <!-- KART 1: KANCA - radar oyunu -->
 <div class="kart" id="k1">
 <span class="adim">1</span>

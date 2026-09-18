@@ -587,3 +587,16 @@ Senaryo: sebilin yanında koni kâğıt bardak ve normal bardak var, ikisi aynı
 Çocuğun keşfi: aynı genişlik ve boydaki koni silindirin üçte biri kadar su alır (3 koni = 1 silindir); bunu yeni bir sayıya (900 mL) kendisi uygular.
 Doğrulama (Node): 300÷3=100; 900÷100=9; 900÷300=3; 27×100=2700; 3×3=9. Sahte DOM akış testi: 24/24 kontrol geçti. sw.js cache 19g→19h. `node test/dogrula.js` → CLEAN.
 Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); sahne ≈244px genişlik hesaplandı, elle bakılmalı. Bardak ölçüleri (aynı genişlik/boy, 300 mL) varsayımdır.
+
+## 2026-09-19 — TUR 23: Eşitsizlikler — "Asansörde en çok 300 kg" gerçek hayat senaryosu
+Konu: diğer 7 sayfa önceki turlarda yapıldığı için son kalan esitsizlikler.html seçildi.
+esitsizlikler.html'de k1'in ÖNÜNE 4 adımlı, "Devam et" düğmeli kart eklendi (mevcut kartlar/araçlar aynen duruyor; yeni localStorage anahtarı YOK; yeni sınıflar `as*` aynı dosyada tanımlı).
+Senaryo: apartman asansöründe "en çok 300 kg" yazıyor.
+1) "Biri daha bin" düğmesi: 60 kg'lık komşular biner; 5. kişide tam 300 kg (yeşil parlar, kalkar), 6.'da 360 kg (kırmızı titrer, kişi dışarıda kalır).
+2) İçeride 2 yetişkin (70+70); çocuk 40 kg: en fazla kaç çocuk? (3 / 4 / 5). 3 = yer kalıyor ipucu, 5 = 340 kg; doğruda 140+4×40=300.
+3) İçeride 4×55=220 kg; Ali 60/80/81/100 kg olursa? Dördü de denenir; sınır 80 (tam 300 sığar), 81 sığmaz.
+4) Terim EN SONDA: "en çok 300 kg" = eşitsizlik, yük ≤ 300, sayı doğrusunda dolu nokta; #k6, #k2b, karışık tekrar linkleri.
+Çocuğun keşfi: tam sınır (300) kabul edilir; boş yer = sınır − içerideki kilo, kaç kişi sığacağı = boş yer ÷ kişi kilosu.
+Doğrulama: 5×60=300, 6×60=360, 140+3×40=260, 140+4×40=300, 140+5×40=340, 220+60/80/81/100 = 280/300/301/320. Sahte DOM akış testi (kilitler, yanlış ipuçları, geri dönüş): 27/27 geçti.
+sw.js cache 19h→19i. `node test/dogrula.js` → CLEAN.
+Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); kabin 52px'lik kişilerle sarılır (5 kişi 2 satıra düşebilir), elle bakılmalı.
