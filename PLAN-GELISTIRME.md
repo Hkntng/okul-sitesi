@@ -84,3 +84,17 @@ Sınav modu ve karışık tekrar aynı bankayı kullandığı için ikisi de dah
 Test: node ile 72 soru / 12 konu×6 / d-indeks sınır / tekrar şık / eksik alan kontrolü (0 hata);
 tarayıcıda gerçek akış — başlat → soru render → 20 soru → bitiş ekranı 11 konu linki;
 şık karıştırma sonrası doğru cevap eşleşmesi 20/20.
+
+## TUR 6 (2026-09-18) — commit c93ae41
+Yapılan: Yanlış Kutum (yanlis-kutum.html YENİ). Sınav ve karışık tekrarda yanlış
+yapılan sorular localStorage 'yanlisKutum' anahtarında birikir; öğrenci sadece
+hatalarını çözer, doğru yapınca soru kutudan çıkar, yanlışta kalır (hedefli
+spaced-retrieval). Ortak API soru-bankasi.js'e eklendi (soruId / kutuOku / kutuYaz /
+kutuyaEkle / kutudanCikar / kutuSorulari); soru kimliği "konu|metin", banka
+sırasından bağımsız. sinav.html ve karisik-tekrar.html değerlendirmeye kutu
+entegrasyonu aldı; index'e Yanlış Kutum kartı + dinamik sayaç rozeti; sitemap ve
+sw.js (cache ...d) güncellendi. Mevcut anahtarlar (okulDone*, karisikSkorlar,
+sinavGecmisi) değiştirilmedi; yalnız yeni anahtar eklendi.
+Test: node --check + tag dengesi + API varlık (CLEAN); tarayıcıda gerçek akış —
+yanlış cevap kutuda kalır, doğru cevap kutudan çıkar (2→1→0), boş kutu ekranı,
+bitiş 2/2, index rozeti "1 soru" render.
