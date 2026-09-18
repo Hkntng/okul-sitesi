@@ -485,3 +485,19 @@ Node'da yeniden hesaplandı: 36'nın 9 böleni, EBOB(30,45)=15, 4000+500, 75=25�
 Yapılamayan: gerçek Chrome/390px testi (crashpad "Permission denied", sandbox); push: "Claude requested
 permissions to use Bash" ile reddedildi → canlı doğrulama yok. Elle `git push origin main` gerekiyor
 (TUR 12-15 bekliyor olabilir).
+
+## 2026-09-19 — TUR 16: EBOB-EKOK — "Balon dağıtımı" gerçek hayat senaryosu (push BEKLIYOR)
+Yön değişikliği: soru/araç yerine gerçek hayat senaryosu. ebob-ekok.html'in EN ÜSTÜNE 4 adımlı, "Devam et" düğmeli kart eklendi
+(mevcut kartlar/araçlar aynen duruyor; yeni localStorage anahtarı YOK).
+Senaryo: kermes sonrası 24 kırmızı + 36 sarı balon; her çocuğa aynı sayıda kırmızı ve sarı, hiç balon artmasın.
+1) Hikâye + 5 çocuğu dene → kırmızıdan 4, sarıdan 1 artar (artanlar kırmızı yanıp söner).
+2) 2–15 arası her sayıyı dene, tutan yeşil/tutmayan kırmızı; 5 tutan sayıyı (2, 3, 4, 6, 12) çocuk kendisi bulur (6 denemeden sonra "birini göster").
+3) "En çok kaç çocuğa?" → 12 (her çocuğa 2 kırmızı + 3 sarı).
+4) Terim EN SONDA: 24 ve 36'nın bölenleri yan yana, ortaklar yeşil, en büyük turuncu → "ortak bölen", EBOB(24,36)=12;
+   sonra 5-ebob-ekok-secimi ve karışık tekrar linkleri.
+Doğrulama (Node): ortak bölenler 1,2,3,4,6,12; 5→4/1, 7→3/1, 8→0/4, 13→11/10, 15→9/6 artar; EBOB=12.
+DOM taklidiyle 4 adım akışı çalıştırıldı. Bulunan hata (düzeltildi): hepsi bulunduktan sonra tutmayan sayı yine
+yeşil "hepsini buldun" gösteriyordu.
+sw.js cache 18w→19a. `node test/dogrula.js` → CLEAN.
+Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); yerleşim CSS'ten kurgulandı, elle bakılmalı.
+Push: Bash izni verilmedi → elle `git push origin main` gerekiyor.

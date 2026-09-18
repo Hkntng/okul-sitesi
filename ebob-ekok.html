@@ -171,6 +171,43 @@ body{
 /* erişilebilirlik: klavye odağı + hareket azaltma */
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ---- balon senaryosu (adım adım) ---- */
+.blKart{border-color:#2f5d3a;background:#141f1a}
+.blNoktalar{display:flex;gap:6px;margin:2px 0 12px}
+.blNokta{flex:1;height:5px;border-radius:3px;background:#243044;transition:background .2s}
+.blNokta.on{background:#3fb950}
+.blAdimBaslik{font-size:12px;font-weight:700;color:#7d8590;letter-spacing:.5px;margin-bottom:6px}
+.blSahne{background:#0d1420;border-radius:12px;padding:12px 10px;margin:10px 0}
+.blStok{text-align:center;font-size:14px;color:#9aa4b0;margin-bottom:10px}
+.blGrid{display:grid;gap:7px}
+.blGrup{border:1px solid #33415a;border-radius:10px;padding:6px 5px 7px;background:#131b2a;text-align:center;transition:border-color .2s,background .2s}
+.blGrup.ok{border-color:#3fb950;background:#0f2118}
+.blGrup.bos{border-style:dashed;color:#6e7681;font-size:12px;padding:14px 4px}
+.blGrupEt{font-size:11px;color:#6e7681;margin-bottom:4px}
+.blDot{display:inline-block;width:11px;height:14px;border-radius:50% 50% 45% 45%;margin:1px}
+.blDot.k{background:#e5484d}
+.blDot.s{background:#f5c542}
+.blArtanKutu{margin-top:10px;padding:8px;border-radius:9px;border:1px dashed #5c2626;background:#1e1212;text-align:center;font-size:13px;color:#ff8f80}
+.blArtanKutu .blDot{animation:blYan .7s ease-in-out infinite;box-shadow:0 0 6px 1px rgba(255,80,60,.9)}
+@keyframes blYan{0%,100%{opacity:1}50%{opacity:.25}}
+.blChipler{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.blChip{min-width:46px;padding:11px 8px;border-radius:10px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer}
+.blChip.tutar{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.blChip.tutmaz{background:#251414;border-color:#5c2a2a;color:#f0857d}
+.blChip.aktif{outline:2px solid #f0a44b;outline-offset:1px}
+.blSayac{text-align:center;font-size:14px;color:#9aa4b0;margin:8px 0 2px;line-height:1.6}
+.blSayac b{color:#5ddc7a}
+.blBolen{margin:6px 0;font-size:13px;color:#8b949e}
+.blBolen .blB{display:inline-block;min-width:30px;padding:5px 7px;margin:2px;border-radius:8px;background:#1f2a3c;border:1px solid #33415a;color:#9fb4d0;font-size:15px;font-weight:700;text-align:center}
+.blBolen .blB.ort{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.blBolen .blB.en{background:#f0a44b;border-color:#f0a44b;color:#10141c}
+.blYol{display:flex;gap:8px;margin-top:10px}
+.blYol .buyukbtn{margin-top:0}
+.blYol .blGeri{flex:0 0 auto;width:auto;padding:15px 16px;background:#1b2436;color:#9aa4b0}
+.blLink{display:block;margin-top:9px;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-size:15px;font-weight:700}
+.blLink.bir{background:#3fb950;color:#08150c}
+.blLink.iki{background:#1b2436;border:1px solid #33415a;color:#cfe0f5}
 </style>
 
 <style>
@@ -198,6 +235,26 @@ body.light .sekme:active { background:#a3e635; }
     <a class="geri" href="index.html">← Ana sayfa</a>
     <div class="konu">ORTAOKUL MATEMATİK · MEB kazanımı MAT.6.1.4</div>
     <h1>EBOB &amp; EKOK</h1>
+  </div>
+
+  <!-- BALON SENARYOSU: adım adım, önce dene sonra ad -->
+  <div class="kart blKart" id="blKart">
+    <span class="adim yesil">Önce bir deneme</span>
+    <div class="blNoktalar" id="blNoktalar" aria-hidden="true"></div>
+    <div class="blAdimBaslik" id="blBaslik"></div>
+    <p class="buyuk" id="blSoru"></p>
+    <p class="kucuk" id="blAlt"></p>
+    <div class="blSahne" id="blSahne">
+      <div class="blStok" id="blStok"></div>
+      <div class="blGrid" id="blGrid"></div>
+      <div id="blArtan"></div>
+    </div>
+    <div id="blKontrol"></div>
+    <div class="durum yok" id="blDurum" role="status" aria-live="polite"></div>
+    <div class="blYol">
+      <button class="buyukbtn blGeri gizli" id="blGeri" type="button">← Geri</button>
+      <button class="buyukbtn mavi" id="blIleri" type="button" disabled>Devam et →</button>
+    </div>
   </div>
 
   <!-- ADIM 1: PROBLEM -->
@@ -375,6 +432,209 @@ body.light .sekme:active { background:#a3e635; }
 
 </div>
 
+<script>
+(function(){
+  /* ================= BALON SENARYOSU ================= */
+  var KIRMIZI = 24, SARI = 36, EN_AZ = 2, EN_COK = 15;
+  var ADIM_SAYISI = 4;
+  var $ = function(id){ return document.getElementById(id); };
+  var tutanlar = [];                       // 24 ve 36'yı birlikte tam paylaşan sayılar (2..15)
+  for (var t = EN_AZ; t <= EN_COK; t++) if (KIRMIZI % t === 0 && SARI % t === 0) tutanlar.push(t);
+  var enBuyuk = tutanlar[tutanlar.length - 1];
+  var adim = 0, denenen = {}, sonDenen = 0, bulunan = {}, bulunanSay = 0, denemeSay = 0, secildi = false, ilkDeneme = false;
+
+  function noktalar(sinif, adet){
+    var s = '';
+    for (var i = 0; i < adet; i++) s += '<span class="blDot ' + sinif + '"></span>';
+    return s;
+  }
+  function cizDagit(n){
+    var k = Math.floor(KIRMIZI / n), s = Math.floor(SARI / n);
+    var rk = KIRMIZI % n, rs = SARI % n, tam = rk === 0 && rs === 0;
+    var sut = n <= 3 ? n : 4, html = '';
+    for (var i = 1; i <= n; i++) {
+      html += '<div class="blGrup' + (tam ? ' ok' : '') + '"><div class="blGrupEt">' +
+        (n === 1 ? 'elindeki balonlar' : i + '. çocuk') + '</div>' + noktalar('k', k) + noktalar('s', s) + '</div>';
+    }
+    $('blGrid').style.gridTemplateColumns = 'repeat(' + sut + ',1fr)';
+    $('blGrid').innerHTML = html;
+    $('blStok').textContent = n === 1 ? KIRMIZI + ' kırmızı + ' + SARI + ' sarı balon' :
+      n + ' çocuğa dağıtıldı — her çocuk ' + k + ' kırmızı + ' + s + ' sarı';
+    $('blArtan').innerHTML = tam ? '' : '<div class="blArtanKutu">Artan balonlar:<br>' +
+      noktalar('k', rk) + noktalar('s', rs) + '</div>';
+    return { tam: tam, k: k, s: s, rk: rk, rs: rs };
+  }
+  function durumYaz(ok, metin){
+    var d = $('blDurum');
+    d.className = 'durum ' + (ok ? 'ok' : 'yok');
+    d.textContent = metin;
+  }
+  function durumGizle(){ $('blDurum').className = 'durum gizli'; }
+  function artanMetni(r){
+    var p = [];
+    if (r.rk) p.push('kırmızıdan ' + r.rk);
+    if (r.rs) p.push('sarıdan ' + r.rs);
+    var m = p.join(', ') + ' balon artıyor.';
+    return m.charAt(0).toUpperCase() + m.slice(1);
+  }
+
+  function bolenler(x){
+    var l = [];
+    for (var i = 1; i <= x; i++) if (x % i === 0) l.push(i);
+    return l;
+  }
+  function bolenSatiri(x, oteki){
+    var s = '';
+    bolenler(x).forEach(function(b){
+      var sinif = oteki % b === 0 ? (b === enBuyuk ? 'blB en' : 'blB ort') : 'blB';
+      s += '<span class="' + sinif + '">' + b + '</span>';
+    });
+    return s;
+  }
+
+  function ilerleDurumu(){
+    var acik = adim === 0 ? ilkDeneme : adim === 1 ? bulunanSay === tutanlar.length : adim === 2 ? secildi : true;
+    $('blIleri').disabled = !acik;
+    $('blIleri').classList.toggle('gizli', adim === ADIM_SAYISI - 1);
+    $('blGeri').classList.toggle('gizli', adim === 0);
+  }
+
+  function kontrolAdim1(){
+    var h = '<div class="blChipler">';
+    for (var n = EN_AZ; n <= EN_COK; n++) {
+      var sinif = 'blChip' + (denenen[n] ? (KIRMIZI % n === 0 && SARI % n === 0 ? ' tutar' : ' tutmaz') : '');
+      h += '<button type="button" class="' + sinif + '" data-n="' + n + '" aria-label="' + n + ' çocuk">' + n + '</button>';
+    }
+    h += '</div><div class="blSayac" id="blSayac"></div>';
+    $('blKontrol').innerHTML = h;
+    Array.prototype.forEach.call($('blKontrol').querySelectorAll('.blChip'), function(b){
+      b.onclick = function(){ dene(parseInt(b.getAttribute('data-n'), 10)); };
+    });
+    sayacYaz();
+  }
+  function sayacYaz(){
+    var liste = Object.keys(bulunan).map(Number).sort(function(a, b){ return a - b; });
+    var m = 'Tutan sayılar: <b>' + (liste.length ? liste.join(' · ') : '—') + '</b><br>Toplam ' +
+      tutanlar.length + ' tane var — hepsini bul (' + bulunanSay + '/' + tutanlar.length + ')';
+    var el = $('blSayac');
+    if (!el) return;
+    el.innerHTML = m;
+    if (denemeSay >= 6 && bulunanSay < tutanlar.length) {
+      el.innerHTML += '<button type="button" class="yardim" id="blIpucu">Takıldım, birini göster</button>';
+      $('blIpucu').onclick = function(){
+        var siradaki = tutanlar.filter(function(x){ return !bulunan[x]; })[0];
+        dene(siradaki);
+      };
+    }
+  }
+  function dene(n){
+    var r = cizDagit(n);
+    if (!denenen[n]) { denenen[n] = true; denemeSay++; }
+    sonDenen = n;
+    Array.prototype.forEach.call($('blKontrol').querySelectorAll('.blChip'), function(b){
+      var x = parseInt(b.getAttribute('data-n'), 10);
+      b.classList.toggle('aktif', x === n);
+      if (denenen[x]) b.classList.add(KIRMIZI % x === 0 && SARI % x === 0 ? 'tutar' : 'tutmaz');
+    });
+    if (r.tam) {
+      if (!bulunan[n]) { bulunan[n] = true; bulunanSay++; }
+      durumYaz(true, 'Tuttu! Her çocuğa ' + r.k + ' kırmızı + ' + r.s + ' sarı, hiç balon artmadı.');
+    } else {
+      durumYaz(false, n + ' çocuk olmuyor. ' + artanMetni(r));
+    }
+    sayacYaz();
+    if (r.tam && bulunanSay === tutanlar.length) durumYaz(true, 'Hepsini buldun: ' + tutanlar.join(', ') + '. Devam edebilirsin.');
+    ilerleDurumu();
+  }
+
+  function kontrolAdim2(){
+    var h = '<div class="blChipler">';
+    tutanlar.forEach(function(n){ h += '<button type="button" class="blChip" data-n="' + n + '">' + n + ' çocuk</button>'; });
+    h += '</div>';
+    $('blKontrol').innerHTML = h;
+    Array.prototype.forEach.call($('blKontrol').querySelectorAll('.blChip'), function(b){
+      b.onclick = function(){
+        var n = parseInt(b.getAttribute('data-n'), 10), r = cizDagit(n);
+        Array.prototype.forEach.call($('blKontrol').querySelectorAll('.blChip'), function(x){ x.classList.remove('aktif'); });
+        b.classList.add('aktif');
+        if (n === enBuyuk) {
+          secildi = true;
+          durumYaz(true, 'İşte bu! ' + n + ' çocuğa her biri ' + r.k + ' kırmızı + ' + r.s + ' sarı alıyor. ' +
+            n + '\'den fazlası balon artırıyor — kendin dene.');
+        } else {
+          secildi = false;
+          durumYaz(false, n + ' çocuğa da oluyor ama daha fazla çocuğa yetişebilir. Tutan sayıların en büyüğünü dene.');
+        }
+        ilerleDurumu();
+      };
+    });
+  }
+
+  function kontrolAdim3(){
+    $('blKontrol').innerHTML =
+      '<div class="blBolen">24 balonu <b>tam paylaşan</b> sayılar:<br>' + bolenSatiri(KIRMIZI, SARI) + '</div>' +
+      '<div class="blBolen">36 balonu <b>tam paylaşan</b> sayılar:<br>' + bolenSatiri(SARI, KIRMIZI) + '</div>' +
+      '<p style="margin-top:12px">İkisini de aynı anda tam paylaşan sayılar yeşil. Bunların en büyüğü turuncu: <b>' + enBuyuk + '</b>.</p>' +
+      '<p class="sart">Bu sayılara <span class="vurguMavi">ortak bölen</span> deniyor, en büyüğüne <span class="vurguMavi">EBOB</span>: ' +
+      '<b>EBOB(' + KIRMIZI + ', ' + SARI + ') = ' + enBuyuk + '</b></p>' +
+      '<p class="kucuk">1 de tutar ama tek çocuğa vermek dağıtmak sayılmaz, o yüzden 2\'den başladık. ' +
+      'Aşağıda aynı fikri bu sefer fayansla göreceksin.</p>' +
+      '<p class="buyuk" style="margin-top:14px">Şimdi bunu denemeye ne dersin?</p>' +
+      '<a class="blLink bir" href="5-ebob-ekok-secimi.html">EBOB mu EKOK mu? — sorulara geç →</a>' +
+      '<a class="blLink iki" href="karisik-tekrar.html">🔀 Karışık tekrar (8 soru)</a>';
+  }
+
+  var ADIMLAR = [
+    { baslik: '1 / 4 · KERMES BİTTİ',
+      soru: 'Elinde 24 kırmızı, 36 sarı balon kaldı.',
+      alt: 'Hepsini çocuklara dağıtacaksın. Kural: her çocuk aynı sayıda kırmızı, aynı sayıda sarı alsın. Hiç balon artmasın.',
+      kur: function(){
+        cizDagit(1); durumGizle();
+        $('blKontrol').innerHTML = '<button type="button" class="buyukbtn turuncu" id="blBes">5 çocuğa dağıtmayı dene</button>';
+        $('blBes').onclick = function(){
+          var r = cizDagit(5);
+          durumYaz(r.tam, '5 çocuk olmuyor. ' + artanMetni(r) + ' Yanıp sönenler kimseye eşit gitmiyor.');
+          ilkDeneme = true; ilerleDurumu();
+        };
+        if (ilkDeneme) $('blBes').onclick();
+      } },
+    { baslik: '2 / 4 · SEN DENE',
+      soru: 'Kaç çocuğa dağıtınca hiç balon artmıyor?',
+      alt: 'Bir sayıya bas, balonların nasıl bölündüğüne bak. Yeşil tutar, kırmızı tutmaz.',
+      kur: function(){
+        cizDagit(1); durumGizle(); kontrolAdim1();
+        if (sonDenen) dene(sonDenen);
+      } },
+    { baslik: '3 / 4 · EN FAZLA',
+      soru: 'Kermes kalabalıktı. Mümkün olduğunca çok çocuğa balon vermek istiyorsun.',
+      alt: 'Tutan sayılardan hangisini seçersin? Seç, balonlar nasıl dağılıyor bak.',
+      kur: function(){ cizDagit(1); durumGizle(); kontrolAdim2(); } },
+    { baslik: '4 / 4 · ADI NE?',
+      soru: 'Az önce kafandan bir şey hesapladın.',
+      alt: '',
+      kur: function(){
+        $('blSahne').classList.add('gizli'); durumGizle(); kontrolAdim3();
+      } }
+  ];
+
+  function goster(){
+    var a = ADIMLAR[adim];
+    var nok = '';
+    for (var i = 0; i < ADIM_SAYISI; i++) nok += '<div class="blNokta' + (i <= adim ? ' on' : '') + '"></div>';
+    $('blNoktalar').innerHTML = nok;
+    $('blBaslik').textContent = a.baslik;
+    $('blSoru').textContent = a.soru;
+    $('blAlt').textContent = a.alt;
+    $('blAlt').classList.toggle('gizli', !a.alt);
+    $('blSahne').classList.remove('gizli');
+    a.kur();
+    ilerleDurumu();
+  }
+  $('blIleri').onclick = function(){ if (adim < ADIM_SAYISI - 1) { adim++; goster(); } };
+  $('blGeri').onclick = function(){ if (adim > 0) { adim--; goster(); } };
+  goster();
+})();
+</script>
 <script>
 (function(){
   /* ================= ADIM 2: FAYANS ================= */
