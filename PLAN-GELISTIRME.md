@@ -461,3 +461,13 @@ Test: `node test/dogrula.js` → CLEAN; script'ler vm.Script ile derlendi; mant�
 Yapılamayan: gerçek Chrome/390px testi (crashpad "Operation not permitted", sandbox); push: izin verilmedi
 ("Claude requested permissions to use Bash"), github.com sandbox'ta kapalı → canlı doğrulama yapılamadı.
 Elle `git push origin main` gerekiyor (TUR 12 + 13 bekliyor).
+
+## 2026-09-18 — TUR 14: Cebir — (a+b)² interaktif alan aracı (commit 4494f06, push BEKLIYOR)
+Yapılan: cebir.html'e k3b kartı: a ve b slider'ları (1–12); oranlı 2×2 alan gridi (a², iki ab, b²), canlı toplam
+(a+b)² ve "a²+b² yanlış → 2ab eksik" karşılaştırması. "Takıldım, göster" düğmesi yöntemi a=6,b=3 örneğiyle açıklar.
+Yeni id'ler `cb` önekli; kullanılan CSS sınıfları tanımlı (kontrol edildi). Yeni localStorage anahtarı YOK.
+sw.js cache 18t→18u. Yeni konu sayfası açılmadı. Diğer 11 konuda zaten interaktif araç var; cebirde (a+b)² statikti.
+Test: `node test/dogrula.js` → CLEAN; script'ler vm.Script ile derlendi; elle: a=6,b=3 → 36+18+18+9=81=9² (a²+b²=45, 36 eksik).
+Yapılamayan: gerçek Chrome/390px testi (crashpad/ProcessSingleton "Operation not permitted", sandbox);
+push: "Claude requested permissions to use Bash" ile reddedildi, github.com sandbox'ta kapalı → canlı doğrulama yok.
+Elle `git push origin main` gerekiyor (TUR 12-14 bekliyor).
