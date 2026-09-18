@@ -66,6 +66,12 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 <style>
 .depoKutu{background:#1a2236;border-radius:12px;padding:14px;margin:12px 0;text-align:center}
 .depoKutu svg{max-width:100%;height:auto}
+.cismSekme{flex:1;min-width:72px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 6px;border-radius:11px;text-align:center;transition:all .15s}
+.cismSekme.secili{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--tema) 35%,transparent)}
+.cismSlider{width:100%;accent-color:var(--tema)}
+.cismEtiket{display:flex;justify-content:space-between;font-size:14px;color:#8b95ad;margin-top:10px}
+.cismGovde{background:#1a2236;border-radius:12px;padding:10px;margin:10px 0;text-align:center}
+.cismGovde svg{max-width:100%;height:auto}
 </style>
 
 
@@ -164,6 +170,47 @@ body.light .sekme:active { background:#a3e635; }
 </div>
 </div>
 
+<!-- KART 4b: INTERAKTIF HACIM HESAPLAYICI -->
+<div class="kart" id="k4b">
+<span class="adim">Dene</span>
+<h2>Bir cisim seç, ölçüleri kaydır, hacmi canlı gör</h2>
+<p>Taban kenarını/yarıçapını ve yüksekliği değiştir — şekil ve hacim anında güncellensin. Aynı taban ve yükseklikte koni/piramidin silindir/prizmadan neden <b>üçte bir</b> çıktığını gözünle gör.</p>
+<div class="sekmeler" id="cismTurler">
+<button class="cismSekme secili" data-tur="prizma">📦 Prizma</button>
+<button class="cismSekme" data-tur="silindir">🛢️ Silindir</button>
+<button class="cismSekme" data-tur="koni">🔺 Koni</button>
+<button class="cismSekme" data-tur="piramit">▲ Piramit</button>
+</div>
+<div class="cismGovde">
+<svg viewBox="0 0 200 160" id="cismSvg">
+<g id="grpPrizma"><rect id="prR" x="70" y="50" width="60" height="100" rx="2" fill="#a3e635" opacity="0.55" stroke="#bef264" stroke-width="1.5"/></g>
+<g id="grpSilindir" style="display:none">
+<rect id="silBody" x="70" y="50" width="60" height="100" fill="#a3e635" opacity="0.5"/>
+<ellipse id="silTop" cx="100" cy="50" rx="30" ry="10" fill="#bef264" opacity="0.75"/>
+<ellipse id="silBot" cx="100" cy="150" rx="30" ry="10" fill="#4d7c0f" opacity="0.85"/>
+</g>
+<g id="grpKoni" style="display:none">
+<ellipse id="konBot" cx="100" cy="150" rx="30" ry="10" fill="#4d7c0f" opacity="0.85"/>
+<path id="konSide" d="M70,150 L100,50 L130,150 Z" fill="#a3e635" opacity="0.55" stroke="#bef264" stroke-width="1.5"/>
+</g>
+<g id="grpPiramit" style="display:none">
+<path id="pirSide" d="M70,150 L100,50 L130,150 Z" fill="#a3e635" opacity="0.55" stroke="#bef264" stroke-width="1.5"/>
+</g>
+</svg>
+</div>
+<label class="kucuk" id="cismAlbl"><span id="cismAprefix">Taban kenarı (a)</span>: <span id="cismAdeg">10</span> cm</label>
+<input type="range" id="cismA" class="cismSlider" min="2" max="20" value="10">
+<div class="cismEtiket"><span>2 cm</span><span>20 cm</span></div>
+<label class="kucuk">Yükseklik (h): <span id="cismHdeg">12</span> cm</label>
+<input type="range" id="cismH" class="cismSlider" min="2" max="20" value="12">
+<div class="cismEtiket"><span>2 cm</span><span>20 cm</span></div>
+<div class="sonuc">
+<p id="cismFormul" class="kucuk"></p>
+<p class="buyuk" id="cismSonuc"></p>
+<p id="cismKiyas" class="kucuk" style="margin-top:6px"></p>
+</div>
+</div>
+
 <!-- KART 5: SEKMELER -->
 <div class="kart" id="k5">
 <span class="adim">5</span>
@@ -218,6 +265,58 @@ soruKur('k1',0,'k1devam');
 soruKur('k2',0,'k2devam');
 soruKur('k3',0,'k3devam');
 soruKur('k4',0,'k4devam');
+
+// KART 4b: interaktif hacim hesaplayici
+(function(){
+  var tur='prizma';
+  var turBtn=document.querySelectorAll('#cismTurler .cismSekme');
+  var elA=document.getElementById('cismA'), elH=document.getElementById('cismH');
+  var elAdeg=document.getElementById('cismAdeg'), elHdeg=document.getElementById('cismHdeg');
+  var elAprefix=document.getElementById('cismAprefix');
+  var elFormul=document.getElementById('cismFormul'), elSonuc=document.getElementById('cismSonuc'), elKiyas=document.getElementById('cismKiyas');
+  var gruplar={prizma:document.getElementById('grpPrizma'),silindir:document.getElementById('grpSilindir'),koni:document.getElementById('grpKoni'),piramit:document.getElementById('grpPiramit')};
+  var PI=3.14;
+  function ciz(a,h){
+    var hw=Math.max(10,a*4), topY=150-Math.min(140,h*7);
+    if(tur==='prizma'){
+      var pr=document.getElementById('prR'); pr.setAttribute('x',100-hw); pr.setAttribute('y',topY); pr.setAttribute('width',2*hw); pr.setAttribute('height',150-topY);
+    } else if(tur==='silindir'){
+      document.getElementById('silBody').setAttribute('x',100-hw); document.getElementById('silBody').setAttribute('y',topY);
+      document.getElementById('silBody').setAttribute('width',2*hw); document.getElementById('silBody').setAttribute('height',150-topY);
+      document.getElementById('silTop').setAttribute('cx',100); document.getElementById('silTop').setAttribute('cy',topY); document.getElementById('silTop').setAttribute('rx',hw);
+    } else if(tur==='koni'){
+      document.getElementById('konSide').setAttribute('d','M'+(100-hw)+',150 L100,'+topY+' L'+(100+hw)+',150 Z');
+    } else if(tur==='piramit'){
+      document.getElementById('pirSide').setAttribute('d','M'+(100-hw)+',150 L100,'+topY+' L'+(100+hw)+',150 Z');
+    }
+  }
+  function guncelle(){
+    var a=+elA.value, h=+elH.value;
+    elAdeg.textContent=a; elHdeg.textContent=h;
+    elAprefix.textContent=(tur==='silindir'||tur==='koni')?'Yarıçap (r)':'Taban kenarı (a)';
+    ciz(a,h);
+    var v, formul, prizmaV=a*a*h, silindirV=PI*a*a*h;
+    if(tur==='prizma'){ v=prizmaV; formul='V = a × a × h = '+a+' × '+a+' × '+h; }
+    else if(tur==='silindir'){ v=silindirV; formul='V = π × r² × h ≈ 3,14 × '+a+'² × '+h; }
+    else if(tur==='koni'){ v=silindirV/3; formul='V = (1/3) × π × r² × h ≈ (1/3) × 3,14 × '+a+'² × '+h; }
+    else { v=prizmaV/3; formul='V = (1/3) × a × a × h = (1/3) × '+a+' × '+a+' × '+h; }
+    elFormul.textContent=formul;
+    elSonuc.innerHTML=v.toFixed(1)+' cm³ <span class="kucuk">(≈ '+(v/1000).toFixed(2)+' litre)</span>';
+    if(tur==='koni') elKiyas.innerHTML='Aynı r ve h ile silindir '+silindirV.toFixed(1)+' cm³ olurdu — koni tam <b>üçte biri.</b>';
+    else if(tur==='piramit') elKiyas.innerHTML='Aynı a ve h ile prizma '+prizmaV.toFixed(1)+' cm³ olurdu — piramit tam <b>üçte biri.</b>';
+    else elKiyas.innerHTML='';
+  }
+  turBtn.forEach(function(b){
+    b.onclick=function(){
+      turBtn.forEach(function(x){x.classList.remove('secili')});
+      b.classList.add('secili'); tur=b.dataset.tur;
+      Object.keys(gruplar).forEach(function(k){gruplar[k].style.display=(k===tur?'':'none')});
+      guncelle(); tit(15);
+    };
+  });
+  elA.oninput=guncelle; elH.oninput=guncelle;
+  guncelle();
+})();
 
 var sekmeler=[
  '<b>Önce tahmin et:</b> silo hesabında koni çatıyı unutan kaç yanılır? 👇<br><br><b>Buğday silosu.</b> Mysilo&#39;nun 4,58 m çaplı silosu: gövde silindir (π × 2,29² × 3,38 ≈ 55,7 m³) + koni çatı (≈ 7,4 m³) = 63 m³ ≈ katalogdaki 62 ✓. Koniyi unutan <b>%12 yanılır</b> — çiftçi "hasat sığar mı?" derken bu %12 bir kamyon buğday eder. Buğday 1 m³ ≈ 0,85 ton → 53 ton.',
