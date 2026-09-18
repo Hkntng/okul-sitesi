@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sınav Modu — 8. Sınıf Matematik LGS Provası</title>
+<meta name="description" content="20 soru, 20 dakika, gerçek sınav baskısı. Süreli LGS provası: zaman yönetimini ve konu eksiklerini gör.">
+<meta property="og:title" content="Sınav Modu — LGS Provası">
+<meta property="og:description" content="20 soru 20 dakika. Süreli deneme ile sınav baskısına alış, konu bazlı yanlış analizini gör.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hkntng.github.io/okul-sitesi/sinav.html">
+<style>
+:root{color-scheme:dark}
+body{margin:0;background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.55}
+.sar{max-width:430px;margin:0 auto;padding:24px 16px 60px}
+h1{font-size:24px;margin:10px 0 4px}
+.alt-baslik{color:#8b949e;font-size:14px;margin-bottom:18px}
+.kart{background:#161d2b;border:1px solid #2c3950;border-radius:14px;padding:18px;margin-bottom:14px}
+.rozet{display:inline-block;background:#1f2b3f;color:#7da8d8;font-size:12px;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.soruTxt{font-size:16px;font-weight:600;margin:6px 0 14px}
+.sik{display:block;width:100%;box-sizing:border-box;padding:13px;margin-bottom:8px;border-radius:10px;border:1px solid #2c3950;background:#10151f;color:#e6edf3;font-size:15px;cursor:pointer;text-align:left;font-family:inherit}
+.sik.sec{background:#16233b;border-color:#2f81f7;color:#cfe0ff}
+.ilerle{width:100%;padding:14px;border-radius:12px;border:0;background:#2f81f7;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px}
+.ilerle:disabled{opacity:.4;cursor:default}
+.geri{width:100%;padding:11px;border-radius:12px;border:1px solid #2c3950;background:transparent;color:#8b949e;font-size:14px;cursor:pointer;font-family:inherit;margin-top:8px}
+.skorKutu{text-align:center;padding:26px 18px}
+.buyukSkor{font-size:44px;font-weight:800;margin-bottom:6px}
+.bar{height:6px;background:#1f2733;border-radius:3px;overflow:hidden;margin:14px 0 10px}
+.bar>div{height:100%;background:#2f81f7;transition:width .3s}
+a{color:#7da8d8}
+.nav{display:flex;justify-content:space-between;margin-top:26px;font-size:14px}
+.nav a{text-decoration:none}
+.sayac{position:sticky;top:0;z-index:5;background:#0d1117;padding:8px 0 6px;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.sayac .zaman{font-size:20px;font-variant-numeric:tabular-nums}
+.sayac .zaman.az{color:#f85149;animation:yanip 1s steps(2,start) infinite}
+@keyframes yanip{50%{opacity:.35}}
+.sayac .no{font-size:13px;color:#8b949e;font-weight:600}
+.baslaKutu{text-align:center;padding:10px 4px}
+.baslaKutu .buyuk{font-size:15px;color:#adbac7;margin-bottom:18px}
+.ozet{text-align:left;margin-top:18px}
+.ozet .satir{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;margin-bottom:6px;border-radius:10px;border:1px solid #2c3950;font-size:14px}
+.ozet .satir.iyi{background:#12251a;border-color:#264b32}
+.ozet .satir.kotu{background:#2b1518;border-color:#5c2a2c}
+.ozet .satir a{text-decoration:none;color:#79c0ff;font-weight:600}
+.ozet .say{color:#8b949e;font-size:13px}
+</style>
+<link rel="icon" href="/okul-sitesi/icons/icon-192.png">
+<link rel="canonical" href="https://hkntng.github.io/okul-sitesi/sinav.html">
+<link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/okul-sitesi/icons/icon-192.png">
+<meta name="theme-color" content="#070b16">
+</head>
+<body>
+<div class="sar">
+  <h1>⏱️ Sınav Modu</h1>
+  <div class="alt-baslik">20 soru · 20 dakika · gerçek sınav baskısı. LGS'de asıl zorlayan şey soru değil, <b>zaman</b>. Burada zamanı yönetmeyi öğren; sonunda hangi konuda takıldığını gör.</div>
+  <div class="bar"><div id="bar" style="width:0%"></div></div>
+  <div id="alan"></div>
+  <div class="nav"><a href="index.html">← Ana sayfa</a><a href="karisik-tekrar.html">🔀 Karışık Tekrar</a></div>
+</div>
+<script src="/okul-sitesi/soru-bankasi.js"></script>
+<script>
+(function(){
+var BANKA=window.SORU_BANKASI, KONU_SAYFA=window.KONU_SAYFA;
+var SORU_SAYI=20, SURE=20*60; // saniye
+function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+var alan=document.getElementById('alan'), bar=document.getElementById('bar');
+var sorular=null, cevaplar=[], i=0, kalan=SURE, sayacId=null, basladi=false;
+
+function baslaEkran(){
+  var gecmis=[];
+  try{ gecmis=JSON.parse(localStorage.getItem('sinavGecmisi')||'[]'); }catch(e){}
+  var sonH='';
+  if(gecmis.length){
+    var s=gecmis.slice(-3).reverse().map(function(x){return x.d+'/'+x.n;}).join(' · ');
+    sonH='<div style="margin-top:16px;font-size:13px;color:#8b949e">Önceki denemeler: '+s+'</div>';
+  }
+  alan.innerHTML='<div class="kart baslaKutu"><div class="buyuk">Hazır mısın? Başlayınca <b>20 dakikalık</b> geri sayım çalışır ve süre bitince sınav otomatik biter. Her sorunun tek doğru cevabı var; istersen geri dönüp değiştirebilirsin.</div>'+
+    '<button class="ilerle" id="baslaBtn">Sınavı başlat →</button>'+sonH+'</div>';
+  document.getElementById('baslaBtn').onclick=baslat;
+}
+
+function baslat(){
+  // Konu çeşitliliği için: bankayı karıştır, 20 soru al, şıkları da karıştır
+  sorular=shuf(BANKA.slice()).slice(0,SORU_SAYI).map(function(q){
+    var idx=shuf(q.c.map(function(_,i){return i;}));
+    return {k:q.k,s:q.s,c:idx.map(function(x){return q.c[x];}),d:idx.indexOf(q.d),a:q.a};
+  });
+  cevaplar=sorular.map(function(){return -1;});
+  i=0; kalan=SURE; basladi=true;
+  sayacId=setInterval(function(){
+    kalan--;
+    if(kalan<=0){ kalan=0; guncelleSayac(); bitir(true); return; }
+    guncelleSayac();
+  },1000);
+  goster();
+}
+
+function mmss(s){var m=Math.floor(s/60),k=s%60;return m+':'+(k<10?'0':'')+k;}
+function guncelleSayac(){
+  var z=document.getElementById('zaman');
+  if(z){ z.textContent=mmss(kalan); if(kalan<=60) z.classList.add('az'); else z.classList.remove('az'); }
+}
+
+function goster(){
+  bar.style.width=(i/sorular.length*100)+'%';
+  var q=sorular[i];
+  var h='<div class="sayac"><span class="zaman'+(kalan<=60?' az':'')+'" id="zaman">'+mmss(kalan)+'</span><span class="no">Soru '+(i+1)+' / '+sorular.length+'</span></div>';
+  h+='<div class="kart"><span class="rozet">'+q.k+'</span>';
+  h+='<div class="soruTxt">'+q.s+'</div>';
+  q.c.forEach(function(c,j){ h+='<button class="sik'+(cevaplar[i]===j?' sec':'')+'" data-j="'+j+'">'+c+'</button>'; });
+  h+='<button class="ilerle" id="devam">'+(i===sorular.length-1?'Sınavı bitir ✓':'Sonraki soru →')+'</button>';
+  if(i>0) h+='<button class="geri" id="onceki">← Önceki soru</button>';
+  h+='</div>';
+  alan.innerHTML=h;
+  Array.prototype.forEach.call(alan.querySelectorAll('.sik'),function(b){
+    b.onclick=function(){
+      cevaplar[i]=+b.getAttribute('data-j');
+      Array.prototype.forEach.call(alan.querySelectorAll('.sik'),function(x){x.classList.remove('sec');});
+      b.classList.add('sec');
+    };
+  });
+  document.getElementById('devam').onclick=function(){
+    if(i===sorular.length-1){ bitir(false); } else { i++; goster(); }
+  };
+  var ob=document.getElementById('onceki');
+  if(ob) ob.onclick=function(){ i--; goster(); };
+}
+
+function bitir(sureBitti){
+  if(sayacId){ clearInterval(sayacId); sayacId=null; }
+  bar.style.width='100%';
+  var dogru=0, konuIst={};
+  sorular.forEach(function(q,idx){
+    var d=(cevaplar[idx]===q.d);
+    if(d) dogru++;
+    if(!konuIst[q.k]) konuIst[q.k]={d:0,t:0};
+    konuIst[q.k].t++; if(d) konuIst[q.k].d++;
+  });
+  var yuzde=Math.round(dogru/sorular.length*100);
+  // kaydet
+  try{
+    var g=JSON.parse(localStorage.getItem('sinavGecmisi')||'[]');
+    g.push({t:Date.now(),d:dogru,n:sorular.length});
+    localStorage.setItem('sinavGecmisi',JSON.stringify(g.slice(-20)));
+  }catch(e){}
+  var msg = yuzde>=80 ? 'Süper! LGS temposunu yakaladın.' : yuzde>=50 ? 'Fena değil — zayıf konularına dönersen çıkışa geçersin.' : 'Panik yok: aşağıdaki konuların sayfalarını çalış, birkaç gün sonra tekrar dene.';
+  var sureNot = sureBitti ? '<div style="margin-top:10px;color:#f0b429;font-size:14px">⏱️ Süre doldu — cevaplamadığın sorular yanlış sayıldı. Sınavda hız da puandır!</div>' : '';
+  // konu özeti: zayıftan güçlüye sırala
+  var konular=Object.keys(konuIst).sort(function(a,b){
+    return (konuIst[a].d/konuIst[a].t)-(konuIst[b].d/konuIst[b].t);
+  });
+  var ozetH='<div class="ozet"><div style="font-size:13px;font-weight:600;color:#adbac7;margin:6px 2px 8px">Konu bazlı sonuç:</div>';
+  konular.forEach(function(k){
+    var o=konuIst[k], tamDogru=(o.d===o.t), u=KONU_SAYFA[k];
+    ozetH+='<div class="satir '+(tamDogru?'iyi':'kotu')+'"><span>'+k+' <span class="say">('+o.d+'/'+o.t+')</span></span>'+(tamDogru?'<span style="color:#3fb950;font-weight:700">✓</span>':(u?'<a href="'+u+'">→ tekrar et</a>':''))+'</div>';
+  });
+  ozetH+='</div>';
+  alan.innerHTML='<div class="kart skorKutu"><div class="buyukSkor">'+dogru+'/'+sorular.length+'</div><div>'+msg+'</div>'+sureNot+ozetH+
+    '<button class="ilerle" onclick="location.reload()" style="margin-top:18px">↺ Yeni sınav</button>'+
+    '<a href="karisik-tekrar.html" style="display:block;margin-top:10px;color:#79c0ff;text-decoration:none;font-size:14px">🔀 Kısa karışık tekrar (8 soru)</a></div>';
+}
+
+baslaEkran();
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('/okul-sitesi/sw.js', {scope: '/okul-sitesi/'});
+}
+</script>
+</body>
+</html>

@@ -1,5 +1,19 @@
 # GELİŞTİRME PLANI — Tek Koşuda Otomatik (2026-09-18)
 
+## TUR 4 (2026-09-18)
+Yapılan: (1) 48 soruluk banka ortak `soru-bankasi.js` dosyasına çıkarıldı
+(tek kaynak); karisik-tekrar.html artık bunu import ediyor (kod tekrarı silindi,
+16KB→7KB). (2) YENİ **sinav.html**: 20 soru / 20 dakika süreli LGS provası —
+canlı geri sayım, son 1 dk kırmızı yanıp söner, süre bitince otomatik biter,
+soru arası geri/ileri, sonunda konu bazlı doğru/yanlış analizi (zayıftan güçlüye
+sıralı) + zayıf konulara sayfa linki. Yeni localStorage anahtarı `sinavGecmisi`
+(mevcut okul_done*/karisikSkorlar dokunulmadı). index'e öncü kart, sw.js önbelleğe
+(v2026-09-18b) ve sitemap'e eklendi. Dayanak: süreli deneme = sınav kaygısı ve
+zaman yönetimi pratiği; hedefli geri bildirim = konuya dönüş.
+Test: tarayıcıda tam akış (başlat→sayaç 20:00→19:59→20 soru→bitir), skor 14/20
+bilerek verilen cevaplarla birebir eşleşti, konu analizi + linkler doğrulandı;
+Python tag/matematik doğrulama + node --check geçti.
+
 ## TUR 3
 Tespit: Soru bankası 24 soruda kaldı (konu başına 2); yanlış yapılan konu
 bitiş ekranında söylenmiyor, öğrenci hangi sayfaya döneceğini bilmiyor.
