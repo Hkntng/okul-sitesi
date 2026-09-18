@@ -194,3 +194,42 @@ Test: `node test/dogrula.js` -> CLEAN. Sandbox local HTTP server dinlemeyi
 reddettigi icin (nice/bind izni yok) canli tarayici/390px testi bu turda
 YAPILAMADI — statik dogrulama (tag dengesi + JS syntax + link kontrolu) ile
 sinirli kalindi, bu acikca belirtiliyor.
+
+## 2026-09-18 — TUR: Dönüşüm interaktif aracı + uydurma MEB kazanım kodları temizliği (commit 01cc753)
+Yapılan:
+1. donusum.html'e yeni interaktif SVG koordinat-düzlemi kartı (k4b) eklendi:
+   sabit mavi üçgen (A,B,C), sekmeyle seçilen moda (öteleme / x eksenine
+   yansıma / y eksenine yansıma) göre canlı güncellenen turuncu üçgen
+   (A',B',C'); öteleme modunda dx/dy slider; her modda kural formülü ve
+   nokta bazlı koordinat dönüşümü metni.
+2. Subagent statik kod incelemesiyle KRİTİK bug buldu: sayfa sonundaki genel
+   `.sekme` seçici (Hayatta-nerede sekmeleri için yazılmış eski script) yeni
+   aracın 3 butonunu da yakalayıp onların click handler'ını eziyordu — X/Y
+   yansıma sekmelerine tıklamak hiçbir şey yapmıyordu (konsol hatası
+   vermediği için sinsi bir bug). Düzeltme: yeni aracın butonları ayrı
+   `.donSekme` sınıfına alındı (aynı CSS görünümü korunarak), JS seçicileri
+   `#donMod .donSekme` olarak scope edildi. Bu ayrıca k5'teki eski
+   "Hayatta nerede" sekmelerinin index kaymasını da düzeltti (4 buton -
+   4 elemanlı sekmeler dizisi artık doğru hizalı).
+3. 9 dosyada (1-carpanlar, cebir, benzerlik, ebob-ekok, donusum, denklemler,
+   karekok, ucgenler, uslu-ifadeler) "Gerçek Hayat Örneği" kartlarındaki
+   uydurma "Kaynak: MEB 8.x.x — ..." kazanım kodları ve doğrulanamayan sayfa
+   numarası atıfları ("MEB Matematik 8, s.12–18" gibi) kaldırıldı. Bu kodlar
+   gerçek MEB kazanım formatıyla (M.8.x.x.x) eşleşmiyordu, TUR 2'de toplu
+   bir boilerplate geçişinde eklenmiş, doğrulanmamış uydurma atıflardı —
+   proje kuralı "doğrulayamıyorsan kazanım kodu yazma" gereği kaldırıldı.
+4. sw.js cache sürümü 18i→18j (donusum.html değişti).
+Test: `node test/dogrula.js` → CLEAN. Node ile transformasyon matematiği elle
+doğrulandı: öteleme (dx=3,dy=2) A(-5,-5)→A'(-2,-3); x eksenine yansımada y
+işareti, y eksenine yansımada x işareti ters dönüyor (doğrulandı).
+Sandbox bu ortamda socket bind'i reddettiği için (`python3 -m http.server`
+ve headless Chrome ikisi de `Operation not permitted` ile başarısız oldu —
+hem ana oturumda hem test subagent'ında ayrıca doğrulandı) gerçek tarayıcı/
+390px testi bu turda da YAPILAMADI; yalnız statik DOM/JS incelemesi ve elle
+matematik doğrulamasıyla sınırlı kalındı — bu açıkça belirtiliyor.
+PUSH DURUMU: `git push origin main` bu ortamda izin sistemi tarafından
+reddedildi ("Claude requested permissions to use Bash, but you haven't
+granted it yet" — 4 kez denendi, aynı hata), muhtemelen non-interactive
+oturumda push için canlı kullanıcı onayı beklendiğinden. Commit 01cc753
+YALNIZCA yerelde mevcut, origin/main'e gitmedi. Kullanıcının elle
+`git push origin main` çalıştırması veya izni onaylaması gerekiyor.
