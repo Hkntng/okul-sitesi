@@ -289,3 +289,35 @@ PUSH DURUMU: `git push origin main` bu ortamda "Claude requested permissions to
 use Bash, but you haven't granted it yet" hatasıyla 3 kez reddedildi — commit
 c4bb4d8 YALNIZCA yerelde mevcut, origin/main'e gitmedi (önceki iki turda da aynı
 engel yaşanmıştı). Kullanıcının elle `git push origin main` çalıştırması gerekiyor.
+
+## 2026-09-18 — TUR 5: Üçgenler — interaktif üçgen eşitsizliği aracı (commit 58c5f67, push BEKLIYOR)
+Yapılan: Konu taraması yapıldı, 12 konudan hangilerinin hâlâ statik SVG'yle
+sınırlı kaldığı kontrol edildi (grep ile `<input type="range">` / interaktif
+araç varlığı). ucgenler.html tamamen Pisagor'a odaklıydı; soru bankasında
+("Üçgenler" konusu) sorulan "iki kenar 5 ve 9 ise üçüncü kenar hangisi
+OLAMAZ?" sorusunun arkasındaki kural (üçgen eşitsizliği) sayfada HİÇ
+öğretilmiyordu — quiz, hiç anlatılmamış bir konuyu ölçüyordu. k4 ile k5
+arasına yeni k4b kartı eklendi: a/b/c için 3 ayrı slider (2-20 cm), SVG
+üçgen canlı yeniden çiziliyor (kenar açısı kosinüs teoremiyle hesaplanıyor),
+kural ihlal edilince (|a-b|<c<a+b sağlanmayınca) kenarlar birleşmiyor,
+çizgi kırmızı/kesikli oluyor ve "Üçgen oluşmaz" mesajıyla izinli aralık
+gösteriliyor. Özet kartına da kural eklendi.
+Bug önleme: yeni id/class'lar (`ue` öneki: ueA/ueB/ueC/ueSvg/ueUcgen/
+ueSlider/ueEtiket...) grep ile TAMAMEN benzersiz olduğu doğrulandı — k5'teki
+eski genel `.sekme` seçicisiyle çakışma yok (donusum.html'de TUR'da bulunan
+bug'dan ders alınarak kontrol edildi).
+sw.js cache sürümü 18k→18l (ucgenler.html değişti).
+Test: `node test/dogrula.js` → CLEAN. Node ile üçgen eşitsizliği/kosinüs
+hesapları elle doğrulandı: a=5,b=9,c=10 → geçerli (aralık 4<c<14); a=5,b=9,
+c=14 → sınırda geçersiz (cosA kenetlenip dejenere çizgi); a=5,b=9,c=6 →
+geçerli; a=2,b=2,c=20 → geçersiz. Ayrıca node ile 4 `<script>` bloğu da
+vm.Script ile sözdizimi hatasız derlendi.
+Sandbox bu ortamda socket bind'i yine reddetti (`python3 -m http.server` →
+"nice(5) failed: operation not permitted", hem shell arka planda hem Bash
+`run_in_background` ile ayrıca denendi, ikisi de başarısız) — gerçek Chrome/
+390px testi bu turda da YAPILAMADI, statik DOM/JS analizi + elle matematik
+doğrulamasıyla sınırlı kalındı; bu açıkça belirtiliyor.
+PUSH DURUMU: `git push origin main` bu ortamda "Claude requested permissions
+to use Bash, but you haven't granted it yet" hatasıyla 2 kez reddedildi —
+commit 58c5f67 YALNIZCA yerelde mevcut, origin/main'e gitmedi. Kullanıcının
+elle `git push origin main` çalıştırması gerekiyor.
