@@ -45,6 +45,14 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .kucuk{color:#8b95ad;font-size:14px}
 .vurgu{color:var(--tema2);font-weight:700}
 .kiyas{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:12px;margin:12px 0}
+.sd-arac{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:14px;padding:16px 14px;margin:14px 0}
+.sd-baslik{color:var(--tema2);font-weight:700;font-size:15px;margin-bottom:6px}
+.sd-satir{font-size:20px;font-weight:800;margin:6px 0 18px}
+.sd-cizgi{position:relative;height:6px;background:linear-gradient(90deg,#232d45,#3a4869);border-radius:6px;margin:34px 8px 8px}
+.sd-nokta{position:absolute;top:50%;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--tema2),var(--tema));box-shadow:0 0 0 4px color-mix(in srgb,var(--tema) 30%,transparent),0 4px 12px rgba(0,0,0,.5);transform:translate(-50%,-50%);transition:left .12s ease}
+.sd-etiket{position:absolute;top:-30px;font-size:15px;font-weight:800;color:#e8edf7;background:rgba(8,12,24,.9);border:1px solid #2f3a55;padding:2px 9px;border-radius:8px;transform:translateX(-50%)}
+.sd-etiket::after{content:'';position:absolute;bottom:-16px;left:50%;width:1px;height:16px;background:#3a4869;transform:translateX(-50%)}
+.sd-sol{left:0}.sd-sag{left:100%}
 .kiyasSatir{font-size:15px;padding:3px 0;font-family:ui-monospace,Menlo,monospace}
 .sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
 .sekme{flex:1;min-width:72px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 6px;border-radius:11px;text-align:center;transition:all .15s}
@@ -139,6 +147,18 @@ body.light .sekme:active { background:#a3e635; }
 <div class="gizli" id="k3devam">
 <p><span class="ok">✓ 8 ile 9.</span> Çünkü 8²=64 &lt; 80 &lt; 81=9². Hem de 81'e çok yakın — demek √80, 9'a yakın: 8,94.</p>
 <p class="kucuk">Sınavda "√80'i sayı doğrusunda göster" sorusu tam budur. İki komşu tam kareyi bul, arasına yerleştir.</p>
+</div>
+<!-- INTERAKTIF SAYI DOGRUSU -->
+<div class="sd-arac">
+<p class="sd-baslik">🎯 Sen dene: kaydır, kökün doğruda nereye düştüğünü gör</p>
+<div class="sd-satir">√<b id="sdN">30</b> = <span id="sdDeger" class="vurgu">5,48</span></div>
+<div class="sd-cizgi" id="sdCizgi">
+  <div class="sd-nokta" id="sdNokta"></div>
+  <div class="sd-etiket sd-sol" id="sdSol">4</div>
+  <div class="sd-etiket sd-sag" id="sdSag">5</div>
+</div>
+<input type="range" id="sdSlider" min="2" max="99" value="30" step="1" aria-label="Karekökü alınacak sayı" style="width:100%;margin-top:14px;accent-color:var(--tema)">
+<p id="sdAcik" class="kucuk" style="margin-top:8px"></p>
 </div>
 </div>
 
@@ -249,6 +269,34 @@ document.querySelectorAll('#k3 .secenek').forEach(function(b){
     ac('k3devam');
   });
 });
+
+// INTERAKTIF SAYI DOGRUSU
+(function(){
+  var sl=document.getElementById('sdSlider');
+  if(!sl) return;
+  var elN=document.getElementById('sdN'),elD=document.getElementById('sdDeger'),
+      nokta=document.getElementById('sdNokta'),sol=document.getElementById('sdSol'),
+      sag=document.getElementById('sdSag'),acik=document.getElementById('sdAcik');
+  function guncelle(){
+    var n=parseInt(sl.value,10);
+    var kok=Math.sqrt(n);
+    var alt=Math.floor(kok), ust=alt+1;           // komşu iki tam sayı
+    elN.textContent=n;
+    elD.textContent=kok.toFixed(2).replace('.',',');
+    sol.textContent=alt; sag.textContent=ust;
+    // nokta konumu: alt ve ust arasında kesirsel yer (0..100%)
+    var oran=(kok-alt)/(ust-alt);                  // = kok-alt, çünkü ust-alt=1
+    nokta.style.left=(oran*100)+'%';
+    if(n===alt*alt){                                // tam kare
+      acik.innerHTML='<span class="ok">'+n+' tam karedir → √'+n+' = '+alt+'.</span> Nokta tam '+alt+' üzerinde durur.';
+    }else{
+      var yakin = oran<0.5 ? alt : ust;
+      acik.innerHTML=alt+'² = '+(alt*alt)+' &lt; '+n+' &lt; '+(ust*ust)+' = '+ust+'². Demek √'+n+', <b>'+alt+' ile '+ust+' arasında</b> ve '+yakin+"'e daha yakın.";
+    }
+  }
+  sl.addEventListener('input',function(){guncelle();tit(4);});
+  guncelle();
+})();
 
 // KART 4
 document.querySelectorAll('#k4 .secenek').forEach(function(b){

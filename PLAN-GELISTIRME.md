@@ -154,3 +154,13 @@ Test: div/script/style tag dengesi OK (49/49, 1/1, 1/1), node --check JS gecerli
 node ile sayim/siralama davranisi GECTI (Ucgenler3>Cebir2>Karekok1, bar %100/67/33,
 enZayif dogru); gercek tarayicida (localhost, prod yolu) kart render + bar genislikleri
 100/67/33 + oneri en zayif konuyu bagladi (ekran goruntusuyle dogrulandi).
+
+## Tur (2. seri) — 2026-09-18
+- karekok.html Kart 3'e interaktif sayi dogrusu eklendi: kaydiricyla karekok(n)
+  (n=2..99) secilir, nokta iki komsu tam kare arasina canli oturur, hangisine yakin
+  oldugu ve tam kare durumu aciklanir. Vanilla JS, mevcut tit()/tema degiskenleri.
+  Yeni localStorage anahtari yok.
+- sw.js cache surumu 18g->18h.
+- Test: JS parse OK, sayi dogrusu n=2..99 oran 0-1 gecerli; tarayicida
+  karekok(30)=5,48 / (80)=8,94-9'a yakin / (49)=7 tam kare / (2)=1,41 davranisi
+  dogrulandi, ekran goruntusuyle.
