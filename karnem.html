@@ -46,6 +46,15 @@ a{color:#7da8d8}
 .nav{display:flex;justify-content:space-between;margin-top:26px;font-size:14px}
 .nav a{text-decoration:none}
 button.sifirla{width:100%;padding:11px;border-radius:12px;border:1px solid #5c2a2c;background:transparent;color:#e5787c;font-size:13px;cursor:pointer;font-family:inherit;margin-top:8px}
+.seri-ust{display:flex;align-items:center;gap:14px}
+.seri-alev{font-size:34px;font-weight:800;line-height:1;color:#f0883e;white-space:nowrap}
+.seri-alev.sonuk{color:#5a6472;filter:grayscale(1) opacity(.6)}
+.seri-et{flex:1}
+.hafta{display:flex;gap:6px;margin-top:14px}
+.hafta .gun{flex:1;text-align:center;font-size:11px;color:#8b949e}
+.hafta .gun .nok{margin:4px auto 0;width:22px;height:22px;border-radius:50%;border:1px solid #2c3950;background:#161d2b;display:flex;align-items:center;justify-content:center;font-size:12px}
+.hafta .gun.aktif .nok{background:#f0883e;border-color:#f0883e;color:#0d1117;font-weight:800}
+.hafta .gun.bugun .nok{box-shadow:0 0 0 2px #2f81f7}
 </style>
 <link rel="icon" href="/okul-sitesi/icons/icon-192.png">
 <link rel="canonical" href="https://hkntng.github.io/okul-sitesi/karnem.html">
@@ -80,6 +89,19 @@ button.sifirla{width:100%;padding:11px;border-radius:12px;border:1px solid #5c2a
   <div class="kart">
     <span class="rozet">Karışık Tekrar geçmişi</span>
     <div id="karisikKutu"></div>
+  </div>
+
+  <div class="kart" id="seriKart">
+    <span class="rozet">Çalışma serin</span>
+    <div class="seri-ust">
+      <div class="seri-alev" id="seriAlev">🔥 <span id="seriSay">0</span></div>
+      <div class="seri-et">
+        <div id="seriBaslik" style="font-weight:700;color:#e6edf3">Bugün henüz çalışmadın</div>
+        <div class="mini" id="seriAlt">Bir sınav veya karışık tekrar çöz, serini başlat.</div>
+      </div>
+    </div>
+    <div class="hafta" id="haftaSerit" aria-label="Bu haftanın çalışma günleri"></div>
+    <div class="mini" id="rekorTxt" style="margin-top:8px"></div>
   </div>
 
   <div class="kart">
@@ -176,6 +198,59 @@ button.sifirla{width:100%;padding:11px;border-radius:12px;border:1px solid #5c2a
     document.getElementById('emekTxt').innerHTML=
       '<b style="color:#e6edf3;font-size:16px">'+toplamSoru+' soru</b> çözdün, toplam <b style="color:#e6edf3">'+toplamDeneme+' deneme</b> tamamladın. Devam et — düzenli tekrar en çok işe yarayan yöntem.';
   }
+
+  // ---- Calisma serisi (streak) — sinav+karisik zaman damgalarindan, salt okuma ----
+  (function(){
+    var MS=86400000;
+    function gunStr(ts){ var d=new Date(ts); var m=d.getMonth()+1, g=d.getDate();
+      return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(g<10?'0':'')+g; }
+    var tumT=[];
+    sinav.concat(karisik).forEach(function(x){ if(x&&x.t) tumT.push(x.t); });
+    var gunlerSet={}; tumT.forEach(function(t){ gunlerSet[gunStr(t)]=1; });
+    var simdi=Date.now();
+    // Guncel seri: bugunden (yoksa dunden) baslayarak kesintisiz geri say
+    var seri=0, d0=simdi;
+    if(!gunlerSet[gunStr(d0)]){ d0=simdi-MS; }
+    if(gunlerSet[gunStr(d0)]){ var cur=d0; while(gunlerSet[gunStr(cur)]){ seri++; cur-=MS; } }
+    var bugunCalisti = !!gunlerSet[gunStr(simdi)];
+    // En uzun seri (rekor): tum benzersiz gunler sirali, ardisik blok maksimumu
+    var gunAnahtar=Object.keys(gunlerSet).sort();
+    var rekor=0, aktif=0, oncekiMs=null;
+    gunAnahtar.forEach(function(gs){
+      var p=gs.split('-'); var t=new Date(+p[0],+p[1]-1,+p[2]).getTime();
+      if(oncekiMs!==null && Math.round((t-oncekiMs)/MS)===1){ aktif++; } else { aktif=1; }
+      if(aktif>rekor) rekor=aktif; oncekiMs=t;
+    });
+
+    document.getElementById('seriSay').textContent=seri;
+    var alev=document.getElementById('seriAlev');
+    var baslik=document.getElementById('seriBaslik'), alt=document.getElementById('seriAlt');
+    if(seri===0){
+      alev.classList.add('sonuk');
+      baslik.textContent = tumT.length? 'Serin koptu' : 'Henüz seri yok';
+      alt.textContent = tumT.length? 'Bugün bir deneme çöz, seriyi yeniden başlat.' : 'Bir sınav veya karışık tekrar çöz, serini başlat.';
+    } else {
+      baslik.textContent = seri+' gün üst üste çalışıyorsun';
+      alt.textContent = bugunCalisti
+        ? 'Bugünü tamamladın 👏 Yarın da gel, seriyi büyüt.'
+        : 'Serin sürüyor — bugün bir deneme çözmezsen kopacak. Hemen bir set çöz!';
+    }
+    // Bu haftanin serit gorunumu (Pzt→Paz)
+    var gunAd=['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
+    var bugun=new Date(simdi); var w=(bugun.getDay()+6)%7; // 0=Pzt
+    var pzt=new Date(bugun.getFullYear(),bugun.getMonth(),bugun.getDate()-w).getTime();
+    var hafta='';
+    for(var i=0;i<7;i++){
+      var t=pzt+i*MS; var calisti=!!gunlerSet[gunStr(t)]; var buGun=(gunStr(t)===gunStr(simdi));
+      hafta+='<div class="gun'+(calisti?' aktif':'')+(buGun?' bugun':'')+'">'+gunAd[i]+
+             '<div class="nok">'+(calisti?'✓':'')+'</div></div>';
+    }
+    document.getElementById('haftaSerit').innerHTML=hafta;
+    var rekorTxt=document.getElementById('rekorTxt');
+    if(rekor>0){ rekorTxt.innerHTML='En uzun serin: <b style="color:#e6edf3">'+rekor+' gün</b>'+
+      (seri>0&&seri>=rekor?' — şu an rekordasın! 🏆':''); }
+    else { rekorTxt.textContent=''; }
+  })();
 
   // ---- Sonraki adim onerisi (gercek veriye dayali) ----
   var oneriler=[];

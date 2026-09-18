@@ -149,7 +149,7 @@ body.light .sekme:active { background:#a3e635; }
 
   <a class="oncu" href="karnem.html" style="border-color:rgba(63,185,80,.4)">
     <div class="ikon">📊</div>
-    <h2>Karnem — İlerleme Panelin</h2>
+    <h2>Karnem — İlerleme Panelin <span id="seriRozet"></span></h2>
     <p>Bitirdiğin konular, sınav ve karışık tekrar ortalaman, gelişim trendin ve sıradaki adımın tek yerde. Veriler bu cihazda saklı.</p>
     <span class="git" style="color:#3fb950">Karnemi gör →</span>
   </a>
@@ -338,6 +338,24 @@ window.addEventListener('load', showNotes);
     if(rz&&kutuArr.length>0){
       rz.textContent=kutuArr.length+' soru';
       rz.style.cssText='display:inline-block;font-size:12px;font-weight:700;color:#f0b429;background:rgba(240,180,41,.14);border:1px solid rgba(240,180,41,.35);padding:1px 9px;border-radius:999px;vertical-align:middle;margin-left:6px';
+    }
+  }catch(e){}
+  // Çalışma serisi rozeti (sinav+karisik zaman damgalarından, salt okuma)
+  try{
+    var MS=864e5;
+    function _gs(ts){ var d=new Date(ts),m=d.getMonth()+1,g=d.getDate();
+      return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(g<10?'0':'')+g; }
+    var _t=[];
+    try{ JSON.parse(localStorage.getItem('sinavGecmisi')||'[]').forEach(function(x){if(x&&x.t)_t.push(x.t);}); }catch(e){}
+    try{ JSON.parse(localStorage.getItem('karisikSkorlar')||'[]').forEach(function(x){if(x&&x.t)_t.push(x.t);}); }catch(e){}
+    var _set={}; _t.forEach(function(t){_set[_gs(t)]=1;});
+    var _now=Date.now(), _seri=0, _d0=_now;
+    if(!_set[_gs(_d0)]) _d0=_now-MS;
+    if(_set[_gs(_d0)]){ var _c=_d0; while(_set[_gs(_c)]){ _seri++; _c-=MS; } }
+    var _rz=document.getElementById('seriRozet');
+    if(_rz&&_seri>0){
+      _rz.textContent='🔥 '+_seri+' gün';
+      _rz.style.cssText='display:inline-block;font-size:12px;font-weight:700;color:#f0883e;background:rgba(240,136,62,.14);border:1px solid rgba(240,136,62,.35);padding:1px 9px;border-radius:999px;vertical-align:middle;margin-left:6px';
     }
   }catch(e){}
 })();

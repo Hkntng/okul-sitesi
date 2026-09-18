@@ -1,5 +1,22 @@
 # GELİŞTİRME PLANI — Tek Koşuda Otomatik (2026-09-18)
 
+## TUR 7 (2026-09-18)
+Yapılan: Karnem'e **Çalışma Serisi (streak)** kartı eklendi. Öğrenci art arda
+kaç gün çalıştığını 🔥 alev sayacı, bu haftanın Pzt→Paz şerit görünümü (çalışılan
+günler ✓ ve bugün mavi halka) ve "en uzun serin/rekor 🏆" ile görür. Bugün
+çözmediyse "serin kopacak" uyarısı, kopmuşsa sönük alev + yeniden başlat mesajı.
+index.html'deki Karnem öncü kartına da "🔥 N gün" rozeti eklendi.
+Dayanak: günlük seri (habit streak) düzenli çalışmayı motive eden kanıtlı bir
+mekanik; öğrenciye "bugün de gel" somut nedeni verir. Yeni localStorage anahtarı
+YOK — mevcut `sinavGecmisi` + `karisikSkorlar` içindeki `t:Date.now()` zaman
+damgalarından SALT OKUMA ile hesaplanır (kabul kuralı korundu).
+Test: streak mantığı 6 senaryo Node ile doğrulandı (bugün+dün+önceki=3, dün var
+bugün yok=henüz kopmadı, 2 gün boşluk=0, aynı gün çoklu=1, boşluk-atlama=1, boş=0).
+Tarayıcıda enjekte veriyle: seri=3 + hafta şeridi doğru günlerde ✓, kopuk seri
+sönük alev, index rozeti "🔥 3 gün", boş durumda rozet gizli. Tag/JS syntax temiz.
+Commit: f6fc6ab
+
+
 ## TUR 6 (2026-09-18)
 Yapılan: YENİ **karnem.html** — öğrencinin tüm ilerlemesini tek panelde
 birleştiren gösterge sayfası. Salt okuma (yeni localStorage anahtarı YOK):
