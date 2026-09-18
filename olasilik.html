@@ -75,6 +75,13 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .olasEtiket{font-size:14px;color:#c9d1d9;margin-bottom:3px}
 .olasIz{background:rgba(8,12,24,.8);border:1px solid #232d45;border-radius:8px;height:16px;overflow:hidden}
 .olasCubuk{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--tema),var(--tema2));transition:width .5s}
+.ueSlider{width:100%;accent-color:var(--tema)}
+.ueEtiket{display:flex;justify-content:space-between;font-size:13px;color:#8b95ad;margin-top:4px;margin-bottom:10px}
+.obSecimler{display:flex;gap:7px;margin:6px 0 10px}
+.obSecim{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 4px;border-radius:11px}
+.obSecim.aktif{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent}
+.obTorba{display:flex;flex-wrap:wrap;gap:4px;min-height:34px;font-size:22px;line-height:1}
+.obTorba span{opacity:.35}.obTorba span.hedef{opacity:1}
 </style>
 
 
@@ -155,6 +162,30 @@ body.light .sekme:active { background:#a3e635; }
 </div>
 </div>
 
+<!-- KART 3B: TORBA OLASILIK HESAPLAYICI -->
+<div class="kart" id="k3b">
+<span class="adim">3+</span>
+<h2>Torbayı sen doldur</h2>
+<p>Kaydırıcılarla torbaya top koy, hedef rengi seç. Olasılık nasıl değişiyor?</p>
+<label class="kucuk" for="obK">🔴 Kırmızı: <b id="obKYaz">3</b></label>
+<input type="range" id="obK" class="ueSlider" min="0" max="8" value="3">
+<label class="kucuk" for="obM">🔵 Mavi: <b id="obMYaz">2</b></label>
+<input type="range" id="obM" class="ueSlider" min="0" max="8" value="2">
+<label class="kucuk" for="obY">🟢 Yeşil: <b id="obYYaz">5</b></label>
+<input type="range" id="obY" class="ueSlider" min="0" max="8" value="5">
+<div class="ueEtiket"><span>0</span><span>8</span></div>
+<p class="kucuk">Hedef renk:</p>
+<div class="obSecimler" id="obSecimler">
+<button class="obSecim aktif" data-r="0">🔴 Kırmızı</button>
+<button class="obSecim" data-r="1">🔵 Mavi</button>
+<button class="obSecim" data-r="2">🟢 Yeşil</button>
+</div>
+<div class="cizgiKutu"><div id="obTorba" class="obTorba" aria-hidden="true"></div></div>
+<div class="sonuc" id="obSonuc"></div>
+<button class="btn2" id="obTakildim">Takıldım, göster</button>
+<p class="kucuk gizli" id="obIpucu">Olasılık = istediğin topların sayısı ÷ torbadaki tüm toplar. Örnek: 3 kırmızı, 2 mavi, 5 yeşil → toplam 10; kırmızı olasılığı 3/10 = 0,3 = %30. Hedef rengi 0 yaparsan olasılık 0 (imkânsız); torbada yalnız hedef renk kalırsa 1 (kesin) olur.</p>
+</div>
+
 <!-- KART 4: AMEDSPOR -->
 <div class="kart" id="k4">
 <span class="adim">4</span>
@@ -211,6 +242,34 @@ body.light .sekme:active { background:#a3e635; }
 </div>
 
 <script>
+(function(){
+  var k=document.getElementById('obK'),m=document.getElementById('obM'),y=document.getElementById('obY');
+  var sl=[k,m,y],em=['🔴','🔵','🟢'],ad=['kırmızı','mavi','yeşil'],hedef=0;
+  function f(x,d){return x.toFixed(d).replace(/\.?0+$/,'').replace('.',',');}
+  function ciz(){
+    var s=sl.map(function(e){return parseInt(e.value,10);}),t=s[0]+s[1]+s[2],n=s[hedef];
+    document.getElementById('obKYaz').textContent=s[0];
+    document.getElementById('obMYaz').textContent=s[1];
+    document.getElementById('obYYaz').textContent=s[2];
+    var h='';for(var r=0;r<3;r++)for(var i=0;i<s[r];i++)h+='<span'+(r===hedef?' class="hedef"':'')+'>'+em[r]+'</span>';
+    document.getElementById('obTorba').innerHTML=h;
+    var o=document.getElementById('obSonuc');
+    if(t===0){o.innerHTML='Torba boş — en az bir top koy.';return;}
+    var ondEs=(n*1000)%t===0?'=':'≈', yuzEs=(n*100)%t===0?'=':'≈';
+    var d=ondEs==='='?f(n/t,3):f(n/t,2), yz=f(n*100/t,1);
+    var not=n===0?'<br><span class="hata">Olasılık 0 → imkânsız.</span>':(n===t?'<br><span class="ok">Olasılık 1 → kesin.</span>':'');
+    o.innerHTML='P('+ad[hedef]+') = '+n+'/'+t+' '+ondEs+' <span class="buyuk">'+d+'</span> '+yuzEs+' %'+yz+
+      '<br><span class="kucuk">'+ad[hedef]+' ÇIKMAMA: 1 − '+n+'/'+t+' = '+(t-n)+'/'+t+' '+ondEs+' '+f((t-n)/t,ondEs==='='?3:2)+'</span>'+not;
+  }
+  sl.forEach(function(e){e.addEventListener('input',ciz);});
+  document.querySelectorAll('#obSecimler .obSecim').forEach(function(b){b.addEventListener('click',function(){
+    hedef=parseInt(b.getAttribute('data-r'),10);
+    document.querySelectorAll('#obSecimler .obSecim').forEach(function(x){x.classList.toggle('aktif',x===b);});
+    ciz();});});
+  document.getElementById('obTakildim').addEventListener('click',function(){
+    var p=document.getElementById('obIpucu');p.classList.toggle('gizli');});
+  ciz();
+})();
 function tit(p){ if(navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
 function ac(id){var e=document.getElementById(id);if(e){e.classList.remove('gizli');e.classList.add('acilis');}}
 
