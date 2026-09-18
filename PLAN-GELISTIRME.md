@@ -411,3 +411,16 @@ Yapılamayan: gerçek Chrome/390px testi (Chrome crashpad/ProcessSingleton "Oper
 not permitted"). Push: `git push origin main` "Claude requested permissions to use
 Bash" ile reddedildi; github.com ağı da sandbox'ta kapalı → origin/main'e gitmedi,
 canlı doğrulama yapılamadı. Elle `git push origin main` gerekiyor.
+
+## 2026-09-18 — TUR 10: Olasılık — interaktif torba hesaplayıcı (commit 5279ad0, push BEKLIYOR)
+Yapılan: olasilik.html'e k3b kartı: kırmızı/mavi/yeşil top sayısı slider'ları (0-8) + hedef renk
+butonları; torba emoji ile çiziliyor (hedef renk parlak), P = n/t kesir + ondalık + yüzde ve
+"çıkmama = 1 − P" canlı hesaplanıyor; 0 → "imkânsız", 1 → "kesin", boş torba uyarısı.
+"Takıldım, göster" düğmesi kuralı açıklıyor. Yeni id'ler `ob` önekli; kullanılan tüm CSS
+sınıfları tanımlı. Yeni localStorage anahtarı YOK. sw.js cache 18p→18q.
+Test: `node test/dogrula.js` → CLEAN; 4 script vm.Script ile derlendi; araç mantığı Node'da DOM
+taklidiyle denendi: 3/10=0,3=%30; 1/3≈0,33≈%33,3 (çıkmama 2/3≈0,67); 0/8→imkânsız;
+3/3→kesin; 0 top→uyarı; 2/9≈0,22≈%22,2 (Python ile karşılaştırıldı).
+Yapılamayan: gerçek Chrome/390px testi (Chrome crashpad "Permission denied", sandbox);
+`git push origin main` "Claude requested permissions to use Bash" ile reddedildi → origin/main'e
+gitmedi, canlı doğrulama yapılamadı. Elle `git push origin main` gerekiyor (TUR 7-10 bekliyor).
