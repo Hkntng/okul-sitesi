@@ -263,3 +263,29 @@ PUSH DURUMU: `git push origin main` bu ortamda "Claude requested permissions to
 use Bash, but you haven't granted it yet" hatasıyla reddedildi (2 kez denendi,
 aynı hata) — commit 1ab8dc1 YALNIZCA yerelde mevcut, origin/main'e gitmedi.
 Kullanıcının elle `git push origin main` çalıştırması gerekiyor.
+
+## 2026-09-18 — TUR 4: Cisimler interaktif hacim hesaplayıcı (commit c4bb4d8, push BEKLIYOR)
+Yapılan: cisimler.html (386→486 satır, en az geliştirilmiş konu sayfasıydı) k4b kartına
+yeni interaktif araç eklendi: Prizma/Silindir/Koni/Piramit sekmeleri + taban
+kenarı(a)/yarıçap(r) ve yükseklik(h) slider'ları (2-20 cm). Seçime göre SVG gövde
+(dikdörtgen/silindir/üçgen siluet) ve hacim canlı güncelleniyor; formül metni ve
+sonuç (cm³ + litre) gösteriliyor. Koni/piramit modunda aynı r,h ile silindir/prizma
+hacmi de hesaplanıp "üçte bir" kuralı somut sayıyla karşılaştırılıyor.
+Bug önleme: sekme butonları yeni `.cismSekme` sınıfıyla scope edildi (donusum.html'de
+TUR öncesinde bulunan `.sekme` genel seçici çakışması hatasından ders alınarak) —
+`querySelectorAll('.sekme')` (k5 "Hayatta nerede" kartı) bu yeni butonları YAKALAMIYOR,
+grep ile doğrulandı.
+sw.js cache sürümü 18j→18k (cisimler.html değişti).
+Test: `node test/dogrula.js` → CLEAN. Node ile hacim formülleri elle doğrulandı
+(prizma a=10,h=12 → 1200 cm³; silindir → 3768,0; koni → 1256,0 = silindirin tam
+1/3'ü; piramit → 400,0 = prizmanın tam 1/3'ü — hepsi beklenenle eşleşti). Ayrıca
+node ile: id çakışması yok, 4 <script> bloğu da vm.Script ile sözdizimi hatasız
+derlendi, yeni elementlerin tüm id referansları (cismFormul/cismSonuc/cismKiyas/
+cismA/cismH/cismAprefix) HTML'de karşılıklı doğrulandı.
+Sandbox bu ortamda socket bind'i yine reddetti (`python3 -m http.server` →
+"nice(5) failed: operation not permitted") — gerçek Chrome/390px testi bu turda da
+YAPILAMADI, statik DOM/JS analizi + elle matematik doğrulamasıyla sınırlı kalındı.
+PUSH DURUMU: `git push origin main` bu ortamda "Claude requested permissions to
+use Bash, but you haven't granted it yet" hatasıyla 3 kez reddedildi — commit
+c4bb4d8 YALNIZCA yerelde mevcut, origin/main'e gitmedi (önceki iki turda da aynı
+engel yaşanmıştı). Kullanıcının elle `git push origin main` çalıştırması gerekiyor.
