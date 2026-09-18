@@ -396,3 +396,18 @@ Test: `node test/dogrula.js` → CLEAN (eşit dağılım, tekrar yok, şık/inde
 Yapılamayan: Chrome/390px testi — sandbox Chrome'u başlatmayı reddetti
 (crashpad/ProcessSingleton "Operation not permitted"). Değişiklik yalnızca veri
 olduğu için sinav.html/karisik-tekrar.html kodu değişmedi; tarayıcıda deneme YAPILMADI.
+
+## 2026-09-18 — TUR 9: Eşitsizlikler — interaktif sayı doğrusu aracı (commit 5d13a11, push BEKLIYOR)
+Yapılan: esitsizlikler.html'e k2b kartı: <, ≤, >, ≥ butonları + sınır slider'ı (-5..9)
++ "denenen sayı" slider'ı (-6..10). Sayı doğrusunda boş/dolu nokta ve boyalı yön
+canlı çiziliyor; sarı deneme noktası "sağlar/sağlamaz" sonucunu veriyor. "Takıldım,
+göster" düğmesi kuralı açıklıyor. Yeni id'ler `is` önekli; kullanılan tüm CSS
+sınıfları (isSecim, isSecimler, isSonuc, dcDeneme, ueSlider, ueEtiket, dc*) sayfada
+tanımlı. Yeni localStorage anahtarı YOK. sw.js cache 18o→18p.
+Test: `node test/dogrula.js` → CLEAN; 4 script vm.Script ile derlendi; araç mantığı
+DOM taklidiyle Node'da denendi (x>3/5 ✓, x>3/3 ✗, x≥3/3 ✓, x≤−2/−2 ✓, x<−2/0 ✗;
+konum yüzdeleri elle: 3→55,75%, −2→27%).
+Yapılamayan: gerçek Chrome/390px testi (Chrome crashpad/ProcessSingleton "Operation
+not permitted"). Push: `git push origin main` "Claude requested permissions to use
+Bash" ile reddedildi; github.com ağı da sandbox'ta kapalı → origin/main'e gitmedi,
+canlı doğrulama yapılamadı. Elle `git push origin main` gerekiyor.
