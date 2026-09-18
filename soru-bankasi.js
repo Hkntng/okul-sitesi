@@ -73,7 +73,31 @@ window.SORU_BANKASI = [
  {k:"Dönüşüm",s:"A(3,1) noktası 4 birim yukarı, 2 birim sola ötelenirse yeni konum?",c:["(1,5)","(5,5)","(1,−3)"],d:0,a:"Sola 2: 3−2=1. Yukarı 4: 1+4=5 → (1,5)."},
  {k:"Dönüşüm",s:"Aşağıdakilerden hangisi bir şeklin boyutunu değiştirir?",c:["Öteleme değil, hiçbiri (öteleme/yansıma/dönme boyut korur)","Öteleme","Dönme"],d:0,a:"Öteleme, yansıma ve dönme YALNIZ konum/yön değiştirir; boyut korunur. Boyutu değiştiren dönüşüm bu üçünde yoktur."},
  {k:"Cisimler",s:"Taban ayrıtları 2 ve 3, yüksekliği 5 olan dikdörtgenler prizmasının hacmi?",c:["30","10","25"],d:0,a:"V=en×boy×yükseklik=2×3×5=30 birimküp."},
- {k:"Cisimler",s:"Bir küpün hacmi 27 cm³ ise bir ayrıtı kaç cm'dir?",c:["3","9","6"],d:0,a:"V=a³=27 → a=∛27=3 cm."}
+ {k:"Cisimler",s:"Bir küpün hacmi 27 cm³ ise bir ayrıtı kaç cm'dir?",c:["3","9","6"],d:0,a:"V=a³=27 → a=∛27=3 cm."},
+ {k:"Çarpanlar",s:"90 sayısının asal çarpanları çarpımı (her asal bir kez) kaçtır?",c:["30","90","15"],d:0,a:"90=2×3²×5. Farklı asallar 2, 3, 5 → 2×3×5=30."},
+ {k:"Çarpanlar",s:"Bir çikolata 24, bir bisküvi 36 kişiye eşit dağıtılacak. En çok kaç kişilik grup?",c:["12","6","72"],d:0,a:"Eşit paylaşımda EBOB kullanılır: EBOB(24,36)=12. Bu tür 'en çok/en fazla eşit' soruları EBOB'tur."},
+ {k:"Üslü İfadeler",s:"a=2³ ise a² kaçtır?",c:["2⁶","2⁵","4³"],d:0,a:"a²=(2³)²=2^(3×2)=2⁶=64. Üssün üssünde üsler çarpılır."},
+ {k:"Üslü İfadeler",s:"10⁶ ÷ 10² işleminin sonucu kaçtır?",c:["10⁴","10³","10⁸"],d:0,a:"Aynı tabanda bölmede üsler çıkarılır: 6−2=4 → 10⁴ (=10000)."},
+ {k:"Karekök",s:"√0,04 ifadesinin değeri kaçtır?",c:["0,2","0,02","0,4"],d:0,a:"0,04=4/100 → √(4/100)=2/10=0,2. Kontrol: 0,2×0,2=0,04."},
+ {k:"Karekök",s:"√8 + √2 işleminin sonucu hangisidir?",c:["3√2","√10","4√2"],d:0,a:"√8=2√2 → 2√2+√2=3√2. Kök içi aynı olunca katsayılar toplanır."},
+ {k:"Veri Analizi",s:"3, 6, 9, x sayılarının aritmetik ortalaması 6 ise x kaçtır?",c:["6","4","9"],d:0,a:"Toplam=4×6=24. 3+6+9=18 → x=24−18=6."},
+ {k:"Veri Analizi",s:"Bir veride en büyük değer artarsa aşağıdakilerden hangisi kesin değişir?",c:["Açıklık","Medyan","Mod"],d:0,a:"Açıklık=enbüyük−enküçük olduğundan en büyük artınca açıklık artar. Medyan/mod ortadaki/tekrarlı değere bağlıdır, değişmeyebilir."},
+ {k:"Olasılık",s:"1'den 10'a kadar sayılardan biri seçiliyor. Çift sayı gelme olasılığı?",c:["1/2","1/5","2/5"],d:0,a:"Çiftler: 2,4,6,8,10 → 5 tane. 5/10=1/2."},
+ {k:"Olasılık",s:"Bir zar atılıyor. 4'ten büyük gelme olasılığı kaçtır?",c:["2/6","3/6","1/6"],d:0,a:"4'ten büyük: 5 ve 6 → 2 sonuç. 2/6=1/3. (4 dahil değil!)"},
+ {k:"Cebir",s:"x=5 için 2x²−3 ifadesinin değeri kaçtır?",c:["47","97","7"],d:0,a:"Önce üs: 5²=25, sonra çarpma 2×25=50, sonra 50−3=47. İşlem önceliği: üs → çarpma → çıkarma."},
+ {k:"Cebir",s:"9x²−1 ifadesinin çarpanlara ayrılmış hâli?",c:["(3x−1)(3x+1)","(3x−1)²","(9x−1)(x+1)"],d:0,a:"İki kare farkı: 9x²=(3x)², 1=1² → (3x−1)(3x+1)."},
+ {k:"Denklemler",s:"5x−3=2x+9 denkleminde x kaçtır?",c:["4","2","6"],d:0,a:"5x−2x=9+3 → 3x=12 → x=4. x'liler bir tarafa, sayılar diğer tarafa."},
+ {k:"Denklemler",s:"(0,4) ve (2,4) noktalarından geçen doğrunun eğimi kaçtır?",c:["0","2","4"],d:0,a:"Eğim=(y₂−y₁)/(x₂−x₁)=(4−4)/(2−0)=0/2=0. y sabit → yatay doğru, eğim 0."},
+ {k:"Eşitsizlikler",s:"−3 ≤ x ≤ 1 aralığındaki tam sayıların toplamı kaçtır?",c:["−5","−3","0"],d:0,a:"Tam sayılar: −3,−2,−1,0,1 (iki uç da dahil). Toplam=(−3)+(−2)+(−1)+0+1=−5."},
+ {k:"Eşitsizlikler",s:"2x−1 ≥ 7 eşitsizliğini sağlayan en küçük tam sayı x kaçtır?",c:["4","3","5"],d:0,a:"2x≥8 → x≥4. Sınır dahil (≥) olduğundan en küçük tam sayı 4."},
+ {k:"Üçgenler",s:"İkizkenar üçgende taban açılarından biri 50° ise tepe açısı kaçtır?",c:["80°","50°","100°"],d:0,a:"İkizkenarda taban açıları eşit: 50°+50°=100°. Tepe=180−100=80°."},
+ {k:"Üçgenler",s:"Kenarları 2, 3, 6 olan bir üçgen çizilebilir mi?",c:["Hayır, çizilemez","Evet, dar açılı","Evet, dik"],d:0,a:"Üçgen eşitsizliği: 2+3=5 < 6. İki kenar toplamı üçüncüden küçük → üçgen oluşmaz."},
+ {k:"Benzerlik",s:"Benzer iki üçgenin çevreleri oranı 3/4 ise alanları oranı kaçtır?",c:["9/16","3/4","6/8"],d:0,a:"Çevreler oranı = benzerlik oranı = 3/4. Alanlar oranı bunun karesi: 9/16."},
+ {k:"Benzerlik",s:"Bir haritada 1 cm gerçekte 5 km'yi gösteriyor. 4 cm gerçekte kaç km?",c:["20 km","9 km","1,25 km"],d:0,a:"Ölçek doğru orantı: 1 cm→5 km ise 4 cm→4×5=20 km."},
+ {k:"Dönüşüm",s:"A(4,−3) noktasının orijine göre yansıması (simetriği) hangisidir?",c:["(−4,3)","(4,3)","(−4,−3)"],d:0,a:"Orijine göre yansımada iki koordinat da işaret değiştirir: (−4,3)."},
+ {k:"Dönüşüm",s:"Bir kare saat yönünde 90° döndürülürse aşağıdakilerden hangisi korunur?",c:["Kenar uzunlukları","Sadece konumu","Köşe koordinatları"],d:0,a:"Dönme bir öteleme-benzeri katı hareket: uzunluk ve açı korunur, yalnız yön/konum değişir."},
+ {k:"Cisimler",s:"Taban yarıçapı 2, yüksekliği 3 olan koninin hacmi kaç π'dir?",c:["4π","12π","6π"],d:0,a:"Koni hacmi V=(1/3)πr²h=(1/3)π×4×3=4π. Koni, aynı tabanlı silindirin 1/3'üdür."},
+ {k:"Cisimler",s:"Bir dikdörtgenler prizmasının hacmi 60, taban alanı 12 ise yüksekliği kaçtır?",c:["5","48","72"],d:0,a:"V=taban alanı×yükseklik → 60=12×h → h=5."}
 ];
 window.KONU_SAYFA = {"Çarpanlar":"1-carpanlar.html","Üslü İfadeler":"uslu-ifadeler.html","Karekök":"karekok.html","Veri Analizi":"veri-analizi.html","Olasılık":"olasilik.html","Cebir":"cebir.html","Denklemler":"denklemler.html","Eşitsizlikler":"esitsizlikler.html","Üçgenler":"ucgenler.html","Benzerlik":"benzerlik.html","Dönüşüm":"donusum.html","Cisimler":"cisimler.html"};
 

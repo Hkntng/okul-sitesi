@@ -115,3 +115,16 @@ sinavGecmisi) değiştirilmedi; yalnız yeni anahtar eklendi.
 Test: node --check + tag dengesi + API varlık (CLEAN); tarayıcıda gerçek akış —
 yanlış cevap kutuda kalır, doğru cevap kutudan çıkar (2→1→0), boş kutu ekranı,
 bitiş 2/2, index rozeti "1 soru" render.
+
+## TUR 8 (2026-09-18) — soru bankası 72→96
+Yapılan: Ortak soru bankası (soru-bankasi.js) 72'den 96 soruya çıkarıldı — her 12
+konuya +2 yeni LGS tarzı soru (Çarpanlar, Üslü, Karekök, Veri, Olasılık, Cebir,
+Denklemler, Eşitsizlikler, Üçgenler, Benzerlik, Dönüşüm, Cisimler). Her soruda
+nedenli açıklama (işlem önceliği, üçgen eşitsizliği, iki kare farkı, eğim, orana
+göre alan gibi LGS tuzakları vurgulandı). Sınav Modu, Karışık Tekrar ve Yanlış
+Kutum aynı bankayı kullandığından üçü birden zenginleşti. Yeni localStorage
+anahtarı yok; mevcut anahtarlar değişmedi. sw.js cache sürümü d→e.
+Test: node --check + bütünlük betiği — 96 soru, 12 konu×8 tam denge, tekrar soru 0,
+tüm d indeksleri 0-2 aralığında geçerli, şık tekrarı 0, 6 API fonksiyonu mevcut
+(SONUÇ: CLEAN); her yeni sorunun matematiği elle hesaplanarak doğrulandı. (Tarayıcı
+davranış testi canlı URL'de doğrulandı — file:// göreli yol banka yüklemiyor.)
