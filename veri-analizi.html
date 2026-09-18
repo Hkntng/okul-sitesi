@@ -87,6 +87,15 @@ body.light .secenek { background:#fff; border-color:#ddd; color:#111; }
 body.light .sekme { background:#fff; border-color:#ddd; color:#111; }
 body.light .sekme:active { background:#a3e635; }
 </style>
+<style>
+.ueSlider{width:100%;accent-color:var(--tema)}
+.vbSatir{display:flex;align-items:center;gap:10px;margin:2px 0}
+.vbSatir label{font-size:14px;color:#8b95ad;min-width:78px}
+.vbSatir b{min-width:24px;text-align:right;color:var(--tema2)}
+.vbSira{display:flex;gap:6px;margin:10px 0}
+.vbChip{flex:1;text-align:center;padding:8px 0;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-weight:700}
+.vbChip.orta{background:color-mix(in srgb,var(--tema) 30%,transparent);border-color:var(--tema);color:#fff}
+</style>
 
 <link rel="canonical" href="https://hkntng.github.io/okul-sitesi/veri-analizi.html">
 <link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
@@ -159,6 +168,22 @@ body.light .sekme:active { background:#a3e635; }
 <div class="gizli" id="k4devam">
 <p><span class="ok">✓</span> Grafiğin söylediği: yaz bambaşka, kış bambaşka — aralık, temmuzdan <b>68,9 mm</b> daha yağışlı. Tarlasını sulayan bunu bilerek plan yapar: temmuzda gökten su bekleyen mahsulü kurutur.</p>
 </div>
+</div>
+
+<!-- KART 4B: ORTALAMA / ORTANCA / TEPE DEGERI ARACI -->
+<div class="kart" id="k4b">
+<span class="adim">4+</span>
+<h2>5 arkadaşın netini sen değiştir</h2>
+<p>Matematik denemesinde 5 arkadaşın neti (20 soruda). Kaydırıcıları oynat: <b>ortalama, ortanca (medyan), tepe değeri</b> ve <b>açıklık</b> nasıl değişiyor?</p>
+<div class="vbSatir"><label for="vb1">1. arkadaş</label><input type="range" id="vb1" class="ueSlider" min="0" max="20" value="12"><b id="vb1Y">12</b></div>
+<div class="vbSatir"><label for="vb2">2. arkadaş</label><input type="range" id="vb2" class="ueSlider" min="0" max="20" value="14"><b id="vb2Y">14</b></div>
+<div class="vbSatir"><label for="vb3">3. arkadaş</label><input type="range" id="vb3" class="ueSlider" min="0" max="20" value="14"><b id="vb3Y">14</b></div>
+<div class="vbSatir"><label for="vb4">4. arkadaş</label><input type="range" id="vb4" class="ueSlider" min="0" max="20" value="15"><b id="vb4Y">15</b></div>
+<div class="vbSatir"><label for="vb5">5. arkadaş</label><input type="range" id="vb5" class="ueSlider" min="0" max="20" value="20"><b id="vb5Y">20</b></div>
+<div class="vbSira" id="vbSira" aria-hidden="true"></div>
+<div class="sonuc" id="vbSonuc"></div>
+<button class="btn2" id="vbTakildim">Takıldım, göster</button>
+<p class="kucuk gizli" id="vbIpucu">Önce sayıları küçükten büyüğe diz. <b>Ortalama</b> = toplam ÷ kişi sayısı. <b>Ortanca</b> = sıralamada tam ortadaki sayı (5 sayıda 3.). <b>Tepe değeri</b> = en çok tekrar eden sayı (hepsi farklıysa yok). <b>Açıklık</b> = en büyük − en küçük. Örnek: 12, 14, 14, 15, 20 → toplam 75, ortalama 75 ÷ 5 = 15, ortanca 14, tepe değeri 14, açıklık 8. Bir arkadaşın netini 20'den 0'a çekersen ortalama düşer ama ortanca çok az oynar.</p>
 </div>
 
 <!-- KART 5: SEKMELER -->
@@ -412,6 +437,28 @@ window.addEventListener('load', showNotes);
     render();
   };
   render();
+})();
+</script>
+
+<script>
+(function(){
+  var sl=[1,2,3,4,5].map(function(i){return document.getElementById('vb'+i);});
+  function f(x){return x.toFixed(1).replace(/\.0$/,'').replace('.',',');}
+  function ciz(){
+    var v=sl.map(function(e){return parseInt(e.value,10);});
+    v.forEach(function(x,i){document.getElementById('vb'+(i+1)+'Y').textContent=x;});
+    var a=v.slice().sort(function(x,y){return x-y;}),top=a.reduce(function(t,x){return t+x;},0);
+    document.getElementById('vbSira').innerHTML=a.map(function(x,i){return '<span class="vbChip'+(i===2?' orta':'')+'">'+x+'</span>';}).join('');
+    var say={},en=0;a.forEach(function(x){say[x]=(say[x]||0)+1;en=Math.max(en,say[x]);});
+    var tepe=Object.keys(say).filter(function(k){return say[k]===en;});
+    var tp=en===1?'yok (hepsi farklı)':tepe.join(' ve ');
+    var ort=top/5,med=a[2],fark=Math.abs(ort-med);
+    var not=fark>=2?'<br><span class="hata">Ortalama ile ortanca '+f(fark)+' uzaklaştı: uçlardaki sayılar ortalamayı çekiyor.</span>':'';
+    document.getElementById('vbSonuc').innerHTML='Sıralı: '+a.join(', ')+'<br>Ortalama = '+top+' ÷ 5 = <span class="buyuk">'+f(ort)+'</span><br>Ortanca (3. sıradaki) = <b>'+med+'</b><br>Tepe değeri = <b>'+tp+'</b><br>Açıklık = '+a[4]+' − '+a[0]+' = <b>'+(a[4]-a[0])+'</b>'+not;
+  }
+  sl.forEach(function(e){e.addEventListener('input',ciz);});
+  document.getElementById('vbTakildim').addEventListener('click',function(){document.getElementById('vbIpucu').classList.toggle('gizli');});
+  ciz();
 })();
 </script>
 
