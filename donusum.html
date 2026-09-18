@@ -49,6 +49,8 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
 .sekme{flex:1;min-width:72px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 6px;border-radius:11px;text-align:center;transition:all .15s}
 .sekme.secili{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--tema) 35%,transparent)}
+.donSekme{flex:1;min-width:72px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#c9d1d9;font-size:14px;font-weight:600;padding:10px 6px;border-radius:11px;text-align:center;transition:all .15s}
+.donSekme.secili{background:linear-gradient(135deg,var(--tema),color-mix(in srgb,var(--tema) 65%,#3050c8));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--tema) 35%,transparent)}
 .icerik{background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:12px;padding:14px;margin-top:8px;font-size:16px}
 .ozet{background:linear-gradient(180deg,#1a1f33,#141a2c);border:1px solid color-mix(in srgb,var(--tema) 45%,transparent);border-radius:18px;padding:18px 16px;margin:20px 0;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .ozet h3{color:var(--tema2);font-size:15px;letter-spacing:2px;margin-bottom:10px}
@@ -163,9 +165,31 @@ body.light .sekme:active { background:#a3e635; }
 </div>
 </div>
 
+<!-- KART 4b: INTERAKTIF DONUSUM ARACI -->
+<div class="kart" id="k4b">
+<span class="adim">5</span>
+<h2>Sen dene: üçgeni kaydır veya aynala</h2>
+<p>Aşağıdaki üçgen (mavi, <b>A B C</b>) sabit. Öteleme kaydırıcılarıyla veya yansıma sekmeleriyle turuncu üçgenin (<b>A' B' C'</b>) nasıl değiştiğini canlı gör.</p>
+<div class="sekmeler" id="donMod">
+<button class="donSekme secili" data-mod="otele">↔️ Öteleme</button>
+<button class="donSekme" data-mod="xeksen">🪞 X eksenine yansı</button>
+<button class="donSekme" data-mod="yeksen">🪞 Y eksenine yansı</button>
+</div>
+<div style="background:rgba(8,12,24,.7);border:1px solid #232d45;border-radius:14px;padding:8px;margin:10px 0">
+<svg id="donSvg" viewBox="0 0 312 312" style="width:100%;height:auto;display:block" role="img" aria-label="Koordinat düzleminde öteleme/yansıma görselleştirmesi"></svg>
+</div>
+<div id="donKaydirici">
+<p class="kucuk" style="margin-bottom:2px">Sağa/sola kaydır: <span id="donDxEtiket" class="vurgu">3</span></p>
+<input type="range" id="donDx" min="-6" max="6" value="3" step="1" aria-label="Sağa-sola öteleme miktarı" style="width:100%;accent-color:var(--tema)">
+<p class="kucuk" style="margin:10px 0 2px">Yukarı/aşağı kaydır: <span id="donDyEtiket" class="vurgu">2</span></p>
+<input type="range" id="donDy" min="-6" max="6" value="2" step="1" aria-label="Yukarı-aşağı öteleme miktarı" style="width:100%;accent-color:var(--tema)">
+</div>
+<p class="sonuc" id="donSonuc" style="margin-top:10px"></p>
+</div>
+
 <!-- KART 5: SEKMELER -->
 <div class="kart" id="k5">
-<span class="adim">5</span>
+<span class="adim">6</span>
 <h2>Hayatta nerede karşına çıkar?</h2>
 <div class="sekmeBar">
 <button class="sekme">🕌 Türbe taşıma</button>
@@ -215,6 +239,79 @@ soruKur('k1',0,'k1devam');
 soruKur('k2',0,'k2devam');
 soruKur('k3',0,'k3devam');
 soruKur('k4',0,'k4devam');
+
+// INTERAKTIF DONUSUM ARACI
+(function(){
+  var svgNS='http://www.w3.org/2000/svg';
+  var svg=document.getElementById('donSvg');
+  if(!svg) return;
+  function sx(v){return 156+v*26;}
+  function sy(v){return 156-v*26;}
+  var baseVerts=[['A',-5,-5],['B',-2,-5],['C',-2,-2]];
+  function elt(tag,attrs){
+    var e=document.createElementNS(svgNS,tag);
+    for(var k in attrs) e.setAttribute(k,attrs[k]);
+    return e;
+  }
+  function isaretli(sembol,n){ return n>=0 ? (sembol+'+'+n) : (sembol+'−'+Math.abs(n)); }
+  function gridCiz(){
+    svg.innerHTML='';
+    var defs=elt('defs',{});
+    var pattern=elt('pattern',{id:'donIzgara',width:26,height:26,patternUnits:'userSpaceOnUse'});
+    pattern.appendChild(elt('path',{d:'M 26 0 L 0 0 0 26',fill:'none',stroke:'#27314b','stroke-width':1}));
+    defs.appendChild(pattern); svg.appendChild(defs);
+    svg.appendChild(elt('rect',{x:0,y:0,width:312,height:312,fill:'url(#donIzgara)'}));
+    svg.appendChild(elt('line',{x1:0,y1:156,x2:312,y2:156,stroke:'#4b5875','stroke-width':1.5}));
+    svg.appendChild(elt('line',{x1:156,y1:0,x2:156,y2:312,stroke:'#4b5875','stroke-width':1.5}));
+    for(var t=-6;t<=6;t+=2){
+      if(t===0) continue;
+      var tx=elt('text',{x:sx(t),y:168,'font-size':9,fill:'#8b95ad','text-anchor':'middle'}); tx.textContent=t; svg.appendChild(tx);
+      var ty=elt('text',{x:146,y:sy(t)+3,'font-size':9,fill:'#8b95ad','text-anchor':'end'}); ty.textContent=t; svg.appendChild(ty);
+    }
+  }
+  function donCiz(){
+    gridCiz();
+    var mod=document.querySelector('#donMod .donSekme.secili').dataset.mod;
+    var dx=parseInt(document.getElementById('donDx').value,10);
+    var dy=parseInt(document.getElementById('donDy').value,10);
+    document.getElementById('donKaydirici').style.display = mod==='otele' ? '' : 'none';
+    document.getElementById('donDxEtiket').textContent=dx;
+    document.getElementById('donDyEtiket').textContent=dy;
+    var yeni=baseVerts.map(function(v){
+      var x=v[1], y=v[2];
+      if(mod==='otele') return [v[0], x+dx, y+dy];
+      if(mod==='xeksen') return [v[0], x, -y];
+      return [v[0], -x, y];
+    });
+    var pts1=baseVerts.map(function(v){return sx(v[1])+','+sy(v[2])}).join(' ');
+    var pts2=yeni.map(function(v){return sx(v[1])+','+sy(v[2])}).join(' ');
+    svg.appendChild(elt('polygon',{points:pts1, fill:'color-mix(in srgb, var(--tema) 30%, transparent)', stroke:'var(--tema)','stroke-width':2}));
+    svg.appendChild(elt('polygon',{points:pts2, fill:'rgba(245,158,11,.25)', stroke:'#f59e0b','stroke-width':2,'stroke-dasharray':'5,4'}));
+    baseVerts.forEach(function(v){
+      var t=elt('text',{x:sx(v[1])+4,y:sy(v[2])-4,'font-size':12,fill:'var(--tema2)','font-weight':700}); t.textContent=v[0]; svg.appendChild(t);
+    });
+    yeni.forEach(function(v){
+      var t=elt('text',{x:sx(v[1])+4,y:sy(v[2])-4,'font-size':12,fill:'#f59e0b','font-weight':700}); t.textContent=v[0]+"'"; svg.appendChild(t);
+    });
+    var kural = mod==='otele' ? ('(x,y) → ('+isaretli('x',dx)+', '+isaretli('y',dy)+')')
+      : mod==='xeksen' ? '(x,y) → (x, −y)'
+      : '(x,y) → (−x, y)';
+    var satirlar = baseVerts.map(function(v,i){
+      var n=yeni[i];
+      return v[0]+'('+v[1]+','+v[2]+') → '+v[0]+"'("+n[1]+','+n[2]+')';
+    }).join(' &nbsp;·&nbsp; ');
+    document.getElementById('donSonuc').innerHTML='<b>Kural:</b> '+kural+'<br><span class="kucuk">'+satirlar+'</span>';
+  }
+  document.querySelectorAll('#donMod .donSekme').forEach(function(b){
+    b.onclick=function(){
+      document.querySelectorAll('#donMod .donSekme').forEach(function(x){x.classList.remove('secili')});
+      b.classList.add('secili'); tit(15); donCiz();
+    };
+  });
+  document.getElementById('donDx').oninput=donCiz;
+  document.getElementById('donDy').oninput=donCiz;
+  donCiz();
+})();
 
 var sekmeler=[
  '<b>Önce tahmin et:</b> 1100 tonluk türbe nasıl bozulmadan taşındı? 👇<br><br><b>Türbe taşıma.</b> Hasankeyf&#39;teki Zeynel Bey Türbesi, Ilısu Barajı suları altında kalmasın diye 8 tekerlekli taşıyıcıyla (SPMT) 2 km taşındı. Bu bir <b>öteleme</b>: her noktası aynı yönde aynı uzaklıkta kaydı. Kapısı hangi yöne bakıyorsa yine oraya bakıyor, kubbe çapı aynı. Ötelemede şekil bozulmaz — mühendisler bunu garanti edebildiği için 550 yıllık eser kurtarıldı.',
@@ -346,7 +443,6 @@ window.addEventListener('load', showNotes);
 <div class="kart" style="margin-top:20px;">
   <span class="adim">Gerçek Hayat Örneği</span>
   <p>Halı ve çini desenleri ötelemeyle, kelebek kanadı yansımayla, araba jantı dönmeyle üretilir. Ambulansın önündeki 'ƎƆИA⅃UᙠMA' yazısı aynadan düzgün okunsun diye yansıtılmıştır.</p>
-  <p style="font-size:0.85em;color:#8b95ad">Kaynak: MEB 8.3.3 — Dönüşüm geometrisi</p>
 </div>
 
 <!-- okul-nav-progress -->
