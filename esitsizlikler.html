@@ -72,6 +72,13 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .dcDolu{background:#39d98a}
 .dcBos{background:#1a2236}
 .dcEtiket{position:absolute;top:-8px;transform:translateX(-50%);font-size:13px;color:#e8ecf5;font-weight:700}
+.ueSlider{width:100%;accent-color:var(--tema)}
+.ueEtiket{display:flex;justify-content:space-between;font-size:13px;color:#8b95ad;margin-top:4px;margin-bottom:10px}
+.isSecimler{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+.isSecim{min-height:48px;font-size:20px;font-weight:700;background:#1a2236;color:#e8ecf5;border:2px solid #3a4663;border-radius:12px;cursor:pointer}
+.isSecim.aktif{border-color:var(--tema);background:color-mix(in srgb,var(--tema) 22%,#1a2236)}
+.dcDeneme{position:absolute;top:16px;width:16px;height:16px;border-radius:50%;background:#fbbf24;border:2px solid #fff;transform:translateX(-50%);z-index:2}
+.isSonuc{font-size:17px;font-weight:700;min-height:26px;margin:6px 0}
 .hizKutu{text-align:center;margin:10px 0}
 .hizKutu input{width:110px;font-size:22px;text-align:center;padding:8px;border-radius:10px;border:2px solid #3a4663;background:#1a2236;color:#e8ecf5}
 </style>
@@ -141,6 +148,29 @@ body.light .sekme:active { background:#a3e635; }
 <div class="gizli" id="k2devam">
 <p><span class="ok">✓</span> ≥ işareti "büyük VEYA eşit" demek: 18 = 18 sağlar, Berfin oy kullanır. Kanun `>` yazsaydı tam 18 yaşındakiler kapıdan dönerdi. <b>Tek çizgi, koca bir hak.</b></p>
 </div>
+</div>
+
+<!-- KART 2b: SAYI DOGRUSU ARACI -->
+<div class="kart" id="k2b">
+<h2>Sayı doğrusunu sen kur</h2>
+<p>İşareti seç, sınırı kaydır. Sonra sarı noktayı gezdir: hangi sayılar kurala uyuyor?</p>
+<div class="isSecimler" id="isSecimler">
+<button class="isSecim" data-i="<">&lt;</button>
+<button class="isSecim" data-i="≤">≤</button>
+<button class="isSecim aktif" data-i=">">&gt;</button>
+<button class="isSecim" data-i="≥">≥</button>
+</div>
+<label class="kucuk" for="isSinir">Sınır: <b id="isSinirYaz">3</b></label>
+<input type="range" id="isSinir" class="ueSlider" min="-5" max="9" value="3">
+<div class="ueEtiket"><span>-5</span><span>9</span></div>
+<label class="kucuk" for="isDeneme">Denenen sayı: <b id="isDenemeYaz">5</b></label>
+<input type="range" id="isDeneme" class="ueSlider" min="-6" max="10" value="5">
+<div class="ueEtiket"><span>-6</span><span>10</span></div>
+<div class="dogruCizgi"><p class="kucuk" id="isKural" style="font-weight:700"></p>
+<div class="dc"><div class="dcHat"></div><div class="dcTaralı" id="isTarali"></div><div class="dcNokta dcBos" id="isNokta"></div><span class="dcEtiket" id="isEtiket"></span><div class="dcDeneme" id="isDenemeNokta"></div></div></div>
+<p class="isSonuc" id="isSonuc"></p>
+<button class="secenek" id="isTakildim">Takıldım, göster</button>
+<p class="kucuk gizli" id="isIpucu">Kural: boş nokta = sınırın kendisi girmez (&lt; ve &gt;), dolu nokta = sınır da girer (≤ ve ≥). Ok yönü: &gt; ve ≥ sağa, &lt; ve ≤ sola boyanır. Sarı noktayı tam sınıra getir ve sonucu izle.</p>
 </div>
 
 <!-- KART 3: KAMYON -->
@@ -260,6 +290,38 @@ function soruKur(kartId, dogruIdx, devamId){
   });
 }
 soruKur('k2',0,'k2devam');
+
+(function(){
+  var isaret='>',MIN=-6,MAX=10;
+  function yuz(v){return 4+(v-MIN)/(MAX-MIN)*92;}
+  function eksi(v){return v<0?'\u2212'+(-v):String(v);}
+  function isCiz(){
+    var b=+document.getElementById('isSinir').value,t=+document.getElementById('isDeneme').value;
+    var dolu=(isaret==='\u2264'||isaret==='\u2265'),sag=(isaret==='>'||isaret==='\u2265');
+    var tar=document.getElementById('isTarali'),nk=document.getElementById('isNokta'),p=yuz(b);
+    tar.style.left=sag?p+'%':'4%';tar.style.right=sag?'4%':(100-p)+'%';
+    nk.style.left=p+'%';nk.className='dcNokta '+(dolu?'dcDolu':'dcBos');
+    var et=document.getElementById('isEtiket');et.style.left=p+'%';et.textContent=eksi(b);
+    document.getElementById('isDenemeNokta').style.left=yuz(t)+'%';
+    document.getElementById('isSinirYaz').textContent=eksi(b);
+    document.getElementById('isDenemeYaz').textContent=eksi(t);
+    document.getElementById('isKural').textContent='x '+isaret+' '+eksi(b);
+    var ok=isaret==='>'?t>b:isaret==='<'?t<b:isaret==='\u2265'?t>=b:t<=b;
+    var s=document.getElementById('isSonuc');
+    s.textContent=eksi(t)+' '+isaret+' '+eksi(b)+(ok?'  \u2192 sağlar \u2713':'  \u2192 sağlamaz \u2717');
+    s.style.color=ok?'#39d98a':'#f87171';
+  }
+  document.querySelectorAll('#isSecimler .isSecim').forEach(function(bt){
+    bt.onclick=function(){
+      document.querySelectorAll('#isSecimler .isSecim').forEach(function(x){x.classList.remove('aktif');});
+      bt.classList.add('aktif');isaret=bt.getAttribute('data-i');isCiz();
+    };
+  });
+  document.getElementById('isSinir').oninput=isCiz;
+  document.getElementById('isDeneme').oninput=isCiz;
+  document.getElementById('isTakildim').onclick=function(){ac('isIpucu');};
+  isCiz();
+})();
 soruKur('k3',0,'k3devam');
 soruKur('k4',1,'k4devam');
 
