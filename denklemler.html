@@ -265,9 +265,28 @@ soruKur('k4',0,'k4devam');
 
 // TERAZI HESAPLAYICI (k2b)
 function trFormat(n){
-  n = Math.round(n*100)/100;
-  var s = (Number.isInteger(n) ? String(n) : n.toFixed(2).replace(/0+$/,'').replace(/\.$/,''));
+  // Onceki surum toFixed(2) ile yuvarliyordu: x=0,125 sayfada "0,13" cikiyordu (yanlis cevap).
+  // Simdi tam degeri koruyoruz; gereksiz sifirlari atiyoruz, cok uzun kuyruklari 4 basamakta kesiyoruz.
+  var s;
+  if (Number.isInteger(n)) {
+    s = String(n);
+  } else {
+    s = String(n);
+    if (s.indexOf('.') !== -1 && s.split('.')[1].length > 4) {
+      s = n.toFixed(4).replace(/0+$/,'').replace(/\.$/,'');
+    }
+  }
   return s.replace('.',',').replace('-','−');
+}
+function dzKesirli(pay, payda){
+  // Tam bolunuyorsa tam sayi; bolunmuyorsa sadelestirilmis kesir goster (1/3 -> "1/3", 0,3333 degil).
+  if (pay % payda === 0) return trFormat(pay/payda);
+  var negatif = (pay < 0) !== (payda < 0);
+  var p = Math.abs(pay), q = Math.abs(payda);
+  function obeb(m,n){ return n === 0 ? m : obeb(n, m % n); }
+  var g = obeb(p, q);
+  p /= g; q /= g;
+  return (negatif ? '−' : '') + p + '/' + q;
 }
 function dzHesapla(){
   var a = parseInt(document.getElementById('dzA').value,10);
@@ -280,8 +299,8 @@ function dzHesapla(){
   var bIsaret = b>=0 ? ('+ '+trFormat(b)) : ('− '+trFormat(Math.abs(b)));
   document.getElementById('dzDenklem').textContent = a+'x '+bIsaret+' = '+trFormat(c);
   document.getElementById('dzAdim1').innerHTML = "<b>1.</b> b'yi karşıya geçir (işareti değişir): "+a+'x = '+trFormat(c)+' '+(b>=0?'−':'+')+' '+trFormat(Math.abs(b))+' = '+trFormat(c-b);
-  document.getElementById('dzAdim2').innerHTML = '<b>2.</b> İki tarafı '+a+"'e böl: x = "+trFormat(c-b)+' ÷ '+a+' = '+trFormat(x);
-  document.getElementById('dzXSonuc').textContent = 'x = '+trFormat(x);
+  document.getElementById('dzAdim2').innerHTML = '<b>2.</b> İki tarafı '+a+"'e böl: x = "+trFormat(c-b)+' ÷ '+a+' = '+dzKesirli(c-b, a);
+  document.getElementById('dzXSonuc').textContent = 'x = '+dzKesirli(c-b, a);
   document.getElementById('dzKontrol').innerHTML = 'Kontrol: '+a+'×('+trFormat(x)+') '+(b>=0?'+':'−')+' '+trFormat(Math.abs(b))+' = '+trFormat(a*x+b)+' <span class="ok">✓</span>';
 }
 ['dzA','dzB','dzC'].forEach(function(id){
