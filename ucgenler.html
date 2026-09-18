@@ -67,6 +67,8 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .ipKutu{background:#1a2236;border-radius:12px;padding:14px;margin:12px 0;text-align:center}
 .ipKutu svg{max-width:100%;height:auto}
 .olcuBtn{display:inline-block;margin:4px}
+.ueSlider{width:100%;accent-color:var(--tema)}
+.ueEtiket{display:flex;justify-content:space-between;font-size:13px;color:#8b95ad;margin-top:4px;margin-bottom:10px}
 </style>
 
 
@@ -166,6 +168,34 @@ body.light .sekme:active { background:#a3e635; }
 </div>
 </div>
 
+<!-- KART 4b: INTERAKTIF UCGEN ESITSIZLIGI -->
+<div class="kart" id="k4b">
+<span class="adim">Dene</span>
+<h2>Her üçlü kenar üçgen yapmaz</h2>
+<p>İki kenar kaydır, üçüncüyü de kaydır — hangi değerlerde köşeler birleşiyor, hangisinde şekil çöküyor gör. Kural: <b>iki kenarın toplamı, üçüncüsünden HER ZAMAN büyük olmalı.</b></p>
+<div class="ipKutu">
+<svg viewBox="0 0 240 190" id="ueSvg">
+<polygon id="ueUcgen" points="40,160 140,160 90,60" fill="none" stroke="#2dd4bf" stroke-width="3"/>
+<text id="ueLblA" x="90" y="178" fill="#e8ecf5" font-size="14" text-anchor="middle">a</text>
+<text id="ueLblB" x="55" y="105" fill="#e8ecf5" font-size="14" text-anchor="middle">b</text>
+<text id="ueLblC" x="125" y="105" fill="#e8ecf5" font-size="14" text-anchor="middle">c</text>
+</svg>
+</div>
+<label class="kucuk">Kenar a: <span id="ueAdeg">5</span> cm</label>
+<input type="range" id="ueA" class="ueSlider" min="2" max="20" value="5">
+<div class="ueEtiket"><span>2 cm</span><span>20 cm</span></div>
+<label class="kucuk">Kenar b: <span id="ueBdeg">9</span> cm</label>
+<input type="range" id="ueB" class="ueSlider" min="2" max="20" value="9">
+<div class="ueEtiket"><span>2 cm</span><span>20 cm</span></div>
+<label class="kucuk">Kenar c: <span id="ueCdeg">10</span> cm</label>
+<input type="range" id="ueC" class="ueSlider" min="2" max="20" value="10">
+<div class="ueEtiket"><span>2 cm</span><span>20 cm</span></div>
+<div class="sonuc">
+<p class="buyuk" id="ueSonuc"></p>
+<p id="ueAralik" class="kucuk" style="margin-top:6px"></p>
+</div>
+</div>
+
 <!-- KART 5: SEKMELER -->
 <div class="kart" id="k5">
 <span class="adim">5</span>
@@ -198,6 +228,7 @@ body.light .sekme:active { background:#a3e635; }
 <li>Tersi de doğru: a²+b²=c² sağlanıyorsa o köşe kesin diktir (saha kontrolü).</li>
 <li>Ekran "inç"i köşegendir; eni-boyu Pisagor'la bulunur.</li>
 <li>Hipotenüs dik kenarlardan uzundur ama toplamlarından kısadır (kuş uçuşu &lt; yol).</li>
+<li><b>Üçgen eşitsizliği:</b> herhangi iki kenarın toplamı üçüncüsünden büyük olmalı — yoksa köşeler birleşmez, üçgen oluşmaz.</li>
 </ul>
 </div>
 
@@ -220,6 +251,41 @@ soruKur('k1',0,'k1devam');
 soruKur('k2',0,'k2devam');
 soruKur('k3',0,'k3devam');
 soruKur('k4',0,'k4devam');
+
+// KART 4b: interaktif ucgen esitsizligi
+(function(){
+  var elA=document.getElementById('ueA'), elB=document.getElementById('ueB'), elC=document.getElementById('ueC');
+  var elAdeg=document.getElementById('ueAdeg'), elBdeg=document.getElementById('ueBdeg'), elCdeg=document.getElementById('ueCdeg');
+  var elSonuc=document.getElementById('ueSonuc'), elAralik=document.getElementById('ueAralik');
+  var poly=document.getElementById('ueUcgen'), lblA=document.getElementById('ueLblA'), lblB=document.getElementById('ueLblB'), lblC=document.getElementById('ueLblC');
+  var S=6, AX=40, AY=160;
+  function guncelle(){
+    var a=+elA.value, b=+elB.value, c=+elC.value;
+    elAdeg.textContent=a; elBdeg.textContent=b; elCdeg.textContent=c;
+    var alt=Math.abs(a-b), ust=a+b;
+    var gecerli = c>alt && c<ust;
+    var BX=AX+a*S, BY=AY;
+    var cosA=(a*a+c*c-b*b)/(2*a*c);
+    if(cosA>1)cosA=1; if(cosA<-1)cosA=-1;
+    var sinA=Math.sqrt(Math.max(0,1-cosA*cosA));
+    var CX=AX+c*S*cosA, CY=AY-c*S*sinA;
+    poly.setAttribute('points',AX+','+AY+' '+BX+','+BY+' '+CX+','+CY);
+    poly.setAttribute('stroke',gecerli?'#2dd4bf':'#f87171');
+    poly.setAttribute('stroke-dasharray',gecerli?'':'6,4');
+    lblA.setAttribute('x',(AX+BX)/2); lblA.setAttribute('y',AY+18); lblA.textContent='a='+a;
+    lblB.setAttribute('x',(AX+CX)/2-14); lblB.setAttribute('y',(AY+CY)/2); lblB.textContent='b='+b;
+    lblC.setAttribute('x',(BX+CX)/2+14); lblC.setAttribute('y',(BY+CY)/2); lblC.textContent='c='+c;
+    if(gecerli){
+      elSonuc.innerHTML='<span class="ok">✓ Geçerli üçgen</span>';
+      elAralik.innerHTML='c için izinli aralık: <b>'+alt+' < c < '+ust+'</b> (şu an c='+c+')';
+    } else {
+      elSonuc.innerHTML='<span class="hata">✗ Üçgen oluşmaz</span>';
+      elAralik.innerHTML='c, <b>'+alt+' ile '+ust+'</b> arasında olmalı (uçlar hariç) — şu an c='+c+', köşeler birleşmiyor.';
+    }
+  }
+  elA.oninput=guncelle; elB.oninput=guncelle; elC.oninput=guncelle;
+  guncelle();
+})();
 
 var sekmeler=[
  '<b>Önce tahmin et:</b> 12 m surun tepesine 12 m merdiven yeter mi? 👇<br><br><b>Sur ustası.</b> Diyarbakır Surları: 10-12 m yükseklik, 80+ burç, UNESCO listesinde (5,8 km). Merdiven dibi 3 m uzakta olursa: √(12²+3²)=√153≈<b>12,4 m</b> merdiven gerekir + tutunma payı. Hipotenüs dik kenardan HEP uzundur — kısa merdiven alan yarı yolda kalır.',
