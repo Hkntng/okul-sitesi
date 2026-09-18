@@ -1,5 +1,21 @@
 # GELİŞTİRME PLANI — Tek Koşuda Otomatik (2026-09-18)
 
+## TUR 6 (2026-09-18)
+Yapılan: YENİ **karnem.html** — öğrencinin tüm ilerlemesini tek panelde
+birleştiren gösterge sayfası. Salt okuma (yeni localStorage anahtarı YOK):
+`okul_done_*` (bitirilen konular), `sinavGecmisi` ve `karisikSkorlar` okunur.
+Gösterilenler: bitirilen konu sayısı + ilerleme çubuğu, sınav ve karışık tekrar
+başarı ortalaması, son 5 denemenin mini spark grafiği, son 3 denemenin trendi
+(↗/→/↘ + puan farkı), toplam çözülen soru/deneme sayısı ("emek" göstergesi),
+ve bitmemiş ilk konuya + zayıf ortalamaya göre hedefli "sıradaki adım" önerisi.
+index'e öncü kart, sw.js önbelleğe (v2026-09-18c) ve sitemap'e eklendi.
+Dayanak: kendi ilerlemesini gören öğrenci daha iyi öz-düzenleme yapar; dağınık
+üç ayrı skor kaynağı tek karnede toplanınca çalışma yönü netleşir.
+Test: tarayıcıda boş durum + enjekte veriyle dolu durum (3 konu, sınav 10/13/16
+→20, karışık 5/7→8): sınav ort %65, karışık %75, trend ↗+30, 76 soru/5 deneme,
+sıradaki konu "Karekök" — hepsi doğru. Python bağımsız hesap eşleşti, tag
+dengesi (32/32 div) ve node --check geçti.
+
 ## TUR 4 (2026-09-18)
 Yapılan: (1) 48 soruluk banka ortak `soru-bankasi.js` dosyasına çıkarıldı
 (tek kaynak); karisik-tekrar.html artık bunu import ediyor (kod tekrarı silindi,

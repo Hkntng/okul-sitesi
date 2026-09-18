@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Karnem — 8. Sınıf Matematik İlerleme Panelin</title>
+<meta name="description" content="Tamamladığın konular, sınav ve karışık tekrar ortalaman, gelişim trendin ve sıradaki adımın tek panelde.">
+<meta property="og:title" content="Karnem — İlerleme Panelin">
+<meta property="og:description" content="Konu ilerlemen, sınav ortalaman ve gelişim trendin tek bakışta. Sıradaki adımını gör.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hkntng.github.io/okul-sitesi/karnem.html">
+<style>
+:root{color-scheme:dark}
+body{margin:0;background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.55}
+.sar{max-width:430px;margin:0 auto;padding:24px 16px 60px}
+h1{font-size:24px;margin:10px 0 4px}
+h2{font-size:16px;margin:2px 2px 12px;color:#adbac7}
+.alt-baslik{color:#8b949e;font-size:14px;margin-bottom:18px}
+.kart{background:#161d2b;border:1px solid #2c3950;border-radius:14px;padding:18px;margin-bottom:14px}
+.rozet{display:inline-block;background:#1f2b3f;color:#7da8d8;font-size:12px;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.bar{height:8px;background:#1f2733;border-radius:4px;overflow:hidden;margin:10px 0}
+.bar>div{height:100%;background:#2f81f7;transition:width .4s}
+.bar>div.yesil{background:#3fb950}
+.buyuk{font-size:40px;font-weight:800;line-height:1.1}
+.orta{display:flex;gap:12px;margin-bottom:14px}
+.orta .kutu{flex:1;background:#161d2b;border:1px solid #2c3950;border-radius:14px;padding:14px;text-align:center}
+.orta .say{font-size:30px;font-weight:800}
+.orta .et{font-size:12px;color:#8b949e;margin-top:2px}
+.satir{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;margin-bottom:6px;border-radius:10px;border:1px solid #2c3950;font-size:14px}
+.satir.done{background:#12251a;border-color:#264b32}
+.satir.todo{background:#161d2b}
+.satir a{text-decoration:none;color:#79c0ff;font-weight:600}
+.satir .ok{color:#3fb950;font-weight:800}
+.satir .bek{color:#6e7681}
+.trend{font-size:14px;color:#adbac7;margin-top:8px}
+.trend .cikis{color:#3fb950;font-weight:700}
+.trend .dus{color:#f0883e;font-weight:700}
+.trend .sabit{color:#8b949e;font-weight:700}
+.mini{font-size:13px;color:#8b949e;margin-top:4px}
+.spark{display:inline-flex;align-items:flex-end;gap:3px;height:26px;margin-top:6px}
+.spark span{width:8px;background:#2f81f7;border-radius:2px 2px 0 0;min-height:3px}
+.oneri{padding:12px 14px;border:1px solid #3a2f12;background:#241d0c;border-radius:12px;color:#f0d090;font-size:14px;margin-top:10px}
+.oneri a{color:#ffd772;font-weight:700}
+.bos{color:#6e7681;font-size:14px;padding:10px 2px}
+a{color:#7da8d8}
+.nav{display:flex;justify-content:space-between;margin-top:26px;font-size:14px}
+.nav a{text-decoration:none}
+button.sifirla{width:100%;padding:11px;border-radius:12px;border:1px solid #5c2a2c;background:transparent;color:#e5787c;font-size:13px;cursor:pointer;font-family:inherit;margin-top:8px}
+</style>
+<link rel="icon" href="/okul-sitesi/icons/icon-192.png">
+<link rel="canonical" href="https://hkntng.github.io/okul-sitesi/karnem.html">
+<link rel="manifest" href="/okul-sitesi/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/okul-sitesi/icons/icon-192.png">
+<meta name="theme-color" content="#070b16">
+</head>
+<body>
+<div class="sar">
+  <h1>📊 Karnem</h1>
+  <div class="alt-baslik">Sitedeki tüm ilerlemen tek yerde: hangi konuları bitirdin, sınav ve karışık tekrar ortalaman ne, son denemelerde yükseliyor musun. Veriler bu cihazda saklı — kimse görmez.</div>
+
+  <div class="kart">
+    <span class="rozet">Konu ilerlemesi</span>
+    <div class="buyuk"><span id="bitenSay">0</span> / <span id="toplamSay">13</span></div>
+    <div class="mini">tamamladığın konu (konu sayfasındaki "Bu konuyu bitirdim" ile işaretlenir)</div>
+    <div class="bar"><div id="konuBar" class="yesil" style="width:0%"></div></div>
+    <div id="konuListe"></div>
+  </div>
+
+  <div class="orta">
+    <div class="kutu"><div class="say" id="sinavOrt">–</div><div class="et">Sınav ortalaması</div></div>
+    <div class="kutu"><div class="say" id="karisikOrt">–</div><div class="et">Karışık tekrar ort.</div></div>
+  </div>
+
+  <div class="kart">
+    <span class="rozet">Sınav Modu geçmişi</span>
+    <div id="sinavKutu"></div>
+  </div>
+
+  <div class="kart">
+    <span class="rozet">Karışık Tekrar geçmişi</span>
+    <div id="karisikKutu"></div>
+  </div>
+
+  <div class="kart">
+    <span class="rozet">Toplam emek</span>
+    <div class="mini" id="emekTxt">Henüz deneme çözmedin.</div>
+  </div>
+
+  <div class="kart" id="oneriKart" style="display:none">
+    <span class="rozet">Sıradaki adımın</span>
+    <div id="oneriTxt"></div>
+  </div>
+
+  <div class="nav"><a href="index.html">← Ana sayfa</a><a href="sinav.html">⏱️ Sınav Modu</a></div>
+  <button class="sifirla" onclick="sifirla()">İlerleme verilerimi sil</button>
+</div>
+
+<script>
+(function(){
+  // slug -> baslik (index'teki sira ile ayni; ebob-ekok konu sayfalarindan biri)
+  var KONULAR=[
+    ['1-carpanlar','Çarpanlar'],['ebob-ekok','EBOB-EKOK'],['uslu-ifadeler','Üslü İfadeler'],
+    ['karekok','Karekök'],['veri-analizi','Veri Analizi'],['olasilik','Olasılık'],
+    ['cebir','Cebir'],['denklemler','Denklemler'],['esitsizlikler','Eşitsizlikler'],
+    ['ucgenler','Üçgenler'],['benzerlik','Benzerlik'],['donusum','Dönüşüm'],['cisimler','Cisimler']
+  ];
+  function oku(k){ try{ return JSON.parse(localStorage.getItem(k)||'[]'); }catch(e){ return []; } }
+  function ort(arr){
+    if(!arr.length) return null;
+    var td=0,tn=0; arr.forEach(function(x){ td+=x.d; tn+=x.n; });
+    return tn? Math.round(td/tn*100) : null;
+  }
+  // ---- Konu ilerlemesi ----
+  var biten=0, listeH='';
+  KONULAR.forEach(function(p){
+    var done = localStorage.getItem('okul_done_'+p[0])==='1';
+    if(done) biten++;
+    listeH += '<div class="satir '+(done?'done':'todo')+'">'+
+      '<a href="'+p[0]+'.html">'+p[1]+'</a>'+
+      (done? '<span class="ok">✓ bitti</span>' : '<span class="bek">○ çalışılacak</span>')+
+      '</div>';
+  });
+  document.getElementById('bitenSay').textContent=biten;
+  document.getElementById('toplamSay').textContent=KONULAR.length;
+  document.getElementById('konuBar').style.width=Math.round(biten/KONULAR.length*100)+'%';
+  document.getElementById('konuListe').innerHTML=listeH;
+
+  // ---- Deneme gecmisleri ----
+  var sinav=oku('sinavGecmisi'), karisik=oku('karisikSkorlar');
+
+  function sonNYuzde(arr,n){ // son n denemenin yuzde dizisi (eski->yeni)
+    return arr.slice(-n).map(function(x){ return x.n? Math.round(x.d/x.n*100):0; });
+  }
+  function trendMetni(arr){
+    var y=sonNYuzde(arr,5);
+    if(y.length<2) return '<span class="trend">İlk denemeni çözdün — trend için birkaç deneme daha gerek.</span>';
+    var ilk=y[0], son=y[y.length-1], fark=son-ilk;
+    var etiket = fark>=5 ? '<span class="cikis">↗ yükseliyor (+'+fark+' puan)</span>'
+               : fark<=-5 ? '<span class="dus">↘ düşüyor ('+fark+' puan)</span>'
+               : '<span class="sabit">→ dengeli</span>';
+    return '<div class="trend">Son '+y.length+' deneme trendi: '+etiket+'</div>';
+  }
+  function sparkline(arr){
+    var y=sonNYuzde(arr,8);
+    if(!y.length) return '';
+    return '<div class="spark">'+y.map(function(v){
+      return '<span title="%'+v+'" style="height:'+Math.max(3,Math.round(v/100*26))+'px"></span>';
+    }).join('')+'</div>';
+  }
+  function son5Metni(arr){
+    return arr.slice(-5).map(function(x){ return x.d+'/'+x.n; }).join(' · ');
+  }
+
+  function doldur(id, arr, adSayfa){
+    var el=document.getElementById(id);
+    if(!arr.length){ el.innerHTML='<div class="bos">Henüz '+adSayfa+' çözmedin. <a href="'+(id==="sinavKutu"?"sinav.html":"karisik-tekrar.html")+'">Hemen başla →</a></div>'; return; }
+    var o=ort(arr);
+    el.innerHTML=
+      '<div class="mini">Son 5 sonuç: <b style="color:#e6edf3">'+son5Metni(arr)+'</b></div>'+
+      sparkline(arr)+
+      trendMetni(arr)+
+      '<div class="mini">Toplam '+arr.length+' deneme · ortalama başarı <b style="color:#e6edf3">%'+o+'</b></div>';
+  }
+  doldur('sinavKutu', sinav, 'sınav');
+  doldur('karisikKutu', karisik, 'karışık tekrar');
+
+  var so=ort(sinav), ko=ort(karisik);
+  document.getElementById('sinavOrt').textContent = so===null?'–':'%'+so;
+  document.getElementById('karisikOrt').textContent = ko===null?'–':'%'+ko;
+
+  // ---- Toplam emek ----
+  var toplamSoru=0, toplamDeneme=sinav.length+karisik.length;
+  sinav.concat(karisik).forEach(function(x){ toplamSoru+=x.n; });
+  if(toplamDeneme>0){
+    document.getElementById('emekTxt').innerHTML=
+      '<b style="color:#e6edf3;font-size:16px">'+toplamSoru+' soru</b> çözdün, toplam <b style="color:#e6edf3">'+toplamDeneme+' deneme</b> tamamladın. Devam et — düzenli tekrar en çok işe yarayan yöntem.';
+  }
+
+  // ---- Sonraki adim onerisi (gercek veriye dayali) ----
+  var oneriler=[];
+  var kalanKonu=KONULAR.filter(function(p){ return localStorage.getItem('okul_done_'+p[0])!=='1'; });
+  if(kalanKonu.length){
+    var hedef=kalanKonu[0];
+    oneriler.push('Henüz <b>'+kalanKonu.length+'</b> konu bitmedi. Sıradaki: <a href="'+hedef[0]+'.html">'+hedef[1]+'</a> konusunu çalış ve sayfanın altından "bitirdim" işaretle.');
+  } else if(biten>0){
+    oneriler.push('Tüm konuları bitirdin! 🎉 Şimdi iş <b>tekrar ve hız</b>da: düzenli <a href="sinav.html">sınav</a> çöz.');
+  }
+  var enDusuk=null;
+  if(so!==null&&ko!==null){ enDusuk = so<=ko ? ['Sınav Modu','sinav.html',so] : ['Karışık Tekrar','karisik-tekrar.html',ko]; }
+  else if(so!==null){ enDusuk=['Sınav Modu','sinav.html',so]; }
+  else if(ko!==null){ enDusuk=['Karışık Tekrar','karisik-tekrar.html',ko]; }
+  if(enDusuk && enDusuk[2]<70){
+    oneriler.push('<a href="'+enDusuk[1]+'">'+enDusuk[0]+'</a> ortalaman %'+enDusuk[2]+'. Yeni set çöz, yanlışların açıklamalarını oku — hedef %70+.');
+  } else if(enDusuk && enDusuk[2]>=70){
+    oneriler.push('Deneme ortalaman iyi (%'+enDusuk[2]+'). Temposunu koru, düzenli aralıklarla tekrar et.');
+  }
+  if(toplamDeneme===0){
+    oneriler=['Henüz deneme çözmedin. Önce bir konu çalış, sonra <a href="karisik-tekrar.html">Karışık Tekrar</a> ile kendini sına.'];
+  }
+  if(oneriler.length){
+    document.getElementById('oneriKart').style.display='block';
+    document.getElementById('oneriTxt').innerHTML='<div class="oneri">'+oneriler.join('</div><div class="oneri">')+'</div>';
+  }
+
+  window.sifirla=function(){
+    if(!confirm('Konu tamamlama, sınav ve karışık tekrar geçmişin bu cihazdan silinecek. Emin misin?')) return;
+    KONULAR.forEach(function(p){ localStorage.removeItem('okul_done_'+p[0]); });
+    localStorage.removeItem('sinavGecmisi');
+    localStorage.removeItem('karisikSkorlar');
+    location.reload();
+  };
+})();
+</script>
+</body>
+</html>
