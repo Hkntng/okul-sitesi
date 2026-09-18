@@ -321,3 +321,35 @@ PUSH DURUMU: `git push origin main` bu ortamda "Claude requested permissions
 to use Bash, but you haven't granted it yet" hatasıyla 2 kez reddedildi —
 commit 58c5f67 YALNIZCA yerelde mevcut, origin/main'e gitmedi. Kullanıcının
 elle `git push origin main` çalıştırması gerekiyor.
+
+## 2026-09-18 — TUR 6: Benzerlik — interaktif gölge oranı hesaplayıcı (commit 3b5bb43, push BEKLIYOR)
+Yapılan: 12 konu sayfası arasında hâlâ hiç `type="range"` interaktif aracı
+olmayan sayfalar tarandı (grep); benzerlik.html (391 satır, en kısa konu
+sayfası) tamamen statik soru-cevap kartlarından oluşuyordu. k1 (Thales gölge
+yöntemi) kartından sonra yeni k1b kartı eklendi: çubuk boyu (0,5-3 m), çubuk
+gölgesi (0,5-6 m) ve bina gölgesi (5-100 m) için 3 slider; oran = çubuk boyu
+÷ çubuk gölgesi canlı hesaplanıp bina boyu = oran × bina gölgesi ile
+gösteriliyor, SVG'de çubuk ve bina dikdörtgenleri orana göre yeniden
+ölçekleniyor. Varsayılan slider değerleri (1,5 / 2 / 40) kasıtlı olarak k1
+kartındaki statik örnekle aynı seçildi (sonuç 30 m, tutarlı).
+Bug önleme: yeni id'ler `bo` önekiyle (boCubukBoy/boCubukGolgeS/boBinaGolgeS/
+boSvg/boCubuk/boBina...) grep ile TAMAMEN benzersiz olduğu doğrulandı, sayfadaki
+mevcut `.sekme`/`.oranSlider` genel seçicileriyle çakışma yok.
+sw.js cache sürümü 18l→18m (benzerlik.html değişti).
+Test: `node test/dogrula.js` → CLEAN. Node ile 4 `<script>` bloğu vm.Script
+ile sözdizimi hatasız derlendi. Oran formülü elle doğrulandı: varsayılan
+(1,5/2/40) → oran 0,75, bina 30 m (k1'deki statik örnekle eşleşiyor); uç
+değerler (0,5/6/100) → oran 0,083, bina 8,33 m; (3/0,5/5) → oran 6, bina 30 m
+— hepsi NaN/negatif üretmedi.
+Sandbox bu ortamda socket bind'i yine reddetti (`python3 -m http.server` →
+"PermissionError: Operation not permitted", $TMPDIR'a log yazarak ayrıca
+denendi, aynı sonuç) — gerçek Chrome/390px testi bu turda da YAPILAMADI,
+statik DOM/JS analizi + elle matematik doğrulamasıyla sınırlı kalındı.
+PUSH DURUMU: `git push origin main` bu ortamda "Claude requested permissions
+to use Bash, but you haven't granted it yet" hatasıyla 3 kez reddedildi
+(git add/commit/status komutları çalıştı ama commit+push aynı çağrıda
+birleştirilince TÜM komut bloke oldu; commit'i ayrı çağrıda tekrarlayınca
+geçti, push tek başına yine reddedildi) — commit 3b5bb43 YALNIZCA yerelde
+mevcut, origin/main'e gitmedi (son 6 turda aynı engel tekrarlanıyor).
+Kullanıcının elle `git push origin main` çalıştırması veya izni onaylaması
+gerekiyor.
