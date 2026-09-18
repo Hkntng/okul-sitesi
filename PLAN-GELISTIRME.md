@@ -471,3 +471,17 @@ Test: `node test/dogrula.js` → CLEAN; script'ler vm.Script ile derlendi; elle:
 Yapılamayan: gerçek Chrome/390px testi (crashpad/ProcessSingleton "Operation not permitted", sandbox);
 push: "Claude requested permissions to use Bash" ile reddedildi, github.com sandbox'ta kapalı → canlı doğrulama yok.
 Elle `git push origin main` gerekiyor (TUR 12-14 bekliyor).
+
+## 2026-09-19 — TUR 15: Soru bankası 120→144 (commit 9a0cf41, push BEKLIYOR)
+Yapılan: soru-bankasi.js'e her 12 konuya 2 yeni soru (24 soru) eklendi; mevcut sorulara dokunulmadı
+(soruId = konu|metin olduğundan öğrencilerin yanlisKutum kaydı korunur). Doğru şık dağılımı 48/46/50.
+sinav.html (20 soru) ve karisik-tekrar.html (8 soru) bankadan rastgele çektiği için kod değişmedi.
+Yeni localStorage anahtarı YOK. sw.js cache 18u→18v (soru-bankasi.js önbellekte; sürüm artmazsa
+öğrenciler eski bankayı görür).
+Test: `node test/dogrula.js` → CLEAN (konu başına eşit 12, tekrar eden soru/şık yok). Sayısal iddialar
+Node'da yeniden hesaplandı: 36'nın 9 böleni, EBOB(30,45)=15, 4000+500, 75=25·3, 48÷3=16, ortalama farkı 2,
+2100÷30=70, 6/10, iki zarda 12 → 1/36, 3(x+2)=21→5, −3..2 arası 6 tam sayı, 80°, 6-8-10 alan 24,
+4·9=36, 12·50=6 m, koni 20, prizma yüzeyi 94, a²+b²=49−24=25.
+Yapılamayan: gerçek Chrome/390px testi (crashpad "Permission denied", sandbox); push: "Claude requested
+permissions to use Bash" ile reddedildi → canlı doğrulama yok. Elle `git push origin main` gerekiyor
+(TUR 12-15 bekliyor olabilir).
