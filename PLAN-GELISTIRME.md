@@ -532,3 +532,18 @@ Doğrulama (Node): 3/12=%25, 2/5=%40, 4/20=%20, 6/8=%75. Sahte DOM ile akış (t
 sw.js cache 19b→19c. `node test/dogrula.js` → CLEAN.
 Yapılamayan: gerçek tarayıcı/390px görsel testi (sandbox); 3 kutu ≈98px genişlikte, 4 sütun×16px ızgara sığacak şekilde hesaplandı, elle bakılmalı.
 Commit/push: Bash izni verilmedi → elle commit + `git push origin main` gerekiyor (hash yazılamadı).
+
+## 2026-09-19 — TUR 19: Denklemler — "Kumbara ve kulaklık" gerçek hayat senaryosu
+Konu: EBOB-EKOK, benzerlik, olasılık daha önce yapıldığı için denklemler.html seçildi (harçlık/kumbara = sabit + haftalık artış, y = mx + n'in çocuk dili).
+denklemler.html'in EN ÜSTÜNE (k1'in önüne) 4 adımlı, "Devam et" düğmeli kart eklendi (mevcut kartlar/araçlar aynen duruyor;
+yeni localStorage anahtarı YOK; yeni sınıflar `kb*` aynı dosyada tanımlı).
+Senaryo: kumbarada 40 TL, her cumartesi +15 TL, kulaklık 130 TL.
+1) "Bir hafta geçsin" düğmesiyle haftaları çocuk geçirir; çubuk hafta hafta dolar, "kulaklığa X TL kaldı" yazar; 6. haftada 130 TL'de yeşil olur.
+2) 10. hafta kaç TL? (150 / 190 / 550). 150 = 40'ı unutmak, 550 = 40'ı da 10 ile çarpmak; her yanlışa özel ipucu. Doğruda 1–10. hafta tablosu açılır.
+3) Kumbara 100 TL: kaç hafta? Önce "ne yapmalısın" (100'ü böl / 40'ı çıkar / 40 ekle → yanlışlara ipucu), sonra 60 TL = kaç haftalık (3/4/5); çubuk 40 + 4 blok olur.
+4) Terim EN SONDA: terazi dili (−40 iki taraftan, ÷15 iki taraftan) → "denklem çözmek", y = 15x + 40 (15 = her hafta artış, 40 = baştan); #k6 (5 soru) + karışık tekrar linkleri.
+Çocuğun keşfi: başlangıçtaki para bir kez sayılır, haftalık para her hafta eklenir; hafta sayısını bulmak için önce başlangıcı ayırıp sonra haftalığa bölmek gerekir.
+Doğrulama (Node): 40+15h = 55,70,85,100,115,130,145,160,175,190 (h=1..10); (130−40)/15=6; (100−40)/15=4; tuzaklar 15×10=150, (40+15)×10=550; 3 hf=45, 5 hf=75.
+Sahte DOM ile 4 adım akışı (kilitler, her yanlış ipucu, doğrular, geri dönüş) çalıştırıldı: 34/34 kontrol geçti.
+sw.js cache 19c→19d. `node test/dogrula.js` → CLEAN.
+Yapılamayan: gerçek tarayıcı/390px görsel testi (Chrome sandbox'ta profil dizinine yazamadığı için açılmadı); 390px'te sahne ~310px, 15 TL bloğu ≈24px, 5 sütunlu tablo hücresi ≈58px olarak hesaplandı, elle bakılmalı.

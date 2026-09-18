@@ -76,6 +76,48 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 .puanKutu .kutu b{font-size:22px;display:block}
 .ueSlider{width:100%;accent-color:var(--tema)}
 .ueEtiket{display:flex;justify-content:space-between;font-size:13px;color:#8b95ad;margin-top:4px;margin-bottom:10px}
+/* ---- kumbara senaryosu (adım adım) ---- */
+.kbKart{border-color:#2f4a7a}
+.kbKart .buyuk{font-size:19px;line-height:1.4}
+.kbNoktalar{display:flex;gap:6px;margin:2px 0 12px}
+.kbNokta{flex:1;height:5px;border-radius:3px;background:#243044;transition:background .2s}
+.kbNokta.on{background:var(--tema)}
+.kbBaslik{font-size:12px;font-weight:700;color:#7d8590;letter-spacing:.5px;margin-bottom:6px}
+.kbSahne{background:#0d1420;border-radius:12px;padding:14px 10px 12px;margin:10px 0}
+.kbCubuk{position:relative;display:flex;height:34px;border:1px solid #33415a;border-radius:8px;background:#131b2a;overflow:hidden}
+.kbS{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#0b101e;border-right:1px solid #0d1420;min-width:0;overflow:hidden;transition:width .4s ease-out,background .3s}
+.kbS.taban{background:#8b95ad}
+.kbS.hafta{background:var(--tema)}
+.kbS.gizemli{background:#a78bfa;font-size:13px}
+.kbS.sonuc{background:#4ade80}
+.kbS.soluk{background:#3a4560;color:#8b95ad}
+.kbS.yeni{animation:kbParla .6s ease}
+@keyframes kbParla{from{filter:brightness(2.2)}to{filter:none}}
+.kbHedef{position:absolute;top:0;bottom:0;width:0;border-left:2px dashed #f0a44b;pointer-events:none}
+.kbHedefYazi{position:relative;height:16px;font-size:11px;color:#f0a44b;margin-top:4px}
+.kbHedefYazi span{position:absolute;transform:translateX(-100%);white-space:nowrap}
+.kbYaz{margin-top:8px;font-size:15px;color:#c9d3e0;text-align:center;min-height:24px}
+.kbYaz b{color:#fff}
+.kbGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:10px}
+.kbHuc{background:#131b2a;border:1px solid #27314b;border-radius:8px;padding:4px 2px;text-align:center;font-size:14px;font-weight:700;color:#e8edf7}
+.kbHuc small{display:block;font-size:10px;font-weight:400;color:#8b95ad}
+.kbHuc.son{border-color:#4ade80;color:#4ade80}
+.kbChipler{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.kbChip{min-width:64px;padding:11px 12px;border-radius:10px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:16px;font-weight:700;cursor:pointer}
+.kbChip.dogru{background:#12251a;border-color:#3fb950;color:#5ddc7a}
+.kbChip.yanlis{background:#251414;border-color:#5c2a2a;color:#f0857d}
+.kbDurum{margin-top:10px;padding:11px 12px;border-radius:10px;font-size:15px;background:#1a2236;color:#c9d3e0}
+.kbDurum.ok{background:#12251a;color:#8ce89f;border:1px solid #3fb950}
+.kbDurum.bozuk{background:#251414;color:#f0a09a;border:1px solid #5c2a2a}
+.kbYol{display:flex;gap:8px;margin-top:10px}
+.kbYol .btn{margin-top:0}
+.kbYol .btn:disabled{opacity:.4;box-shadow:none;cursor:default}
+.kbYol .kbGeri{flex:0 0 auto;width:auto;margin-top:0}
+.kbLink{display:block;margin-top:9px;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-size:15px;font-weight:700}
+.kbLink.bir{background:var(--tema);color:#0b101e}
+.kbLink.iki{background:#1b2436;border:1px solid #33415a;color:#cfe0f5}
+.kbTerazi{display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0;font-size:18px;font-weight:700;flex-wrap:wrap}
+.kbTerazi span{background:#131b2a;border:1px solid #33415a;border-radius:10px;padding:8px 12px}
 </style>
 
 
@@ -104,6 +146,209 @@ body.light .sekme:active { background:#a3e635; }
 <h1>Doğrusal Denklemler</h1>
 <p class="kucuk" style="margin-bottom:6px">Denklem = iki kefesi dengede olan terazi. Bilinmeyeni bulmak = teraziyi bozmadan sadeleştirmek.</p>
 <div style="font-size:14px;margin:4px 0 2px"><a href="#k5">↓ Hayatta nerede?</a> · <a href="#k6">↓ Kendini dene</a> · <a href="#ozet">↓ Özet</a></div>
+
+<!-- KUMBARA SENARYOSU: adım adım, önce dene sonra ad -->
+<div class="kart kbKart" id="kbKart">
+<span class="adim yesil">Önce bir deneme</span>
+<div class="kbNoktalar" id="kbNoktalar" aria-hidden="true"></div>
+<div class="kbBaslik" id="kbBaslik"></div>
+<p class="buyuk" id="kbSoru"></p>
+<p class="kucuk" id="kbAlt"></p>
+<div class="kbSahne" id="kbSahne"></div>
+<div id="kbKontrol"></div>
+<div class="kbDurum gizli" id="kbDurum" role="status" aria-live="polite"></div>
+<div class="kbYol">
+  <button class="btn2 kbGeri gizli" id="kbGeri" type="button">← Geri</button>
+  <button class="btn" id="kbIleri" type="button" disabled>Devam et →</button>
+</div>
+</div>
+
+<script>
+(function(){
+  /* ================= KUMBARA SENARYOSU ================= */
+  var BASLA = 40, HAFTALIK = 15, HEDEF = 130, TERS = 100, EN = 190;   // TL; EN = çubuğun ölçeği (10. hafta)
+  var ADIM_SAYISI = 4;
+  var $ = function(id){ return document.getElementById(id); };
+  function para(h){ return BASLA + HAFTALIK * h; }
+  function yuzde(tl){ return (tl * 100 / EN) + '%'; }
+  var adim = 0, hafta = 0, s2 = { ok: false, gecen: {} }, s3 = { a: false, b: false, gecen: {} };
+
+  // seg: [{tl, sinif, yazi}] ; hedef: TL cinsinden kesikli çizgi (isteğe bağlı)
+  function cubuk(seg, hedef){
+    var h = '<div class="kbCubuk" role="img" aria-label="Kumbara çubuğu">';
+    seg.forEach(function(s){ h += '<span class="kbS ' + s.sinif + '" style="width:' + yuzde(s.tl) + '">' + (s.yazi || '') + '</span>'; });
+    if (hedef) h += '<span class="kbHedef" style="left:' + yuzde(hedef) + '"></span>';
+    h += '</div>';
+    if (hedef) h += '<div class="kbHedefYazi"><span style="left:' + yuzde(hedef) + '">hedef ' + hedef + ' TL</span></div>';
+    return h;
+  }
+  function haftalar(n, yeniSon){
+    var s = [{ tl: BASLA, sinif: 'taban', yazi: BASLA }];
+    for (var i = 1; i <= n; i++) s.push({ tl: HAFTALIK, sinif: 'hafta' + (yeniSon && i === n ? ' yeni' : ''), yazi: HAFTALIK });
+    return s;
+  }
+  function durumYaz(tur, m){ var d = $('kbDurum'); d.className = 'kbDurum ' + tur; d.textContent = m; }
+  function durumGizle(){ $('kbDurum').className = 'kbDurum gizli'; }
+  function chipler(liste, dogruMu, gecen, birim){
+    var h = '<div class="kbChipler">';
+    liste.forEach(function(v){
+      var s = gecen[v] ? ' yanlis' : (dogruMu(v) && gecen.bitti ? ' dogru' : '');
+      h += '<button type="button" class="kbChip' + s + '" data-v="' + v + '">' + v + (birim || '') + '</button>';
+    });
+    return h + '</div>';
+  }
+  function chipBagla(fn){
+    [].forEach.call($('kbKontrol').querySelectorAll('.kbChip'), function(b){
+      b.onclick = function(){ fn(b.getAttribute('data-v'), b); };
+    });
+  }
+
+  /* ---- adım 1: hafta hafta biriktir ---- */
+  function yaziHafta(){
+    var t = para(hafta), toplam = String(BASLA);
+    for (var i = 0; i < hafta; i++) toplam += ' + ' + HAFTALIK;
+    var m = '<b>' + hafta + '. hafta:</b> ' + toplam + ' = <b>' + t + ' TL</b>';
+    if (t < HEDEF) m += '<br>Kulaklığa <b>' + (HEDEF - t) + ' TL</b> daha lazım.';
+    else m += '<br>🎧 Tam <b>' + HEDEF + ' TL</b>! Kulaklığı alabilirsin.';
+    return m;
+  }
+  function kurAdim1(yeni){
+    var bitti = para(hafta) >= HEDEF;
+    var seg = haftalar(hafta, yeni);
+    if (bitti) seg.forEach(function(s){ s.sinif = s.sinif.replace('hafta', 'sonuc').replace('taban', 'sonuc'); });
+    $('kbSahne').innerHTML = cubuk(seg, HEDEF) +
+      '<div class="kbYaz" id="kbYaz">' + (hafta ? yaziHafta() : 'Kumbarada şimdi <b>' + BASLA + ' TL</b> var. Kulaklığa <b>' + (HEDEF - BASLA) + ' TL</b> lazım.') + '</div>';
+    $('kbKontrol').innerHTML = '<button type="button" class="btn" id="kbHafta"' + (bitti ? ' disabled' : '') + '>📅 Bir hafta geçsin (+' + HAFTALIK + ' TL)</button>';
+    $('kbHafta').onclick = function(){
+      if (para(hafta) >= HEDEF) return;
+      hafta++; kurAdim1(true); ilerleDurumu();
+    };
+    if (bitti) durumYaz('ok', hafta + ' hafta bekledin ve kumbara 130 TL oldu. Bunu her haftayı tek tek geçirerek buldun.');
+    else durumGizle();
+  }
+
+  /* ---- adım 2: tek tek saymadan tahmin ---- */
+  var IPUCU2 = {
+    '150': '150, yalnız haftalık paraları saymış: 10 × 15. Ama kumbarada baştan 40 TL vardı, onu unutma.',
+    '550': '550: 40’ı da 10 ile çarpmışsın. Oysa 40 TL kumbaraya bir kere girdi, her hafta tekrar girmedi. Yalnız 15’ler 10 kere geldi.'
+  };
+  function tablo(){
+    var h = '<div class="kbGrid">';
+    for (var i = 1; i <= 10; i++) h += '<div class="kbHuc' + (i === 10 ? ' son' : '') + '"><small>' + i + '. hafta</small>' + para(i) + '</div>';
+    return h + '</div>';
+  }
+  function sonucYaz2(){
+    durumYaz('ok', 'Evet, 190 TL! Kural: her hafta 15 TL eklenir, 10 haftada 10 tane 15 = 150 TL olur; başlangıçtaki 40 TL de üstüne bir kez eklenir: 150 + 40 = 190. Tabloyla da tuttu.');
+  }
+  function kurAdim2(){
+    $('kbSahne').innerHTML = s2.ok
+      ? cubuk(haftalar(10), 0) + tablo()
+      : cubuk(haftalar(6).concat([{ tl: EN - para(6), sinif: 'gizemli', yazi: '?' }]), 0) +
+        '<div class="kbYaz">6. hafta: 130 TL. Peki <b>10. hafta</b>?</div>';
+    s2.gecen.bitti = s2.ok;
+    $('kbKontrol').innerHTML = chipler(['150', '190', '550'], function(v){ return v === '190'; }, s2.gecen, ' TL');
+    chipBagla(function(v, b){
+      if (s2.ok) return;
+      if (v === '190') { s2.ok = true; kurAdim2(); }
+      else { s2.gecen[v] = true; b.classList.add('yanlis'); durumYaz('bozuk', IPUCU2[v]); }
+      ilerleDurumu();
+    });
+    if (s2.ok) sonucYaz2(); else durumGizle();
+  }
+
+  /* ---- adım 3: tersten git ---- */
+  function seg3(){
+    if (!s3.a) return [{ tl: TERS, sinif: 'gizemli', yazi: TERS + ' TL' }];
+    if (!s3.b) return [{ tl: BASLA, sinif: 'soluk', yazi: BASLA }, { tl: TERS - BASLA, sinif: 'gizemli', yazi: (TERS - BASLA) + ' TL' }];
+    var s = [{ tl: BASLA, sinif: 'soluk', yazi: BASLA }];
+    for (var i = 0; i < 4; i++) s.push({ tl: HAFTALIK, sinif: 'sonuc', yazi: HAFTALIK });
+    return s;
+  }
+  function yazi3(){
+    if (!s3.a) return 'Kumbarada <b>' + TERS + ' TL</b> var. Kaç hafta geçtiğini bilmiyoruz.';
+    if (!s3.b) return '40 TL baştan vardı, o haftalarda birikmedi. Haftalarda biriken: <b>' + (TERS - BASLA) + ' TL</b>. Bu kaç tane 15 eder?';
+    return '4 tane 15 TL → <b>4 hafta</b>. Kontrol: 40 + 60 = 100 ✓';
+  }
+  var IPUCU3A = {
+    'bol': '100’ü hemen 15’e bölemezsin: 100 TL’nin içinde baştan gelen 40 TL de var, o haftalarda birikmedi. Önce onu ayır.',
+    'ekle': '40 zaten bu 100’ün içinde. Bir daha eklersen sayı şişer. Haftaları bulmak için 40’ı ayırmak gerekir.'
+  };
+  function kurAdim3(){
+    $('kbSahne').innerHTML = cubuk(seg3(), TERS) + '<div class="kbYaz">' + yazi3() + '</div>';
+    var h = '';
+    if (!s3.a) {
+      s3.gecen.bitti = false;
+      var dk = function(v, y, e){ return '<button type="button" class="kbChip' + (s3.gecen[v] ? ' yanlis' : '') + '" data-v="' + v + '">' + y + '</button>'; };
+      h = '<p class="kucuk" style="text-align:center;margin-top:10px">Önce ne yapmalısın?</p><div class="kbChipler">' +
+        dk('bol', '100’ü 15’e böl') + dk('cikar', '100’den 40’ı çıkar') + dk('ekle', '100’e 40 ekle') + '</div>';
+    } else {
+      s3.gecen.bitti = s3.b;
+      h = '<p class="kucuk" style="text-align:center;margin-top:10px">60 TL kaç haftalık birikim?</p>' + chipler(['3', '4', '5'], function(v){ return v === '4'; }, s3.gecen, ' hafta');
+    }
+    $('kbKontrol').innerHTML = h;
+    chipBagla(function(v, b){
+      if (s3.b) return;
+      if (!s3.a) {
+        if (v === 'cikar') { s3.a = true; kurAdim3(); }
+        else { s3.gecen[v] = true; b.classList.add('yanlis'); durumYaz('bozuk', IPUCU3A[v]); }
+      } else if (v === '4') { s3.b = true; kurAdim3(); }
+      else { s3.gecen[v] = true; b.classList.add('yanlis'); durumYaz('bozuk', v + ' hafta = ' + (Number(v) * HAFTALIK) + ' TL biriktirir; bizde ' + (TERS - BASLA) + ' TL var.'); }
+      ilerleDurumu();
+    });
+    if (s3.b) durumYaz('ok', 'Buldun: 4 hafta. İlk adımda da böyle yapabilirdin: 130 − 40 = 90, 90 ÷ 15 = 6 hafta.');
+    else if (s3.a) durumYaz('ok', 'Doğru: önce 40’ı ayırdın, geriye 60 TL kaldı.');
+    else durumGizle();
+  }
+
+  /* ---- adım 4: adı ---- */
+  function kurAdim4(){
+    durumGizle();
+    $('kbSahne').innerHTML = '<div class="kbTerazi"><span>40 + 15 × hafta</span><span>=</span><span>100</span></div>' +
+      '<div class="kbTerazi" style="font-size:15px;font-weight:400"><span>−40</span><span>her iki taraftan</span></div>' +
+      '<div class="kbTerazi"><span>15 × hafta</span><span>=</span><span>60</span></div>' +
+      '<div class="kbTerazi" style="font-size:15px;font-weight:400"><span>÷15</span><span>her iki taraftan</span></div>' +
+      '<div class="kbTerazi"><span style="border-color:#4ade80;color:#4ade80">hafta = 4</span></div>';
+    $('kbKontrol').innerHTML =
+      '<p style="margin-top:10px">Bu, sayfanın başındaki <b>terazi</b>: bir tarafa ne yaptıysan öbür tarafa da yaptın. Önce 40’ı çıkardın, sonra 15’e böldün.</p>' +
+      '<p>Böyle “bilinmeyen sayıyı” bulmaya <b class="vurgu">denklem çözmek</b> denir. Haftayı <b>x</b>, kumbaradaki parayı <b>y</b> yazarsan: <b>y = 15x + 40</b>. ' +
+      '<b>15</b>: her hafta ne kadar arttığı (eğim). <b>40</b>: baştan ne kadar olduğu.</p>' +
+      '<p class="buyuk" style="margin-top:14px">Şimdi bunu denemeye ne dersin?</p>' +
+      '<a class="kbLink bir" href="#k6">5 soruyla dene →</a>' +
+      '<a class="kbLink iki" href="karisik-tekrar.html">🔀 Karışık tekrar (8 soru)</a>';
+  }
+
+  var ADIMLAR = [
+    { baslik: '1 / 4 · KUMBARA', soru: 'Kumbarada 40 TL var. Her cumartesi 15 TL atıyorsun.',
+      alt: '130 TL’lik bir kulaklık istiyorsun. Kaç hafta beklemen gerekir? Düğmeye basarak haftaları sen geçir.', kur: kurAdim1 },
+    { baslik: '2 / 4 · TAHMİN', soru: '10 hafta sonra kumbarada kaç TL olur?',
+      alt: 'Tek tek saymadan bulmayı dene.', kur: kurAdim2 },
+    { baslik: '3 / 4 · TERSTEN', soru: 'Bir gün kumbarayı açtın: 100 TL.',
+      alt: 'Kaç hafta geçmiş? Yolu sen seç.', kur: kurAdim3 },
+    { baslik: '4 / 4 · ADI NE?', soru: 'Yaptığın şeyin adı var.',
+      alt: 'Adım adım yazalım.', kur: kurAdim4 }
+  ];
+
+  function ilerleDurumu(){
+    var acik = adim === 0 ? para(hafta) >= HEDEF : adim === 1 ? s2.ok : adim === 2 ? s3.b : true;
+    $('kbIleri').disabled = !acik;
+    $('kbIleri').classList.toggle('gizli', adim === ADIM_SAYISI - 1);
+    $('kbGeri').classList.toggle('gizli', adim === 0);
+  }
+  function goster(){
+    var a = ADIMLAR[adim], n = '';
+    for (var i = 0; i < ADIM_SAYISI; i++) n += '<span class="kbNokta' + (i <= adim ? ' on' : '') + '"></span>';
+    $('kbNoktalar').innerHTML = n;
+    $('kbBaslik').textContent = a.baslik;
+    $('kbSoru').textContent = a.soru;
+    $('kbAlt').textContent = a.alt;
+    a.kur();
+    ilerleDurumu();
+  }
+  $('kbIleri').onclick = function(){ if (adim < ADIM_SAYISI - 1) { adim++; goster(); } };
+  $('kbGeri').onclick = function(){ if (adim > 0) { adim--; goster(); } };
+  goster();
+})();
+</script>
 
 <!-- KART 1: KANCA - Amedspor puani -->
 <div class="kart" id="k1">
