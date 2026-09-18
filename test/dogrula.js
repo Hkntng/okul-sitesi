@@ -88,6 +88,15 @@ function soruBankasiKontrol() {
     hataEkle('Konular arasında eşit dağılım yok: ' + JSON.stringify(konuSayim));
   }
 
+  // a2) Doğru şık dağılımı — hepsi aynı şıkta olmamalı (öğrenci ezberler)
+  const sikSayim = { 0: 0, 1: 0, 2: 0 };
+  bank.forEach(q => { sikSayim[q.d] = (sikSayim[q.d] || 0) + 1; });
+  const enCok = Math.max(sikSayim[0], sikSayim[1], sikSayim[2]);
+  if (enCok > bank.length * 0.5) {
+    hataEkle('Doğru şıklar tek konumda toplanmış (' + JSON.stringify(sikSayim) +
+      '). Öğrenci soruyu okumadan aynı şıkkı işaretleyebilir; şıkları karıştır.');
+  }
+
   // b) API fonksiyonları
   const gerekliFonksiyonlar = ['soruId', 'kutuOku', 'kutuYaz', 'kutuyaEkle', 'kutudanCikar', 'kutuSorulari'];
   gerekliFonksiyonlar.forEach(fn => {
