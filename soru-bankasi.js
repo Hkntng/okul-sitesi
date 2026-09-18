@@ -97,7 +97,31 @@ window.SORU_BANKASI = [
  {k:"Dönüşüm",s:"A(4,−3) noktasının orijine göre yansıması (simetriği) hangisidir?",c:["(−4,3)","(4,3)","(−4,−3)"],d:0,a:"Orijine göre yansımada iki koordinat da işaret değiştirir: (−4,3)."},
  {k:"Dönüşüm",s:"Bir kare saat yönünde 90° döndürülürse aşağıdakilerden hangisi korunur?",c:["Kenar uzunlukları","Sadece konumu","Köşe koordinatları"],d:0,a:"Dönme bir öteleme-benzeri katı hareket: uzunluk ve açı korunur, yalnız yön/konum değişir."},
  {k:"Cisimler",s:"Taban yarıçapı 2, yüksekliği 3 olan koninin hacmi kaç π'dir?",c:["4π","12π","6π"],d:0,a:"Koni hacmi V=(1/3)πr²h=(1/3)π×4×3=4π. Koni, aynı tabanlı silindirin 1/3'üdür."},
- {k:"Cisimler",s:"Bir dikdörtgenler prizmasının hacmi 60, taban alanı 12 ise yüksekliği kaçtır?",c:["5","48","72"],d:0,a:"V=taban alanı×yükseklik → 60=12×h → h=5."}
+ {k:"Cisimler",s:"Bir dikdörtgenler prizmasının hacmi 60, taban alanı 12 ise yüksekliği kaçtır?",c:["5","48","72"],d:0,a:"V=taban alanı×yükseklik → 60=12×h → h=5."},
+ {k:"Çarpanlar",s:"EKOK(12,18) kaçtır?",c:["36","6","216"],d:0,a:"12=2²×3, 18=2×3². Ortak ve ortak olmayan asalların büyük üsleri: 2²×3²=36. 6 ise EBOB'dur."},
+ {k:"Çarpanlar",s:"72 sayısının kaç tane pozitif böleni vardır?",c:["12","10","24"],d:0,a:"72=2³×3². Üslerin 1 fazlası çarpılır: (3+1)×(2+1)=12."},
+ {k:"Üslü İfadeler",s:"(3²)³ işleminin sonucu hangisine eşittir?",c:["3⁶","3⁵","3⁹"],d:0,a:"Üssün üssünde üsler çarpılır: 2×3=6, yani 3⁶=729. Üsler toplanmaz."},
+ {k:"Üslü İfadeler",s:"2⁻³ ifadesinin değeri kaçtır?",c:["1/8","−8","−6"],d:0,a:"Negatif üs, tersini almak demektir: 2⁻³=1/2³=1/8. Sonuç negatif olmaz."},
+ {k:"Karekök",s:"√18 × √2 işleminin sonucu kaçtır?",c:["6","√20","9"],d:0,a:"Kökler çarpılır: √(18×2)=√36=6. Kök içindekiler toplanmaz."},
+ {k:"Karekök",s:"3√5 ifadesinin tamamı kök içine alınırsa hangisi olur?",c:["√45","√15","√35"],d:0,a:"3 kök içine 3²=9 olarak girer: √(9×5)=√45. Doğrulama: 45=9×5."},
+ {k:"Veri Analizi",s:"4, 6, 8, 10, 12 verisinin aritmetik ortalaması kaçtır?",c:["8","10","6"],d:0,a:"Toplam 4+6+8+10+12=40, eleman sayısı 5: 40÷5=8."},
+ {k:"Veri Analizi",s:"2, 3, 3, 4, 4, 4, 5 verisinin modu (tepe değeri) kaçtır?",c:["4","3","5"],d:0,a:"En çok tekrar eden değer 4'tür (3 kez). 3 ise 2 kez tekrar eder."},
+ {k:"Olasılık",s:"Hilesiz bir zar atıldığında asal sayı gelme olasılığı kaçtır?",c:["1/2","1/3","2/3"],d:0,a:"Asal sayılar 2, 3, 5 olmak üzere 3 tanedir. Olasılık 3/6=1/2. 1 asal sayı değildir."},
+ {k:"Olasılık",s:"Torbada 3 kırmızı ve 2 mavi bilye var. Rastgele çekilen bilyenin mavi olma olasılığı kaçtır?",c:["2/5","2/3","3/5"],d:0,a:"İstenen durum 2, tüm durumlar 3+2=5: olasılık 2/5. 2/3 hatası, mavileri kırmızılara oranlamaktan gelir."},
+ {k:"Cebir",s:"3(x+4) ifadesinin açılımı hangisidir?",c:["3x+12","3x+4","x+12"],d:0,a:"Dağılma özelliği: 3 hem x ile hem 4 ile çarpılır → 3x+12."},
+ {k:"Cebir",s:"2a+3a−a ifadesinin en sade hâli hangisidir?",c:["4a","5a","6a"],d:0,a:"Benzer terimlerin katsayıları toplanır: 2+3−1=4 → 4a. Tek başına yazılan a'nın katsayısı 1'dir."},
+ {k:"Denklemler",s:"4x−7=13 denkleminin çözümü kaçtır?",c:["5","1,5","20"],d:0,a:"−7 karşıya +7 geçer: 4x=20. Sonra 4'e bölünür: x=5. Kontrol: 4×5−7=13."},
+ {k:"Denklemler",s:"x/3+2=6 denkleminin çözümü kaçtır?",c:["12","4","24"],d:0,a:"2 karşıya geçer: x/3=4. Her iki taraf 3 ile çarpılır: x=12. Kontrol: 12/3+2=6."},
+ {k:"Eşitsizlikler",s:"2x+3>11 eşitsizliğinin çözümü hangisidir?",c:["x > 4","x > 7","x < 4"],d:0,a:"3 karşıya geçer: 2x>8. Pozitif sayıya bölünce yön değişmez: x>4."},
+ {k:"Eşitsizlikler",s:"−1 ≤ x < 5 aralığındaki tam sayıların toplamı kaçtır?",c:["9","10","8"],d:0,a:"Tam sayılar −1, 0, 1, 2, 3, 4'tür (5 dahil değil). Toplam −1+0+1+2+3+4=9."},
+ {k:"Üçgenler",s:"Kenar uzunlukları 3 cm, 4 cm ve x cm olan üçgende x en çok kaç tam sayı olabilir?",c:["6","7","5"],d:0,a:"Üçgen eşitsizliği: |4−3|<x<4+3 → 1<x<7. En büyük tam sayı 6. x=7 olsa 3+4=7 üçgen oluşmaz."},
+ {k:"Üçgenler",s:"Dik kenarları 6 cm ve 8 cm olan dik üçgenin hipotenüsü kaç cm'dir?",c:["10","14","12"],d:0,a:"Pisagor: 6²+8²=36+64=100, √100=10. Dik kenarlar toplanmaz."},
+ {k:"Benzerlik",s:"Benzerlik oranı 1/2 olan iki üçgenden küçüğünün bir kenarı 5 cm ise büyüğünde karşılık gelen kenar kaç cm'dir?",c:["10","2,5","25"],d:0,a:"Büyük üçgenin kenarı küçüğün 2 katıdır: 5×2=10 cm."},
+ {k:"Benzerlik",s:"İki benzer şeklin benzerlik oranı 3 ise alanları oranı kaçtır?",c:["9","3","6"],d:0,a:"Alanlar oranı, benzerlik oranının karesidir: 3²=9."},
+ {k:"Dönüşüm",s:"A(2,3) noktasının x eksenine göre yansıması hangisidir?",c:["(2,−3)","(−2,3)","(−2,−3)"],d:0,a:"x eksenine yansımada x aynı kalır, y'nin işareti değişir: (2,−3). (−2,3) y eksenine yansımadır."},
+ {k:"Dönüşüm",s:"A(1,4) noktası 3 birim sağa ve 2 birim aşağı ötelenirse yeni koordinatları ne olur?",c:["(4,2)","(3,6)","(−2,6)"],d:0,a:"Sağa 3 → x: 1+3=4. Aşağı 2 → y: 4−2=2. Yeni nokta (4,2)."},
+ {k:"Cisimler",s:"Taban yarıçapı 3 cm ve yüksekliği 10 cm olan dik dairesel silindirin hacmi kaç π cm³'tür?",c:["90π","30π","60π"],d:0,a:"V=πr²h=π×3²×10=90π. Yarıçap kare alınmazsa 30π gibi yanlış sonuç çıkar."},
+ {k:"Cisimler",s:"Bir kenarı 4 cm olan küpün yüzey alanı kaç cm²'dir?",c:["96","64","24"],d:0,a:"Küpün 6 yüzü vardır, her yüz 4×4=16: 6×16=96. 64 hacimdir."}
 ];
 window.KONU_SAYFA = {"Çarpanlar":"1-carpanlar.html","Üslü İfadeler":"uslu-ifadeler.html","Karekök":"karekok.html","Veri Analizi":"veri-analizi.html","Olasılık":"olasilik.html","Cebir":"cebir.html","Denklemler":"denklemler.html","Eşitsizlikler":"esitsizlikler.html","Üçgenler":"ucgenler.html","Benzerlik":"benzerlik.html","Dönüşüm":"donusum.html","Cisimler":"cisimler.html"};
 

@@ -382,3 +382,17 @@ permissions to use Bash, but you haven't granted it yet" hatasıyla 2 kez
 reddedildi — commit e6f36c3 YALNIZCA yerelde mevcut, origin/main'e gitmedi
 (son 7 turda aynı engel tekrarlanıyor). Kullanıcının elle
 `git push origin main` çalıştırması veya izni onaylaması gerekiyor.
+
+## 2026-09-18 — TUR 8: Soru bankası 96 → 120 (konu başına 8 → 10)
+Yapılan: soru-bankasi.js'e her konuya 2 yeni soru (toplam +24) eklendi; tümü
+d:0 formatında, nedenli açıklamalı. Tüm sayılar elle hesaplandı: EKOK(12,18)=36,
+72'nin 12 böleni, (3²)³=3⁶, 2⁻³=1/8, √18×√2=6, 3√5=√45, ortalama 8, mod 4,
+asal zar 1/2, mavi bilye 2/5, 3(x+4)=3x+12, 2a+3a−a=4a, 4x−7=13→x=5,
+x/3+2=6→x=12, 2x+3>11→x>4, −1≤x<5 tam sayı toplamı 9, üçgen 1<x<7→6,
+6-8-10, oran 1/2→10, alan oranı 9, (2,−3), (4,2), 90π, küp yüzey alanı 96.
+Yeni localStorage anahtarı YOK (soru kimliği konu|metin, mevcut yanlisKutum bozulmadı).
+sw.js cache 18n→18o.
+Test: `node test/dogrula.js` → CLEAN (eşit dağılım, tekrar yok, şık/indeks kontrolleri geçti).
+Yapılamayan: Chrome/390px testi — sandbox Chrome'u başlatmayı reddetti
+(crashpad/ProcessSingleton "Operation not permitted"). Değişiklik yalnızca veri
+olduğu için sinav.html/karisik-tekrar.html kodu değişmedi; tarayıcıda deneme YAPILMADI.
