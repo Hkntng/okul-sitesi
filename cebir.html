@@ -156,6 +156,21 @@ body.light .sekme:active { background:#a3e635; }
 </div>
 </div>
 
+<!-- KART 3b: (a+b)2 interaktif -->
+<div class="kart" id="k3b">
+<span class="adim">3+</span>
+<h2>Sen dene: a ve b'yi değiştir</h2>
+<p>Kare bahçenin kenarı <b>a</b>, her yönden büyütme <b>b</b>. İkisini de kaydır, dört parçanın alanını gör:</p>
+<div class="alanGorsel"><div class="aKare" id="cbKare"></div></div>
+<p class="kucuk" style="margin:0">a = <b id="cbAe">6</b> m</p>
+<input type="range" class="slider" id="cbA" min="1" max="12" value="6" aria-label="a: eski bahçenin kenarı">
+<p class="kucuk" style="margin:0">b = <b id="cbBe">3</b> m</p>
+<input type="range" class="slider" id="cbB" min="1" max="12" value="3" aria-label="b: büyütme miktarı">
+<div class="sonuc" id="cbSonuc" aria-live="polite"></div>
+<button class="btn2" id="cbTakildim">Takıldım, göster</button>
+<div class="sonuc gizli" id="cbAcik"></div>
+</div>
+
 <!-- KART 4: a2-b2 GORSEL -->
 <div class="kart" id="k4">
 <span class="adim">4</span>
@@ -241,6 +256,33 @@ document.querySelectorAll('#k3 .secenek').forEach(function(b,i){
     else{b.classList.add('yanlis');tit([10,30,10]);}
   };
 });
+// K3b: (a+b)^2 interaktif
+function cbCiz(){
+  var a=parseInt(document.getElementById('cbA').value), b=parseInt(document.getElementById('cbB').value);
+  document.getElementById('cbAe').textContent=a; document.getElementById('cbBe').textContent=b;
+  var k=document.getElementById('cbKare'), T=a+b, px=240/T;
+  k.style.width='240px'; k.style.gridTemplateColumns=a+'fr '+b+'fr'; k.style.gridTemplateRows=a+'fr '+b+'fr';
+  k.style.height='240px';
+  var p=[['hA',a*a,a,a],['hB',a*b,b,a],['hB',a*b,a,b],['hC',b*b,b,b]];
+  k.innerHTML=p.map(function(x){
+    var yaz=(x[2]*px>=34 && x[3]*px>=22)?x[1]:'';
+    return '<div class="hucre '+x[0]+'" style="min-height:0">'+yaz+'</div>';
+  }).join('');
+  var top=T*T, yanlis=a*a+b*b, ab2=2*a*b;
+  document.getElementById('cbSonuc').innerHTML=
+    '<span style="color:#7fb2e5">a² = '+(a*a)+'</span> + <span style="color:#f0a95a">ab = '+(a*b)+'</span> + <span style="color:#f0a95a">ab = '+(a*b)+'</span> + <span class="ok">b² = '+(b*b)+'</span><br>'+
+    '<span class="buyuk">(a+b)² = '+top+' m²</span> <span class="kucuk">(kontrol: '+T+'×'+T+')</span><br>'+
+    '<span class="hata">a²+b² = '+yanlis+'</span> <span class="kucuk">→ '+ab2+' m² eksik (2ab)</span>';
+}
+document.getElementById('cbA').oninput=cbCiz;
+document.getElementById('cbB').oninput=cbCiz;
+document.getElementById('cbTakildim').onclick=function(){
+  var e=document.getElementById('cbAcik');
+  e.innerHTML='<b>Yöntem:</b> büyük kare = kenarı (a+b). Alanı = (a+b)×(a+b). İçinde 4 parça var: mavi <b>a²</b>, yeşil <b>b²</b> ve iki turuncu <b>ab</b> şeridi. Örnek a=6, b=3: 36 + 18 + 18 + 9 = 81 = 9². "a²+b²" yazarsan 36+9 = 45 bulursun — 36 m² (2ab) eksik!';
+  ac('cbAcik'); tit(15);
+};
+cbCiz();
+
 // K4: index 0
 document.querySelectorAll('#k4 .secenek').forEach(function(b,i){
   b.onclick=function(){
