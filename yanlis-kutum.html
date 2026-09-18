@@ -34,6 +34,10 @@ a{color:#7da8d8}
 .nav a{text-decoration:none}
 .bosKutu{text-align:center;padding:34px 18px}
 .bosKutu .em{font-size:46px;margin-bottom:10px}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 <link rel="icon" href="/okul-sitesi/icons/icon-192.png">
 <link rel="canonical" href="https://hkntng.github.io/okul-sitesi/yanlis-kutum.html">

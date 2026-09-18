@@ -62,6 +62,10 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
 .tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
 .alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 <style>
 .ipKutu{background:#1a2236;border-radius:12px;padding:14px;margin:12px 0;text-align:center}
@@ -182,13 +186,13 @@ body.light .sekme:active { background:#a3e635; }
 </svg>
 </div>
 <label class="kucuk">Kenar a: <span id="ueAdeg">5</span> cm</label>
-<input type="range" id="ueA" class="ueSlider" min="2" max="20" value="5">
+<input type="range" aria-label="Kenar a (cm)" id="ueA" class="ueSlider" min="2" max="20" value="5">
 <div class="ueEtiket"><span>2 cm</span><span>20 cm</span></div>
 <label class="kucuk">Kenar b: <span id="ueBdeg">9</span> cm</label>
-<input type="range" id="ueB" class="ueSlider" min="2" max="20" value="9">
+<input type="range" aria-label="Kenar b (cm)" id="ueB" class="ueSlider" min="2" max="20" value="9">
 <div class="ueEtiket"><span>2 cm</span><span>20 cm</span></div>
 <label class="kucuk">Kenar c: <span id="ueCdeg">10</span> cm</label>
-<input type="range" id="ueC" class="ueSlider" min="2" max="20" value="10">
+<input type="range" aria-label="Kenar c (cm)" id="ueC" class="ueSlider" min="2" max="20" value="10">
 <div class="ueEtiket"><span>2 cm</span><span>20 cm</span></div>
 <div class="sonuc">
 <p class="buyuk" id="ueSonuc"></p>

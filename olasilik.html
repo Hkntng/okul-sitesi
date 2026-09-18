@@ -62,6 +62,10 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
 .tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
 .alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 <style>
 .torba{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}

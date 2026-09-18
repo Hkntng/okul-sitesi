@@ -257,6 +257,10 @@ body{
 .buyukbtn:active{transform:scale(.98)}
 .buyukbtn.mor2{background:#7c4dbd;color:#fff}
 .buyukbtn.ikincil{background:#243044;color:#e6edf3}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 
 <style>

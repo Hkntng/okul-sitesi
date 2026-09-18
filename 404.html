@@ -2,6 +2,10 @@
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sayfa bulunamadı</title>
 <style>body{margin:0;background:#0d1117;color:#e6edf3;font-family:-apple-system,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center}
-a{color:#7da8d8;font-weight:700}</style></head>
+a{color:#7da8d8;font-weight:700}
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style></head>
 <body><div><div style="font-size:64px">🤔</div><h1>Sayfa bulunamadı</h1>
 <p>Aradığın sayfa taşınmış olabilir.</p><p><a href="/okul-sitesi/">← Ana sayfaya dön</a></p></div></body></html>

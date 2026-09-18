@@ -73,6 +73,10 @@ body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
 .secimButonlari button:active{transform:scale(.96)}
 .secimButonlari .ebob{background:#f0a44b;color:#10141c}
 .secimButonlari .ekok{background:#3fb950;color:#10141c}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 <link rel="canonical" href="https://hkntng.github.io/okul-sitesi/5-ebob-ekok-secimi.html">
 <link rel="manifest" href="/okul-sitesi/manifest.webmanifest">

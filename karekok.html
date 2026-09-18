@@ -71,6 +71,10 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
 .kbEtiket{display:flex;justify-content:space-between;font-size:13px;color:#8b95ad;margin:4px 0 10px}
 .alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 
 <style>

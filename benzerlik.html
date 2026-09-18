@@ -62,6 +62,10 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
 .tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
 .alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 <style>
 .golgeKutu{background:#1a2236;border-radius:12px;padding:14px;margin:12px 0;text-align:center}
@@ -140,11 +144,11 @@ body.light .sekme:active { background:#a3e635; }
 </svg>
 </div>
 <p class="kucuk">Çubuk boyu: <span id="boCubukBoyEt" class="vurgu">1,5 m</span></p>
-<input type="range" class="oranSlider" id="boCubukBoy" min="0.5" max="3" step="0.1" value="1.5">
+<input type="range" aria-label="Çubuk boyu (m)" class="oranSlider" id="boCubukBoy" min="0.5" max="3" step="0.1" value="1.5">
 <p class="kucuk">Çubuğun gölgesi: <span id="boCubukGolgeEt" class="vurgu">2 m</span></p>
-<input type="range" class="oranSlider" id="boCubukGolgeS" min="0.5" max="6" step="0.1" value="2">
+<input type="range" aria-label="Çubuğun gölgesi (m)" class="oranSlider" id="boCubukGolgeS" min="0.5" max="6" step="0.1" value="2">
 <p class="kucuk">Binanın gölgesi: <span id="boBinaGolgeEt" class="vurgu">40 m</span></p>
-<input type="range" class="oranSlider" id="boBinaGolgeS" min="5" max="100" step="1" value="40">
+<input type="range" aria-label="Binanın gölgesi (m)" class="oranSlider" id="boBinaGolgeS" min="5" max="100" step="1" value="40">
 <div class="sonuc">
 <span class="kucuk">Oran: çubuk boyu ÷ çubuk gölgesi = <span id="boOran" class="vurgu">0,75</span></span><br>
 Bina boyu ≈ <span id="boSonuc" class="buyuk">30 m</span>

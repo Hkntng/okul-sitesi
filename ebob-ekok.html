@@ -167,6 +167,10 @@ body{
 
 .alt{text-align:center;color:#6e7681;font-size:13px;line-height:1.7;padding:14px 0 0}
 .alt a{color:#7d8590}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 
 <style>

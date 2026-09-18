@@ -35,6 +35,10 @@ h1{font-size:24px;margin:10px 0 4px}
 a{color:#7da8d8}
 .nav{display:flex;justify-content:space-between;margin-top:26px;font-size:14px}
 .nav a{text-decoration:none}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 <link rel="icon" href="/okul-sitesi/icons/icon-192.png">
 <link rel="canonical" href="https://hkntng.github.io/okul-sitesi/karisik-tekrar.html">

@@ -62,6 +62,10 @@ button{font-family:inherit;font-size:16px;border:0;border-radius:12px;padding:13
 .tablo td,.tablo th{border:1px solid #27314b;padding:7px 9px;text-align:center}
 .tablo th{background:rgba(255,255,255,.05);color:var(--tema2)}
 .alt{color:#8b95ad;font-size:14px;text-align:center;margin-top:30px}
+
+/* erişilebilirlik: klavye odağı + hareket azaltma */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 <style>
 .grafKutu{background:#1a2236;border-radius:12px;padding:12px;margin:12px 0;text-align:center}
@@ -145,13 +149,13 @@ body.light .sekme:active { background:#a3e635; }
 <h2>Kendi denklemini kur, teraziyle çöz</h2>
 <p>Sliderları oynat: <b>ax + b = c</b> denklemi anında kurulsun, terazi adım adım çözülsün.</p>
 <label class="kucuk">a (x'in katsayısı): <b id="dzAgoster">3</b></label>
-<input type="range" id="dzA" class="ueSlider" min="1" max="9" value="3">
+<input type="range" aria-label="a, x'in katsayısı" id="dzA" class="ueSlider" min="1" max="9" value="3">
 <div class="ueEtiket"><span>1</span><span>9</span></div>
 <label class="kucuk">b (sabit): <b id="dzBgoster">2</b></label>
-<input type="range" id="dzB" class="ueSlider" min="-15" max="15" value="2">
+<input type="range" aria-label="b, sabit terim" id="dzB" class="ueSlider" min="-15" max="15" value="2">
 <div class="ueEtiket"><span>−15</span><span>15</span></div>
 <label class="kucuk">c (eşitliğin sağı): <b id="dzCgoster">14</b></label>
-<input type="range" id="dzC" class="ueSlider" min="-15" max="15" value="14">
+<input type="range" aria-label="c, eşitliğin sağ tarafı" id="dzC" class="ueSlider" min="-15" max="15" value="14">
 <div class="ueEtiket"><span>−15</span><span>15</span></div>
 <div class="sonuc">
 <div id="dzDenklem" style="text-align:center;font-size:19px;font-weight:800"></div>
