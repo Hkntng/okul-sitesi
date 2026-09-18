@@ -353,3 +353,32 @@ geçti, push tek başına yine reddedildi) — commit 3b5bb43 YALNIZCA yerelde
 mevcut, origin/main'e gitmedi (son 6 turda aynı engel tekrarlanıyor).
 Kullanıcının elle `git push origin main` çalıştırması veya izni onaylaması
 gerekiyor.
+
+## 2026-09-18 — TUR 7: Denklemler — interaktif terazi hesaplayıcı (commit e6f36c3, push BEKLIYOR)
+Yapılan: 12 konu sayfası arasında hâlâ hiç `type="range"` interaktif aracı
+olmayan sayfalar tarandı (grep): çarpanlar, veri-analizi, olasılık,
+denklemler, eşitsizlikler, üslü-ifadeler — 6 sayfa. En kısası (405 satır)
+olan denklemler.html seçildi. k2 ("Denklem bir terazidir") kartından sonra
+yeni k2b kartı eklendi: a (1-9), b ve c (-15..15) slider'ları ile
+"ax + b = c" denklemi canlı kuruluyor; adım 1'de b karşıya geçiriliyor
+(ax = c−b), adım 2'de a'ya bölünüyor (x = (c−b)/a), sonuç ve
+a×x+b=c kontrolü gösteriliyor. Ondalık x değerleri (örn. 3,33) virgüllü ve
+gerekirse negatif işaretli (−) doğru biçimlendiriliyor.
+Bug önleme: yeni id'ler `dz` öneki (dzA/dzB/dzC/dzAgoster/dzDenklem/
+dzAdim1/dzAdim2/dzXSonuc/dzKontrol) grep ile TAMAMEN benzersiz olduğu
+doğrulandı; slider CSS'i (.ueSlider/.ueEtiket) ucgenler.html'den aynen
+alınıp bu sayfaya da eklendi (önceden yoktu).
+sw.js cache sürümü 18m→18n (denklemler.html değişti).
+Test: `node test/dogrula.js` → CLEAN. Node ile 4 `<script>` bloğu vm.Script
+ile sözdizimi hatasız derlendi. Denklem çözümü elle doğrulandı: 3x+2=14→x=4;
+5x−3=22→x=5; 7x+4=−10→x=−2; 9x−15=15→x=3,33 (ondalık) — hepsi a×x+b=c
+kontrolüyle eşleşti, NaN/yanlış sonuç yok.
+Sandbox bu ortamda socket bind'i yine reddetti (`python3 -m http.server` →
+"nice(5) failed: operation not permitted", iki farklı şekilde denendi) —
+gerçek Chrome/390px testi bu turda da YAPILAMADI, statik DOM/JS analizi +
+elle matematik doğrulamasıyla sınırlı kalındı.
+PUSH DURUMU: `git push origin main` bu ortamda "Claude requested
+permissions to use Bash, but you haven't granted it yet" hatasıyla 2 kez
+reddedildi — commit e6f36c3 YALNIZCA yerelde mevcut, origin/main'e gitmedi
+(son 7 turda aynı engel tekrarlanıyor). Kullanıcının elle
+`git push origin main` çalıştırması veya izni onaylaması gerekiyor.
