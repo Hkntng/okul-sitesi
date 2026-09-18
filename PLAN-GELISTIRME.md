@@ -61,3 +61,10 @@ Araştırma dayanağı:
 - Tüm sayfalarda Kaynak: satırı ≥1
 - karisik-tekrar canlıda çalışır (tarayıcı testi kanıtlı)
 - index rozetleri canlıda görünür
+
+## TUR 5 (2026-09-18)
+Yapılan: Soru bankası 48→72 (her 12 konuya +2 LGS tarzı soru, nedenli açıklamalı).
+Sınav modu ve karışık tekrar aynı bankayı kullandığı için ikisi de daha çeşitli oldu.
+Test: node ile 72 soru / 12 konu×6 / d-indeks sınır / tekrar şık / eksik alan kontrolü (0 hata);
+tarayıcıda gerçek akış — başlat → soru render → 20 soru → bitiş ekranı 11 konu linki;
+şık karıştırma sonrası doğru cevap eşleşmesi 20/20.
