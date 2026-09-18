@@ -450,3 +450,14 @@ Yapılamayan: gerçek Chrome/390px testi (crashpad/ProcessSingleton "Operation n
 değiştirilerek de denendi); push: `git push origin main` "Claude requested permissions to use Bash"
 ile reddedildi → canlı doğrulama yapılamadı. Not: `git ls-remote` ile uzak main = b67d960 görüldü
 (TUR 7-11 uzakta), yani yalnızca TUR 12 commit'leri bekliyor.
+
+## 2026-09-18 — TUR 13: Karekök — a√b sadeleştirici aracı (araç + not tek commit, push BEKLIYOR)
+Yapılan: karekok.html k4 kartına slider (2–200) ile çalışan sadeleştirici: en büyük tam kare böleni bulur,
+"72 = 36 × 2 → 6√2", tam kareyse tam sonuç, sadeleşmiyorsa "sadeleşmez" der. "Takıldım, göster" düğmesi
+yöntemi açıklar. Yeni id'ler `kb` önekli; CSS sınıfları tanımlı (kbEtiket eklendi). Yeni localStorage
+anahtarı YOK. sw.js cache 18s→18t. Yeni konu sayfası açılmadı.
+Test: `node test/dogrula.js` → CLEAN; script'ler vm.Script ile derlendi; mantık Node'da doğrulandı
+(k√m ile √n farkı 0: 72→6√2, 50→5√2, 18→3√2, 200→10√2, 45→3√5, 180→6√5, 150→5√6; 16→4, 13/2→sadeleşmez).
+Yapılamayan: gerçek Chrome/390px testi (crashpad "Operation not permitted", sandbox); push: izin verilmedi
+("Claude requested permissions to use Bash"), github.com sandbox'ta kapalı → canlı doğrulama yapılamadı.
+Elle `git push origin main` gerekiyor (TUR 12 + 13 bekliyor).
