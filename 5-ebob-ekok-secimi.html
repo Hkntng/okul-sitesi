@@ -73,6 +73,22 @@ body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
 .secimButonlari button:active{transform:scale(.96)}
 .secimButonlari .ebob{background:#f0a44b;color:#10141c}
 .secimButonlari .ekok{background:#3fb950;color:#10141c}
+/* ---- sayac (deger degistirici) ---- */
+.sayac{display:flex;align-items:center;justify-content:center;gap:14px}
+.sayac button{width:46px;height:46px;border-radius:12px;border:1px solid #2c3950;background:#1b2436;color:#f0c040;font-size:24px;font-weight:700;cursor:pointer;line-height:1;font-family:inherit}
+.sayac button:active{transform:scale(.94)}
+.sayac .deger{display:flex;flex-direction:column;align-items:center;min-width:74px}
+.sayac .deger b{font-size:30px;color:#e6edf3;line-height:1.1}
+.sayac .deger span{font-size:12px;color:#8b949e;margin-top:2px}
+/* ---- problem secici ---- */
+#problemListesi{display:flex;flex-wrap:wrap;gap:8px}
+#problemListesi button{padding:9px 13px;border-radius:10px;border:1px solid #2c3950;background:#1b2436;color:#c9d3e0;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+#problemListesi button:active{transform:scale(.96)}
+#problemListesi button.secili{background:#f0c040;color:#10141c;border-color:#f0c040}
+/* ---- cevap durumu ---- */
+.cevap.iyi{border-color:#3fb950;background:#12251a;color:#8ce89f}
+.cevap.kotu{border-color:#5c2626;background:#2a1616;color:#ffb3ab}
+.cevap .kucuk{color:#8b949e;font-size:13px}
 
 /* erişilebilirlik: klavye odağı + hareket azaltma */
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
@@ -153,12 +169,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 
   // Problemlar: [açıklama, değerA, değerB, beklenen (EBOB veya EKOK)]
   var problemler = [
-    ["İki 서로 다른 büyük tinelerde suyu boşaltmak için 8 L ve 12 L kapasiteli pompalardaki akış sürelerini eşitlemek isterseniz, her pompanın aynı zaman diliminde aktaracağı su miktarını bulun.", 8, 12, "EKOK"],
-    ["24 kırmızı ve 36 beyaz çiçeği eşit sayıda ve karışık olmadan vazelere koymak istersiniz. Her vazede en çok kaç çiçek olabilir?", 24, 36, "EBOB"],
-    ["Bir fabrikada iki makine 6 saatte bir ve 8 saatte bir bakım gerektirir. İki makine aynı gün aynı saatte bakım gerektiği ilk zaman ne zaman olur?", 6, 8, "EKOK"],
-    ["18 adet çikolata ve 24 adet cukurcuklu eşit dağıtılmak üzere paketlenecek. Her paketteki eşya sayısının en büyük değeri kaçtır?", 18, 24, "EBOB"],
-    ["İki planeta güneş etrafında dönerken birinin dönüş süresi 10 gün, diğeri 15 gün. İki kez aynı doğrusal durağa gelme süresi nedir?", 10, 15, "EKOK"],
-    ["Bir kereste merchant 16 ft ve 24 ft uzunluğunda iki kereste parçasını eşit uzunlukta kırmak ister. Kırtılacak en uzun parçanın uzunluğu nedir?", 16, 24, "EBOB"]
+    ["İki musluk bir havuza su dolduruyor. Biri 8 dakikada bir, diğeri 12 dakikada bir otomatik olarak açılıyor. İki musluk ilk kez aynı anda tekrar kaç dakika sonra açılır?", 8, 12, "EKOK"],
+    ["24 kırmızı ve 36 beyaz çiçeği, her vazoda aynı renk dağılımı olacak ve hiç çiçek artmayacak şekilde vazolara koymak istiyorsun. En çok kaç vazo hazırlayabilirsin?", 24, 36, "EBOB"],
+    ["Bir fabrikada iki makine bakım istiyor: biri her 6 saatte bir, diğeri her 8 saatte bir. İki makine ilk kez aynı anda kaç saat sonra bakıma girer?", 6, 8, "EKOK"],
+    ["18 çikolata ve 24 şekeri, her pakette aynı sayıda çikolata ve aynı sayıda şeker olacak biçimde paketleyeceksin, hiçbiri artmayacak. En çok kaç paket yapabilirsin?", 18, 24, "EBOB"],
+    ["İki gezegen Güneş'in çevresinde dönüyor: biri turunu 10 günde, diğeri 15 günde tamamlıyor. Şu an yan yanalar; kaç gün sonra tekrar yan yana gelirler?", 10, 15, "EKOK"],
+    ["16 metre ve 24 metre uzunluğundaki iki kumaş topunu, hiç kumaş artmadan eşit uzunlukta parçalara keseceksin. Her parça en fazla kaç metre olabilir?", 16, 24, "EBOB"]
   ];
 
   var problemIndex = 0;
@@ -238,7 +254,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
     sonuc.classList.remove('gizli');
     if(dogru){
       sonuc.className = 'cevap iyi';
-      sonuc.innerHTML = '<b>Doğru!</b> EBOB('+a+','+b+') = '+sonucDeger+'<br><span class="kucuk">Bu problemde eşşit dağıtım (ör. vazeler, paketler) için EBOB kullanılır.</span>';
+      sonuc.innerHTML = '<b>Doğru!</b> EBOB('+a+','+b+') = '+sonucDeger+'<br><span class="kucuk">Bu problemde eşit dağıtım (ör. vazeler, paketler) için EBOB kullanılır.</span>';
     } else {
       sonuc.className = 'cevap kotu';
       sonuc.innerHTML = '<b>Yanlış.</b> EBOB('+a+','+b+') = '+sonucDeger+', ancak bu problemde <b>EKOK</b> gerekir.<br><span class="kucuk">Tekrar ve eşzamanlık (ör. servis, döngüler) için EKOK kullanılır.</span>';
@@ -257,7 +273,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
     sonuc.classList.remove('gizli');
     if(dogru){
       sonuc.className = 'cevap iyi';
-      sonuc.innerHTML = '<b>Doğru!</b> EKOK('+a+','+b+') = '+sonucDeger+'<br><span class="kucuk">Bu problemde eşzamanlak (ör. servis, döngüler) için EKOK kullanılır.</span>';
+      sonuc.innerHTML = '<b>Doğru!</b> EKOK('+a+','+b+') = '+sonucDeger+'<br><span class="kucuk">Bu problemde eşzamanlılık (ör. servis, döngüler) için EKOK kullanılır.</span>';
     } else {
       sonuc.className = 'cevap kotu';
       sonuc.innerHTML = '<b>Yanlış.</b> EKOK('+a+','+b+') = '+sonucDeger+', ancak bu problemde <b>EBOB</b> gerekir.<br><span class="kucuk">Eşit dağıtım (ör. vazeler, paketler) için EBOB kullanılır.</span>';
