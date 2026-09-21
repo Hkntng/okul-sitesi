@@ -227,24 +227,30 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
   problemiSecimleOlustur();
   gosterProblem();
 
+  // Sayı değişince önceki EBOB/EKOK cevabı artık geçersiz — gizle.
+  function sonucuGizle(){
+    sonuc.classList.add('gizli');
+    sonuc.textContent = '';
+  }
+
   // +/- buttons for value A
   eksiA.onclick = function(){
     var v = parseInt(degerA.textContent,10)-1;
-    if(v>=1){ degerA.textContent = v; tit(10); }
+    if(v>=1){ degerA.textContent = v; tit(10); sonucuGizle(); }
   };
   artiA.onclick = function(){
     var v = parseInt(degerA.textContent,10)+1;
-    degerA.textContent = v; tit(10);
+    degerA.textContent = v; tit(10); sonucuGizle();
   };
 
   // +/- buttons for value B
   eksiB.onclick = function(){
     var v = parseInt(degerB.textContent,10)-1;
-    if(v>=1){ degerB.textContent = v; tit(10); }
+    if(v>=1){ degerB.textContent = v; tit(10); sonucuGizle(); }
   };
   artiB.onclick = function(){
     var v = parseInt(degerB.textContent,10)+1;
-    degerB.textContent = v; tit(10);
+    degerB.textContent = v; tit(10); sonucuGizle();
   };
 
   // EBOB button
