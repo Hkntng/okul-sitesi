@@ -208,6 +208,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 .blLink{display:block;margin-top:9px;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-size:15px;font-weight:700}
 .blLink.bir{background:#3fb950;color:#08150c}
 .blLink.iki{background:#1b2436;border:1px solid #33415a;color:#cfe0f5}
+/* Canli EBOB-EKOK oynatici */
+.oyn{background:#0d1420;border-radius:14px;padding:14px 12px;margin:6px 0 4px}
+.oynSatir{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+.oynEtiket{font-size:13px;font-weight:700;color:#8b949e;width:44px;text-align:right}
+.oynBtn{width:46px;height:46px;border:none;border-radius:12px;background:#1b2436;color:#e6edf3;font-size:24px;font-weight:700;cursor:pointer;line-height:1}
+.oynBtn:active{background:#2a3550}
+.oynDeger{min-width:60px;text-align:center;font-size:28px;font-weight:800;color:#e6edf3}
+.oynSonuc{display:flex;gap:10px;margin-top:6px}
+.oynKutu{flex:1;background:#161d2b;border:1px solid #232d3f;border-radius:12px;padding:10px 8px;text-align:center}
+.oynKutu .bas{font-size:12px;font-weight:700;color:#8b949e;margin-bottom:4px}
+.oynKutu .say{font-size:26px;font-weight:800}
+.oynKutu.ebob .say{color:#3fb950}
+.oynKutu.ekok .say{color:#58a6ff}
+.oynCarpan{text-align:center;font-size:14px;color:#9aa4b0;margin:8px 0 2px;line-height:1.6}
+.oynCarpan b{color:#f0a44b}
+.oynKontrol{margin-top:10px;padding:8px 10px;border-radius:9px;background:#12251a;border:1px solid #235c33;color:#5ddc7a;font-size:13.5px;text-align:center}
 </style>
 
 <style>
@@ -397,6 +413,32 @@ body.light .sekme:active { background:#a3e635; }
     <div class="altinKural">
       <b>Altın kural:</b> cevap sayılardan <b>küçük</b> çıktıysa EBOB.
       <b>Büyük</b> çıktıysa EKOK. Ters çıktıysa yanlış yöntemi seçmişsin.
+    </div>
+  </div>
+
+  <div class="kart" id="oynatici">
+    <span class="adim yesil">İstediğin sayıyla dene</span>
+    <p class="buyuk">İki sayıyı değiştir, EBOB ve EKOK anında değişsin.</p>
+    <p class="kucuk">Butonlarla sayıları artır/azalt. Çarpanları, EBOB'u ve EKOK'u canlı hesaplar.</p>
+    <div class="oyn">
+      <div class="oynSatir">
+        <span class="oynEtiket">1. sayı</span>
+        <button class="oynBtn" id="aEksi" type="button" aria-label="azalt">−</button>
+        <span class="oynDeger" id="aDeger">12</span>
+        <button class="oynBtn" id="aArti" type="button" aria-label="artır">+</button>
+      </div>
+      <div class="oynSatir">
+        <span class="oynEtiket">2. sayı</span>
+        <button class="oynBtn" id="bEksi" type="button" aria-label="azalt">−</button>
+        <span class="oynDeger" id="bDeger">18</span>
+        <button class="oynBtn" id="bArti" type="button" aria-label="artır">+</button>
+      </div>
+      <div class="oynCarpan" id="oynCarpan"></div>
+      <div class="oynSonuc">
+        <div class="oynKutu ebob"><div class="bas">EBOB</div><div class="say" id="oynEbob">6</div></div>
+        <div class="oynKutu ekok"><div class="bas">EKOK</div><div class="say" id="oynEkok">36</div></div>
+      </div>
+      <div class="oynKontrol" id="oynKontrol"></div>
     </div>
   </div>
 
@@ -1052,6 +1094,43 @@ window.addEventListener('load', showNotes);
     if(localStorage.getItem(key)==='1')localStorage.removeItem(key);else localStorage.setItem(key,'1');
     render();
   };
+  render();
+})();
+</script>
+
+<script>
+(function(){
+  var A=document.getElementById('aDeger'), B=document.getElementById('bDeger');
+  if(!A||!B) return;
+  var min=2, max=99;
+  function gcd(x,y){ while(y){ var t=y; y=x%y; x=t; } return x; }
+  function carpanlar(n){ // asal carpan -> "2 x 2 x 3" bicimi
+    var out=[], d=2;
+    while(d*d<=n){ while(n%d===0){ out.push(d); n/=d; } d++; }
+    if(n>1) out.push(n);
+    return out;
+  }
+  function render(){
+    var a=parseInt(A.textContent,10), b=parseInt(B.textContent,10);
+    var g=gcd(a,b), l=a/g*b;
+    document.getElementById('oynEbob').textContent=g;
+    document.getElementById('oynEkok').textContent=l;
+    var ca=carpanlar(a).join(' × ')||a, cb=carpanlar(b).join(' × ')||b;
+    document.getElementById('oynCarpan').innerHTML =
+      '<b>'+a+'</b> = '+ca+'<br><b>'+b+'</b> = '+cb;
+    // EBOB x EKOK = a x b kontrolu
+    var k=document.getElementById('oynKontrol');
+    k.textContent='Kontrol: '+g+' × '+l+' = '+(g*l)+'  ve  '+a+' × '+b+' = '+(a*b)+'  ✓';
+  }
+  function ayar(el, delta){
+    var k=parseInt(el.textContent,10)+delta;
+    if(k<min) k=min; if(k>max) k=max;
+    el.textContent=k; render();
+  }
+  document.getElementById('aEksi').onclick=function(){ ayar(A,-1); };
+  document.getElementById('aArti').onclick=function(){ ayar(A,1); };
+  document.getElementById('bEksi').onclick=function(){ ayar(B,-1); };
+  document.getElementById('bArti').onclick=function(){ ayar(B,1); };
   render();
 })();
 </script>
