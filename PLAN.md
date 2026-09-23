@@ -111,12 +111,12 @@ Bilimsel gösterim için güçlü aday: ölçek karşılaştırması (atom ↔ e
 |---|---|---|---|
 | A | Kaynak toplama | Kitap + kazanımlar + teknoloji raporu | ✅ BİTTİ |
 | B | Bu plan | PLAN.md | ✅ BİTTİ |
-| C | Gerçek hayat örneklerini doğrulama | Kaynaklı liste | ⏳ SIRADA |
-| D | Yayın kararı (GitHub Pages?) | Karar + kurulum | ⏳ |
-| E | S1 pilot sayfa | Çalışan tek sayfa | ⏳ Hakan onayı bekler |
-| F | Hakan değerlendirir | Şablon kesinleşir | ⏳ |
-| G | S2–S5 çoğaltma | 1. bölüm tamam | ⏳ |
-| H | Sınıfta deneme | Gerçek öğrenci | ⏳ |
+| C | Gerçek hayat örneklerini doğrulama | Kaynaklı liste (`kaynak/URL-DOGRULAMA.md`) | ✅ BİTTİ |
+| D | Yayın kararı (GitHub Pages?) | Yayında: https://hkntng.github.io/okul-sitesi/ | ✅ BİTTİ |
+| E | S1 pilot sayfa | `1-carpanlar.html` çalışıyor | ✅ BİTTİ |
+| F | Hakan değerlendirir | Şablon kesinleşti, tüm sayfalara uygulandı | ✅ BİTTİ |
+| G | S2–S5 çoğaltma | 1. bölüm tamam (22 sayfa, `node test/dogrula.js` → CLEAN) | ✅ BİTTİ |
+| H | Sınıfta deneme | Gerçek öğrenci | ⏳ SIRADA (sınıfta yapılacak) |
 
 **Kritik kural:** E aşamasına Hakan "başla" demeden geçilmez.
 
